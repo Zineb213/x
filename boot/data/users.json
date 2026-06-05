@@ -1,0 +1,31 @@
+{
+  "users": [
+    {
+      "id": "ba8333fe-02ae-4727-8cdc-b779b69b6980",
+      "email": "superadmin@boot.local",
+      "passwordHash": "$2a$12$jAEFI7WLel.YTKHPeuJLWeGvnBwx8p2IRlf8nUd7a.Pr19uLsAVfa",
+      "role": "ADMIN",
+      "displayName": "Super Admin",
+      "active": true,
+      "plan": "owner",
+      "expiresAt": null,
+      "apiKey": "f931fec7e25a42b5901d339d2c1d77067d96c65e",
+      "createdAt": "2026-05-28T23:12:29.258Z",
+      "updatedAt": "2026-05-28T23:12:29.258Z"
+    },
+    {
+      "id": "fc278be3-4bb8-456a-a518-d0e39aac4d55",
+      "email": "client.demo@boot.local",
+      "passwordHash": "$2a$12$rgskzW/msgtnvBAryCX04uQ6SIX4wdbfVjkA5pVdcYfBalVUNJJ/e",
+      "role": "CLIENT",
+      "displayName": "Client Demo",
+      "active": true,
+      "plan": "monthly",
+      "expiresAt": "2026-06-28T09:13:09.551Z",
+      "apiKey": "ea3444bc0ceba3edfc2d6e12c193ebe24564db08",
+      "createdAt": "2026-05-28T23:13:47.395Z",
+      "updatedAt": "2026-05-29T09:13:09.551Z",
+      "telegramChatId": "8465569764"
+    }
+  ]
+}

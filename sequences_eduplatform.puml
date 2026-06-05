@@ -1,0 +1,244 @@
+@startuml sequences_eduplatform
+title Séquences d'Actions - Plateforme EduPlatform
+
+' ==================== SEQUENCE 1 : CONNEXION ====================
+== SEQUENCE 1: Connexion (Tous les rôles) ==
+
+actor Étudiant
+actor "Admin Simple\n(École)" as AdminSimple
+actor "Admin Super" as AdminSuper
+actor "Formateur Principal" as FormateurPrinc
+actor "Formateur Simple" as FormateurSimp
+participant Frontend
+participant "authController" as AuthCtrl
+participant "authService" as AuthSvc
+database "PostgreSQL\n(users)" as DB
+participant "Système" as Systeme
+
+Étudiant -> Frontend: 1. Accède à /login
+Étudiant -> Frontend: 2. Saisit matricule/email + mot de passe
+Frontend -> AuthCtrl: 3. POST /api/auth/login {identifier, password}
+AuthCtrl -> AuthSvc: 4. loginWithMatricule(identifier, password)
+AuthSvc -> DB: 5. SELECT * FROM users WHERE matricule = ? OR email = ?
+DB --> AuthSvc: 6. Retour {password_hash, role_global, is_active, school_id}
+AuthSvc -> Systeme: 7. Vérifie bcrypt.compare(password, password_hash)
+Systeme --> AuthSvc: 8. ✓ Mot de passe valide
+AuthSvc -> DB: 9. UPDATE users SET last_login = NOW() WHERE id = ?
+AuthSvc -> Systeme: 10. Génère JWT token
+AuthSvc --> AuthCtrl: 11. Retour {token, user (sans password)}
+AuthCtrl --> Frontend: 12. 200 OK {success: true, data: {token, user}}
+Frontend -> Frontend: 13. localStorage.setItem('token', 'user')
+Frontend -> Frontend: 14. Redirige selon role_global\n(ETUDIANT → /etudiant, ADMIN → /admin, etc.)
+
+note right of Systeme
+  **Redirection par rôle:**
+  - SUPER_ADMIN → /superadmin-dashboard
+  - ADMIN → /admin-dashboard  
+  - FORMATEUR/FORMATEUR_SIMPLE → /formateur-dashboard
+  - ETUDIANT → /etudiant-dashboard
+end note
+
+
+' ==================== SEQUENCE 2 : CRÉATION MODULE + AFFECTATION FORMATEUR ====================
+== SEQUENCE 2: Création Module + Affectation Formateur ==
+
+AdminSuper -> Frontend: 1. Accède au panneau Admin
+Frontend -> Frontend: 2. Affiche le formulaire\n"Créer Module"
+AdminSuper -> Frontend: 3. Remplit (nom, code, description, école)
+AdminSuper -> Frontend: 4. Clique sur "Créer Module"
+Frontend -> AuthCtrl: 5. POST /api/admin/modules {moduleData} (JWT token)
+AuthCtrl -> Systeme: 6. Vérifie middleware auth + requireRole(ADMIN)
+Systeme --> AuthCtrl: 7. ✓ Autorisé (rôle ADMIN)
+AuthCtrl -> AuthCtrl: 8. Valide les données
+AuthCtrl -> DB: 9. INSERT INTO modules (nom, code, école_id, ...)\nRETURNING id
+DB --> AuthCtrl: 10. Module créé {id: 42, nom: "...", ...}
+AuthCtrl --> Frontend: 11. 201 Created {module}
+Frontend -> Frontend: 12. Affiche le module créé dans la liste
+
+AdminSuper -> Frontend: 13. Clique "Affecter Formateur" pour ce module
+Frontend -> Frontend: 14. Affiche formulaire avec dropdown\n(liste des formateurs)
+AdminSuper -> Frontend: 15. Sélectionne FormateurPrinc
+AdminSuper -> Frontend: 16. Clique "Affecter"
+Frontend -> AuthCtrl: 17. POST /api/admin/assignments\n{moduleId: 42, formateurId: 5}
+AuthCtrl -> Systeme: 18. Vérifie droits (requireRole ADMIN)
+AuthCtrl -> DB: 19. SELECT role_global FROM users WHERE id = 5
+DB --> AuthCtrl: 20. role_global = 'FORMATEUR'
+AuthCtrl -> DB: 21. INSERT INTO assignments\n(module_id, user_id, is_principal, ...)\nVALUES (42, 5, TRUE, ...)
+DB --> AuthCtrl: 22. Assignment créé
+AuthCtrl --> Frontend: 23. 200 OK {message: "Affectation OK"}
+Frontend -> Frontend: 24. Met à jour l'interface
+
+note right of AdminSuper
+  **Acteur AdminSuper (SUPER_ADMIN):**
+  - Peut créer/modifier/supprimer modules
+  - Peut affecter des formateurs
+  - Accès global multi-école
+end note
+
+
+' ==================== SEQUENCE 3 : INSCRIPTION ÉTUDIANT + VALIDATION ====================
+== SEQUENCE 3: Inscription Étudiant + Validation par Admin ==
+
+Étudiant -> Frontend: 1. Clique sur "S'inscrire"
+Étudiant -> Frontend: 2. Remplit le formulaire:\n- email\n- nom, prénom\n- niveau (L1, L2, L3, ...)\n- école (sélecteur)
+Étudiant -> Frontend: 3. Saisit mot de passe
+Étudiant -> Frontend: 4. Clique "Envoyer demande d'inscription"
+Frontend -> AuthCtrl: 5. POST /api/auth/student-register\n{email, nom, prenom, niveau, school_code, password}
+AuthCtrl -> Systeme: 6. Valide format email + données
+Systeme --> AuthCtrl: 7. ✓ Données valides
+AuthCtrl -> DB: 8. INSERT INTO student_registration\n(email, nom, prenom, niveau, school_id, status, ...)\nVALUES (..., 'PENDING', ...)
+DB --> AuthCtrl: 9. StudentRegistration créée {id: 101, status: 'PENDING'}
+AuthCtrl -> Systeme: 10. Génère notification pour Admin école
+Systeme -> DB: 11. INSERT INTO notifications\n(user_id=AdminSimple, type='NEW_STUDENT_REQ', ...)\nVALUES (...)
+AuthCtrl --> Frontend: 12. 201 Created\n{message: "Demande envoyée.\\nUn administrateur doit valider..."}
+Frontend -> Étudiant: 13. Affiche confirmation au student
+note right of Frontend
+  Étudiant doit attendre la confirmation
+  par l'administrateur de son école
+end note
+
+par Notification Admin
+  Systeme -> AdminSimple: 14. Email/Notification:\n"Nouvelle demande d'inscription\nde [email-étudiant]"
+end
+
+AdminSimple -> Frontend: 15. Accède au panneau Admin
+AdminSimple -> Frontend: 16. Ouvre la section\n"Demandes d'inscription en attente"
+Frontend -> AuthCtrl: 17. GET /api/admin/student-registrations?school_id=X&status=PENDING (JWT token)
+AuthCtrl -> DB: 18. SELECT * FROM student_registration\nWHERE school_id = X AND status = 'PENDING'
+DB --> AuthCtrl: 19. [StudentReg 1, StudentReg 2, ...]
+AuthCtrl --> Frontend: 20. 200 OK {registrations: [...]}
+Frontend -> AdminSimple: 21. Affiche liste des demandes
+
+AdminSimple -> Frontend: 22. Clique "Voir détails" sur la demande de Étudiant
+Frontend -> Frontend: 23. Affiche formulaire avec:\n- Données du student\n- Bouton "Confirmer"\n- Bouton "Rejeter"
+
+AdminSimple -> Frontend: 24. Clique "Confirmer"
+Frontend -> AuthCtrl: 25. POST /api/admin/approve-student-registration\n{registrationId: 101} (JWT token)
+AuthCtrl -> Systeme: 26. Vérifie permission\n(admin de l'école = school_id match)
+AuthCtrl -> DB: 27. SELECT * FROM student_registration WHERE id = 101
+DB --> AuthCtrl: 28. StudentReg {email, nom, prenom, niveau, school_id, ...}
+AuthCtrl -> Systeme: 29. Hash du mot de passe (bcrypt)
+Systeme --> AuthCtrl: 30. password_hash calculé
+AuthCtrl -> DB: 31. INSERT INTO users\n(email, nom, prenom, matricule (généré),\npassword_hash, role_global='ETUDIANT',\nschool_id, niveau, ...)\nRETURNING id
+DB --> AuthCtrl: 32. User créé {id: 500, email, role_global: 'ETUDIANT'}
+AuthCtrl -> DB: 33. UPDATE student_registration\nSET status = 'APPROVED', approved_by = AdminSimple.id,\napproved_at = NOW()\nWHERE id = 101
+DB --> AuthCtrl: 34. Status mis à jour
+AuthCtrl -> Systeme: 35. Génère notification de confirmation
+Systeme -> DB: 36. INSERT INTO notifications\n(user_id=500, type='REGISTRATION_APPROVED',\nmessage='Votre inscription a été approuvée...')\nVALUES (...)
+AuthCtrl --> Frontend: 37. 200 OK\n{message: "Inscription approuvée.\\nL'étudiant peut maintenant se connecter."}
+Frontend -> AdminSimple: 38. Affiche "✓ Inscrit et confirmé"
+Frontend -> Étudiant: 39. Email de confirmation:\n"Votre inscription est approuvée.\nVous pouvez vous connecter avec [email]"
+
+alt Scénario Rejet
+  AdminSimple -> Frontend: 24b. Clique "Rejeter"
+  Frontend -> AuthCtrl: 25b. POST /api/admin/reject-student-registration\n{registrationId: 101, reason: "..."} (JWT token)
+  AuthCtrl -> DB: 26b. UPDATE student_registration\n  SET status = 'REJECTED', rejected_by = AdminSimple.id,\n  rejected_at = NOW(), rejection_reason = "..."\n  WHERE id = 101
+  AuthCtrl -> Systeme: 27b. Génère notification de rejet
+  Systeme -> DB: 28b. INSERT INTO notifications (type='REGISTRATION_REJECTED', ...)
+  AuthCtrl --> Frontend: 29b. 200 OK {message: "Inscription rejetée"}
+  Frontend -> Étudiant: 30b. Email de rejet:\n"Votre inscription a été rejetée.\nRaison: ..."
+end
+
+note right of AdminSimple
+  **Acteur AdminSimple (ADMIN):**
+  - Gère les inscriptions de son école
+  - Approuve/rejette les demandes
+  - Voir les étudiants de son école
+  - Accès limité à une école
+end note
+
+
+' ==================== SEQUENCE 4 : CRÉATION DE RESSOURCE PAR FORMATEUR ====================
+== SEQUENCE 4: Upload Ressource (Formateur) ==
+
+FormateurPrinc -> Frontend: 1. Accède "Mes Modules"
+Frontend -> AuthCtrl: 2. GET /api/formateur/modules (JWT token)
+AuthCtrl -> DB: 3. SELECT modules WHERE id IN (\n  SELECT module_id FROM assignments\n  WHERE user_id = FormateurPrinc.id\n)
+DB --> AuthCtrl: 4. [Module 42, Module 50, ...]
+AuthCtrl --> Frontend: 5. 200 OK {modules: [...]}
+Frontend -> FormateurPrinc: 6. Affiche "Module 42 - Mathématiques"
+
+FormateurPrinc -> Frontend: 7. Clique "Ajouter une ressource"
+Frontend -> Frontend: 8. Affiche formulaire d'upload:\n- File (PDF, DOC, VIDEO)\n- Titre\n- Description\n- Type (COURS, TP, CORRECTION, ...)
+
+FormateurPrinc -> Frontend: 9. Sélectionne un fichier PDF
+FormateurPrinc -> Frontend: 10. Remplit Titre + Description
+FormateurPrinc -> Frontend: 11. Clique "Uploader"
+
+Frontend -> Frontend: 12. Upload fichier (multipart/form-data)
+Frontend -> AuthCtrl: 13. POST /api/formateur/resources\n(multipart: file, title, description, moduleId) (JWT token)
+AuthCtrl -> Systeme: 14. Vérifie middleware auth + requireRole(FORMATEUR)
+AuthCtrl -> DB: 15. SELECT assignment FROM assignments\nWHERE module_id = ? AND user_id = ?
+DB --> AuthCtrl: 16. Assignment trouvé (FormateurPrinc affecté au module)
+AuthCtrl -> Systeme: 17. Valide le fichier\n(type MIME, taille max, virus scan?)
+Systeme --> AuthCtrl: 18. ✓ Fichier valide
+AuthCtrl -> Frontend: 19. File uploadé dans /uploads/resources/...
+AuthCtrl -> DB: 20. INSERT INTO resources\n(module_id, uploader_id=FormateurPrinc.id,\ntitle, description, file_path, type, status)\nVALUES (..., 'PENDING', ...)\nRETURNING id
+DB --> AuthCtrl: 21. Resource créée {id: 999, status: 'PENDING'}
+AuthCtrl -> Systeme: 22. Notification Admin ou auto-approval\nselon config (is_principal=TRUE → auto-approve)
+AuthCtrl --> Frontend: 23. 201 Created\n{message: "Ressource uploadée avec succès"}
+Frontend -> FormateurPrinc: 24. Affiche "✓ Ressource en attente de validation"
+
+note right of FormateurPrinc
+  **Acteur FormateurPrinc (FORMATEUR):**
+  - Upload ressources (COURS, TP, CORRECTIONS)
+  - Auto-approved si principal=TRUE
+  - Sinon, attente validation Admin
+end note
+
+
+' ==================== SEQUENCE 5 : SESSION EN DIRECT (LIVE) ====================
+== SEQUENCE 5: Création et Démarrage Séance Live ==
+
+FormateurPrinc -> Frontend: 1. Accède à son Module 42
+FormateurPrinc -> Frontend: 2. Clique "Créer une séance en direct"
+Frontend -> Frontend: 3. Affiche modal:\n- Titre de la séance\n- Description\n- Horaire de démarrage
+FormateurPrinc -> Frontend: 4. Remplit "Cours Magistral - Chap.5"
+FormateurPrinc -> Frontend: 5. Clique "Créer séance"
+
+Frontend -> AuthCtrl: 6. POST /api/formateur/live\n{title, description, module_id, start_time} (JWT token)
+AuthCtrl -> Systeme: 7. Vérifie droits (user affecté au module)
+AuthCtrl -> DB: 8. INSERT INTO live_sessions\n(module_id, created_by=FormateurPrinc.id,\ntitle, status='SCHEDULED', start_time, ...)\nRETURNING id
+DB --> AuthCtrl: 9. LiveSession créée {id: 777, status: 'SCHEDULED'}
+AuthCtrl -> Systeme: 10. Notifie les étudiants de ce module
+AuthCtrl --> Frontend: 11. 201 Created {liveSession}
+Frontend -> FormateurPrinc: 12. Affiche "✓ Séance créée\nDémarrage à [horaire]"
+
+' ... Attente de l'horaire ...
+
+FormateurPrinc -> Frontend: 13. À l'horaire: clique "Démarrer la séance"
+Frontend -> AuthCtrl: 14. PATCH /api/formateur/live/777\n{status: 'ACTIVE'} (JWT token)
+AuthCtrl -> DB: 15. UPDATE live_sessions\nSET status = 'ACTIVE', started_at = NOW()\nWHERE id = 777
+DB --> AuthCtrl: 16. Status = ACTIVE
+AuthCtrl -> Systeme: 17. Socket.io: broadcast aux étudiants\n"Séance LIVE started"
+AuthCtrl --> Frontend: 17. 200 OK {liveSession: {status: 'ACTIVE'}}
+Frontend -> FormateurPrinc: 18. Affiche interface LIVE\n(chat, participants, écran partage?)
+
+Étudiant -> Frontend: 19. Reçoit notif\n"Une séance en direct commence dans Module 42"
+Étudiant -> Frontend: 20. Clique sur lien / accède au module
+Frontend -> AuthCtrl: 21. GET /api/etudiant/lives?module_id=42 (JWT token)
+AuthCtrl -> DB: 22. SELECT * FROM live_sessions\nWHERE module_id = 42 AND status = 'ACTIVE'\nAND module_id IN (\n  SELECT module_id FROM etudiant_module_enrollment\n  WHERE etudiant_id = Étudiant.id\n)
+DB --> AuthCtrl: 23. LiveSession trouvée {id: 777, title: "...", status: 'ACTIVE'}
+AuthCtrl --> Frontend: 24. 200 OK {liveSessions: [...]}
+Frontend -> Étudiant: 25. Affiche la séance LIVE\n(chat, participants, contenu)
+Étudiant -> Frontend: 26. Peut participer au chat / Q&A
+
+' Fin de la séance
+
+FormateurPrinc -> Frontend: 27. Clique "Terminer la séance"
+Frontend -> AuthCtrl: 28. PATCH /api/formateur/live/777\n{status: 'COMPLETED'} (JWT token)
+AuthCtrl -> DB: 29. UPDATE live_sessions\nSET status = 'COMPLETED', ended_at = NOW()\nWHERE id = 777
+AuthCtrl -> Systeme: 30. Sauvegarde l'enregistrement (si activé)\nGénère rapport de participation
+AuthCtrl --> Frontend: 31. 200 OK
+Frontend -> FormateurPrinc: 32. Affiche "✓ Séance terminée\nX participants"
+Frontend -> Étudiant: 33. Séance LIVE fermée\nAffiche "Enregistrement disponible"
+
+note right of FormateurPrinc
+  **LIVE Sessions:**
+  - Créée par FORMATEUR
+  - État: SCHEDULED → ACTIVE → COMPLETED
+  - Notifications aux étudiants inscrits
+  - Chat + Participation en temps réel
+end note
+
+@enduml

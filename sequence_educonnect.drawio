@@ -1,0 +1,118 @@
+﻿<mxfile host="65bd71144e">
+    <diagram id="seq-final-clean" name="Sequence Reajustee EduConnect">
+        <mxGraphModel dx="1350" dy="1167" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1800" pageHeight="1400" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="title" value="Diagramme de Sequence Reajuste - EduConnect (base code reel)" style="text;html=1;strokeColor=none;fillColor=none;fontStyle=1;fontSize=24;align=left;verticalAlign=middle;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="20" width="900" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="phase" value="Vue reajustee avec points de passage reels (routes + controllers + modeles)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#eef2ff;strokeColor=#4f46e5;fontStyle=1;align=left;spacingLeft=10;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="150" width="1700" height="1080" as="geometry"/>
+                </mxCell>
+                <mxCell id="p1" value="Acteur metier (Admin / Formateur / Apprenant)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e2e8f0;strokeColor=#334155;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="100" y="80" width="260" height="56" as="geometry"/>
+                </mxCell>
+                <mxCell id="p2" value="Interface EduConnect" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dbeafe;strokeColor=#2563eb;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="470" y="80" width="240" height="56" as="geometry"/>
+                </mxCell>
+                <mxCell id="p3" value="Systeme EduConnect" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffedd5;strokeColor=#ea580c;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="900" y="80" width="250" height="56" as="geometry"/>
+                </mxCell>
+                <mxCell id="p4" value="Base de Donnees" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dcfce7;strokeColor=#16a34a;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="1330" y="80" width="240" height="56" as="geometry"/>
+                </mxCell>
+                <mxCell id="l1" style="shape=line;strokeWidth=1;strokeColor=#64748b;" parent="1" vertex="1">
+                    <mxGeometry x="190" y="150" width="1" height="1080" as="geometry"/>
+                </mxCell>
+                <mxCell id="l2" style="shape=line;strokeWidth=1;strokeColor=#64748b;" parent="1" vertex="1">
+                    <mxGeometry x="590" y="150" width="1" height="1080" as="geometry"/>
+                </mxCell>
+                <mxCell id="l3" style="shape=line;strokeWidth=1;strokeColor=#64748b;" parent="1" vertex="1">
+                    <mxGeometry x="1025" y="150" width="1" height="1080" as="geometry"/>
+                </mxCell>
+                <mxCell id="l4" style="shape=line;strokeWidth=1;strokeColor=#64748b;" parent="1" vertex="1">
+                    <mxGeometry x="1450" y="150" width="1" height="1080" as="geometry"/>
+                </mxCell>
+                <mxCell id="m1" value="1. POST /auth/login" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=classic;strokeColor=#1d4ed8;" parent="1" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="210" y="509.9999999999998" as="sourcePoint"/>
+                        <mxPoint x="609" y="509.9999999999998" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="m2" value="2. middleware auth + routing" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=classic;strokeColor=#1d4ed8;" parent="1" source="l2" target="l3" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="590" y="260" as="sourcePoint"/>
+                        <mxPoint x="1025" y="260" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="m3" value="3. Verification user/session en base" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=classic;strokeColor=#1d4ed8;" parent="1" source="l3" target="l4" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="1025" y="300" as="sourcePoint"/>
+                        <mxPoint x="1450" y="300" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="m4" value="4. JWT + profil role retourne" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=open;dashed=1;strokeColor=#1d4ed8;" parent="1" source="l3" target="l2" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="1025" y="340" as="sourcePoint"/>
+                        <mxPoint x="590" y="340" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="m5" value="5. POST /admin/modules puis POST /admin/assignments" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=classic;strokeColor=#c2410c;" parent="1" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="210" y="509.9999999999998" as="sourcePoint"/>
+                        <mxPoint x="609" y="509.9999999999998" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="m6" value="6. adminController -&gt; adminService (createModule / assignFormateurToModule)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=classic;strokeColor=#c2410c;" parent="1" source="l2" target="l3" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="590" y="500" as="sourcePoint"/>
+                        <mxPoint x="1025" y="500" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="m7" value="7. Module.create + Assignment.assign en base" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=classic;strokeColor=#c2410c;" parent="1" source="l3" target="l4" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="1025" y="540" as="sourcePoint"/>
+                        <mxPoint x="1450" y="540" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="m8" value="8. POST /formateur/resources (upload)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=classic;strokeColor=#7c2d12;" parent="1" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="210" y="509.9999999999998" as="sourcePoint"/>
+                        <mxPoint x="609" y="509.9999999999998" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="m9" value="9. checks Assignment + Resource.create (APPROVED/PENDING)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=classic;strokeColor=#7c2d12;" parent="1" source="l3" target="l4" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="1025" y="740" as="sourcePoint"/>
+                        <mxPoint x="1450" y="740" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="m10" value="10. POST/PATCH /formateur/live (create/start/end)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=classic;strokeColor=#a16207;" parent="1" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="210" y="509.9999999999998" as="sourcePoint"/>
+                        <mxPoint x="609" y="509.9999999999998" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="m11" value="11. LiveSession.create/updateStatus + horodatages" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=classic;strokeColor=#a16207;" parent="1" source="l3" target="l4" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="1025" y="940" as="sourcePoint"/>
+                        <mxPoint x="1450" y="940" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="m12" value="12. GET /etudiant/lives" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=classic;strokeColor=#7e22ce;" parent="1" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="210" y="509.9999999999998" as="sourcePoint"/>
+                        <mxPoint x="609" y="509.9999999999998" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="m13" value="13. etudiantController.getActiveLives -&gt; LiveSession.findActiveForStudent" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=classic;strokeColor=#7e22ce;" parent="1" source="l3" target="l4" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="1025" y="1120" as="sourcePoint"/>
+                        <mxPoint x="1450" y="1120" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

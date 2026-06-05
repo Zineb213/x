@@ -1,0 +1,1055 @@
+                                  ‫الجمهوريــــــــــــــــــــــة الجزائريـــــــــــة الديمقراطيـــــــــة الشعبيـــــــة‬
+                                           ‫وزارة التعليـــــــــــم العـــــــــــالي والبحـــــــــث العلـــــــمي‬
+                                                ‫جامعة وهران للعلوم والتكنولوجيا محمد بوضياف‬
+                                                             ‫كلية الرياضيات واالعالم االلي‬
+                                      République Algérienne Démocratique et Populaire
+                            Ministère de l’Enseignement Supérieur Et de la Recherche Scientifique
+                           Université des Sciences et de la Technologie d’Oran Mohamed BOUDIAF
+                                            Faculté des Mathématiques et Informatique
+
+
+
+                                                   Département : Informatique
+
+
+
+
+Mémoire de fin d’études                      Application de Gestion d’un club sportif
+
+ Pour l’obtention du diplôme
+        de Licence
+
+
+                Domaine   : Mathématiques – Informatique
+                Filière   : Informatique.
+                Spécialité : Ingénierie des Systèmes d’Information et du Logiciel
+
+
+
+
+Présenté le :
+Par :
+
+ - Zineb KHELIFAOUI            Jury                         Nom et Prénom                               Grade          Université
+
+
+                               Examinateur                  BENHADDOUCHE Djamila MCA                                         USTO-MB
+
+
+
+                               Encadrant                    ELKETROUSSI Amel                                MAA              USTO-MB
+
+
+
+
+                                                2025/2026
+Dédicace
+
+    Je dédie ce travail à ma famille, pour leurs sacrifices, leur confiance et leur soutien
+inconditionnel tout au long de mon parcours.
+    Je le dédie également à mes amis et à toutes les personnes qui m’ont encouragée à
+persévérer dans les moments de doute.
+    Cette réalisation est aussi dédiée à mes enseignants, qui ont contribué à ma formation,
+et à tous ceux qui croient en la valeur du savoir, de l’effort et de la discipline.
+Remerciements
+
+    Je tiens à exprimer ma profonde gratitude à toutes les personnes qui ont contribué, de
+près ou de loin, à la réalisation de ce projet de fin d’études.
+    Mes remerciements les plus sincères vont à mon encadrante, pour sa disponibilité, ses
+conseils méthodologiques et son accompagnement constant tout au long du projet.
+    Je remercie également les membres du jury pour le temps consacré à l’évaluation de ce
+travail.
+    Je remercie enfin ma famille et mes proches pour leur soutien moral, leur patience et
+leurs encouragements continus durant cette période.
+Table des matières
+
+Dédicace
+
+Remerciements
+
+Liste des figures
+
+Liste des tableaux
+
+Introduction générale
+
+1 Étude et analyse du projet                                                                 1
+  Introduction . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .   1
+  1.1 Présentation du contexte . . . . . . . . . . . . . . . . . . . . . . . . . . . .       1
+       1.1.1 Contexte général . . . . . . . . . . . . . . . . . . . . . . . . . . . .        1
+       1.1.2 Problématique . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .       2
+  1.2 Présentation du projet et du contexte . . . . . . . . . . . . . . . . . . . . .        2
+       1.2.1 Description générale . . . . . . . . . . . . . . . . . . . . . . . . . .        2
+       1.2.2 Périmètre fonctionnel . . . . . . . . . . . . . . . . . . . . . . . . . .       2
+       1.2.3 Acteurs du système . . . . . . . . . . . . . . . . . . . . . . . . . . .        3
+  1.3 Objectifs du projet . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .      3
+       1.3.1 Objectifs généraux . . . . . . . . . . . . . . . . . . . . . . . . . . .        3
+       1.3.2 Objectifs spécifiques . . . . . . . . . . . . . . . . . . . . . . . . . .       3
+       1.3.3 Objectifs du site web . . . . . . . . . . . . . . . . . . . . . . . . . .       4
+  1.4 Méthodologie d’analyse adoptée . . . . . . . . . . . . . . . . . . . . . . . .         4
+       1.4.1 Contraintes du projet . . . . . . . . . . . . . . . . . . . . . . . . . .       4
+       1.4.2 Analyse SWOT synthétique . . . . . . . . . . . . . . . . . . . . . .            5
+  1.5 Analyse de l’existant : sites web similaires . . . . . . . . . . . . . . . . . .       5
+       1.5.1 Sportmember [1] . . . . . . . . . . . . . . . . . . . . . . . . . . . .         5
+       1.5.2 ClubEO [2] . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .        6
+       1.5.3 Glofox [3] . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .      6
+       1.5.4 Zen Planner [4] . . . . . . . . . . . . . . . . . . . . . . . . . . . . .       7
+  1.6 Avantages et limites des solutions existantes . . . . . . . . . . . . . . . . .        7
+       1.6.1 Critères de comparaison . . . . . . . . . . . . . . . . . . . . . . . .         7
+       1.6.2 Tableau comparatif . . . . . . . . . . . . . . . . . . . . . . . . . . .        8
+  1.7 Expression des besoins . . . . . . . . . . . . . . . . . . . . . . . . . . . . .       8
+       1.7.1 Besoins fonctionnels . . . . . . . . . . . . . . . . . . . . . . . . . .        8
+  1.8 Détails techniques . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .     9
+  Détails techniques . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .   9
+  1.9 Perspectives d’évolution . . . . . . . . . . . . . . . . . . . . . . . . . . . .       9
+   Perspectives d’évolution . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 9
+   1.10 Besoins non fonctionnels (sécurité, performance, ergonomie...) . . . . . . . 9
+        1.10.1 Sécurité . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 9
+        1.10.2 Performance . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 9
+        1.10.3 Ergonomie . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 10
+   Conclusion du chapitre 1 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 11
+
+2 Conception du site web                                                                     13
+  Introduction . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .   13
+  2.1 Architecture générale du système . . . . . . . . . . . . . . . . . . . . . . .         13
+       2.1.1 Architecture fonctionnelle . . . . . . . . . . . . . . . . . . . . . . .        14
+       2.1.2 Architecture technique . . . . . . . . . . . . . . . . . . . . . . . . .        14
+       2.1.3 Aspects de synchronisation et de sécurité . . . . . . . . . . . . . . .         14
+  2.2 Diagramme de l’architecture . . . . . . . . . . . . . . . . . . . . . . . . . .        14
+  2.3 Description globale du fonctionnement . . . . . . . . . . . . . . . . . . . .          15
+  2.4 Modélisation . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .     15
+  2.5 Diagramme de cas d’utilisation . . . . . . . . . . . . . . . . . . . . . . . .         15
+  2.6 Diagramme de classes . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .       17
+  2.7 Diagramme de séquence . . . . . . . . . . . . . . . . . . . . . . . . . . . .          18
+  2.8 Conception de la base de données . . . . . . . . . . . . . . . . . . . . . . .         19
+  2.9 Modèle conceptuel (MCD) . . . . . . . . . . . . . . . . . . . . . . . . . . .          20
+  2.10 Modèle logique (MLD) . . . . . . . . . . . . . . . . . . . . . . . . . . . . .        20
+  Conclusion du chapitre 2 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .     22
+
+3 Réalisation et mise en œuvre                                                               24
+  Introduction . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .   24
+  3.1 Environnement de développement . . . . . . . . . . . . . . . . . . . . . . .           24
+  3.2 Langages utilisés . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .      24
+  3.3 Frameworks et outils . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .       25
+  3.4 Développement du site . . . . . . . . . . . . . . . . . . . . . . . . . . . . .        25
+  3.5 Description des principales fonctionnalités . . . . . . . . . . . . . . . . . .        25
+  3.6 Captures d’écran . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .       27
+  Conclusion du chapitre 3 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .     30
+
+Conclusion générale                                                                          31
+Table des figures
+
+ 2.1 Architecture générale de Dojo Manager . . . . . . . . . . . . . . . . . . . .          15
+ 2.2 Cas d’utilisation d’Administrateur super et simple . . . . . . . . . . . . . .         16
+ 2.3 Cas d’utilisation d’utilisateur simple (Entraîneur/Athlète) . . . . . . . . .          17
+ 2.4 Diagramme de classes . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .       18
+ 2.5 Séquence d’un scénario métier . . . . . . . . . . . . . . . . . . . . . . . . .        19
+ 2.6 MCD : Modélisation conceptuelle des entités et de leurs dépendances . . .              20
+
+ 3.1   Page d’authentification de l’application . . . . . . . . . . . . . . . . . . . .     27
+ 3.2   Page liste des profils . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .   27
+ 3.3   Page de planning . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .     28
+ 3.4   Page de présence . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .     28
+ 3.5   Page rapports . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .    28
+ 3.6   Page d’authentification du portail web . . . . . . . . . . . . . . . . . . . .       29
+ 3.7   Page signalements du portail . . . . . . . . . . . . . . . . . . . . . . . . . .     29
+Liste des tableaux
+
+ 1.1 Tableau comparatif des solutions de gestion de clubs sportifs . . . . . . . .   8
+
+ 2.1   MLD : Relations détaillées du modèle logique de données . . . . . . . . . . 21
+                     Introduction générale
+    La gestion des structures sportives modernes exige une organisation fiable, une traça-
+bilité des activités et une communication fluide. Ce mémoire expose la conception et le
+développement de Dojo Manager, une solution hybride destinée à répondre à ces besoins
+pour un dojo d’arts martiaux.
+    Dans le contexte des clubs sportifs, la transformation numérique ne consiste pas
+uniquement à remplacer le papier par des écrans : elle implique aussi de structurer
+les processus, de fiabiliser les décisions et d’améliorer la qualité du suivi administratif et
+pédagogique. Dans un dojo, ces enjeux sont encore plus sensibles, car la gestion quotidienne
+doit rester simple, rapide et compatible avec un usage terrain.
+    Le document est organisé en trois chapitres complémentaires. Le premier chapitre
+analyse le contexte, la problématique et les besoins fonctionnels et non fonctionnels du
+projet, tout en positionnant la solution par rapport à l’existant. Le deuxième chapitre
+présente la conception technique et architecturale du système, en s’appuyant sur les
+diagrammes UML, le MCD et le MLD. Le troisième chapitre décrit la réalisation concrète,
+les choix technologiques, les modules implémentés et la logique de déploiement.
+    Cette progression permet de relier clairement le besoin métier à la solution informatique
+proposée, depuis l’analyse initiale jusqu’à la mise en oeuvre opérationnelle. Elle met en
+évidence la cohérence du triptyque desktop local, API de synchronisation, portail web,
+conçu pour concilier autonomie hors ligne, centralisation des données et exploitation en
+reporting.
+    L’objectif global de ce mémoire est donc double : démontrer la faisabilité d’une
+digitalisation adaptée au contexte d’un dojo, et proposer une base technique évolutive
+pouvant être enrichie à moyen terme par de nouvelles fonctionnalités de pilotage, de
+mobilité et de synchronisation.
+Chapitre 1
+Chapitre 1
+
+Étude et analyse du projet
+
+Introduction
+    La gestion d’un club sportif, et plus particulièrement d’un dojo d’arts martiaux,
+implique une multitude de tâches administratives et organisationnelles qui, lorsqu’elles sont
+effectuées manuellement, peuvent rapidement devenir une source d’erreurs, de perte de
+temps et d’inefficacité. Face à cette réalité, la question de la digitalisation de ces processus
+s’impose comme une nécessité stratégique.
+    Ce premier chapitre a pour objectif de poser les bases du projet Dojo Manager en
+analysant le contexte dans lequel il s’inscrit, en présentant le problème à résoudre et la
+solution envisagée, puis en examinant les solutions logicielles existantes sur le marché.
+Cette démarche analytique nous permettra d’identifier les lacunes des outils actuels et de
+justifier les choix technologiques et fonctionnels adoptés dans le cadre de ce projet.
+    Ce chapitre est structuré comme suit : présentation du contexte et de la problématique,
+description du projet et de ses objectifs, analyse critique des solutions existantes, étude
+comparative détaillée, et expression formelle des besoins fonctionnels et non fonctionnels.
+    Au-delà de la simple description du besoin, ce chapitre vise également à établir un
+cadre de référence clair pour les décisions de conception prises par la suite. En identifiant
+les contraintes réelles du terrain (organisationnelles, techniques et humaines), il devient
+possible de prioriser les fonctionnalités à forte valeur ajoutée et de limiter les choix
+purement théoriques. Cette phase d’analyse constitue ainsi le socle méthodologique de
+l’ensemble du projet.
+
+
+1.1     Présentation du contexte
+1.1.1     Contexte général
+    Avec l’évolution rapide des technologies de l’information et de la communication, la
+transformation numérique est devenue un levier incontournable pour améliorer l’efficacité
+des organisations, y compris celles du secteur sportif. Les fédérations, clubs et associa-
+tions sportives sont de plus en plus confrontées à des exigences croissantes en matière
+d’organisation, de suivi des membres et de transparence administrative.
+    Les dojos, en tant que structures d’entraînement et de formation aux arts martiaux,
+n’échappent pas à cette réalité. Qu’il s’agisse de Judo, de KarateDo, de Taekwondo ou
+d’autres disciplines, ces structures accueillent des pratiquants de tous âges, organisent des
+
+
+                                               1
+séances d’entraînement régulières, gèrent du matériel spécifique et doivent assurer le suivi
+financier de leurs adhérents.
+
+1.1.2     Problématique
+    Dans de nombreux dojos, la gestion quotidienne repose encore sur des méthodes
+traditionnelles : registres papier, fichiers Excel non structurés, ou simples notes manuscrites.
+Cette approche artisanale, bien que familière, présente des lacunes importantes qui affectent
+directement la qualité de la gestion et la satisfaction des usagers.
+    Les principales difficultés observées sont les suivantes :
+      — Risque élevé d’erreurs humaines : la saisie manuelle des données (inscriptions,
+        paiements, présences) est sujette aux fautes de frappe, aux doublons et aux
+        omissions ;
+      — Perte de temps administrative : les tâches répétitives comme l’établissement
+        de listes, le calcul des cotisations ou la planification des créneaux mobilisent un
+        temps considérable qui pourrait être consacré à l’encadrement sportif ;
+      — Absence de centralisation : les informations sont dispersées dans plusieurs
+        fichiers ou supports, rendant difficile l’accès rapide à une vue d’ensemble ;
+      — Manque de traçabilité : il est difficile de retrouver l’historique d’un athlète, de
+        suivre l’évolution d’un groupe ou de vérifier les paiements effectués ;
+      — Mauvaise visibilité globale : l’absence d’un tableau de bord centralisé empêche
+        les responsables d’avoir une vision claire et immédiate de l’état du dojo.
+    Ces constats soulèvent une question fondamentale : comment concevoir un outil infor-
+matique adapté aux spécificités des dojos, accessible sans connexion Internet permanente,
+et suffisamment simple pour être adopté sans formation préalable lourde ?
+
+
+1.2      Présentation du projet et du contexte
+1.2.1     Description générale
+    Le projet Dojo Manager regroupe une application desktop et un portail web synchro-
+nisés. L’application desktop est utilisée au sein du dojo pour gérer localement les athlètes,
+les entraîneurs, les groupes, les séances, les paiements, les présences et les signalements. Le
+portail web permet de consulter à distance des tableaux de bord, des historiques et des
+informations de suivi, en s’appuyant sur des données synchronisées via une API.
+
+1.2.2     Périmètre fonctionnel
+   Le système couvre les fonctionnalités suivantes :
+      — Application desktop :
+          — gestion des athlètes : inscription, modification, consultation et archivage
+             des fiches ;
+          — gestion des entraîneurs : création des profils, spécialités et affectations aux
+             groupes ;
+          — organisation des groupes : constitution des groupes par spécialité, discipline
+             et capacité ;
+
+                                               2
+            — planification des séances : gestion du planning, des créneaux horaires et des
+              salles ;
+            — gestion des salles et du matériel : inventaire, suivi d’état et disponibilité ;
+            — suivi des paiements : enregistrement des cotisations, gestion des retards et
+              des relances ;
+            — suivi des présences : enregistrement des présences et contrôle de l’accès
+              selon le statut de paiement ;
+            — signalements et notifications : envoi de messages internes et gestion des
+              incidents.
+      — Portail web :
+            — consultation des indicateurs de gestion : tableaux de bord et rapports
+              synthétiques ;
+            — accès aux historiques de paiement et aux états des comptes ;
+            — suivi des signalements et des alertes organisationnelles ;
+            — visualisation distante des données synchronisées pour les responsables.
+
+1.2.3     Acteurs du système
+   Le système est conçu autour d’une hiérarchie d’accès composée de trois niveaux :
+      1. Administrateur super : accès complet à toutes les fonctionnalités, gestion des
+         comptes administrateurs et configuration du système ;
+      2. Administrateur simple : accès limité à la gestion administrative et au suivi des
+         paiements.
+      3. Entraîneur : accès à la gestion de ses groupes, au planning et aux profils des
+         athlètes qui lui sont affectés .
+
+
+1.3      Objectifs du projet
+    Les objectifs du projet Dojo Manager s’articulent autour de deux axes principaux :
+les objectifs généraux et les objectifs spécifiques.
+
+1.3.1     Objectifs généraux
+      — Fournir au dojo un outil numérique complet et autonome pour gérer l’ensemble
+        de ses activités administratives et sportives ;
+      — Réduire significativement la charge administrative pesant sur les responsables du
+        dojo ;
+      — Améliorer la qualité et la fiabilité des informations gérées au sein de la structure.
+
+1.3.2     Objectifs spécifiques
+      — Centraliser les données : regrouper dans une base de données unique toutes les
+        informations relatives aux athlètes, entraîneurs, groupes, séances et paiements ;
+      — Automatiser les tâches répétitives : génération automatique de plannings,
+        calcul des cotisations, production de rapports et statistiques ;
+
+                                              3
+      — Garantir la disponibilité hors ligne : permettre une utilisation complète de
+        l’application sans nécessiter de connexion Internet permanente ;
+      — Assurer la sécurité des données : mettre en place un système d’authentification
+        robuste et une gestion fine des droits d’accès par rôle ;
+      — Proposer une interface ergonomique : concevoir une interface utilisateur
+        claire, moderne et intuitive, réduisant le temps d’apprentissage au minimum.
+
+1.3.3     Objectifs du site web
+   En complément de l’application desktop, le projet intègre un portail web destiné à la
+consultation, au suivi et à la communication. Les objectifs du site web sont les suivants :
+      — Fournir un accès distant à l’information : permettre la consultation des
+        indicateurs essentiels (tableau de bord, reporting, alertes) via une interface web ;
+      — Assurer la continuité entre desktop et web : exploiter une synchronisation
+        des données afin de refléter l’état réel du dojo sur le portail ;
+      — Améliorer la communication : exposer les notifications importantes et les
+        informations de service (événements, reports de séance, alertes) ;
+      — Renforcer la visibilité de gestion : proposer des vues synthétiques pour la
+        prise de décision administrative.
+
+
+1.4      Méthodologie d’analyse adoptée
+    Afin de construire une solution alignée avec les usages réels du dojo, la phase d’étude a
+été conduite selon une méthodologie incrémentale articulée autour de quatre axes :
+      1. Observation du fonctionnement existant : inventaire des processus adminis-
+         tratifs, des points de friction et des risques d’erreurs ;
+      2. Recueil des besoins utilisateurs : consolidation des attentes des profils admi-
+         nistratifs et encadrants ;
+      3. Priorisation fonctionnelle : classement des besoins par criticité métier, impact
+         opérationnel et complexité de mise en oeuvre ;
+      4. Validation continue : itérations successives entre conception, implémentation et
+         retours d’usage.
+   Cette démarche a permis d’éviter une conception théorique déconnectée du terrain et
+de construire progressivement un système réellement exploitable.
+
+1.4.1     Contraintes du projet
+   Le projet a été mené sous plusieurs contraintes structurantes :
+      — Contrainte de connectivité : nécessité d’un fonctionnement local autonome,
+        avec synchronisation opportuniste vers le portail ;
+      — Contrainte budgétaire : recours à des technologies open source et limitation
+        des coûts d’exploitation ;
+      — Contrainte temporelle : fenêtre de réalisation cadrée par le calendrier acadé-
+        mique du PFE ;
+
+                                             4
+      — Contrainte d’ergonomie : adoption rapide par des utilisateurs non techniques,
+        sans formation lourde.
+
+1.4.2     Analyse SWOT synthétique
+      — Forces : spécialisation dojo, mode hors ligne, données locales, architecture modu-
+        laire ;
+      — Faiblesses : dépendance initiale au poste local, maturité progressive du portail
+        web ;
+      — Opportunités : digitalisation croissante des clubs, besoin de traçabilité, potentiel
+        d’extension mobile ;
+      — Menaces : concurrence SaaS, évolutions réglementaires sur données personnelles,
+        hétérogénéité des pratiques de gestion entre clubs.
+
+
+1.5      Analyse de l’existant : sites web similaires
+   Avant de concevoir une nouvelle solution, il est indispensable d’étudier les outils
+déjà disponibles sur le marché. Cette analyse permet d’identifier les fonctionnalités déjà
+couvertes, les lacunes des solutions existantes, et les opportunités d’innovation pour Dojo
+Manager.
+
+1.5.1     Sportmember [1]
+    Sportmember est une plateforme web danoise fondée en 2012, largement utilisée par
+les clubs sportifs en Europe. Elle offre une interface conviviale permettant de gérer les
+adhésions, les événements, la communication entre membres et le suivi des paiements.
+    Fonctionnalités principales :
+      — gestion complète des membres et des abonnements ;
+      — envoi de notifications et de communications groupées ;
+      — gestion des événements et des inscriptions en ligne ;
+      — suivi des paiements et génération de reçus.
+   Avantages :
+      — solution bien établie avec une large communauté d’utilisateurs ;
+      — interface moderne et accessible depuis n’importe quel appareil ;
+      — disponible en plusieurs langues dont le français.
+   Limites :
+      — entièrement dépendante d’une connexion Internet, inutilisable hors ligne ;
+      — modèle d’abonnement payant avec des fonctionnalités avancées réservées aux plans
+        premium ;
+      — non spécialisée pour les dojos d’arts martiaux : absence de gestion des grades, des
+        ceintures et des spécialités martiales ;
+      — données hébergées sur des serveurs tiers, soulevant des questions de confidentialité.
+
+
+
+                                              5
+1.5.2    ClubEO [2]
+    ClubEO est une solution française destinée à la gestion des associations sportives et
+culturelles. Elle se positionne comme un outil tout-en-un pour les petites et moyennes
+structures associatives.
+    Fonctionnalités principales :
+     — gestion des membres et des licences ;
+     — création d’un site web associatif intégré ;
+     — gestion des plannings et des réservations ;
+     — encaissement en ligne des cotisations.
+   Avantages :
+     — solution française adaptée au cadre réglementaire local ;
+     — intégration d’un outil de création de site web.
+   Limites :
+     — fonctionnalités génériques, peu adaptées aux spécificités d’un dojo ;
+     — absence de gestion avancée du matériel et des équipements sportifs ;
+     — interface vieillissante et peu ergonomique ;
+     — nécessite une connexion Internet permanente.
+
+1.5.3    Glofox [3]
+   Glofox est un logiciel irlandais orienté vers la gestion des studios de fitness, de yoga
+et des clubs d’arts martiaux. Il est particulièrement populaire auprès des structures à
+vocation commerciale.
+   Fonctionnalités principales :
+     — réservation de cours en ligne via une application mobile dédiée ;
+     — gestion des abonnements et des paiements récurrents ;
+     — reporting et tableaux de bord analytiques ;
+     — CRM intégré pour la gestion de la relation client.
+   Avantages :
+     — solution robuste et complète pour les structures commerciales ;
+     — application mobile pour les membres ;
+     — analytics avancés et rapports personnalisables.
+   Limites :
+     — coût très élevé, inadapté aux petites structures associatives ;
+     — complexité de prise en main, nécessitant une formation initiale ;
+     — orienté vers la gestion commerciale plutôt que sportive et pédagogique ;
+     — aucune fonctionnalité hors ligne.
+
+
+
+
+                                            6
+1.5.4     Zen Planner [4]
+   Zen Planner est une solution américaine spécialisée dans la gestion des clubs d’arts
+martiaux, de CrossFit et de fitness. Elle est considérée comme l’une des références dans
+son domaine.
+   Fonctionnalités principales :
+      — gestion des membres et suivi des performances sportives ;
+      — gestion des grades et des ceintures pour les arts martiaux ;
+      — planification des cours et des événements ;
+      — facturation automatique et gestion des contrats.
+   Avantages :
+      — l’une des rares solutions à intégrer nativement la gestion des grades martiaux ;
+      — interface dédiée pour les athlètes via une application mobile.
+   Limites :
+      — prix élevé, accessible principalement aux grandes structures commerciales ;
+      — interface en anglais uniquement, constituant un frein pour les utilisateurs franco-
+        phones ;
+      — personnalisation limitée, ne permettant pas d’adapter facilement l’outil aux règles
+        internes d’un dojo spécifique ;
+      — solution exclusivement en ligne, sans mode hors connexion.
+
+
+1.6      Avantages et limites des solutions existantes
+    L’analyse des solutions présentées dans la section précédente révèle des lacunes com-
+munes et des forces disparates. Afin de mieux visualiser ces différences et de positionner
+clairement Dojo Manager par rapport aux outils existants, nous proposons une étude
+comparative selon les critères les plus pertinents pour le contexte d’un dojo.
+
+1.6.1     Critères de comparaison
+   Les critères retenus pour cette étude sont les suivants :
+      — Coût : niveau tarifaire de la solution (gratuit, abordable, élevé) ;
+      — Mode hors ligne : capacité à fonctionner sans connexion Internet ;
+      — Gestion des grades/ceintures : prise en charge des spécificités des arts mar-
+        tiaux ;
+      — Gestion du matériel : suivi des équipements et des salles d’entraînement ;
+      — Gestion des rôles : différenciation des droits d’accès selon le profil utilisateur ;
+      — Interface en français : disponibilité d’une interface francophone ;
+      — Personnalisation : capacité à adapter l’outil aux besoins spécifiques du dojo ;
+      — Facilité d’utilisation : niveau de complexité pour une prise en main rapide ;
+      — Données locales : stockage des données sur la machine de l’utilisateur.
+
+
+
+                                             7
+1.6.2     Tableau comparatif
+
+
+                 Table 1.1: Tableau comparatif des solutions de gestion
+                 de clubs sportifs
+
+ Critère               Sport         ClubEO        Glofox      Zen            Dojo
+                       member                                  Planner        Manager
+ Coût                  Abonnement Abonnement Élevé             Élevé          Gratuit
+ Mode hors ligne Non                 Non           Non         Non            Oui
+ Grades /              Non           Non           Partielle   Oui            Oui
+ ceintures
+ Gestion               Non           Non           Non         Non            Oui
+ matériel
+ Gestion des           Partielle     Partielle     Oui         Oui            Oui
+ rôles
+ Interface             Oui           Oui           Non         Non            Oui
+ français
+ Personnalisation Faible             Faible        Moyenne     Faible         Élevée
+ Facilité d’usage Moyenne            Moyenne       Faible      Faible         Élevée
+ Données locales Non                 Non           Non         Non            Oui
+ Adapté aux            Faible        Faible        Moyenne     Moyenne        Élevée
+ dojos
+
+
+1.7      Expression des besoins
+   Cette section formalise les attentes fonctionnelles principales auxquelles le système doit
+répondre dans le contexte réel de gestion d’un dojo.
+
+1.7.1     Besoins fonctionnels
+      — Gestion des athlètes : créer, modifier, consulter et archiver les fiches des
+        pratiquants ;
+      — Gestion des entraîneurs : administrer les profils, spécialités et affectations ;
+      — Gestion des groupes : constituer les groupes et gérer leurs compositions ;
+      — Planification : organiser les séances, les créneaux et les salles ;
+      — Suivi des paiements : enregistrer les cotisations et détecter les retards ;
+      — Signalements et notifications : centraliser les incidents et communiquer rapi-
+        dement ;
+
+                                              8
+      — Reporting : fournir des indicateurs synthétiques de pilotage.
+
+
+1.8      Détails techniques
+    La solution étudiée repose sur une architecture hybride destinée à concilier autonomie
+locale et synchronisation distante. Le poste client utilise une base SQLite locale pour garan-
+tir l’accès hors ligne, tout en stockant la liste des opérations à synchroniser. Côté serveur,
+une API REST en Express.js est prévue pour gérer l’authentification, la synchronisation
+des données et la centralisation des signalements.
+    Ce choix technique favorise la modularité du système : le desktop reste utilisable sans
+connexion, les règles métiers sont validées au niveau de l’API, et le portail web peut
+exploiter des données centralisées pour le reporting et le suivi administratif.
+
+
+1.9      Perspectives d’évolution
+   Plusieurs pistes d’extension renforcent l’intérêt du projet :
+      — mise en place d’une synchronisation bidirectionnelle plus fine entre le desktop
+        et le serveur, avec résolution automatique des conflits par horodatage et priorité
+        métier ;
+      — développement d’une interface responsive ou d’une application mobile pour des
+        consultations en mobilité par les entraîneurs et les adhérents ;
+      — ajout d’un module de gestion des grades, des ceintures et des passages de niveaux
+        pour mieux couvrir les spécificités des arts martiaux ;
+      — enrichissement des rapports par des indicateurs financiers, des statistiques d’assi-
+        duité et des analyses de performance des groupes ;
+      — facilitation des échanges de données grâce à des exports/imports standardisés
+        (CSV, JSON).
+
+
+1.10       Besoins non fonctionnels (sécurité, performance,
+           ergonomie...)
+1.10.1      Sécurité
+      — authentification des utilisateurs et contrôle d’accès par rôle ;
+      — protection des données sensibles et intégrité relationnelle ;
+      — traçabilité des opérations critiques.
+
+1.10.2      Performance
+      — temps de réponse court pour les actions fréquentes ;
+      — fluidité de navigation sur les listes, filtres et tableaux ;
+      — stabilité globale sur un poste standard Windows.
+
+
+
+                                                9
+1.10.3   Ergonomie
+   — interface claire avec parcours simples et cohérents ;
+   — feedback visuel immédiat sur les actions utilisateur ;
+   — adoption rapide sans formation technique lourde.
+
+
+
+
+                                         10
+Conclusion du chapitre 1
+    Le premier chapitre a permis de définir le besoin métier d’un dojo et d’identifier les
+points faibles des pratiques existantes. Il a établi le périmètre fonctionnel retenu pour le
+projet, en insistant sur la gestion des athlètes, des entraîneurs, des groupes, des plannings,
+des paiements et des signalements.
+    L’analyse des solutions existantes a confirmé la pertinence d’une proposition hybride,
+combinant une application desktop hors ligne et un portail web synchronisé, afin de
+répondre aux enjeux locaux, financiers et opérationnels du dojo.
+    En synthèse, ce chapitre a permis de transformer un besoin global en exigences explicites,
+mesurables et hiérarchisées. Il a également mis en évidence les limites des solutions
+concurrentes dans le contexte spécifique d’un dojo associatif, notamment en matière de
+coût, de personnalisation et de disponibilité hors ligne. Ces constats justifient pleinement
+l’orientation retenue pour Dojo Manager et servent de base aux choix de conception
+détaillés dans le chapitre suivant.
+
+
+
+
+                                             11
+Chapitre 2
+Chapitre 2
+
+Conception du site web
+
+Introduction
+    Ce chapitre explique comment le site est pensé avant le développement. Il présente
+l’architecture, la modélisation UML et la conception de la base de données qui structurent
+la solution.
+    L’objectif est de garantir une vision cohérente entre les besoins métier identifiés dans le
+chapitre 1 et les composants techniques effectivement mis en place. La conception présentée
+ici ne se limite pas à un aspect graphique ou applicatif : elle couvre l’organisation des
+responsabilités entre desktop, API et portail web, la circulation des données, ainsi que les
+mécanismes d’intégrité nécessaires à la fiabilité du système.
+    Ce chapitre joue donc un rôle de transition entre l’analyse et la réalisation. Il explicite
+les hypothèses de structuration retenues, formalise les relations entre entités métier, et
+prépare la mise en oeuvre du chapitre 3 en réduisant les ambiguïtés techniques en amont
+du développement.
+
+
+2.1      Architecture générale du système
+   Le système repose sur une architecture hybride composée de trois blocs principaux :
+      — Application desktop : une interface locale installée sur le poste de l’utilisateur,
+        seule capable de fonctionner hors ligne avec une base SQLite embarquée ;
+      — Couche API de synchronisation : un service intermédiaire qui reçoit les
+        données du desktop, les valide et les transmet au back-office web, tout en assurant
+        la cohérence des informations ;
+      — Portail web : une interface distante de consultation, reporting et administration,
+        alimentée par les données centralisées du serveur.
+   La séparation des responsabilités est la suivante :
+      — Desktop : gestion métier, saisie, édition des athlètes, entraîneurs, groupes, séances,
+        paiements et présences. Persistence locale en SQLite et file de synchronisation.
+      — API : service Express.js qui expose des endpoints REST pour la mise à jour des
+        états, le traitement des signalements, la synchronisation et l’authentification.
+      — Web : interface de lecture/consultation, dashboard, historique des paiements,
+        gestion des signalements et affichage des indicateurs administratifs.
+
+
+                                              13
+2.1.1     Architecture fonctionnelle
+   Le flux principal du système est le suivant :
+      1. l’utilisateur manipule l’application desktop et les actions sont enregistrées dans
+         SQLite ;
+      2. la couche desktop prépare des objets de synchronisation (nouveaux comptes,
+         modifications, signalements, paiements) et les envoie au serveur via l’API lorsque
+         la connexion est disponible ;
+      3. l’API vérifie les données, met à jour la base distante et renvoie un accusé de
+         réception au desktop ;
+      4. le portail web consulte la base distante pour afficher les rapports et les données
+         de pilotage.
+
+2.1.2     Architecture technique
+   Les composants techniques sont organisés comme ceci :
+      — Electron/JavaScript pour l’application desktop, avec une interface utilisateur
+        locale et le moteur de synchronisation.
+      — SQLite comme base locale légère, pour garantir la continuité hors ligne.
+      — Express.js (Node.js) pour l’API, avec des routes de synchronisation, de gestion
+        des utilisateurs et de traitement des signalements.
+      — Base de données distante (PostgreSQL) pour stocker les données centralisées
+        du portail web.
+      — HTML/CSS/JavaScript pour le portail web, qui consomme l’API afin de
+        proposer des vues de reporting et des tableaux de bord.
+
+2.1.3     Aspects de synchronisation et de sécurité
+   Pour bien gérer un système desktop/web, il est important de respecter ces règles :
+      — authentification centralisée via l’API pour tous les accès aux données distantes ;
+      — chiffrement des communications entre le desktop et l’API (HTTPS) ;
+      — gestion des conflits de synchronisation par horodatage ou identifiant unique ;
+      — séparation claire entre stockage local (SQLite) et stockage central (serveur web).
+
+
+2.2      Diagramme de l’architecture
+    La figure suivante illustre l’architecture globale du système, montrant les trois blocs
+principaux et leurs échanges.
+
+
+
+
+                                            14
+                  Figure 2.1 – Architecture générale de Dojo Manager
+
+
+2.3      Description globale du fonctionnement
+   Le fonctionnement global suit le cycle suivant :
+      1. authentification de l’utilisateur sur l’application ;
+      2. exécution des opérations métier (CRUD, planning, paiements, notifications) ;
+      3. persistance locale dans SQLite ;
+      4. synchronisation des données vers le portail web via l’API.
+
+
+2.4      Modélisation
+   La modélisation UML permet de clarifier les acteurs, les entités et les interactions clés
+avant l’implémentation.
+
+
+2.5      Diagramme de cas d’utilisation
+   Ce diagramme présente les fonctions principales accessibles aux différents profils
+d’administration.
+
+
+
+
+                                              15
+            Figure 2.2 – Cas d’utilisation d’Administrateur super et simple
+
+    Ce diagramme illustre les principales responsabilités des administrateurs du système.
+Il met en avant la séparation des actions de gestion des utilisateurs, des spécialités, du
+planning, des présences, des groupes et des signalements, ce qui permet de structurer
+l’interface selon les droits et le rôle de chaque profil.
+    Ce diagramme montre ensuite les cas d’utilisation d’un utilisateur simple, principalement
+entraîneur ou athlète.
+
+
+
+
+                                             16
+        Figure 2.3 – Cas d’utilisation d’utilisateur simple (Entraîneur/Athlète)
+
+    Ce second diagramme précise les usages d’un entraîneur ou d’un athlète : consultation
+des informations, signalement de matériel ou d’incident, et accès aux éléments nécessaires
+à l’entraînement. Il montre que le système doit rester simple et direct pour les utilisateurs
+non administrateurs.
+
+
+2.6     Diagramme de classes
+    Ce diagramme de classes présente l’organisation des entités métier et les relations
+principales entre elles.
+
+
+
+
+                                             17
+                            Figure 2.4 – Diagramme de classes
+
+    Ce diagramme de classes met en relation les entités métiers principales : les utilisateurs
+(génériques et spécialisés), les athlètes, les entraîneurs, les groupes, les séances, les salles,
+les spécialités et les paiements. Il montre également comment les notifications et les
+signalements s’insèrent dans le modèle global, garantissant une cohérence entre la gestion
+des personnes et la gestion des ressources.
+
+
+2.7      Diagramme de séquence
+   Ce diagramme de séquence illustre le déroulement d’un scénario métier entre les
+composants du système.
+
+
+
+
+                                               18
+                       Figure 2.5 – Séquence d’un scénario métier
+
+    Ce diagramme de séquence décrit le déroulement d’un scénario type : authentification,
+création ou modification d’entités, enregistrement local, puis propagation vers le serveur.
+Il met en évidence la chaîne d’interactions entre l’utilisateur, l’application, la base de
+données et le module de paiement, ainsi que le rôle central de la validation et de la mise à
+jour des états.
+
+
+2.8      Conception de la base de données
+   L’analyse croisée du schéma desktop SQLite et du schéma portail PostgreSQL montre
+que le modèle de données est organisé en domaines métier cohérents et convergents. La
+base de données est décrite par deux artefacts complémentaires : le MCD et le MLD.
+   Le MCD (Modèle Conceptuel de Données) formalise le coeur métier du système en
+identifiant les entités, leurs attributs essentiels et les associations entre elles. Il permet de
+
+                                               19
+comprendre les dépendances fonctionnelles avant de descendre au niveau relationnel.
+    Le MLD (Modèle Logique de Données) traduit ensuite ce conceptuel en tables relation-
+nelles, en précisant les clés primaires, les clés étrangères et les contraintes nécessaires à
+l’intégrité du schéma.
+
+
+2.9     Modèle conceptuel (MCD)
+    Le MCD met en lumière les domaines métiers principaux et leurs dépendances :
+la gestion des utilisateurs, le référentiel sportif, la planification des séances, le suivi
+des paiements, la gestion des ressources matérielles, ainsi que la communication et les
+signalements.
+    Il montre notamment l’articulation des entités suivantes : User, Admin, Athlete,
+Entraineur, Specialite, Grade, CategorieAge, CategoriePoids, Groupe, Planning,
+SeancePresence, PaiementAthlete, Notification et Signalement.
+    Le schéma suivant illustre le MCD projeté pour le système et ses principales relations.
+
+
+
+
+  Figure 2.6 – MCD : Modélisation conceptuelle des entités et de leurs dépendances
+
+
+2.10      Modèle logique (MLD)
+    Le MLD formalise la traduction du MCD en schéma relationnel. Il précise les tables
+retenues dans la base, les clés primaires et étrangères, ainsi que les dépendances réelles de
+la base de données utilisée par l’application.
+    Le tableau ci-dessous détaille la structure relationnelle retenue pour la base de données.
+
+
+
+                                             20
+           Table 2.1: MLD : Relations détaillées du modèle logique
+           de données
+
+Relations du MLD
+Athlete(id_athlete, nom, prenom, email, tel1, tel2, poids, genre,
+date_naissance)
+Entraineur(id_entraineur, nom, prenom, email, tel1, tel2, genre,
+date_naissance)
+Specialite(id_spec, libelle, montantSpecialite)
+Grade(id_grd, libelle, #id_spec)
+Groupe(id_grp, libelle, #id_spec)
+CategoriePoids(id_catPoids, libelle, poids_min, poids_max, #id_spec)
+CategorieAge(id_catAge, libelle, age_min, age_max, #id_spec)
+Signalements(id_signal, commentaire, date_signal, statut, #id_mat,
+#id_athlete, #id_entraineur)
+Notifications(id_notif, title, categorie, audience, contenu, date,
+type_envoi)
+Planning(id_plan, date, heureDebut, heureFin, type)
+Evenement(id_event, libelle, description, lieu, type, #id_plan)
+Salle(id_salle, libelle, capacite, description)
+Materiel(id_mat, libelle, code_materiel, etat, type, #id_salle)
+recoitNotif(#id_entraineur, #id_notif, lue)
+recoitNotif(#id_athlete, #id_notif, lue)
+PrendPlaceA(#id_salle, #id_plan)
+Athlete_Grade(#id_athlete, #id_grd)
+Entraineur_Grade(#id_entraineur, #id_grd)
+Athlete_Poids(#id_athlete, #id_catPoids)
+Athlete_Age(#id_athlete, #id_catAge)
+appartient(#id_athlete, #id_grp)
+entraine(#id_entraineur, #id_grp)
+enseigne(#id_entraineur, #id_spec)
+pratique(#id_athlete, #id_spec)
+planifiePour(#id_grp, #id_plan)
+faitPaiement(#id_athlete, #id_spec, mois, annee, date_paiement)
+
+
+
+
+                                     21
+Conclusion du chapitre 2
+    Ce deuxième chapitre a clarifié l’architecture technique du système en distinguant le
+desktop, l’API de synchronisation et le portail web. Il a montré que le choix d’une base
+SQLite locale pour le poste client et d’une base distante centralisée pour le portail permet
+de combiner fonctionnalité hors ligne et partage de l’information.
+    La modélisation UML et les modèles de données (MCD et MLD) ont apporté une
+vision structurée de la solution, facilitant la traduction des besoins fonctionnels en schéma
+relationnel et en composants applicatifs.
+    Cette étape de conception confirme que la robustesse du projet repose autant sur
+l’architecture globale que sur la qualité du modèle de données. En définissant précisément
+les responsabilités de chaque couche et les dépendances entre entités, elle limite les risques
+d’incohérence lors de l’implémentation. Le chapitre suivant s’appuie directement sur cette
+base pour présenter la réalisation technique, les choix d’outillage et les fonctionnalités
+effectivement livrées.
+
+
+
+
+                                             22
+Chapitre 3
+Chapitre 3
+
+Réalisation et mise en œuvre
+
+Introduction
+    Ce chapitre présente la partie pratique et technique du projet, depuis l’environnement
+de développement jusqu’aux fonctionnalités réalisées.
+    Il expose la manière dont les choix de conception ont été concrétisés en modules
+applicatifs, en interfaces utilisateur et en mécanismes de persistance/synchronisation.
+L’accent est mis sur la logique d’implémentation, la cohérence des technologies retenues,
+et l’alignement entre les besoins fonctionnels exprimés en amont et les résultats obtenus.
+    Ce chapitre permet ainsi de passer d’une vision modélisée à une vision opérationnelle du
+système, en montrant les apports pratiques de la solution dans le contexte d’utilisation réel
+du dojo. Il présente également les arbitrages techniques effectués pendant la réalisation, les
+contraintes rencontrées sur le terrain (connectivité, simplicité d’usage, performance locale)
+et les solutions retenues pour assurer une application stable et exploitable au quotidien.
+L’objectif est de montrer comment les choix d’implémentation traduisent concrètement les
+besoins exprimés dans les chapitres précédents.
+
+
+3.1      Environnement de développement
+      — système d’exploitation : Windows ;
+      — IDE : Visual Studio Code ;
+      — runtime : Node.js ;
+      — base de données : SQLite.
+    Cet environnement a été retenu pour sa simplicité d’installation, sa compatibilité avec
+les outils JavaScript utilisés et sa capacité à supporter un cycle de développement rapide.
+Le choix d’un contexte Windows reflète également les conditions d’utilisation réelles visées
+pour le déploiement du poste desktop au sein du dojo.
+
+
+3.2      Langages utilisés
+      — JavaScript pour la logique applicative ;
+      — HTML5/CSS3 pour les interfaces ;
+      — SQL pour le schéma et les requêtes.
+
+
+                                             24
+   La combinaison de ces langages permet de conserver une chaîne technologique homogène
+entre les différentes couches du projet. JavaScript centralise la logique métier côté desktop
+et API, HTML/CSS structure l’expérience utilisateur, tandis que SQL garantit une
+modélisation claire et fiable des données manipulées dans les opérations quotidiennes.
+
+
+3.3      Frameworks et outils
+      — Electron pour l’application desktop ;
+      — Express.js pour la couche API/portail ;
+      — better-sqlite3 pour l’accès à SQLite ;
+      — bcrypt pour la sécurité des mots de passe ;
+      — Git pour le suivi de versions.
+    L’architecture technique repose sur un ensemble cohérent de technologies JavaScript.
+Electron assure l’exécution locale et la gestion hors ligne, tandis qu’Express.js expose l’API
+de synchronisation et le portail web. SQLite est utilisé comme base embarquée pour garantir
+une persistance légère et fiable, et la pile HTML5/CSS3 permet de créer des interfaces
+ergonomiques adaptables. Ce socle outillage/technologies facilite la maintenabilité du
+projet, limite la dispersion technique et simplifie les évolutions futures. Il permet aussi de
+tester rapidement les modules, de corriger les anomalies de manière incrémentale et de
+conserver une traçabilité claire des changements via le versionnement.
+
+
+3.4      Développement du site
+    Le développement a été mené de façon itérative pour livrer progressivement les modules
+prioritaires, puis intégrer les fonctionnalités avancées (notifications, signalements, synchro-
+nisation, reporting). En parallèle de l’interface, une API REST avec Express.js a été
+mise en place pour assurer la communication entre le desktop et le portail web. Cette API
+prend en charge l’authentification, la validation des données, la synchronisation des mises
+à jour et l’exposition des informations de reporting via des routes dédiées. Ce choix permet
+de séparer clairement la logique de présentation et la logique serveur, tout en facilitant
+la maintenance et l’évolution du système. Chaque itération a suivi une logique simple :
+implémentation d’un bloc fonctionnel, validation locale, ajustements ergonomiques, puis
+intégration avec les autres composants. Cette méthode a permis de réduire les risques de
+régression, d’améliorer progressivement l’expérience utilisateur et de garder une bonne
+cohérence entre les besoins métier et la solution effectivement livrée.
+
+
+3.5      Description des principales fonctionnalités
+      — gestion des athlètes et entraîneurs : création, modification et consultation
+        des profils sportifs, avec suivi des grades, spécialités et affectations aux groupes ;
+      — gestion des groupes, spécialités et planning : organisation des effectifs par
+        niveaux, gestion des disciplines et paramétrage des créneaux horaires et des salles ;
+      — suivi des présences et contrôle lié au paiement : enregistrement des présences,
+        vérification des droits d’accès et signalement des athlètes en situation de retard
+        de paiement ;
+
+                                              25
+    — gestion des paiements et rappels automatiques : saisie des cotisations, suivi
+      des règlements et envoi de rappels avant échéance ou en cas de retard ;
+    — centre notifications et signalements : gestion centralisée des messages internes,
+      des alertes et des incidents matériels ou organisationnels ;
+    — portail web de consultation et reporting : accès en ligne aux tableaux
+      de bord, aux indicateurs de suivi et aux rapports synthétiques pour la prise de
+      décision.
+    Ces fonctionnalités ont été pensées comme un ensemble intégré : les données saisies
+dans les modules opérationnels alimentent directement les vues de suivi et de reporting.
+Cette continuité permet une meilleure traçabilité des actions, une supervision plus fiable
+de l’activité du dojo et un pilotage administratif plus réactif.
+
+
+
+
+                                           26
+3.6   Captures d’écran
+
+
+
+
+           Figure 3.1 – Page d’authentification de l’application
+
+
+
+
+                    Figure 3.2 – Page liste des profils
+
+
+
+
+                                    27
+Figure 3.3 – Page de planning
+
+
+
+
+Figure 3.4 – Page de présence
+
+
+
+
+ Figure 3.5 – Page rapports
+
+
+             28
+Figure 3.6 – Page d’authentification du portail web
+
+
+
+
+    Figure 3.7 – Page signalements du portail
+
+
+
+
+                        29
+Conclusion du chapitre 3
+    Le troisième chapitre a présenté la mise en œuvre technique du projet, en décrivant
+l’environnement de développement, les technologies utilisées et les fonctionnalités concrè-
+tement réalisées. Les choix retenus, notamment Electron pour le desktop, Express.js pour
+l’API et HTML/JS pour le portail, confirment une architecture cohérente et adaptée aux
+besoins opérationnels du dojo.
+    Les captures d’écran illustrent l’interface et confirment que le système répond aux
+exigences fonctionnelles définies dans le premier chapitre.
+    Globalement, la mise en oeuvre réalisée montre qu’une architecture hybride bien cadrée
+permet d’obtenir un outil exploitable, évolutif et adapté aux contraintes quotidiennes
+d’une structure sportive. Les résultats obtenus valident les choix technologiques effectués
+et ouvrent la voie à des améliorations progressives, notamment sur la synchronisation
+avancée, l’analytique et l’extension des usages côté portail web.
+
+
+
+
+                                            30
+                       Conclusion générale
+     Ce mémoire a montré qu’il est possible de concevoir une solution de gestion de dojo
+alliant simplicité d’utilisation locale et transparence des données à distance.
+     Dojo Manager combine une application desktop autonome, une API de synchronisation
+et un portail web de consultation. Cette architecture hybride permet de préserver l’accès
+hors ligne du dojo tout en offrant un service utile aux responsables via un portail centralisé.
+     Les travaux présentés ouvrent des perspectives d’évolution intéressantes, notamment
+l’extension de la synchronisation en temps réel, l’amélioration du suivi mobile et le
+renforcement de la gestion analytique. Ils confirment que la digitalisation d’un dojo peut
+être mise en œuvre de manière pragmatique et concrète.
+     Au terme de ce travail, plusieurs contributions peuvent être retenues : une analyse
+structurée du besoin métier, une conception technique cohérente avec les contraintes du
+terrain, et une implémentation fonctionnelle couvrant les processus clés de gestion d’un
+dojo. L’approche adoptée a également montré l’importance d’une progression incrémentale,
+combinant validation continue des choix, simplicité d’usage et maîtrise des coûts techniques.
+     Ce projet reste naturellement perfectible. Parmi les améliorations prioritaires figurent la
+gestion plus fine des conflits de synchronisation, l’enrichissement des indicateurs de pilotage,
+et l’élargissement des services proposés aux différents profils utilisateurs. Néanmoins, la base
+réalisée constitue déjà un socle solide pour une exploitation réelle et pour des évolutions
+futures dans un cadre académique ou professionnel.
+Bibliographie
+Bibliographie
+
+[1] Sportmember, Plateforme de gestion de clubs sportifs,             Disponible    sur   :
+    https://www.sportmember.fr, consulté en mai 2026.
+[2] ClubEO, Solution de gestion pour associations sportives, Disponible sur :
+    https://www.clubeo.com, consulté en mai 2026.
+[3] Glofox, Logiciel de gestion pour fitness et arts martiaux, Disponible sur :
+    https://www.glofox.com, consulté en mai 2026.
+[4] Zen Planner, Logiciel de gestion pour dojos et clubs d’arts martiaux, Disponible sur :
+    https://www.zenplanner.com, consulté en mai 2026.
+[5] Don Norman, The Design of Everyday Things, Basic Books, 2013.
+[6] Grady Booch, James Rumbaugh, Ivar Jacobson, The Unified Modeling Language User
+    Guide, Addison-Wesley, 2005.
+[7] Electron, Build cross-platform desktop apps with JavaScript, HTML, and CSS, Dispo-
+    nible sur : https://www.electronjs.org, consulté en mai 2026.
+[8] Node.js Foundation, Node.js Documentation, Disponible sur : https://nodejs.org,
+    consulté en mai 2026.
+[9] SQLite,      SQLite      Documentation,         Disponible                sur         :
+    https://www.sqlite.org/docs.html, consulté en mai 2026.
+

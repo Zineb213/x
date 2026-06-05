@@ -1,0 +1,1268 @@
+                                                     ‫اﻟﺠﻤﮭﻮرﯾــــــــــــــــــــــﺔ اﻟﺠﺰاﺋﺮﯾـــــــــــﺔ اﻟﺪﯾﻤﻘﺮاطﯿـــــــــﺔ اﻟﺸﻌﺒﯿـــــــﺔ‬
+                                                              ‫وزارة اﻟﺘﻌﻠﯿـــــــــــﻢ اﻟﻌـــــــــــﺎﻟﻲ واﻟﺒﺤـــــــــﺚ اﻟﻌﻠـــــــﻤﻲ‬
+                                                                   ‫ﺟﺎﻣﻌﺔ وھﺮان ﻟﻠﻌﻠﻮم واﻟﺘﻜﻨﻮﻟﻮﺟﯿﺎ ﻣﺤﻤﺪ ﺑﻮﺿﯿﺎف‬
+                                                                                ‫ﻛﻠﯿﺔ اﻟﺮﯾﺎﺿﯿﺎت واﻻﻋﻼم اﻻﻟﻲ‬
+                                                          République Algérienne Démocratique et Populaire
+                                                Ministère de l’Enseignement Supérieur Et de la Recherche Scientifique
+                                               Université des Sciences et de la Technologie d’Oran Mohamed BOUDIAF
+                                                              Faculté des Mathématiques et Informatique
+
+
+
+                                                                      Département : Informatique
+
+
+
+
+                                                                                         Prise en place d’une
+                Mémoire de in d’études                          Bibliothèque Virtuelle pour le partage de
+                                                                                 livres.
+                     Pour l’obtention du diplôme
+                             de Licence
+
+
+                                   Domaine    : Mathématiques – Informatique
+                                   Fili re   : Informatique.
+                                   Sp cialit : Ingénierie des Systèmes d’Information et du Logiciel
+
+
+
+
+                    Pr sent le :
+                    Par :
+
+                    -BESSAHRAOUI Sarah             Jury                        Nom et Pr nom                              Grade                 Universit
+                    -NEGGAL Aya
+
+                                                   Examinateur :DR.HERNANE Yasmine                                Enseignante-chercheuse         USTO-MB
+
+
+
+
+                                                   Encadrant :DR.GUERROUDJI MEDDAH Fatiha                              Maître de conférence      USTO-MB
+
+
+
+
+                                                                                    2024/2025
+é
+    é
+        è
+            é
+                é
+                        f
+                                        é
+                                                                                                 é
+                                                       Table des matières
+Remerciements .......................................................................................................................4             .1
+Introduction Générale ........................................................................................................5                    .2
+Chapitre 1 : Étude de marché et analyse des besoins ...............................................6                                               .3
+1.1 Introduction ..............................................................................................................................6   .4
+1.2 Généralités sur les bibliothèques numériques ......................................................................6                           .5
+1.3 C’est quoi un site web de bibliothèque virtuelle ?...............................................................7                             .6
+1.4 Exemples de sites existants ....................................................................................................7              .7
+1.5 Fonctionnalités proposées ......................................................................................................7              .8
+1.6 Intérêt des bibliothèques virtuelles .......................................................................................8                  .9
+1.7 Types de bibliothèques virtuelles ..........................................................................................9                  .10
+1.8 Analyse des besoins ................................................................................................................9          .11
+1.8.1 Besoins fonctionnels ..............................................................................................................—
+9
+1.8.2 Besoins non fonctionnels .......................................................................................................—
+10
+1.9 Conclusion .............................................................................................................................11     .12
+Chapitre 2 : Conception des diagrammes UML ..........................................................12                                            .13
+2.1 Introduction ............................................................................................................................12    .14
+2.2 Définition d’UML .................................................................................................................12           .15
+2.3 Diagramme de cas d’utilisation............................................................................................12                   .16
+2.4 Diagramme de classes ..........................................................................................................13              .17
+2.5 Conclusion .............................................................................................................................15     .18
+Chapitre 3 : Implémentation ...........................................................................................16                          .19
+3.1 Introduction ............................................................................................................................16    .20
+3.2 Outils utilisés ........................................................................................................................16     .21
+3.2.1 Front-End ...............................................................................................................................—
+16
+3.2.2 Back-End ................................................................................................................................—
+16
+3.2.3 Outils matériels ......................................................................................................................—
+17
+                                                                      2
+3.2.4 Logiciels .................................................................................................................................—
+18
+3.3 Base de données ....................................................................................................................20           .22
+3.4 API Google Books ................................................................................................................23              .23
+3.5 Interfaces................................................................................................................................24     .24
+3.5.1 Page d’accueil ........................................................................................................................—
+24
+3.5.2 Page des catégories ................................................................................................................—
+25
+
+3.5.3 Page auteurs ...........................................................................................................................—
+26
+3.5.4 Page détail livre ....................................................................................................................—
+27
+3.5.5 Résultats de recherche ..........................................................................................................—
+28
+3.5.6 Authentification ......................................................................................................................—
+29
+3.5.7 Inscription ...............................................................................................................................—
+29
+3.6 Conclusion .............................................................................................................................30       .25
+Chapitre 4 : Évaluation ......................................................................................................31                     .26
+4.1 Introduction ............................................................................................................................31      .27
+4.2 Comparaison avec Gallica ....................................................................................................31                  .28
+4.3 Limites du projet ..................................................................................................................32           .29
+4.4 Perspectives d’amélioration ..................................................................................................33                 .30
+4.5 Conclusion .............................................................................................................................34       .31
+Conclusion Générale ..........................................................................................................35                     .32
+Bibliographie .........................................................................................................................36            .33
+
+
+
+  Liste des Figures
+Fig. 1 - Diagramme de cas d’utilisation ......................................................................................9                      —
+Fig. 2 - Diagramme de classes ..................................................................................................10                   —
+Fig. 3 - Schéma d’intégration API Google Books.......................................................................18                              —
+Fig. 4 - Première page d’accueil................................................................................................19                   —
+Fig. 5 - Deuxième vue page d’accueil .......................................................................................19                       —
+Fig. 6 - Page d’accueil catégories ..............................................................................................20                  —
+                                                       3
+Fig. 7 - Tendances littéraires ......................................................................................................20      —
+Fig. 8 - Carrousels de catégories ...............................................................................................20          —
+Fig. 9 - Menu principal des catégories ......................................................................................20              —
+Fig. 10 - Page auteurs .................................................................................................................21   —
+Fig. 11 - Fiche détaillée d’un livre ............................................................................................22          —
+Fig. 12 - Résultats de recherche ................................................................................................23          —
+Fig. 13 - Interface d’authentification..........................................................................................24           —
+Fig. 14 - Interface d’inscription .................................................................................................25        —
+
+
+
+
+                                                                   4
+                               Remerciements
+
+
+   Ce projet représente l’aboutissement d’un travail de longue haleine, jalonné de défis,
+d’apprentissages et d’une évolution constante. Sa concrétisation n’aurait été possible sans le
+soutien et l’implication de nombreuses personnes, à qui nous souhaitons exprimer notre
+profonde gratitude.
+   Avant tout, nous adressons nos sincères remerciements à notre encadrant, , DR GUER-
+ROUDJI MEDDAH Fatiha, Maître de conférences à l’Université des Sciences et de la
+Technologie Mohamed Boudiaf, , pour sa disponibilité, ses précieux conseils et son ac-
+compagnement tout au long de ce projet. Son expertise et son regard critique nous ont
+permis d’affiner notre travail avec plus de rigueur et de clarté.
+   Nous tenons également à exprimer notre profonde gratitude à notre examinatrice, DR
+HERNANE Yasmine, enseignante-chercheuse au niveau du departement du Départe-
+ment d’informatique de l’Université des Sciences et de la Technologie Mohamed Boudiaf„ pour
+avoir accepté d’évaluer notre travail. Nous la remercions sincèrement pour l’atten- tion qu’elle
+y a portée, ainsi que pour ses remarques constructives et bienveillantes. Son regard attentif et
+ses observations pertinentes ont enrichi notre réflexion et ont contribué à améliorer la qualité
+de ce projet
+   Nous exprimons également notre reconnaissance envers l’ensemble du corps enseignant
+de Département d’informatique USTO MB pour les connaissances transmises tout
+au long de notre formation. Grâce aux outils méthodologiques et techniques acquis, nous
+avons pu aborder ce projet avec une vision structurée et professionnelle.
+        Nos remerciements vont aussi à nos proches, familles et amis, dont le soutien indé-
+ fectible a été une source précieuse de motivation. Leur patience, leurs encouragements et leur
+   présence bienveillante nous ont aidés à surmonter les moments de doute et de fatigue. Enfin,
+     nous souhaitons souligner la richesse de notre collaboration en tant que bi- nôme. Ce
+                projet a été une expérience humaine et intellectuelle enrichissante, où l’entraide,
+l’écoute et la complémentarité ont été les piliers de notre réussite.
+   Ce travail est le fruit d’un véritable effort collectif, et c’est avec une grande fierté que nous
+le présentons aujourd’hui. Nous remercions chaleureusement toutes les personnes qui, de près
+ou de loin, ont contribué à la concrétisation de ce projet.
+
+
+
+                                         Merci à tous
+                                                5
+                        Introduction Générale
+
+
+   Avec l’essor du numérique et la démocratisation de l’accès à Internet, la consommation de
+contenus en ligne a connu une croissance fulgurante à travers le monde. En Algérie, cette
+tendance s’est particulièrement renforcée depuis la crise sanitaire mondiale liée à la pandémie
+de COVID-19, poussant de nombreux secteurs à se digitaliser pour répondre aux nouveaux
+besoins des utilisateurs. Cependant, malgré l’essor des plateformes en ligne dans divers
+domaines, l’accès aux livres numériques et aux ressources littéraires demeure encore limité et
+peu structuré.
+
+   Dans ce contexte, notre projet vise à concevoir et développer une bibliothèque virtuelle
+dédiée aux livres numériques, offrant un accès simplifié à une vaste collection d’ouvrages.
+Cette plateforme ambitionne de centraliser et de faciliter la recherche de livres grâce à
+l’intégration d’ API Google Books, garantissant ainsi une diversité et une mise à jour
+constante du contenu.
+
+   Ce mémoire se structure en quatre chapitres essentiels. Le premier chapitre s’attardera sur
+l’étude du marché du livre numérique en Algérie et sur les attentes des lecteurs. Le deuxième
+chapitre portera sur la conception technique de la plateforme à l’aide de dia- grammes UML,
+illustrant l’architecture et les principales fonctionnalités de la plateforme. Le troisième
+chapitre abordera le développement de la bibliothèque virtuelle, en détaillant les technologies
+employées et les fonctionnalités implémentées. Enfin, le quatrième cha- pitre sera consacré
+aux tests et aux évaluations du site afin d’optimiser son efficacité, sa fluidité et son
+accessibilité.
+
+   À travers cette plateforme, nous souhaitons promouvoir la lecture numérique et of-
+frir aux utilisateurs une solution intuitive, rapide et enrichie, répondant aux exigences
+actuelles en matière de gestion et d’accessibilité des livres.
+
+
+
+
+                                             6
+Chapitre 1 : Étude de marché et analyse des
+                   besoins
+
+
+
+Introduction                                                                                            .1
+      Ce chapitre présente une généralité sur les plateformes web et leur fonctionnement dans le
+domaine des bibliothèques virtuelles. Il met en avant leur rôle dans la gestion et l’accessibilité
+des livres numériques, en facilitant la recherche et la consultation d’ouvrages en ligne.
+
+
+Généralités sur les bibliothèques numériques                                                            .2
+      Une bibliothèque numérique (virtuelle, en ligne ou électronique) est une collection de
+documents (textes, images, sons) numériques accessibles à distance (en particulier via
+Internet), proposant différentes modalités d’accès à l’information aux publics. Les documents
+peuvent être très élaborés, comme les livres numériques, ou beaucoup plus bruts. Elle peut
+aussi être définie comme un ensemble de collections mises en ligne pour un public précis.[1]
+      Les bibliothèques et les services d’information jouent un rôle clé dans l’accès aux res-
+sources documentaires indispensables. Leur action favorise le développement économique et
+social, contribue au maintien de la liberté intellectuelle, à la préservation des valeurs
+démocratiques et des droits civils.[2]
+      Les bibliothèques numériques sont des organisations qui offrent des ressources, y com- pris
+en personnel, pour sélectionner, structurer, offrir un accès intellectuel, interpréter, distribuer et
+conserver l’intégrité de documents sous forme numérique. Elles sont alimen- tées soit par des
+opérations de numérisation (documents patrimoniaux ou non), soit par des documents
+nativement numériques.[3]
+      Leur développement a été favorisé par l’évolution des technologies numériques et l’ex-
+pansion d’Internet, rendant l’information plus accessible à un large public. Elles per- mettent
+aux chercheurs, étudiants et lecteurs du monde entier de consulter des ouvrages sans
+contraintes géographiques ou temporelles. De plus, elles contribuent à la préservation du
+patrimoine culturel en numérisant des œuvres anciennes et en les rendant disponibles en ligne.
+[4]
+
+
+                                                7
+C’est quoi une plateforme web d’une bibliothèque                                                     .3
+virtuelle de livres ?
+   Un site web de bibliothèque virtuelle est une plateforme en ligne où les informations sur
+l’accès aux ressources documentaires numériques sont fournies aux utilisateurs ou les
+services eux-mêmes sont présentés. Il s’agit notamment des livres, des articles, des thèses, etc.
+Les utilisateurs de tels sites peuvent consulter, télécharger ou même emprunter facilement les
+documents nécessaires. En outre, ces sites offrent diverses fonctionnalités allant de la
+recherche avancée à la visualisation en ligne des documents et parfois des outils interactifs de
+lecture. Un site web de bibliothèque virtuelle peut être utilisé par des bibliothèques
+universitaires, des institutions de recherche ou par une personne physique qui souhaite accéder
+à un ouvrage numérique.
+
+
+Des exemples de plateforme Web de bibliothèques                                                      .4
+virtuelles existants
+   Actuellement, il y a plusieurs plateformes web de bibliothèques virtuelles à travers le
+monde. Par exemple, aux États-Unis, on cite : « Digital Public Library of America (dp.la)
+», en France « Gallica.bnf.fr », et en Algérie, on parle souvent de « el-maktaba.org », une
+bibliothèque numérique arabe qui propose un grand nombre de livres en libre accès. Tous ces
+olateformes ont le même but : donner accès à des ressources numériques, mais chacun a ses
+propres fonctionnalités. Malgré ces plateformes, certains préfèrent encore aller dans des
+bibliothèques physiques ou utiliser d’autres méthodes pour trouver des livres, surtout à cause
+de la complexité de certains plateformes ou parce que les ouvrages qu’ils cherchent ne sont pas
+toujours disponibles.
+
+
+Les fonctionnalités proposées par ces plateformes                                                    .5
+   « Digital Public Library of America (dp.la) » offre des fonctionnalités telles que les
+recherches avancées et le filtrage par date, l’accès à des millions de documents (livres,
+images, vidéos, archives), etc. Le site web « Gallica.bnf.fr » possède des fonctionnalités qui
+permettent la consultation et le téléchargement gratuit de livres, journaux, manuscrits, cartes et
+images, ainsi qu’un mode de lecture en ligne avec zoom et outils d’annotation. Concernant
+« el-maktaba.org », elle permet la recherche par catégorie, auteur et titre, ainsi que la
+possibilité de téléchargement en PDF. En termes de base de données, dp.la regroupe plein de
+                                            8
+bibliothèques américaines, tandis que Gallica se concentre sur le patri- moine français, et el-
+maktaba.org mise sur les livres en arabe.
+
+
+
+
+                                             9
+Intérêt des bibliothèques virtuelles                                                               .6
+       Les bibliothèques virtuelles jouent un rôle central dans la démocratisation de l’accès au
+ savoir. Leur intérêt réside dans plusieurs avantages pratiques, fonctionnels et éducatifs, que
+ nous présentons ci-dessous :
+Un encombrement réduit : un gain de place chez soi Tout le monde n’a pas la place —
+d’avoir une bibliothèque chez soi. Avec les bibliothèques numériques, des milliers de
+documents sont à votre portée, et ce, dans votre poche [20]
+Une bibliothèque toujours à portée de main : Grâce aux bibliothèques nu- mériques, —
+vous avez accès à toutes les ressources depuis votre téléphone ou votre ordinateur
+portable ! Oubliés le poids des livres et l’encombrement des journaux dans les
+transports, votre bibliothèque vous suit partout. Vous pouvez donc déci- der à tout
+moment de continuer votre lecture, peu importe si vous avez pensé à emporter votre
+livre ou non[20]
+Une gestion transparente : Une bibliothèque numérique est un service en ligne avec des —
+conditions d’utilisation transparentes : vos données sont protégées et votre abonnement
+prend fin à son terme sans reconduction automatique[20]
+Enrichissement des connaissances : Les bibliothèques numériques constituent une —
+source précieuse de mise à jour dans un domaine donné. Elles permettent de suivre les
+dernières avancées, de diversifier ses lectures, et de partager ses connais- sances avec
+d’autres utilisateurs à travers des fonctionnalités collaboratives ou com- munautaires.
+[21]
+Fonctionnalités de recherche : Grâce à des outils de recherche avancés, ces plateformes —
+permettent de retrouver rapidement des documents pertinents. Les filtres, les mots-
+clés, ou encore les recherches par auteur ou sujet facilitent l’accès à l’information,
+même dans des bases de données très vastes.[22]
+
+
+
+
+                                                10
+Types de bibliothèques virtuelles                                                                 .7
+             Les bibliothèques virtuelles, ou numériques, se distinguent par leur nature nu-
+         mérique et l’accès via Internet. Elles peuvent être thématiques, liées à des institu- tions
+         (universités, bibliothèques publiques), ou indépendantes. Elles proposent des
+         collections numériques (livres, articles, images, etc.) et parfois des services comme la
+         référence ou le prêt entre bibliothèques [23],on a :
+Thématiques : Elles se concentrent sur un domaine spécifique (histoire, culture, science- —
+fiction, etc.)[23].
+Institutionnelles : Elles sont gérées par des bibliothèques publiques, univer- sitaires ou —
+nationales (comme Gallica, qui est une bibliothèque numérique de la BnF [24].
+Indépendantes : Elles sont des entités autonomes qui proposent des collections —
+numériques variées, souvent gratuites et accessibles à tous.[25]
+
+
+Analyse des besoins                                                                              .8
+
+Besoins fonctionnels                                                                            .8.1
+Système de recherche avancée : Cette fonctionnalité permet d’effectuer une recherche —
+selon plusieurs critères tels que le titre du livre, l’auteur, la catégorie, et les mots-
+clés afin de faciliter la recherche.
+Affichage optimal des livres : Le site garantit une présentation claire des livres —
+disponibles, avec des descriptions complètes et une organisation efficace des
+catégories pour une meilleure expérience utilisateur.
+Informations détaillées sur les ouvrages : Chaque livre possède une fiche —
+descriptive contenant son résumé, l’auteur, la date de publication, le genre et
+d’autres informations pertinentes pour aider l’utilisateur dans son choix.
+Gestion des utilisateurs : Le site permet aux utilisateurs de s’inscrire et de se connecter —
+en toute sécurité. Ils peuvent : commenter et noter les livres, ajouter des coups de
+cœur sur des livres (favoris).
+Avis et recommandations : La plateforme intègre un système d’avis où les utilisateurs —
+peuvent laisser des commentaires et partager leurs expériences de lecture.
+
+
+
+
+                                                  11
+Besoins non fonctionnels                                                                .8.2
+Performance : Le site web doit être rapide et réactif, et il doit offrir une fluidité —
+d’utilisation aux utilisateurs. L’amélioration des performances a une grande
+relation avec l’optimisation du code et en utilisant des techniques de mise en cache
+et un hébergement fiable.
+Compatibilité Multiplateforme : Le site web doit être compatible avec plu- sieurs —
+navigateurs web (Firefox, Chrome, Safari, etc.) et adapté aux appareils mobiles.
+Responsive design : Il doit aussi s’adapter à différentes tailles d’écrans pour offrir une —
+expérience utilisateur cohérente sur tous les dispositifs.
+Évolutivité : Le site doit être conçu pour supporter l’augmentation du nombre d’utilisateurs —
+et de livres sans impact sur les performances, grâce à une architec- ture flexible
+permettant des mises à jour et l’ajout de nouvelles fonctionnalités.
+Conformité légale : La bibliothèque virtuelle doit respecter la protection des données des —
+utilisateurs, les droits d’auteur et les conditions générales d’utilisa- tion, en
+conformité avec les réglementations en vigueur dans les pays concernés.
+
+
+
+
+                                                12
+                                 Conclusion
+
+   En conclusion, une bibliothèque virtuelle doit être bien adaptée aux besoins des
+utilisateurs afin d’assurer son succès et son adoption. Elle doit offrir une expérience
+fluide et intuitive, avec des fonctionnalités avancées comme la recherche optimisée, une
+présentation claire des ouvrages, et une gestion efficace des utilisateurs. De plus, elle
+doit garantir de bonnes performances, être compatible avec différents appareils et
+respecter les réglementations en vigueur. Une conception bien pensée et évolutive
+permettra à la bibliothèque d’attirer et de fidéliser un large public.
+
+
+
+   La réalisation de ce projet nous a permis de mieux comprendre les enjeux liés à la
+création d’une plateforme numérique, ainsi que l’importance de répondre aux attentes
+des utilisateurs tout en respectant les contraintes techniques et légales. Nous espérons
+que cette bibliothèque virtuelle contribuera à promouvoir la lecture numérique en
+Algérie et à faciliter l’accès aux ressources littéraires pour tous.
+
+
+
+                                              Fin
+
+
+
+
+                                         13
+        Chapitre 2 : Conception de la plateforme
+
+
+
+Introduction                                                                                   .1
+            Ce chapitre présente l’ensemble des diagrammes UML nécessaires à la modéli-
+        sation de notre application. Il commence par une brève définition des diagrammes
+        UML et met en évidence leur rôle essentiel dans la phase de conception d’un projet
+        informatique, en facilitant la représentation structurelle et comportementale du système
+        à développer.
+
+
+Diagramme de cas d’utilisation                                                                 .2
+            UML ou « Unified Modeling Language » consiste à créer une notation graphique
+        internationale standard de l’industrie, utilisée pour décrire, visualiser et documen- ter
+        un système logiciel. Cette description est réalisée avec différents diagrammes :
+Diagramme de cas d’utilisation                                                                  .a
+Diagramme de classes                                                                            .b
+Diagramme de séquence                                                                           .c
+            Ces diagrammes permettent de :
+Raisonner le fonctionnement du système                                                         —
+Détecter les erreurs au début du cycle de vie                                                  —
+Piloter la mise en œuvre [5][6]                                                                —
+
+
+Diagramme de cas d’utilisation UML                                                             .3
+            Un diagramme de cas d’utilisation UML sert à montrer les différentes façons dont
+        un utilisateur peut interagir avec un système. [7][8]
+            Dans notre projet S&A bibliothèque, le diagramme de cas d’utilisation se pré- sente
+        comme ceci :
+
+
+
+
+                                                14
+              FIGURE 1 – Diagramme de cas d’utilisation de S&A bibliothèque
+
+
+a. Un visiteur peut consulter la page d’accueil, rechercher des livres et —
+consulter les détails d’un livre, mais il ne peut pas interagir davantage sans
+créer un compte et s’authentifier.
+b. Un utilisateur inscrit peut consulter la page d’accueil, rechercher des —
+livres, consulter les détails d’un livre, donner un avis sur un livre,
+ajouter un livre aux favoris, gérer son profil, lire un livre en ligne,
+emprunter un livre virtuellement, emprunter un livre physiquement,
+et télécharger un livre, mais il doit être authentifié pour accéder à ces
+fonctionnalités.
+
+
+Diagramme de classes UML                                                                    .4
+             Un diagramme de classe est l’un des diagrammes UML les plus utiles car il
+         contient les classes d’un système et ses attributs. [9][10][11]
+             Dans notre projet S&A Bibliothèque, le diagramme de classe se présente comme ceci :
+
+
+
+
+                                                 15
+                      FIGURE 2 – Diagramme de class de S&A bibliothèque
+
+
+
+Un utilisateur peut s’inscrire, se connecter, emprunter et télécharger des livres, poster des .1
+commentaires, ajouter des favoris, lire, noter et commenter des livres, ou encore
+contacter le support. Il peut aussi consulter son historique d’activités.
+
+
+
+Un livre est associé à un ou plusieurs auteurs, est classé dans une catégorie, et peut recevoir .2
+plusieurs commentaires, notations, ou être ajouté aux favoris. Il est également sujet
+à des emprunts.
+
+
+Un emprunt est effectué par un utilisateur et concerne un livre. Il peut être prolongé, .3
+retourné ou annulé.
+
+
+Une notation est mise en place par un utilisateur sur un livre. Elle peut être modifiée ou .4
+supprimée.
+
+
+Un commentaire est publié par un utilisateur sur un livre. L’utilisateur peut le modifier ou .5
+le supprimer.
+
+
+Le favori permet à l’utilisateur d’enregistrer un ou plusieurs livres qu’il souhaite suivre ou .6
+retrouver facilement.
+
+
+                                                  16
+Le message de contact permet à l’utilisateur de communiquer avec le support. Il peut .7
+être envoyé, lu, répondu ou archivé.
+
+
+
+
+                                          17
+Le newsletter permet à l’utilisateur de s’abonner ou se désabonner, et à l’ad- ministrateur      .8
+de gérer les abonnés ou d’envoyer un bulletin.
+
+
+L’historique enregistre les actions d’un utilisateur et peut être filtré par utili- sateur ou    .9
+date.
+
+
+
+             Le diagramme montre également que chaque entité est liée par des relations
+         cardinales précises (1.., 0.., 0..1) indiquant le nombre de participations possibles. Par
+         exemple, un utilisateur peut effectuer plusieurs emprunts ou publier plusieurs
+         commentaires, tandis qu’un livre appartient à une seule catégorie mais peut avoir
+         plusieurs auteurs.
+
+
+
+
+                                          Conclusion
+         L’utilisation des diagrammes UML dans la conception d’un projet informatique est
+         indispensable car elle facilite la compréhension du fonctionnement de ce projet à
+         l’utilisateur.
+
+
+
+
+                                                 18
+            Chapitre 3 : Implémentation de S&A
+                         bibliotheque
+
+
+
+Introduction                                                                                     .1
+           Dans ce chapitre, on va vous parler de façon détaillée des outils (matériels et
+        logiciels) que nous avons utilisés pour développer notre site web. Nous allons égale-
+        ment vous montrer quelques interfaces de notre site ainsi que son fonctionnement.
+
+
+Les Outils utilisés dans notre projet                                                            .2
+
+Outils du Front-End                                                                         .2.1
+HTML :                                                                                      .A
+        HTML ou bien HyperText Markup Language est un langage de balisage utilisé pour la
+        création des pages web. Les balises HTML sont utilisées pour décrire la structure de la
+        page web, comme le texte, les images, les tableaux, les formulaires, etc.[12][13]
+
+CSS :                                                                                       .B
+        CSS signifie Cascading Style Sheets. Il s’agit d’un langage de feuille de style utilisé
+        pour définir la présentation visuelle et le style d’une page web créée en HTML. Le
+        CSS permet de séparer le contenu HTML de la présentation visuelle de la page, ce qui
+        permet de modifier facilement le style de la page web en utilisant simplement les
+        règles CSS sans modifier le contenu HTML lui-même. [13]
+
+
+
+Outils du Back-End                                                                          .2.2
+           C. JavaScript :
+        JavaScript est un langage de programmation de haut niveau principalement utilisé pour
+        créer des applications web interactives et dynamiques. Il est souvent utilisé en
+        combinaison avec HTML et CSS pour créer des pages web complexes et des
+        applications web avancées. JavaScript est un langage interprété, ce qui signifie que le
+                                               19
+code est exécuté directement sur le navigateur web, plutôt que d’être compilé dans un
+fichier distinct. [14]
+
+
+
+
+                                     20
+        D. PHP :
+     PHP est un langage de programmation côté serveur, qui est principalement utilisé pour
+     le développent des sites web dynamiques et d’applications web, PHP est souvent
+     utilisé en combinaison avec des technologies web coté client telles que HTML, CSS et
+     JavaScript. Le code PHP est Exécuté coté serveur, ce qui signifie que le serveur web
+     génère des pages web dynamiques en exécutant du code PHP et en générant des pages
+     HTML pour être envoyées au navigateur web de l’utilisateur. [14]
+
+        E. SQL :
+     C’est l’acronyme de « Structered Query Language » et c’est un langage spéciale- ment
+     conçu pour gérer des bases de données relationnelles, il sert à communiquer avec une
+     base de données et effectuer des requêtes pour récupérer ou bien organiser les données
+     stockées, ainsi que de réaliser des opérations de gestion telles que la création, la
+     modification et la suppression de tables et de schémas.[15]
+
+
+
+Outils matériels                                                                       .2.3
+        Pour le développement du site web S&A bibliotheque, nous avons utilisé 2 or-
+     dinateurs portables aux caractéristiques suivantes :
+
+
+        Machine 1 :
+        Nom de l’appareil : DESKTOP-FETFBQV Processeur
+        (CPU) : Intel® Core™ i5-6300U, 2,40 GHz Mémoire
+        RAM : 8 Go DDR (7,88 Go utilisables) Carte
+        graphique : Intel® HD Graphics 520 (intégrée)
+        Architecture : Système d’exploitation 64 bits, processeur x64
+        Système d’exploitation : Windows 10
+        Fonction tactile : Non disponibe
+
+
+        Machine 2 :
+        Nom de l’appareil : DESKTOP-NNEOPBG Processeur
+        (CPU) : Intel® Core™ i5-8265U, 1.80 GHz Mémoire
+        RAM : 8 Go (7,82 Go utilisable)
+        Carte graphique : Intel® HD Graphics 620 (intégrée) Architecture :
+        Système d’exploitation 64 bits, processeur x64 Système
+                                            21
+d’exploitation : Windows 10
+Fonction tactile : Non disponible
+
+
+
+
+                                    22
+                                                                            Logiciels utilisés .2.4
+             Pour développer ce site web on a utilisé quelques logiciels et on va vous donner les
+       informations sur chaque logiciel
+
+                                                                                 Visual Studio Code : .a
+       Visual Studio Code (VS Code) est un panneau de lancement créatif que vous pouvez
+       utiliser pour modifier, déboguer et générer du code, puis publier une appli- cation. En
+       plus de l’éditeur et du débogueur standard fournis par la plupart des IDE, Visual Studio
+       inclut des compilateurs, des outils de complétion de code, des concepteurs graphiques
+       et bien d’autres fonctionnalités pour améliorer le processus du développement de
+       logiciels. Visual Studio est l’IDE le plus rapide pour la pro- ductivité. Ciblez n’importe
+       quelle plateforme ou appareil. Générez n’importe quel type d’application. Travaillez
+       ensemble en temps réel. Diagnostiquez et éradiquez les problèmes avant qu’ils ne se
+       produisent. Cela rend les tâches quotidiennes plus fluides et réactives. Il s’exécute sur
+       votre bureau et est disponible pour Windows, macOS et Linux. Il est livré avec un
+       support intégré pour JavaScript, TypeScript          et Node.js et dispose d’un riche
+       écosystème d’extensions pour d’autres langages et environnements d’exécution (tels
+       que C++, C#, Java, Python, PHP, Go, .NET). [16]
+
+phpMyAdmin :                                                                                 .b
+       phpMyAdmin (PMA) est une application Web de gestion pour les systèmes de ges- tion
+       de base de données MySQL et MariaDB, réalisée principalement en PHP et distribuée
+       sous licence GNU GPL. Il s’agit de l’une des plus célèbres interfaces pour gérer une
+       base de données MySQL sur un serveur PHP. De nombreux hébergeurs, gratuits
+       comme payants, le proposent ce qui évite à l’utilisateur d’avoir à l’installer. Cette
+       interface pratique permet d’exécuter, très facilement et sans grandes connais- sances en
+       bases de données, des requêtes comme les créations de table de données, insertions,
+       mises à jour, suppressions et modifications de structure de la base de données, ainsi
+       que l’attribution et la révocation de droits et l’import/export. Ce système permet de
+       sauvegarder commodément une base de données sous forme de fichier .sql et d’y
+       transférer ses données, même sans connaître SQL. Les requêtes SQL restent possibles,
+       ce qui permet de les tester interactivement lors de la créa- tion d’un site pour les
+       utiliser ensuite en batch (c’est-à-dire en différé) une fois au point. [17]
+
+Overleaf :                                                                                   .c
+       Overleaf est un logiciel, mais il fonctionne principalement en ligne. C’est un édi- teur
+                                               23
+collaboratif de documents LaTeX basé sur le cloud, conçu pour la rédaction,
+
+
+
+
+                                     24
+l’édition et la publication de documents scientifiques. [18] Il permet à plusieurs uti-
+lisateurs de travailler simultanément sur un même document, avec une compilation en
+temps réel et un contrôle de version intégré. [19]
+
+
+
+
+                                       25
+Base de données                                                                            .3
+       La base de données de notre site web de bibliothèque virtuelle contient plusieurs
+    tables essentielles pour son fonctionnement. Dans la description ci-dessous on va
+    détailler le contenu de chaque table.
+
+
+    Table Utilisateur :
+
+       Cette table contient l’ensemble des informations relatives aux utilisateurs de la
+    plateforme. Elle comprend notamment un identifiant unique auto-incrémenté, le nom
+    de l’utilisateur, son adresse email, son mot de passe chiffré pour la sécurité, ainsi que
+    la date d’inscription enregistrée automatiquement. Le champ rôle permet de distinguer
+    les utilisateurs classiques des administrateurs, avec une valeur par défaut "user". La
+    table intègre également un champ optionnel pour l’avatar de profil et un suivi de la
+    dernière connexion. Ces données permettent de gérer efficacement les comptes
+    utilisateurs et leurs accès au système.
+
+
+    Table Livres :
+
+       Cette table contient toutes les informations sur les livres disponibles sur la
+    plateforme. On y trouve : le titre, l’auteur, la description, l’éditeur et la date de
+    publication. Elle enregistre aussi des détails pratiques comme le nombre de pages, la
+    langue, et une image de la couverture. Pour chaque livre, on peut stocker un fichier
+    PDF et le classer par catégorie. La table permet aussi de noter les livres (avec une
+    moyenne et un nombre d’avis) et sait qui a ajouté le livre et quand. Toutes ces
+    informations aident à organiser facilement la bibliothèque et à trouver les livres
+    recherchés.
+
+
+    Table Auteurs :
+
+       Cette table recense les informations relatives aux auteurs présents dans la base de
+    données. Elle comprend un identifiant unique, le nom de l’auteur (obligatoire), ainsi
+    que des détails complémentaires comme son genre littéraire, sa biographie, sa
+    nationalité et le nombre d’œuvres produites. Un champ booléen indique si l’auteur a
+    reçu un prix Nobel, tandis qu’une URL optionnelle permet d’associer une photo. Ces
+    données offrent une vision complète du profil de chaque auteur et facilitent leur
+    gestion ainsi que les recherches associées.
+
+
+                                              26
+Table Commentaires :
+
+   Cette table stocke les avis que les lecteurs laissent sur les livres. Elle contient le
+texte de chaque commentaire, la note attribuée par le lecteur, et enregistre auto-
+
+
+
+
+                                      27
+matiquement la date de publication. Chaque commentaire est lié à un utilisateur et un
+livre précis grâce à leurs identifiants. Cela permet de savoir qui a donné son avis sur
+quel ouvrage, et à quel moment. Le système utilise ces données pour afficher les
+critiques sous les livres et calculer les notes moyennes qui aident les autres lecteurs à
+choisir leurs lectures.
+
+
+Table Emprunts :
+
+   Cette table gère les prêts de livres entre la bibliothèque et ses utilisateurs. Elle
+enregistre chaque emprunt avec les dates de départ et de retour prévues, ainsi que le
+motif (étude, lecture plaisir, etc.). Le système suit le statut de chaque emprunt (en
+attente, approuvé, refusé ou terminé) et peut ajouter des notes complémentaires. Un
+horodatage automatique marque la date de création de chaque demande. En reliant
+chaque emprunt à un utilisateur et un livre précis, cette table permet de gérer
+efficacement la circulation des ouvrages et l’historique des prêts.
+
+
+Table Favoris :
+
+   Cette table permet de gérer les livres préférés des utilisateurs. Elle associe sim-
+plement chaque utilisateur (via son ID) aux livres (via leur ID) qu’il a marqués comme
+favoris, avec la date d’ajout automatiquement enregistrée. Cela crée une bi- bliothèque
+personnelle pour chaque lecteur, lui permettant de retrouver rapidement les ouvrages
+qu’il a particulièrement appréciés. La structure minimale (utilisateur- livre-date) assure
+une gestion légère et efficace des coups de cœur littéraires.
+
+
+Table Historique :
+
+   Cette table garde la trace de toutes les actions importantes sur les livres. Elle
+enregistre qui a fait quoi (emprunt, retour, etc.), sur quel livre, et à quel moment. Les
+données incluent l’identifiant de l’utilisateur, le type d’action, le livre concerné, des
+détails supplémentaires si besoin, et la date précise de l’action. Cela permet de suivre
+facilement l’activité de la bibliothèque et de connaître l’historique complet d’un livre
+ou d’un utilisateur. Le système conserve ainsi une mémoire fiable de toutes les
+opérations importantes.
+
+
+Table Livres_Catégories :
+
+   Cette table fait le lien entre les livres et leurs catégories. Elle contient sim- plement
+                                          28
+deux informations : l’identifiant du livre et l’identifiant de sa catégorie. Cette
+association permet de classer chaque ouvrage dans une ou plusieurs caté- gories
+thématiques (comme "Roman", "Science-fiction", "Histoire", etc.). Grâce à cette
+structure minimale mais efficace, le système peut facilement retrouver tous
+
+
+
+
+                                     29
+les livres d’une même catégorie ou connaître les catégories d’un livre spécifique, ce qui
+améliore grandement la recherche et l’organisation de la bibliothèque.
+
+
+Table Contacts :
+
+   Cette table enregistre tous les messages envoyés par les visiteurs via le formu- laire
+de contact. Elle conserve le nom de la personne, son adresse email pour la réponse, le
+contenu de son message et la date d’envoi. Un simple indicateur montre si le message a
+été lu ou non (0 pour non lu, 1 pour lu). Cette organisation per- met au service client
+de traiter facilement les demandes, de suivre les messages non lus et de garder une
+trace de toutes les communications. Tous les champs sont obligatoires sauf
+l’indicateur "lu" qui est automatiquement mis à 0 lors de la création.
+
+
+Table Newsletter :
+
+   Cette table contient les emails des personnes inscrites à la newsletter de la
+bibliothèque. Elle enregistre l’adresse email, la date d’inscription et si l’abonnement est
+actif ou non. L’identifiant est ajouté automatiquement pour chaque nouvel inscrit. La
+date est ajoutée automatiquement lors de l’inscription, et l’abonnement est actif par
+défaut.
+
+
+Table Notations :
+
+   Cette table enregistre les notes attribuées par les utilisateurs aux livres. Elle
+contient l’identifiant de la notation, l’identifiant du livre concerné, l’identifiant de
+l’utilisateur ayant donné la note, ainsi que la note elle-même. Chaque champ est
+obligatoire. L’identifiant est généré automatiquement. Cette table permet de suivre les
+évaluations faites par les utilisateurs sur les livres disponibles dans la bibliothèque.
+
+
+
+
+   L’ensemble des tables est relié grâce à des clés primaires et étrangères, permet- tant
+de structurer les liens entre les différentes données du système.
+   Cette organisation offre une base de données fiable et cohérente pour gérer toutes
+les fonctionnalités de la bibliothèque virtuelle. Elle permet de centraliser les
+informations sur les utilisateurs, les livres, les emprunts, les commentaires et bien
+d’autres aspects, tout en assurant un accès rapide et une gestion efficace. Ainsi, la
+plateforme peut offrir une expérience fluide aux lecteurs comme aux administra- teurs,
+                                      30
+allant de la lecture à la gestion des contenus.
+
+
+
+
+                                        31
+L’API Google Books                                                                         .4
+        Les API Google Books vous permettent d’intégrer des fonctionnalités Google
+    Books à votre site ou à votre application. La nouvelle API Google Livres vous permet
+    d’effectuer par programmation la plupart des opérations que vous pouvez effectuer de
+    manière interactive sur le site Web de Google Livres [20].
+        Dans notre application "S&A bibliothèque", nous avons intégré l’API Google
+    Books afin d’enrichir automatiquement les informations sur les ouvrages. Grâce à cette
+    API, nous pouvons récupérer des données fiables telles que le titre, l’auteur, la
+    description, la date de publication, ou encore la couverture du livre. Cette in- tégration
+    facilite l’ajout de nouveaux livres tout en garantissant la qualité et la cohérence des
+    contenus affichés aux utilisateurs.
+
+
+
+
+  FIGURE 3 – Schéma d’intégration de l’API Google Books dans notre application
+
+
+
+
+                                           32
+Les interfaces de notre site web                                                                   .5
+
+Page d’accueil                                                                                 .5.1
+
+
+
+
+                      FIGURE 4 – Première page d’accueil du site S&A
+
+
+
+
+                        FIGURE 5 – Deuxième vue de la page d’accueil
+
+
+
+            Les figures 4 et 5 présentent la première interface visible lors de l’arrivée sur notre
+        site. On y distingue clairement :
+Une barre de navigation complète contenant :                                                       —
+Accueil (actualisation de la page)                                                            .1
+Annonces (publications récentes)                                                              .2
+À Propos (présentation de l’équipe)                                                           .3
+Contact (coordonnées)                                                                         .4
+Connexion (accès utilisateur)                                                                 .5
+                                                33
+Une section d’accroche mettant en valeur :        —
+L’accès illimité à la bibliothèque            —
+
+
+
+
+                                         34
+La disponibilité multiplateforme                                                              —
+La simplicité d’utilisation                                                                   —
+             Elles complètent cette vue avec des éléments interactifs supplémentaires :
+Un menu de navigation rapide avec :                                                               —
+Explorer (découverte des ouvrages)                                                            —
+S’inscrire (création de compte)                                                               —
+Recherche (barre de recherche)                                                                —
+Une incitation à l’action claire pour :                                                           —
+Trouver sa prochaine lecture                                                                  —
+Commencer à utiliser le service                                                               —
+             Ces deux interfaces combinées offrent une expérience utilisateur cohérente et
+         intuitive, guidant naturellement le visiteur vers les fonctionnalités principales de notre
+         plateforme.
+
+
+
+
+Page des catégories                                                                           .5.2
+
+
+
+
+  FIGURE 6 – page d’accueil de categories                FIGURE 7 – Tendances littéraires
+
+
+
+
+                                                     FIGURE 9 – Menu principal des catégories
+    FIGURE 8 – carousselles de categories
+
+
+
+                                                35
+       Fonctionnalités principales
+
+          La page catégorie offre trois éléments clés :
+Carrousels de livres :                                    —
+
+
+
+
+                                            36
+Sélections thématiques mises en avant                                                      —
+Défilement horizontal pour découvrir les ouvrages                                          —
+Couverture visuelle des livres avec titres apparents                                       —
+Boutons de catégories :                                                                        —
+Accès direct aux genres principaux                                                         —
+Design cliquable avec feedback visuel                                                      —
+Redirection vers la page complète de chaque catégorie                                      —
+Livres proposés :                                                                              —
+Mélange d’ouvrages populaires et nouveautés                                                —
+Présentation avec couvertures et métadonnées                                               —
+Accès rapide à la fiche complète du livre                                                  —
+
+
+        Navigation
+
+            Chaque élément interactif permet :
+Pour les carrousels : afficher plus de livres similaires                                       —
+Pour les boutons : charger la page détaillée de la catégorie                                   —
+Pour les livres : ouvrir la fiche complète de l’ouvrage                                        —
+
+
+Page Auteurs                                                                               .5.3
+
+
+
+
+                      FIGURE 10 – Interface de découverte des auteurs
+
+            La page auteurs (Fig. 12) présente une sélection variée d’écrivains à travers des
+        fiches claires et structurées. Chaque auteur est mis en valeur avec une photo, son nom
+        en titre, et une brève biographie qui résume son style et son importance littéraire. Des
+                                                37
+informations pratiques sont également fournies, comme le nombre d’ouvrages
+disponibles dans la bibliothèque. La mise en page est aérée, avec des séparateurs
+visuels entre les différents auteurs pour une lecture agréable. L’objectif
+
+
+
+
+                                        38
+      est à la fois de faire découvrir de nouveaux auteurs et de faciliter l’accès à leurs
+      ouvrages, enrichissant ainsi l’expérience de lecture des utilisateurs. La conception
+      simple et intuitive encourage l’exploration, tout en fournissant les informations
+      essentielles pour guider les choix de lecture ca avec une photo (meme style quavant) en
+      latexr les choix de lecture des utilisateurs
+
+
+Page du details de livre                                                                  .5.4
+
+
+
+
+                          FIGURE 11 – Fiche détaillée d’un livre
+
+         La page de détail du livre (Fig.11) présente toutes les informations essentielles de
+      manière claire et organisée. Le titre et l’auteur sont mis en évidence en haut, suivis du
+      genre, du nombre de pages et de la disponibilité. Des boutons d’action permettent de
+      télécharger, emprunter, ajouter aux favoris ou partager l’ouvrage. Une brève
+      description donne un aperçu de l’histoire, tandis que les détails tech- niques (éditeur,
+      date de publication, ISBN) sont listés pour référence. Cette inter- face intuitive permet
+      aux utilisateurs de découvrir le livre et d’accéder rapidement à toutes ses
+      fonctionnalités.
+
+
+
+
+                                               39
+Page des Resultats des recharches                                                           .5.5
+
+
+
+
+                   FIGURE 12 – Interface des resultats de recherches
+
+        L’interface (Fig.12)affiche clairement les livres correspondant à la recherche de
+     l’utilisateur. En tête, le nombre total de résultats (20) donne une vision globale. Chaque
+     ouvrage est présenté avec son titre en gras, son auteur et un bouton "Voir détails". La
+     mise en page aérée, avec des séparateurs entre les résultats, permet une lecture fluide
+     et une comparaison facile des ouvrages.
+        Cette page offre une navigation intuitive : l’utilisateur peut visualiser rapide- ment
+     l’ensemble des résultats et accéder aux détails complets de chaque livre en un clic.
+     L’accent est mis sur la simplicité et l’efficacité, avec juste les informations essentielles
+     pour faciliter le choix des lecteurs
+
+
+
+
+                                             40
+Page d"authentification                                                                 .5.6
+
+
+
+
+                       FIGURE 13 – Interface d’authentification
+
+        Cette page permet aux utilisateurs de s’authentifier sur la plateforme via un
+     formulaire simple contenant deux champs obligatoires (email et mot de passe) et un
+     bouton de validation "Se connecter". Une option d’inscription est proposée en bas de
+     page pour les nouveaux utilisateurs. L’interface adopte un design épuré avec des
+     éléments bien espacés pour une expérience utilisateur intuitive et sans confusion. Cette
+     page remplit efficacement sa fonction première d’authentification tout en guidant les
+     nouveaux visiteurs vers le processus d’inscription, le tout dans une interface claire et
+     facile à prendre en main.
+
+
+     3.5.6Page d’inscription
+
+
+
+
+                       FIGURE 14 – Interface d’authentification
+
+        Cette interface permet aux nouveaux utilisateurs de créer un compte via un
+     formulaire simple demandant :
+
+
+                                           41
+Nom
+Email
+Mot de passe
+
+
+
+
+               42
+   Un bouton "S’INSCRIRE" valide la création du compte. La page propose égale-
+ment une option de connexion pour les utilisateurs déjà enregistrés, avec un lien "SE
+CONNECTER". Le design épuré et les espaces bien organisés rendent le processus
+d’inscription clair et accessible.
+
+                                 Conclusion
+En Conclusion, Ce chapitre est vraiment indispensable dans le mémoire car il présente
+tous éléments nécessaires de la conception de notre site web ainsi que toutes ses
+fonctionnalités
+
+
+
+
+                                     43
+                Chapitre 4 : Évaluation de S&A
+                         bibliothèque
+
+
+
+Introduction                                                                                    .1
+           Dans ce chapitre, nous procéderons à l’évaluation de notre plateforme de bi-
+       bliothèque virtuelle à travers une comparaison avec une plateforme similaire. Cette
+       analyse nous permettra non seulement de mettre en évidence les points forts et les
+       spécificités de notre solution, mais également d’identifier ses limites actuelles. En- fin,
+       nous présenterons les perspectives d’amélioration envisagées pour répondre au mieux
+       aux besoins des utilisateurs et renforcer la qualité de notre plateforme
+
+
+Comparaison avec Gallica.bnf.fr                                                               .2
+
+ S&A                                      Gallica
+ Lecture interactive avec système de      Consultation     traditionnelle
+ notes et commentaires                    sans fonctionnalités sociales
+ Système de prêt numérique avec ré-       Consultation immédiate sans ges-
+ servation en ligne                       tion de prêt
+ Spécialisée dans les œuvres litté-       Couvre un large éventail de docu-
+ raires modernes                          ments patrimoniaux
+ Interface intuitive et moderne           Approche académique privilégiée
+ Utilisation de technologies récentes     Mise sur la qualité patrimoniale
+ comme l’API Google Books
+ Accès à plusieurs millions de livres     Plus de 5 millions de documents dis-
+ via l’API Google Books                   ponibles
+
+                      TABLE 1 – Comparaison entre S&A et Gallica
+
+
+
+
+                                               44
+L’intérêt de cette comparaison :                                                                     .4
+              La comparaison entre notre plateforme et Gallica permet de mettre en évi- dence
+           les spécificités et les atouts de notre solution par rapport à une bibliothèque numérique
+           de référence. En analysant des critères clés tels que l’interactivité, la gestion des prêts,
+           le type de contenu proposé, l’ergonomie de l’interface et les technologies utilisées,
+           cette comparaison montre clairement l’orientation moderne, dynamique et centrée sur
+           l’utilisateur de notre plateforme. Elle permet ainsi de valoriser notre approche
+           innovante, tout en situant notre travail dans le paysage des bibliothèques numériques
+           existantes. Ce positionnement comparatif est essen- tiel pour comprendre la valeur
+           ajoutée de notre projet et pour en justifier les choix techniques et fonctionnels.
+
+
+Limites du projet                                                                                    .9
+              Malgré les progrès importants réalisés au cours du développement de notre
+           plateforme de bibliothèque virtuelle, plusieurs limites ont été identifiées et devront
+           faire l’objet d’améliorations dans les travaux futurs :
+Fonctionnalités incomplètes : Certaines fonctionnalités prévues, telles que la lecture —
+immersive en 3D ou les assistants virtuels, n’ont pas encore été intégrées, ce qui
+restreint l’expérience utilisateur.
+Performance et scalabilité : La gestion d’un grand nombre d’utilisateurs simultanés et —
+l’optimisation des temps de réponse restent des défis techniques à relever pour
+assurer une utilisation fluide.
+Compatibilité multi-supports : L’adaptation optimale de l’interface aux différents —
+appareils (smartphones, tablettes, divers navigateurs) n’est pas encore entièrement
+aboutie.
+Accessibilité : Des améliorations sont nécessaires pour garantir une utilisation accessible à —
+tous, notamment aux personnes en situation de handicap.
+Base de données limitée : La couverture des œuvres disponibles demeure restreinte, en —
+particulier concernant les documents patrimoniaux.
+Sécurité : Certains aspects liés à la protection des données personnelles et à la sécurité —
+contre les cyberattaques doivent être renforcés.
+              Ces limites constituent des axes prioritaires pour les développements futurs, afin
+           d’offrir une plateforme plus robuste, complète et adaptée aux besoins des utilisateurs.
+
+
+
+                                                   45
+Perspectives d’amélioration                                                                .5
+Lecture immersive en 3D : Permettra de feuilleter virtuellement les livres comme           .a
+s’ils étaient physiquement entre les mains.
+Comparaison d’œuvres : Outil pour comparer différents livres selon le genre, période       .b
+historique ou thématiques.
+Assistants virtuels : Chatbots spécialisés pour :                                          .c
+Guider les recherches                                                                  —
+Recommander des ouvrages                                                               —
+Expliquer les fonctionnalités                                                          —
+Contexte culturel : Informations sur :                                                     .d
+Mouvements littéraires                                                                 —
+Influences des auteurs                                                                 —
+Adaptations cinématographiques                                                         —
+Évaluation des collections : Système pour :                                                .e
+Déterminer la rareté                                                                   —
+Évaluer l’état des livres                                                              —
+Estimer la valeur                                                                      —
+Communauté littéraire : Mise en place de :                                                 .f
+Notation des œuvres                                                                    —
+Espaces de discussion                                                                  —
+Clubs de lecture                                                                       —
+Suggestions intelligentes : Algorithme proposant :                                         .g
+Ouvrages similaires                                                                    —
+Découvertes personnalisées                                                             —
+Lectures complémentaires h- Notifications : Alertes pour :                             —
+Nouvelles acquisitions                                                                 —
+Retour des livres                                                                      —
+Événements littéraires                                                                 —
+
+                                         Conclusion
+             En conclusion, notre plateforme requiert encore plusieurs améliorations afin de
+         répondre de manière exhaustive aux attentes des utilisateurs. Nous nous engageons à
+         poursuivre le développement de ces améliorations dans les plus brefs délais afin
+         d’optimiser la qualité et l’efficacité de notre plateforme
+
+
+
+                                                 46
+                       Conclusion générale
+
+   En conclusion, ce travail de conception du site web SA de bibliothèque virtuelle
+constitue une étape clé dans la mise en place d’une plateforme en ligne moderne
+dédiée à l’accès, la gestion et la découverte d’œuvres littéraires. Il a permis de définir
+et de mettre en œuvre les fondations techniques et fonctionnelles nécessaires à la
+création d’un environnement numérique interactif, accessible et centré sur les besoins
+des utilisateurs
+
+   Tout au long de ce travail, nous avons défini les objectifs principaux du site, en
+mettant l’accent sur la gestion des utilisateurs, des ouvrages, des emprunts et des
+interactions entre les différents acteurs de la plateforme. Une analyse approfondie des
+besoins a été menée afin d’identifier les fonctionnalités indispensables pour assurer
+une navigation fluide et une expérience utilisateur optimale.
+
+   Nous avons adopté une démarche structurée en modélisant l’architecture du
+système à l’aide de diagrammes UML, ce qui a permis de représenter clairement les
+entités, leurs relations et les cas d’usage. La base de données a été soigneusement conçue
+pour assurer une organisation efficace et cohérente des informations.
+
+   Sur le plan technique, des outils modernes ont été utilisés pour le développement du
+site, intégrant des technologies adaptées à la gestion des contenus numériques.
+L’intégration de services externes comme l’API Google Books a enrichi les fonc-
+tionnalités de la plateforme en facilitant l’ajout d’ouvrages.
+
+   En somme, ce projet a permis de concrétiser une solution complète et fonc-
+tionnelle répondant aux besoins d’une bibliothèque moderne, en alliant rigueur
+méthodologique, pertinence fonctionnelle et performance technique.
+
+
+
+
+                                        47
+                                          Bibliographie
+
+           Références
+
+Wikipédia.             Bibliothèque       numérique.      Disponible         sur          : https :// .1
+fr.wikipedia.org/wiki/Biblioth
+IFLA. World Summit on the Information Society – Bibliothèques et so- ciété de .2
+l’information, 2003. Disponible sur : https ://www.ifla.org/wp- content/uploads/
+2019/05/assets/wsis/Documents/wsisaf.pdf
+
+Bibliopedia. Bibliothèques numériques. Disponible sur : https ://bibliope- dia.geobib.fr/wiki/ .3
+Biblioth
+ENSSIB.          Les      bibliothèques    virtuelles.   Disponible    sur         : https:   /    / .4
+www.enssib.fr/bibliotheque-numerique/documents/61647-les- bibliotheques-
+virtuelles.pdf
+Robert Ogor. Modélisation avec UML. ENST Bretagne, mai 2003. [Consulté le 15/04/2023]. .5
+Disponible sur : http ://www.enst-bretagne.fr
+Raida El Mansouri. Modélisation et Vérification des processus métiers dans les entreprises .6
+virtuelles. Université Mentouri Constantine.
+Pierre-Alain Muller, Nathalie Gaertner. Modélisation objet avec UML. 2ème édition, .7
+Éditions Eyrolles, 2000.
+Xavier Blanc, Isabelle Mounier. UML2 pour les développeurs. Éditions Ey- rolles, 2006.                .8
+Eric Cariou. Introduction à UML 2. Université de Pau et des Pays de l’Adour, UFR .9
+Sciences.
+Pascal Roques. UML2, Modéliser une application web. Éditions Eyrolles, 2008. Mémoire : .10
+Dehimi Meriem & Mimech Besma, Université Mentouri Constan- tine,
+2009/2010.
+Pascal Roques, Franck Vallée. UML2 en action, De l’analyse des besoins à la conception. .11
+Éditions Eyrolles, 2007.
+Eric Brassart. Le Langage HTML, Support de cours, IUT d’Amiens, Université de Picardie .12
+Jules Verne, 1998/99.
+Laaziz Lahlou. Conception et réalisation d’une application web pour la gestion des stocks. .13
+Université de Béjaïa, 2010.
+                                                   48
+Jean Clément. Introduction aux langages de développement pour le web : Ja- vaScript et .14
+PHP. Université Paris 8.
+
+
+
+
+                                           49
+MySQL.          Disponible          sur                  :            http     ://www-igm.univ- lv.fr/ dr/         .15
+XPOSE/FcollinMySQL/mySQLindexf ichiers/presenta on.htm
+
+Microsoft.      Visual           Studio.      Disponible                     sur     :   https         ://         .16
+visualstu- dio.microsoft.com/fr/
+Wikipédia.      PhpMyAdmin.                 Disponible                   sur                       : https ://     .17
+fr.wikipedia.org/wiki/PhpMyAdmin
+Overleaf. Disponible sur : https ://www.overleaf.com/                                                              .18
+University       of      Chicago.         Knowledge      Base       Article.       Disponible sur : https :// .19
+uchicago.service-now.com/it ?id=kbar                                            clesysid          =
+ebeede6b97388ed081e7b1511153afe6
+
+TechTarget. Définition de bibliothèque numérique. Disponible sur : https                   : / / w w w - .20
+techtarget-com.translate.goog/whatis/definition/digital- library ?xtrsl = enxtrtl =
+frxtrhl = frxtrpto = sge : : text = Digital
+
+Le Petit Journal Berlin. 10 bonnes raisons de s’abonner à une bibliothèque numérique. .21
+Disponible sur : https ://lepetitjournal.com/berlin/10-bonnes- raisons-abonner-
+bibliotheque-numerique-345611
+Wikipédia.            Bibliothèque           numérique.            Disponible            sur           : https :// .22
+fr.wikipedia.org/wiki/Biblioth
+Bibliothéconomie. Panorama des bibliothèques numériques. Disponible sur : https :// .23
+bibliotheconomie.jimdofree.com/panorama-des-biblioth
+Érudit. Article sur les bibliothèques numériques. Disponible sur : https                               :     /   / .24
+w w w. e r u d i t . o r g / f r / r e v u e s / d o c u m e n t a t i o n / 2 0 1 3 - v 5 9 - n 3 -
+documentation0849/1018843ar/ : :text=multidisciplinaire
+
+
+
+
+                                                         50
+                                                  ti
+                                                              ti
+

@@ -1,0 +1,368 @@
+/* LiveSession.css */
+
+/* ──────────────────────────────────────────────
+   Formulaire création
+──────────────────────────────────────────────── */
+.live-form-card {
+    background: var(--surface);
+    border-radius: var(--border-radius);
+    padding: 24px;
+    margin-bottom: 32px;
+    box-shadow: var(--box-shadow);
+    border-left: 4px solid var(--primary-color);
+}
+
+.live-form-card h3 {
+    font-size: 18px;
+    margin-bottom: 20px;
+    color: var(--gray-800);
+}
+
+.live-form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+@media (max-width: 640px) {
+    .live-form-row { grid-template-columns: 1fr; }
+}
+
+.live-form-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 16px;
+}
+
+/* ──────────────────────────────────────────────
+   Sections
+──────────────────────────────────────────────── */
+.live-section {
+    margin-bottom: 36px;
+}
+
+.live-section-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--gray-700);
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--gray-200);
+}
+
+.live-section-active {
+    color: #dc2626;
+    border-color: #dc2626;
+}
+
+.live-section-ended {
+    color: var(--gray-400);
+    border-color: var(--gray-200);
+}
+
+/* ──────────────────────────────────────────────
+   Grille de cartes
+──────────────────────────────────────────────── */
+.live-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+/* ──────────────────────────────────────────────
+   Carte Live
+──────────────────────────────────────────────── */
+.live-card {
+    background: var(--surface);
+    border-radius: var(--border-radius);
+    padding: 20px;
+    box-shadow: var(--box-shadow);
+    border: 2px solid var(--gray-200);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transition: box-shadow 0.2s;
+}
+
+.live-card--active {
+    border-color: #dc2626;
+    box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.15);
+    animation: livePulse 2s ease-in-out infinite;
+}
+
+.live-card--ended {
+    opacity: 0.6;
+}
+
+@keyframes livePulse {
+    0%, 100% { box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.15); }
+    50%       { box-shadow: 0 0 0 8px rgba(220, 38, 38, 0.05); }
+}
+
+.live-card-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+/* Badges statut */
+.live-badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.live-status-live {
+    background: #dc2626;
+    color: white;
+}
+
+.live-status-scheduled {
+    background: #6366f1;
+    color: white;
+}
+
+.live-status-ended {
+    background: var(--gray-300);
+    color: var(--gray-600);
+}
+
+.live-module-tag {
+    background: var(--gray-100);
+    color: var(--gray-600);
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-family: monospace;
+}
+
+.live-card-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--gray-900);
+    margin: 0;
+}
+
+.live-card-desc {
+    font-size: 13px;
+    color: var(--gray-600);
+    margin: 0;
+}
+
+.live-card-time {
+    font-size: 13px;
+    color: var(--gray-500);
+    margin: 0;
+}
+
+.live-card-link {
+    margin-top: 4px;
+}
+
+.btn-link-join {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    background: #0ea5e9;
+    color: white;
+    border-radius: var(--border-radius-sm);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    transition: background 0.2s;
+}
+
+.btn-link-join:hover {
+    background: #0284c7;
+}
+
+.btn-link-disabled {
+    background: var(--gray-300);
+    color: var(--gray-500);
+    pointer-events: none;
+}
+
+.live-card-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 4px;
+    flex-wrap: wrap;
+}
+
+.btn-start-live {
+    padding: 8px 16px;
+    background: #16a34a;
+    color: white;
+    border: none;
+    border-radius: var(--border-radius-sm);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-start-live:hover {
+    background: #15803d;
+}
+
+.btn-end-live {
+    padding: 8px 16px;
+    background: #dc2626;
+    color: white;
+    border: none;
+    border-radius: var(--border-radius-sm);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-end-live:hover {
+    background: #b91c1c;
+}
+
+/* ──────────────────────────────────────────────
+   Empty state
+──────────────────────────────────────────────── */
+.live-empty {
+    text-align: center;
+    padding: 60px 20px;
+    background: var(--surface);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+}
+
+.live-empty-icon {
+    font-size: 56px;
+    margin-bottom: 16px;
+}
+
+.live-empty h3 {
+    font-size: 22px;
+    color: var(--gray-700);
+    margin-bottom: 8px;
+}
+
+.live-empty p {
+    color: var(--gray-500);
+    margin-bottom: 24px;
+}
+
+/* ──────────────────────────────────────────────
+   Widget étudiant (LiveBanner dans dashboard)
+──────────────────────────────────────────────── */
+.live-banner-section {
+    margin-bottom: 24px;
+}
+
+.live-banner-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--gray-700);
+    margin-bottom: 12px;
+}
+
+.live-banner-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.live-banner-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 14px 18px;
+    border-radius: var(--border-radius);
+    background: var(--surface);
+    box-shadow: var(--box-shadow);
+    border-left: 4px solid #6366f1;
+    flex-wrap: wrap;
+}
+
+.live-banner-card--active {
+    border-left-color: #dc2626;
+    background: #fff5f5;
+    animation: livePulse 2.5s ease-in-out infinite;
+}
+
+.live-banner-info {
+    flex: 1;
+    min-width: 180px;
+}
+
+.live-banner-badge {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.live-banner-badge--live {
+    background: #dc2626;
+    color: white;
+}
+
+.live-banner-badge--scheduled {
+    background: #6366f1;
+    color: white;
+}
+
+.live-banner-formateur {
+    font-size: 13px;
+    color: var(--gray-500);
+    margin: 0;
+}
+
+.live-banner-card-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--gray-900);
+    margin: 2px 0 0;
+}
+
+.live-banner-module {
+    font-size: 12px;
+    color: var(--gray-500);
+    font-family: monospace;
+}
+
+.live-banner-time {
+    font-size: 12px;
+    color: var(--gray-500);
+    margin-top: 2px;
+}
+
+.btn-join-live {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 20px;
+    background: #dc2626;
+    color: white;
+    border-radius: var(--border-radius-sm);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 700;
+    white-space: nowrap;
+    transition: background 0.2s;
+}
+
+.btn-join-live:hover {
+    background: #b91c1c;
+}
+
+.btn-join-scheduled {
+    background: #6366f1;
+}
+
+.btn-join-scheduled:hover {
+    background: #4f46e5;
+}

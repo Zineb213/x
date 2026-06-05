@@ -1,0 +1,77 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage{geometry}
+\usepackage{array}
+\usepackage{booktabs}
+\geometry{margin=2.2cm}
+
+\begin{document}
+
+\begin{center}
+{\LARGE \textbf{Releve Bancaire}}\\[4pt]
+{\large Periode : Juin -- Septembre 2026}\\[2pt]
+Date d'emission : 27/05/2026
+\end{center}
+
+\vspace{0.4cm}
+
+\section*{Titulaire}
+Nom : KADAOUI Elmehdi Kada\\
+Objet : Suivi des revenus, depenses et remboursement de dettes.
+
+\section*{Hypotheses retenues}
+\begin{itemize}
+  \item Revenu journalier : 8\,000 DA
+  \item Depenses journalieres :
+  \begin{itemize}
+    \item Cigarettes : 2 paquets $\times$ 400 = 800 DA
+    \item Cafe : 3 $\times$ 100 = 300 DA
+    \item Diner : 2\,500 DA
+    \item Autres depenses : 1\,000 DA
+  \end{itemize}
+  \item Total depenses/jour : 4\,600 DA
+  \item Epargne/jour : 3\,400 DA
+  \item Salaire mensuel fixe : 27\,000 DA
+  \item Duree : 3 mois (30 jours/mois)
+  \item Dette a regler : 170\,000 DA
+  \item Aide recue de son frere : +100\,000 DA (non remboursable)
+  \item Depense exceptionnelle voiture : 50\,000 DA
+  \item Depense exceptionnelle voyage : 10\,000 DA
+\end{itemize}
+
+\section*{Tableau des mouvements}
+\renewcommand{\arraystretch}{1.25}
+\begin{center}
+\small
+\begin{tabular}{>{\raggedright\arraybackslash}p{2.2cm} >{\raggedright\arraybackslash}p{5.8cm} >{\raggedleft\arraybackslash}p{1.9cm} >{\raggedleft\arraybackslash}p{1.9cm} >{\raggedleft\arraybackslash}p{1.9cm} >{\raggedleft\arraybackslash}p{2.0cm}}
+\toprule
+\textbf{Date} & \textbf{Libelle} & \textbf{Credit} & \textbf{Debit} & \textbf{Solde} & \textbf{Dette rest.} \\
+\midrule
+01/06/2026 & Solde initial & 0 & 0 & 0 & 170\,000 \\
+15/06/2026 & Depense voiture & 0 & 50\,000 & -50\,000 & 170\,000 \\
+15/06/2026 & Depense voyage & 0 & 10\,000 & -60\,000 & 170\,000 \\
+30/06/2026 & Epargne nette juin (3\,400 $\times$ 30) & 102\,000 & 0 & 42\,000 & 170\,000 \\
+30/06/2026 & Salaire fixe juin & 27\,000 & 0 & 69\,000 & 170\,000 \\
+30/06/2026 & Tranche dette n\textdegree 1 & 0 & 50\,000 & 19\,000 & 120\,000 \\
+31/07/2026 & Epargne nette juillet (3\,400 $\times$ 30) & 102\,000 & 0 & 121\,000 & 120\,000 \\
+31/07/2026 & Salaire fixe juillet & 27\,000 & 0 & 148\,000 & 120\,000 \\
+31/07/2026 & Tranche dette n\textdegree 2 & 0 & 60\,000 & 88\,000 & 60\,000 \\
+31/08/2026 & Epargne nette aout (3\,400 $\times$ 30) & 102\,000 & 0 & 190\,000 & 60\,000 \\
+31/08/2026 & Salaire fixe aout & 27\,000 & 0 & 217\,000 & 60\,000 \\
+31/08/2026 & Tranche dette n\textdegree 3 (solde) & 0 & 60\,000 & 157\,000 & 0 \\
+05/09/2026 & Aide recue & 100\,000 & 0 & 257\,000 & 0 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section*{Resume final}
+\begin{itemize}
+  \item Total credite (revenus + aide) : 487\,000 DA
+  \item Total debite (tranches dette + depenses exceptionnelles) : 230\,000 DA
+  \item \textbf{Solde final : 257\,000 DA}
+  \item \textbf{Dette restante : 0 DA}
+\end{itemize}
+
+\end{document}

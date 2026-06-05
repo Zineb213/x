@@ -1,0 +1,63 @@
+.student-bot-page {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.student-bot-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.student-bot-header h1 {
+    margin: 0;
+    font-size: 1.6rem;
+}
+
+.student-bot-header p {
+    margin: 4px 0 0;
+    color: #6b7280;
+}
+
+.bot-window-btn {
+    border: 1px solid #111827;
+    background: #111827;
+    color: #fff;
+    border-radius: 10px;
+    padding: 10px 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.bot-window-btn:hover {
+    opacity: 0.92;
+}
+
+.student-bot-card {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.assistant-messages--bot-page {
+    min-height: 380px;
+    max-height: 60vh;
+    overflow: auto;
+}
+
+@media (max-width: 768px) {
+    .student-bot-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .bot-window-btn {
+        width: 100%;
+    }
+}

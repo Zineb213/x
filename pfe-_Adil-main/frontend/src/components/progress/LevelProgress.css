@@ -1,0 +1,59 @@
+.xp-track-hint {
+    margin-top: 8px;
+    font-size: 12px;
+    color: var(--gray-500, #64748b);
+}
+
+.level-progress {
+    background: var(--surface);
+    border-radius: var(--border-radius);
+    padding: 20px;
+    margin-bottom: 24px;
+    box-shadow: var(--box-shadow);
+}
+
+.level-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.level-badge {
+    background: var(--primary-gradient);
+    padding: 8px 16px;
+    border-radius: 20px;
+    color: white;
+}
+
+.level-number {
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.xp-info {
+    color: var(--gray-600);
+    font-size: 14px;
+}
+
+.xp-info span:first-child {
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-right: 12px;
+}
+
+.progress-bar-container {
+    background: var(--gray-200);
+    border-radius: 10px;
+    height: 12px;
+    overflow: hidden;
+}
+
+.progress-bar-fill {
+    background: var(--primary-gradient);
+    height: 100%;
+    border-radius: 10px;
+    transition: width 0.3s ease;
+}

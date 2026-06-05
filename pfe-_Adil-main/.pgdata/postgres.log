@@ -1,0 +1,12 @@
+2026-05-11 11:41:41.271 WAT [5664] LOG:  démarrage de PostgreSQL 17.4 on x86_64-windows, compiled by msvc-19.42.34436, 64-bit
+2026-05-11 11:41:41.284 WAT [5664] LOG:  n'a pas pu lier IPv6 à l'adresse « ::1 » : Permission denied
+2026-05-11 11:41:41.284 WAT [5664] LOG:  n'a pas pu lier IPv4 à l'adresse « 127.0.0.1 » : Permission denied
+2026-05-11 11:41:41.284 WAT [5664] ATTENTION:  n'a pas pu créer le socket d'écoute pour « localhost »
+2026-05-11 11:41:41.284 WAT [5664] FATAL:  n'a pas pu créer de socket TCP/IP
+2026-05-11 11:41:41.287 WAT [5664] LOG:  le système de base de données est arrêté
+2026-05-11 11:46:20.793 WAT [2944] LOG:  démarrage de PostgreSQL 17.4 on x86_64-windows, compiled by msvc-19.42.34436, 64-bit
+2026-05-11 11:46:20.803 WAT [2944] LOG:  n'a pas pu lier IPv6 à l'adresse « ::1 » : Permission denied
+2026-05-11 11:46:20.803 WAT [2944] LOG:  n'a pas pu lier IPv4 à l'adresse « 127.0.0.1 » : Permission denied
+2026-05-11 11:46:20.803 WAT [2944] ATTENTION:  n'a pas pu créer le socket d'écoute pour « localhost »
+2026-05-11 11:46:20.803 WAT [2944] FATAL:  n'a pas pu créer de socket TCP/IP
+2026-05-11 11:46:20.808 WAT [2944] LOG:  le système de base de données est arrêté

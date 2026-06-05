@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduConnect - Plateforme Éducative Universitaire</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Page de connexion -->
+    <div id="login-page" class="page active">
+        <div class="login-container">
+            <div class="login-left">
+                <div class="login-branding">
+                    <i class="fas fa-graduation-cap"></i>
+                    <h1>EduConnect</h1>
+                    <p>Votre plateforme éducative universitaire</p>
+                </div>
+                <div class="features-list">
+                    <div class="feature-item">
+                        <i class="fas fa-book"></i>
+                        <span>Accès aux ressources pédagogiques</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-comments"></i>
+                        <span>Chat en temps réel</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-users"></i>
+                        <span>Espace collaboratif</span>
+                    </div>
+                </div>
+            </div>
+            <div class="login-right">
+                <div class="login-form-container">
+                    <h2>Connexion</h2>
+                    <p class="subtitle">Bienvenue ! Connectez-vous pour accéder à votre espace</p>
+                    <form id="login-form">
+                        <div class="form-group">
+                            <label for="nom">Nom</label>
+                            <input type="text" id="nom" name="nom" required placeholder="Entrez votre nom">
+                        </div>
+                        <div class="form-group">
+                            <label for="prenom">Prénom</label>
+                            <input type="text" id="prenom" name="prenom" required placeholder="Entrez votre prénom">
+                        </div>
+                        <div class="form-group">
+                            <label for="matricule">Matricule</label>
+                            <input type="text" id="matricule" name="matricule" required placeholder="Ex: 2021001234">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Mot de passe</label>
+                            <input type="password" id="password" name="password" required placeholder="Entrez votre mot de passe">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Se connecter</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dashboard Principal -->
+    <div id="dashboard-page" class="page">
+        <!-- Navbar -->
+        <nav class="navbar">
+            <div class="navbar-brand" id="navbar-brand-btn" style="cursor:pointer;">
+                <i class="fas fa-graduation-cap"></i>
+                <span>EduConnect</span>
+            </div>
+            <div class="navbar-menu">
+                <a href="#" class="nav-item active" data-section="dashboard">
+                    <i class="fas fa-home"></i>
+                    <span>Accueil</span>
+                </a>
+                <a href="#" class="nav-item" data-section="resources">
+                    <i class="fas fa-book"></i>
+                    <span>Ressources</span>
+                </a>
+                <a href="#" class="nav-item" data-section="chat">
+                    <i class="fas fa-comments"></i>
+                    <span>Chat</span>
+                </a>
+                <a href="#" class="nav-item" data-section="social">
+                    <i class="fas fa-users"></i>
+                    <span>Publications</span>
+                </a>
+            </div>
+            <div class="navbar-user">
+                <div class="notification-wrapper">
+                    <button class="btn-icon notifications-toggle" id="notifications-btn" type="button" aria-label="Notifications">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge" id="notification-badge">0</span>
+                    </button>
+                    <div class="notification-panel" id="notification-panel">
+                        <div class="notification-panel-header">
+                            <h3>Notifications</h3>
+                            <button class="btn-icon" id="mark-all-read-btn" type="button" aria-label="Tout marquer comme lu">
+                                <i class="fas fa-check-double"></i>
+                            </button>
+                        </div>
+                        <div class="notification-list" id="notification-list"></div>
+                    </div>
+                </div>
+                <div class="user-info">
+                    <span id="user-name">Utilisateur</span>
+                    <small id="user-matricule">Matricule</small>
+                </div>
+                <div class="user-avatar">
+                    <i class="fas fa-user"></i>
+                </div>
+                <button class="btn-logout" id="logout-btn" type="button">
+                    <i class="fas fa-sign-out-alt"></i>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Contenu Principal -->
+        <div class="main-content">
+            <!-- Section Tableau de Bord -->
+            <section id="dashboard-section" class="content-section active">
+                <div class="welcome-banner">
+                    <h1>Bienvenue sur EduConnect</h1>
+                    <p>Votre espace d'apprentissage et de collaboration</p>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon blue">
+                            <i class="fas fa-book-open"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>24</h3>
+                            <p>Cours disponibles</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon green">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>15</h3>
+                            <p>TD & Examens</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon orange">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>3</h3>
+                            <p>Messages non lus</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon purple">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>156</h3>
+                            <p>Étudiants actifs</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-grid">
+                    <div class="dashboard-card">
+                        <h3><i class="fas fa-clock"></i> Activités récentes</h3>
+                        <div class="activity-list activity-scrollable" id="recent-activities-list"></div>
+                        <style>
+                        .activity-scrollable {
+                            max-height: 300px;
+                            overflow-y: auto;
+                        }
+                        </style>
+                    </div>
+
+                    <div class="dashboard-card">
+                        <h3>
+                            <i class="fas fa-calendar-alt"></i> À venir
+                            <button class="post-action-btn" id="open-planner-btn" type="button" style="margin-left: 10px;">
+                                <i class="fas fa-table"></i> Planner semaine
+                            </button>
+                            <button class="post-action-btn manager-tools" id="add-upcoming-btn" type="button" style="margin-left: 10px;">
+                                <i class="fas fa-plus"></i> Ajouter
+                            </button>
+                        </h3>
+                        <div class="planner-quick-controls" id="planner-quick-controls">
+                            <label for="planner-block-size">Bloc :</label>
+                            <select id="planner-block-size">
+                                <option value="1">1h</option>
+                                <option value="2">2h</option>
+                                <option value="3">3h</option>
+                            </select>
+                            <label for="planner-start-hour">Début :</label>
+                            <input id="planner-start-hour" type="time" value="08:00">
+                            <label for="planner-end-hour">Fin :</label>
+                            <input id="planner-end-hour" type="time" value="20:00">
+                            <button class="post-action-btn" id="planner-apply-btn" type="button">
+                                <i class="fas fa-check"></i> Appliquer
+                            </button>
+                        </div>
+                        <div class="upcoming-list" id="upcoming-list"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section Ressources Pédagogiques -->
+            <section id="resources-section" class="content-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-book"></i> Ressources Pédagogiques</h2>
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Rechercher un cours, module...">
+                    </div>
+                </div>
+
+                <div class="admin-tools manager-tools">
+                    <h3>Gestion des ressources</h3>
+                    <div class="admin-tools-actions">
+                        <button class="post-action-btn" id="add-module-btn" type="button"><i class="fas fa-folder-plus"></i> Créer module</button>
+                        <button class="post-action-btn global-admin-only" id="assign-moderator-btn" type="button"><i class="fas fa-user-shield"></i> Affecter moderateur</button>
+                    </div>
+                </div>
+
+                <div class="level-tabs">
+                    <button class="level-tab active" data-level="l1">
+                        <i class="fas fa-layer-group"></i>
+                        Licence 1
+                    </button>
+                    <button class="level-tab" data-level="l2">
+                        <i class="fas fa-layer-group"></i>
+                        Licence 2
+                    </button>
+                    <button class="level-tab" data-level="l3">
+                        <i class="fas fa-layer-group"></i>
+                        Licence 3
+                    </button>
+                </div>
+
+                <div class="level-content">
+                        <div id="l1-content" class="level-panel active">
+                            <div class="modules-grid" id="l1-grid">
+                                <p class="loading-text"><i class="fas fa-spinner fa-spin"></i> Chargement...</p>
+                            </div>
+                        </div>
+                        <div id="l2-content" class="level-panel">
+                            <div class="modules-grid" id="l2-grid"></div>
+                        </div>
+                        <div id="l3-content" class="level-panel">
+                            <div class="modules-grid" id="l3-grid"></div>
+                        </div>
+                    </div>
+                </section>
+
+            <!-- Section Détail Module -->
+            <section id="module-detail-section" class="content-section">
+                <div id="module-detail-page"></div>
+            </section>
+
+            <!-- Section Chat -->
+            <section id="chat-section" class="content-section">
+                <div class="chat-container">
+                    <div class="chat-sidebar">
+                        <div class="chat-sidebar-header">
+                            <h3>Conversations</h3>
+                            <button class="btn-icon" id="new-chat-btn">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                        <div class="chat-search">
+                            <i class="fas fa-search"></i>
+                            <input type="text" placeholder="Rechercher...">
+                        </div>
+                        <div class="chat-list" id="chat-list-container">
+                            <p style="padding:12px;color:var(--gray-500);font-size:13px;"><i class="fas fa-spinner fa-spin"></i> Chargement...</p>
+                        </div>
+                    </div>
+
+                    <div class="chat-main">
+                        <div class="chat-header">
+                            <div class="chat-header-info">
+                                <div class="chat-avatar">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <div>
+                                    <h3 id="chat-header-title">Sélectionnez une conversation</h3>
+                                    <small id="chat-header-sub"></small>
+                                </div>
+                            </div>
+                            <div class="chat-header-actions">
+                                <button class="btn-icon">
+                                    <i class="fas fa-phone"></i>
+                                </button>
+                                <button class="btn-icon">
+                                    <i class="fas fa-video"></i>
+                                </button>
+                                <button class="btn-icon">
+                                    <i class="fas fa-ellipsis-v"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="chat-messages" id="chat-messages-container">
+                            <div class="empty-state" style="text-align:center;padding:40px;color:var(--gray-500);">
+                                <i class="fas fa-comments" style="font-size:48px;margin-bottom:12px;display:block;"></i>
+                                <p>Sélectionnez une conversation</p>
+                            </div>
+                        </div>
+
+                        <div class="chat-input">
+                            <button class="btn-icon" id="chat-attachment-btn" type="button">
+                                <i class="fas fa-paperclip"></i>
+                            </button>
+                            <button class="btn-icon" type="button">
+                                <i class="fas fa-smile"></i>
+                            </button>
+                            <input type="text" placeholder="Tapez votre message...">
+                            <button class="btn-icon" type="button">
+                                <i class="fas fa-microphone"></i>
+                            </button>
+                            <button class="btn-send" type="button">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+                        <div class="attachment-preview" id="chat-attachment-preview"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section Publications (Réseau Social) -->
+            <section id="social-section" class="content-section">
+                <div class="social-container">
+                    <div class="create-post-card">
+                        <div class="create-post-header">
+                            <div class="user-avatar">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <input type="text" placeholder="Partagez quelque chose avec vos camarades..." id="post-input">
+                        </div>
+                        <div class="attachment-preview" id="post-attachment-preview"></div>
+                        <div class="create-post-actions">
+                            <button class="post-action-btn" id="post-media-btn" type="button">
+                                <i class="fas fa-image"></i>
+                                Photo/Vidéo
+                            </button>
+                            <button class="post-action-btn" id="post-document-btn" type="button">
+                                <i class="fas fa-file-alt"></i>
+                                Document
+                            </button>
+                            <button class="post-action-btn" id="poll-btn" type="button">
+                                <i class="fas fa-poll"></i>
+                                Sondage
+                            </button>
+                            <button class="btn btn-primary" id="publish-btn" type="button">Publier</button>
+                        </div>
+                    </div>
+
+                    <div class="posts-feed" id="posts-feed-container">
+                        <p class="loading-text"><i class="fas fa-spinner fa-spin"></i> Chargement des publications...</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <input type="file" id="post-media-input" accept="image/*,video/*" multiple hidden>
+    <input type="file" id="post-document-input" accept=".pdf,.doc,.docx,.ppt,.pptx,.txt" multiple hidden>
+    <input type="file" id="chat-attachment-input" accept="image/*,video/*,.pdf,.doc,.docx,.txt" multiple hidden>
+
+    <div class="planner-modal" id="planner-modal" aria-hidden="true">
+        <div class="planner-modal-panel">
+            <div class="planner-modal-header">
+                <h3><i class="fas fa-calendar-week"></i> Calendrier hebdomadaire personnalisé</h3>
+                <button class="btn-icon" id="planner-close-btn" type="button" aria-label="Fermer le planner">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <p class="planner-helper-text">Cliquez sur une case pour ajouter ou modifier votre tâche. Personnalisez totalement vos horaires et la taille des blocs.</p>
+            <div class="planner-grid-wrap" id="planner-grid-wrap"></div>
+        </div>
+    </div>
+
+    <div class="entity-form-modal" id="entity-form-modal" aria-hidden="true">
+        <div class="entity-form-panel" role="dialog" aria-modal="true" aria-labelledby="entity-form-title">
+            <div class="entity-form-header">
+                <h3 id="entity-form-title"><i class="fas fa-pen"></i> Formulaire</h3>
+                <button class="btn-icon" id="entity-form-close" type="button" aria-label="Fermer le formulaire">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <p class="entity-form-subtitle" id="entity-form-subtitle"></p>
+            <form id="entity-form-content"></form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

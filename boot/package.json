@@ -1,0 +1,16 @@
+{
+  "name": "visa-alert-boot",
+  "version": "1.0.0",
+  "description": "Assistant legal de surveillance de disponibilite de rendez-vous visa (alerte uniquement)",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "dependencies": {
+    "axios": "^1.7.9",
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2"
+  }
+}

@@ -1,0 +1,1129 @@
+                      ‫الجمهوريـــــــــــــــــــــةـ الجزائريــــــــــةـ الديمقراطيــــــــةـ الشعبيــــــةـ‬
+                                        ‫العلــــــمـي‬
+                                               ‫وزارة التعليــــــــــمـ العــــــــــاـلي والبحــــــــثـ‬
+                                         ‫جامعة وهران للعلوم والتكنولوجيا محمد بوضياف‬
+                                                 ‫كلية الرياضيات واالالعالالم االاللي‬
+                                         République Algérienne Démocratique et Populaire
+                              Ministère de l’Enseignement Supérieur Et de la Recherche Scientifique
+                             Université des Sciences et de la Technologie d’Oran Mohamed BOUDIAF
+                                               Faculté des Mathématiques et Informatique
+
+
+
+                                                    Département : Informatique
+
+
+
+
+Mémoire de fin d’études                                 Une application mobile de
+                                                               Branding
+ Pour l’obtention du diplô me
+         de Licence
+
+
+                Domaine : Mathématiques – Informatique
+                Filière     : Informatique
+                Spécialité : Ingénierie des systémes d’information et des logiciels
+
+
+
+
+Présenté le :
+Par :
+Ouldbrahem Rajaa
+                                   Jury                    Nom et Prénom                      Grade       Université
+
+                                    Examinateur         Mme Ferhane Samia                        MAA             USTO-MB
+
+
+                                   Encadrant Mme Guerroudji Meddah Fatiha MCA                                     USTO-MB
+
+
+
+
+                                                   2024/2025
+Table des matières
+
+Remerciements                                                                  4
+
+Dédicace                                                                       5
+
+Résumé                                                                         6
+
+Introduction Générale                                                          7
+
+1    Contexte et Problématique                                                  8
+    1.1 Introduction . . . . . . . . . . . . . . . . . . . . . . . . . . . .    8
+    1.2 Contexte général . . . . . . . . . . . . . . . . . . . . . . . . .      8
+    1.3 Contexte spécifique en Algérie . . . . . . . . . . . . . . . . .        9
+    1.4 Problématique . . . . . . . . . . . . . . . . . . . . . . . . . .       9
+    1.5 Objectifs du projet . . . . . . . . . . . . . . . . . . . . . . . .    10
+        1.5.1 Objectif général . . . . . . . . . . . . . . . . . . . . .       10
+        1.5.2 Objectifs spécifiques . . . . . . . . . . . . . . . . . . .      10
+    1.6 Justification du choix du sujet . . . . . . . . . . . . . . . . . .    10
+    1.7 Démarche méthodologique . . . . . . . . . . . . . . . . . . . .        10
+    1.8 État de l’art . . . . . . . . . . . . . . . . . . . . . . . . . . .    11
+        1.8.1 Le e-commerce : définitions et évolution . . . . . . . .         11
+        1.8.2 Le e-commerce dans le domaine de la mode . . . . . .             11
+        1.8.3 Applications mobiles de vente de produits artisanaux .           12
+    1.9 Conclusion . . . . . . . . . . . . . . . . . . . . . . . . . . . . .   12
+
+2 Conception UML                                                               14
+  2.1 Introduction . . . . . . . . . . . . . . . . . . . . . . . . . . . .     14
+  2.2 Identification des besoins . . . . . . . . . . . . . . . . . . . . .     14
+      2.2.1 Besoins fonctionnels . . . . . . . . . . . . . . . . . . .         14
+      2.2.2 Besoins non fonctionnels . . . . . . . . . . . . . . . . .         15
+  2.3 Modélisation UML . . . . . . . . . . . . . . . . . . . . . . . .         15
+      2.3.1 Diagramme de cas d’utilisation . . . . . . . . . . . . .           15
+      2.3.2 Diagramme de séquence . . . . . . . . . . . . . . . . .            18
+
+
+                                       1
+         2.3.3 Diagramme de classes . . . . . . . . . . . . . . . . . . .       20
+         2.3.4 Diagramme d’activités . . . . . . . . . . . . . . . . . .        22
+         2.3.5 Principes de design adoptés . . . . . . . . . . . . . . .        24
+   2.4   Conclusion . . . . . . . . . . . . . . . . . . . . . . . . . . . . .   25
+
+3 Implémentation technique                                                      26
+  3.1 Introduction . . . . . . . . . . . . . . . . . . . . . . . . . . . .      26
+  3.2 Outils et langages utilisés . . . . . . . . . . . . . . . . . . . .       26
+       3.2.1 Flutter et FlutterFlow . . . . . . . . . . . . . . . . . .         26
+       3.2.2 Firebase . . . . . . . . . . . . . . . . . . . . . . . . . .       26
+       3.2.3 Langages de programmation . . . . . . . . . . . . . . .            27
+       3.2.4 Autres outils . . . . . . . . . . . . . . . . . . . . . . .        27
+  3.3 Étapes de développement . . . . . . . . . . . . . . . . . . . . .         27
+       3.3.1 Configuration du projet . . . . . . . . . . . . . . . . .          27
+       3.3.2 Conception de l’interface utilisateur . . . . . . . . . . .        27
+       3.3.3 Intégration des fonctionnalités . . . . . . . . . . . . .          27
+       3.3.4 Connexion à la base de données . . . . . . . . . . . . .           28
+       3.3.5 Gestion des états et interactions . . . . . . . . . . . . .        28
+  3.4 Tests et validation . . . . . . . . . . . . . . . . . . . . . . . .       28
+       3.4.1 Tests fonctionnels . . . . . . . . . . . . . . . . . . . . .       28
+       3.4.2 Tests d’interface utilisateur (UI) . . . . . . . . . . . . .       28
+       3.4.3 Tests de performances . . . . . . . . . . . . . . . . . .          28
+       3.4.4 Tests utilisateurs (bêta) . . . . . . . . . . . . . . . . .        28
+  3.5 Résultats obtenus . . . . . . . . . . . . . . . . . . . . . . . .         29
+  3.6 Limites de la version actuelle . . . . . . . . . . . . . . . . . . .      29
+  3.7 Perspectives d’évolution . . . . . . . . . . . . . . . . . . . . .        29
+       3.7.1 Fonctionnalités futures . . . . . . . . . . . . . . . . . .        29
+       3.7.2 Évolution technique . . . . . . . . . . . . . . . . . . . .        29
+  3.8 Difficultés rencontrées et solutions apportées . . . . . . . . . .        29
+  3.9 Captures d’écran de l’application . . . . . . . . . . . . . . . .         30
+  3.10 Conclusion . . . . . . . . . . . . . . . . . . . . . . . . . . . . .     43
+
+4 Coté startup’décision 1275’                                                   44
+  4.1 Présentation du projet . . . . . . . . . . . . . . . . . . . . . .        44
+  4.2 L’idée du projet . . . . . . . . . . . . . . . . . . . . . . . . . .      44
+  4.3 Les valeurs proposées . . . . . . . . . . . . . . . . . . . . . .         44
+  4.4 L’équipe . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .      44
+  4.5 Les objectifs . . . . . . . . . . . . . . . . . . . . . . . . . . . .     45
+  4.6 Planning . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .      45
+  4.7 Aspects innovants . . . . . . . . . . . . . . . . . . . . . . . . .       45
+  4.8 La nature de l’innovation . . . . . . . . . . . . . . . . . . . .         45
+
+                                        2
+  4.9 Les domaines d’innovation . . . . . . . . . . . . . . . . . . . .       45
+  4.10 Analyse stratégique du marché . . . . . . . . . . . . . . . . . .      46
+  4.11 Analyse et diagnostic de l’entreprise . . . . . . . . . . . . . . .    46
+       4.11.1 Objectifs et stratégie . . . . . . . . . . . . . . . . . . .    46
+       4.11.2 Choix des moyens opérationnels . . . . . . . . . . . . .        46
+       4.11.3 Processus de servuction . . . . . . . . . . . . . . . . .       46
+       4.11.4 La servuction . . . . . . . . . . . . . . . . . . . . . . .     46
+       4.11.5 Approvisionnement . . . . . . . . . . . . . . . . . . . .       46
+       4.11.6 Main d’œuvre . . . . . . . . . . . . . . . . . . . . . . .      47
+       4.11.7 Partenaires . . . . . . . . . . . . . . . . . . . . . . . .     47
+       4.11.8 Plan financier . . . . . . . . . . . . . . . . . . . . . . .    47
+       4.11.9 Coûts et charges . . . . . . . . . . . . . . . . . . . . .      47
+       4.11.10 Chiffre d’affaire (prévisionnel) . . . . . . . . . . . . . .   47
+       4.11.11 Tableau de compte des résultats . . . . . . . . . . . . .      47
+       4.11.12 Prototype . . . . . . . . . . . . . . . . . . . . . . . . .    47
+       4.11.13 Questionnaire cible . . . . . . . . . . . . . . . . . . . .    48
+  4.12 BMC (Business Model Canvas) . . . . . . . . . . . . . . . . .          48
+
+Conclusion Générale                                                           50
+
+
+
+
+                                      3
+Remerciements
+
+    Avant tout, je tiens à exprimer ma profonde gratitude à toutes les per-
+sonnes qui ont contribué, de près ou de loin, à la réalisation de ce mémoire.
+Je remercie tout particulièrement mon encadrante, Docteur Guerroudji Med-
+dah Fatiha, pour son accompagnement, ses conseils avisés, sa disponibilité
+et sa bienveillance tout au long de ce projet. Je tiens également à expri-
+mer ma reconnaissance à Mme Ferhane Samia, examinatrice de ce mémoire,
+pour l’intérêt qu’elle porte à mon travail et pour ses remarques construc-
+tives. Je remercie l’ensemble de l’équipe pédagogique pour les connaissances
+transmises durant mon parcours, ainsi que pour leur implication dans notre
+formation. Un grand merci à mes camarades et amis pour leur soutien moral
+et leurs encouragements constants. Enfin, je souhaite remercier ma famille
+pour leur amour inconditionnel, leur patience, leur confiance et leur soutien
+indéfectible durant mes années d’études et tout au long de ce travail.
+
+
+
+
+                                     4
+Dédicace
+
+    Je dédie ce mémoire : À mes chers parents, pour leur amour, leur soutien
+inestimable et leurs sacrifices constants qui m’ont permis d’avancer. À mon
+frère, pour sa présence, ses encouragements et sa confiance en moi. À mes
+enseignants, pour m’avoir transmis le savoir avec patience et dévouement. À
+mon encadrante, pour ses conseils avisés, son accompagnement et sa disponi-
+bilité tout au long de ce travail. À mes jurés, pour l’honneur qu’ils m’ont fait
+en acceptant d’évaluer ce mémoire. Merci à chacun de vous d’avoir contribué,
+à votre manière, à l’accomplissement de ce projet.
+
+
+
+
+                                       5
+Résumé
+
+    Ce mémoire présente la conception et la réalisation d’une application mo-
+bile innovante dédiée à l’achat de robes personnalisables. L’objectif principal
+est de permettre aux utilisatrices de visualiser, personnaliser et commander
+des robes selon leurs goûts, en choisissant les couleurs, les tissus et les styles
+directement depuis leur smartphone. Le projet s’inscrit dans une démarche de
+digitalisation de la mode, en exploitant les outils modernes du no-code (Flut-
+terFlow) et les services cloud (Firebase), afin d’offrir une expérience fluide,
+interactive et adaptée aux besoins du marché actuel. Ce mémoire aborde
+les différentes étapes de développement du projet : étude de marché, ana-
+lyse des besoins, conception UI/UX, architecture technique, mise en œuvre
+fonctionnelle, ainsi que les aspects stratégiques liés au modèle économique,
+à l’innovation et à la commercialisation. À travers cette solution, l’accent
+est mis sur la personnalisation comme levier d’engagement et de satisfac-
+tion client, en ciblant une niche de marché en forte croissance : la mode
+féminine personnalisée en ligne. Le travail se conclut par la présentation du
+prototype fonctionnel, les résultats des questionnaires menés, et les perspec-
+tives d’évolution futures, telles que l’intégration de la réalité augmentée ou
+l’élargissement du catalogue.
+    Mots-clés : application mobile, personnalisation, FlutterFlow, Firebase,
+m-commerce, fashion tech, UX design.
+
+
+
+
+                                        6
+Introduction Générale
+
+    Ces dernières années, le développement rapide des technologies numé-
+riques a profondément transformé les modes de consommation, les interac-
+tions sociales et les modèles économiques traditionnels. Le secteur du com-
+merce, en particulier, a connu une mutation majeure avec l’émergence du
+commerce électronique (e-commerce) et, plus récemment, du commerce mo-
+bile (m-commerce), porté par la généralisation des smartphones. Dans cette
+dynamique, le domaine de la mode et de la couture artisanale représente un
+terrain d’opportunité important, notamment dans des pays comme l’Algérie,
+où le savoir-faire local constitue un patrimoine culturel riche mais encore peu
+valorisé par le numérique. Les couturiers et créateurs locaux peinent souvent
+à accéder aux canaux digitaux de vente, faute d’outils adaptés à leurs besoins
+spécifiques. Ce mémoire s’inscrit dans cette problématique, en proposant la
+conception et le développement d’une application mobile permettant aux
+utilisatrices de visualiser, personnaliser et commander des robes directement
+depuis leur smartphone. L’objectif est de favoriser la digitalisation du secteur
+de la couture algérienne, tout en mettant en valeur la créativité locale, grâce
+à une interface intuitive, des fonctionnalités de personnalisation, et un mo-
+dèle économique accessible. À travers une approche complète – de l’analyse
+des besoins jusqu’au prototypage fonctionnel de l’application –, ce travail ex-
+plore les dimensions techniques, ergonomiques, économiques et sociales d’une
+solution innovante, pensée pour répondre aux spécificités du marché algérien.
+    Structure du mémoire
+    Le présent mémoire est organisé comme suit :
+    — Chapitre 1 : Contexte et problématique -État de l’art sur le e-
+        commerce, les applications mobiles et la digitalisation du secteur ar-
+        tisanal.
+    — Chapitre 2 : Conception de l’application – besoins, maquettes, ar-
+        chitecture.
+    — Chapitre 3 :Implémentation technique – outils, langages, étapes de
+        développement,Tests, résultats, limites et perspectives d’évolution.
+
+
+
+                                       7
+Chapitre 1
+
+Contexte et Problématique
+
+1.1      Introduction
+    Le secteur de la couture et de la mode artisanale connaît un regain d’in-
+térêt dans de nombreux pays, notamment en raison d’une prise de conscience
+accrue de la valeur du savoir-faire local. Parallèlement, le développement des
+technologies mobiles et du commerce électronique ouvre de nouvelles perspec-
+tives aux créateurs désireux d’élargir leur clientèle. Ce chapitre vise à situer
+le projet dans ses contextes général et spécifique, à exposer la problématique
+rencontrée par les artisans algériens, et à définir les objectifs poursuivis. Il
+présente également la démarche méthodologique adoptée et la structure du
+mémoire.
+
+
+1.2      Contexte général
+    Au cours des dernières années, le commerce électronique s’est imposé
+comme un levier essentiel du développement économique, en particulier dans
+les secteurs de l’artisanat, de la mode et de la création locale. Grâce à Inter-
+net et aux smartphones, les petits producteurs et artisans peuvent désormais
+commercialiser leurs produits directement auprès des consommateurs, sans
+passer par les circuits traditionnels de distribution. En Algérie, la couture
+et la confection artisanale représentent une richesse culturelle et économique
+significative. Les robes traditionnelles telles que le karakou, le haïk, la gan-
+doura ou la djellaba, ainsi que les vêtements modernes personnalisés, sont très
+prisés, notamment lors des fêtes, mariages et événements sociaux. Pourtant,
+ce secteur reste largement non digitalisé : la majorité des artisans vendent
+encore leurs produits dans leurs ateliers, sur les marchés ou par le bouche-
+à-oreille. Avec l’émergence des jeunes entrepreneurs, le développement du
+
+                                       8
+mobile banking et des réseaux sociaux, ainsi que l’intérêt croissant pour les
+produits « made in local », il devient pertinent d’envisager des solutions
+numériques innovantes pour valoriser et commercialiser ces créations. Une
+application mobile dédiée à la vente de produits cousus permettrait de pro-
+fessionnaliser ce marché, d’en améliorer la visibilité, d’élargir sa clientèle et
+de soutenir la créativité locale.
+
+
+1.3       Contexte spécifique en Algérie
+    L’Algérie connaît une transition progressive vers le numérique. Le taux
+de pénétration du smartphone est élevé, surtout chez les jeunes, qui passent
+beaucoup de temps sur des plateformes de vente informelle telles que Facebook
+Marketplace, Instagram ou TikTok.
+    Toutefois, plusieurs contraintes freinent le développement du commerce
+électronique local :
+    — L’absence de plateformes spécialisées et sécurisées pour la vente de
+       produits artisanaux.
+    — Une méfiance persistante à l’égard des paiements en ligne, bien que
+       des solutions locales comme la carte Edahabia commencent à se dé-
+       mocratiser.
+    — Le manque de solutions accessibles et adaptées aux artisans, souvent
+       dépourvus de moyens techniques pour créer leur propre boutique en
+       ligne.
+    Dans ce contexte, une application mobile simple, locale et spécifiquement
+pensée pour le secteur de la couture pourrait répondre à plusieurs besoins :
+publication facile des créations, commande personnalisée par les clients, et
+meilleure visibilité de l’économie locale sur le plan numérique.
+
+
+1.4       Problématique
+   Comment concevoir une application mobile de commerce électronique
+permettant aux couturiers et créateurs algériens de vendre efficacement leurs
+produits cousus, tout en valorisant la créativité locale et en s’adaptant aux
+contraintes techniques et culturelles propres au contexte algérien ?
+
+
+
+
+                                       9
+1.5      Objectifs du projet
+1.5.1     Objectif général
+   Développer une application mobile de commerce électronique dédiée à la
+vente de produits cousus (vêtements artisanaux, modernes ) afin d’accompa-
+gner la digitalisation du secteur de la couture en Algérie.
+
+1.5.2     Objectifs spécifiques
+    • Identifier les besoins fonctionnels des couturiers et des clients en matière
+de commerce en ligne.
+    • Concevoir une interface utilisateur simple, intuitive et adaptée au pu-
+blic algérien.
+    • Intégrer des fonctionnalités spécifiques telles que la personnalisation
+des produits, les avis clients, et le suivi de commande.
+    • Promouvoir les créateurs locaux et leurs produits via des profils et des
+catalogues bien présentés.
+    • Proposer un modèle économique viable et accessible.
+
+
+1.6      Justification du choix du sujet
+    Le choix de ce projet s’explique par l’envie de combiner les compétences
+techniques en développement mobile avec une volonté de promouvoir un sec-
+teur local en pleine évolution. En tant qu’étudiants en informatique, il est
+motivant de développer une application utile et concrète, qui pourrait réelle-
+ment servir à des créateurs algériens et contribuer à faire évoluer leurs pra-
+tiques commerciales. De plus, ce sujet répond à des enjeux de développement
+durable, de soutien à l’artisanat, et d’autonomisation des petites structures
+économiques.
+
+
+1.7      Démarche méthodologique
+   Pour la réalisation de ce projet, nous avons adopté une démarche struc-
+turée en plusieurs étapes :
+   — Étude exploratoire : enquête auprès de couturiers, tailleurs et créa-
+       teurs pour comprendre leurs besoins.
+   — Analyse fonctionnelle : définition des fonctionnalités principales à
+       intégrer dans l’application.
+
+
+
+                                       10
+   — Conception de l’interface : réalisation de maquettes et prototypage
+     (UI/UX).
+   — Développement de l’application : utilisation d’un framework mo-
+     bile (comme Flutter) pour créer l’application.
+   — Phase de test :validation avec un échantillon d’utilisateurs (coutu-
+     riers et clients).
+   — Évaluation et perspectives : identification des améliorations pos-
+     sibles et réflexion sur le déploiement réel de l’application.
+
+
+1.8       État de l’art
+1.8.1     Le e-commerce : définitions et évolution
+    Le commerce électronique (e-commerce) désigne l’ensemble des échanges
+commerciaux réalisés via les réseaux numériques. Il permet d’acheter et de
+vendre des biens ou services sur Internet, via des plateformes accessibles sur
+ordinateurs ou mobiles. Depuis les années 2000, il a transformé en profon-
+deur les habitudes de consommation, favorisant la rapidité, la personnalisa-
+tion et la décentralisation des échanges. Avec l’explosion des smartphones,
+le m-commerce (mobile commerce) a pris une place centrale. Les utilisateurs
+préfèrent désormais utiliser des applications mobiles plutôt que des sites web,
+en raison de leur simplicité, leur rapidité et leur accessibilité.
+
+1.8.2     Le e-commerce dans le domaine de la mode
+   Dans le secteur de la mode, le e-commerce a permis :
+   — L’exposition rapide des nouveaux produits.
+   — La personnalisation des achats (taille, couleurs, tissus).
+   — La gestion simplifiée des stocks et des commandes.
+   — Le marketing direct via les réseaux sociaux.
+   Des plateformes comme Shein, Zara (figure 1.1)), Etsy ou Jumia ont
+prouvé la pertinence de ce modèle, en particulier pour les jeunes créateurs
+ou artisans.
+
+
+
+
+                                      11
+  Figure 1.1 – Illustration du e-commerce dans le domaine de la mode
+
+1.8.3     Applications mobiles de vente de produits arti-
+          sanaux
+   Plusieurs solutions numériques se sont spécialisées dans la mise en relation
+entre créateurs/artisans et clients. On peut citer :
+   — Etsy : place de marché dédiée aux articles faits main et vintage.
+   — Jumia Algérie : plateforme généraliste de e-commerce, peu spécia-
+       lisée.
+   — Facebook Marketplace : solution informelle très utilisée en Algérie,
+       mais sans système de paiement sécurisé.
+   Ces plateformes ont des limites : absence de personnalisation des pro-
+duits cousus, manque de focus sur le savoir-faire local, interfaces parfois peu
+adaptées au contexte algérien (langue, connexion, expérience utilisateur).
+
+
+1.9      Conclusion
+    Ce premier chapitre a permis de contextualiser notre projet dans un en-
+vironnement à la fois global et local, en mettant en lumière les opportunités
+offertes par le numérique dans le secteur de la mode artisanale. L’analyse du
+contexte algérien a révélé une forte demande pour des solutions digitales ac-
+cessibles, adaptées aux réalités culturelles et techniques locales, et capables de
+valoriser le savoir-faire des couturiers. La problématique posée découle d’un
+besoin concret : fournir une solution mobile qui facilite la vente, la person-
+nalisation et la visibilité des produits cousus, tout en répondant aux attentes
+des utilisatrices modernes. Les objectifs, à la fois généraux et spécifiques, ont
+été clairement définis, de même que la justification du choix du sujet et la
+démarche méthodologique adoptée. Cette base théorique et contextuelle est
+
+                                       12
+essentielle pour aborder, dans les chapitres suivants, la phase de conception,
+puis d’implémentation technique de l’application proposée.
+
+
+
+
+                                     13
+Chapitre 2
+
+Conception UML
+
+2.1      Introduction
+    La phase de conception constitue une étape cruciale dans le développe-
+ment d’une application mobile. Elle permet de structurer les idées, de traduire
+les besoins identifiés lors de l’analyse en éléments techniques et ergonomiques,
+et de poser les bases d’un développement cohérent. Dans ce chapitre, nous
+détaillons les besoins fonctionnels et non fonctionnels de l’application, la mo-
+délisation UML à travers plusieurs diagrammes, ainsi que la conception de
+la base de données et de l’architecture technique. Une attention particulière
+est également accordée à l’interface utilisateur (UI/UX) et à la sécurité des
+données.
+
+
+2.2      Identification des besoins
+2.2.1      Besoins fonctionnels
+   Les besoins fonctionnels définissent ce que le système doit faire. Voici les
+principales fonctionnalités attendues de l’application :
+   — Création de compte : : inscription avec email, mot de passe et
+       informations personnelles (nom, prénom, téléphone, etc.).
+   — Authentification : connexion et déconnexion sécurisées via une in-
+       terface dédiée.
+   — Parcours du catalogue :consultation des robes disponibles avec
+       leurs descriptions, prix, tailles, couleurs, images, etc.
+   — Recherche et filtrage : recherche par mot-clé et filtres (taille, prix,
+       couleur, style).
+
+
+
+                                      14
+   — Personnalisation de robes :modification des caractéristiques (tissu,
+     coupe, couleur, accessoires).
+   — Ajout au panier : sélection des robes pour une commande ultérieure.
+   — Gestion du panier : modification ou suppression des articles.
+   — Passation de commande : validation du panier et création de com-
+     mande.
+   — Paiement sécurisé : intégration d’un service de paiement (ex. :
+     Stripe, PayPal, Edahabia).
+   — Suivi de commande : consultation de l’état (en traitement, expé-
+     diée, livrée).
+   — Espace personnel :historique de commandes, gestion du profil.
+   — Administration : gestion des produits, utilisateurs, commandes et
+     statistiques.
+
+2.2.2    Besoins non fonctionnels
+   Les besoins non fonctionnels concernent les propriétés qualitatives du
+système :
+   — Performance : rapidité de réponse, même en cas de forte charge.
+   — Sécurité : protection des données personnelles et des transactions.
+   — Ergonomie : interface intuitive, accessible aux utilisateurs non tech-
+      nophiles.
+   — Compatibilité : support des smartphones Android et iOS.
+   — Disponibilité : service fonctionnel 24h/24 et 7j/7.
+   — Évolutivité : ajout possible de nouvelles fonctionnalités.
+   — Maintenabilité : code structuré et documenté.
+
+Identification des utilisateurs cibles
+
+2.3     Modélisation UML
+2.3.1    Diagramme de cas d’utilisation
+    Ce diagramme présente les interactions entre les utilisateurs (acteurs) et
+les fonctionnalités principales du système. Il constitue un outil de communi-
+cation entre les parties prenantes du projet.
+
+Acteurs identifiés
+   Un acteur représente un rôle joué par un utilisateur ou un système externe
+qui interagit avec notre application. Voici les acteurs principaux :
+
+
+                                     15
+   — Utilisateur :
+     crée un compte, personnalise, commande et suit les produits.
+   — Administrateur :
+     gère le catalogue, les utilisateurs et les commandes.
+   — Système :
+     traite les requêtes, gère les données et les paiements.
+
+Cas d’utilisation principaux
+   Les cas d’utilisation identifient les différentes actions possibles dans le
+système. Voici ceux qui sont essentiels pour notre application :
+   — S’inscrire / Se connecter :
+   — Consulter les produits :
+   — Personnaliser une robe :
+   — Ajouter au panier :
+   — Passer une commande :
+   — Suivre une commande :
+   — Gérer les produits (Administrateur) :
+   — Gérer les utilisateurs (Administrateur) :
+
+
+
+
+                                     16
+Figure 2.1 – diagramme de cas d’utilisation
+
+
+
+
+                    17
+2.3.2    Diagramme de séquence
+Définition et objectif
+    Ce diagramme décrit le déroulement chronologique des interactions entre
+les composants du système pour des cas d’usage spécifiques.
+    Ce diagramme met en évidence :
+    — La séquence temporelle des messages.
+    — Les objets impliqués dans un scénario.
+    — Les messages envoyés et les réponses reçues.
+    — Le déclenchement et la fin de l’interaction.
+    L’objectif principal est de décrire dynamiquement le comportement du
+système et de mieux comprendre comment ses composants interagissent. Il
+est essentiel pour préparer le développement technique, en identifiant les
+responsabilités de chaque composant.
+
+
+Exemples de scénarios d’utilisation
+   — Personnalisation de robe :
+     — Connexion
+     — Accès au catalogue
+     — Sélection de robe
+     — Personnalisation (tissu, couleur, etc.)
+     — Aperçu visuel généré
+     — Validation et sauvegarde
+   — Commande et paiement :
+     — Accès au panier
+     — Vérification du contenu
+     — Choix du mode de livraison et de paiement
+     — Transmission des informations au service de paiement
+     — Réponse (succès/échec)
+     — Confirmation de la commande
+
+
+
+
+                                    18
+Figure 2.2 – Diagramme de sequence
+
+
+
+
+                19
+2.3.3    Diagramme de classes
+Définition et rôle
+    Le diagramme de classes représente les entités métier du système et leurs
+relations.
+
+Classes principales
+   — Utilisateur : id, nom, email, etc.
+   — Robe : id, nom, prix, stock, etc.
+   — Personnalisation : tissu, couleur, coupe, etc.
+   — Panier : contient les produits en attente de commande.
+   — Commande : regroupe les articles achetés.
+   — Admin : hérite de Utilisateur, avec des privilèges supplémentaires.
+
+Relations entre classes
+   — Association entre Utilisateur et Commande.
+   — Composition entre Commande et Panier.
+   — Dépendance entre Personnalisation et Robe.
+
+
+
+
+                                     20
+Figure 2.3 – diagramme de classe
+               21
+2.3.4    Diagramme d’activités
+Définition
+   Ce diagramme illustre les différentes étapes d’un processus métier.
+
+Scénario d’achat d’une robe
+   — Ouverture de l’application
+   — Consultation des produits
+   — Sélection et personnalisation
+   — Ajout au panier
+   — Validation de la commande
+   — Paiement
+   — Confirmation
+
+Scénario de personnalisation
+   — Connexion
+   — Navigation dans le catalogue
+   — Sélection d’un produit
+   — Personnalisation
+   — Ajout au panier
+   — Passage de commande
+
+
+
+
+                                     22
+                  Figure 2.4 – Diagramme d’activié
+
+
+
+
+Architecture de l’application
+  L’architecture adoptée repose sur un modèle en couches :
+
+
+                                  23
+   — Présentation : interface utilisateur développée avec Flutter.
+   — Logique métier : gestion des règles de l’application (personnalisa-
+     tion, commande, panier, etc.).
+   — Données : stockage et gestion des données via Firebase Firestore
+     et Firebase Storage.
+
+
+Interfaces principales et principes de design
+Interfaces principales
+   — Accueil : présentation des nouveautés, des offres spéciales et des créa-
+     teurs mis en avant.
+   — Catalogue : consultation et recherche des différentes robes dispo-
+     nibles.
+   — Personnalisation : sélection du tissu, des couleurs, des coupes et
+     autres options.
+   — Panier : gestion des articles ajoutés et validation de la commande.
+   — Espace personnel : accès aux commandes, messages avec le service
+     client et informations du profil utilisateur.
+
+Principes de design
+   — Couleurs douces et harmonieuses pour une expérience visuelle agréable.
+   — Typographie claire et lisible.
+   — Navigation fluide assurée par un menu inférieur accessible à tout mo-
+     ment.
+   — Design responsive pour une adaptation optimale sur différents écrans
+     (smartphones, tablettes).
+   — Utilisation d’icônes explicites accompagnées de textes pour faciliter
+     l’interaction.
+
+2.3.5      Principes de design adoptés
+    Afin d’assurer une bonne expérience utilisateur, les principes suivants ont
+été appliqués :
+    — Utilisation de couleurs douces et d’une typographie claire pour
+       un rendu esthétique et lisible.
+    — Navigation fluide via une barre de menu inférieure pour faciliter
+       l’accès aux différentes sections de l’application.
+
+
+
+                                      24
+   — Design responsive : l’interface s’adapte automatiquement aux dif-
+     férentes tailles d’écrans (smartphones, tablettes).
+   — Utilisation d’icônes explicites et de textes lisibles, permettant une
+     prise en main facile, même par des utilisateurs peu familiers avec les
+     technologies mobiles.
+
+
+Sécurité de l’application
+    Les mesures de sécurité mises en place pour protéger les données des uti-
+lisateurs et assurer le bon fonctionnement de l’application sont les suivantes :
+    — Authentification sécurisée via Firebase Authentication.
+    — Règles d’accès personnalisées définies dans Firebase Firestore pour
+       restreindre l’accès aux données en fonction du rôle de l’utilisateur.
+    — Chiffrement des données sensibles, tant au repos que lors du
+       transit, afin de garantir la confidentialité.
+    — Sauvegardes automatiques et régulières des données sur le cloud
+       Firebase, pour assurer la continuité du service.
+
+
+Modèle économique
+   Le modèle économique de l’application repose sur plusieurs sources de
+revenus :
+   — Commission par vente : un pourcentage (par exemple, 10%) est
+      prélevé sur chaque vente réalisée via la plateforme.
+   — Abonnement premium pour créateurs : offre payante permettant
+      aux créateurs d’accéder à des fonctionnalités avancées (statistiques,
+      mise en avant, personnalisation étendue, etc.).
+   — Publicité locale ciblée : diffusion de publicités en lien avec la mode,
+      les événements ou les marques locales pertinentes pour les utilisateurs.
+
+
+2.4      Conclusion
+    La phase de conception a permis de structurer l’ensemble du projet sur
+des bases solides, tant du point de vue fonctionnel que technique. Les choix
+technologiques, les modèles UML et la réflexion sur l’expérience utilisateur
+garantissent un développement cohérent, en adéquation avec les besoins spé-
+cifiques du marché algérien.
+
+
+
+
+                                      25
+Chapitre 3
+
+Implémentation technique
+
+3.1      Introduction
+    Ce chapitre présente la phase de réalisation technique de notre applica-
+tion mobile de shopping dédiée à la personnalisation de robes. Il détaille
+les outils et langages utilisés, les étapes du développement, les tests effec-
+tués pour garantir la fiabilité de l’application, ainsi que les résultats obtenus.
+Nous terminerons par les limites rencontrées et les perspectives d’évolution
+de l’application.
+
+
+3.2      Outils et langages utilisés
+    La réalisation de l’application repose sur un ensemble cohérent d’outils
+et de technologies adaptés au développement mobile moderne :
+
+3.2.1     Flutter et FlutterFlow
+   — Flutter est un framework open source développé par Google, permet-
+     tant de créer des interfaces utilisateur nativement compilées à partir
+     d’un seul code source.
+   — FlutterFlow est une plateforme no-code/low-code construite sur Flut-
+     ter, qui facilite le prototypage rapide, la conception visuelle de l’inter-
+     face et l’intégration de bases de données.
+
+3.2.2     Firebase
+   — Firebase Authentication : pour gérer l’inscription et la connexion
+     des utilisateurs.
+
+
+                                       26
+   — Cloud Firestore : base de données NoSQL utilisée pour stocker les
+     profils, commandes, modèles de robes, etc.
+   — Firebase Storage : pour héberger les images des robes et des styles
+     personnalisés.
+
+3.2.3    Langages de programmation
+   — Dart : langage principal utilisé avec Flutter pour le développement
+     de la logique de l’application.
+   — Java (optionnel) : utilisé pour intégrer certaines fonctions spéci-
+     fiques sur Android si besoin (ex. : autorisations natives).
+
+3.2.4    Autres outils
+   — Figma : pour la conception initiale des maquettes UI/UX.
+
+
+3.3     Étapes de développement
+    Le développement s’est déroulé selon une méthode itérative inspirée de
+l’approche agile.
+
+3.3.1    Configuration du projet
+   — Création du projet Flutter dans FlutterFlow.
+   — Configuration des dépendances Firebase et intégration de Firestore
+     et Authentication.
+
+3.3.2    Conception de l’interface utilisateur
+   — Réalisation des maquettes sur Figma.
+   — Reproduction des interfaces sur FlutterFlow avec navigation entre
+     les pages : accueil, catalogue, personnalisation, panier, profil, etc.
+
+3.3.3     Intégration des fonctionnalités
+   — Inscription/Connexion : via email, numéro ou compte Google.
+   — Catalogue de robes : affichage dynamique depuis Firestore.
+   — Personnalisation : choix de couleur, tissu, longueur, style.
+   — Ajout au panier et commande.
+   — Historique des commandes.
+   — Profil utilisateur avec édition des informations personnelles.
+
+                                    27
+3.3.4   Connexion à la base de données
+  — Utilisation de Firestore pour stocker les données utilisateurs, robes,
+    commandes.
+  — Firebase Storage pour les images des produits.
+
+3.3.5   Gestion des états et interactions
+  — Utilisation des Widgets dynamiques dans FlutterFlow.
+  — Conditions de visibilité, actions conditionnelles (ex. : si utilisateur
+    connecté, afficher bouton « Commander », etc.).
+
+
+3.4     Tests et validation
+3.4.1   Tests fonctionnels
+  — Vérification de chaque fonctionnalité : inscription, connexion, naviga-
+    tion, affichage du catalogue, personnalisation, commande.
+  — Résultat : toutes les fonctionnalités principales fonctionnent correcte-
+    ment.
+
+3.4.2   Tests d’interface utilisateur (UI)
+  — Vérification de l’adaptation responsive de l’application sur différents
+    formats (smartphones, tablettes).
+  — Résultat : l’interface est fluide et ergonomique.
+
+3.4.3   Tests de performances
+  — Mesure du temps de chargement des images et des données Firestore.
+  — Optimisation de la taille des images pour améliorer la rapidité.
+
+3.4.4    Tests utilisateurs (bêta)
+  — Quelques utilisateurs testeurs ont utilisé l’application.
+  — Retours recueillis via formulaire :
+    — Application facile à utiliser.
+    — Fonction de personnalisation appréciée.
+    — Quelques lenteurs sur de vieilles versions Android.
+
+
+
+
+                                    28
+3.5     Résultats obtenus
+  Les objectifs de base du projet ont été atteints :
+  — Une application fonctionnelle et esthétique.
+  — Une base de données connectée avec une interface temps réel.
+  — La possibilité de créer des styles personnalisés et de passer commande.
+
+
+3.6     Limites de la version actuelle
+  — La personnalisation reste limitée à quelques critères (couleur, forme).
+  — Aucune intégration de paiement en ligne pour le moment.
+  — L’application ne gère pas encore les stocks ou la livraison en temps
+    réel.
+  — Quelques lenteurs sur les téléphones à faibles performances.
+
+
+3.7     Perspectives d’évolution
+3.7.1   Fonctionnalités futures
+  — Intégration d’un système de paiement sécurisé.
+  — Mise en place d’un système de recommandation intelligent basé sur
+    l’historique utilisateur.
+  — Ajout de nouveaux types de vêtements (vestes, pantalons...).
+  — Augmented Reality (AR) : pour essayer virtuellement la robe via
+    la caméra.
+
+3.7.2   Évolution technique
+  — Déploiement sur iOS via l’App Store.
+  — Optimisation des requêtes Firestore pour réduire la latence.
+  — Ajout d’un back-office admin pour la gestion des produits.
+
+
+3.8     Difficultés rencontrées et solutions appor-
+        tées
+Difficultés rencontrées et solutions apportées
+  Difficulté 1 : Authentification Google qui ne fonctionne pas
+
+
+                                   29
+   — Problème : erreur de redirection OAuth due à une mauvaise confi-
+      guration dans Firebase Console.
+   — Solution : ajout des bons SHA-1 et SHA-256 clés, configuration du
+      nom de domaine autorisé dans Firebase, test sur appareil réel.
+   Difficulté 2 : Chargement lent des images
+   — Problème : certaines images de robes dépassaient 1 Mo, ralentissant
+      l’interface.
+   — Solution : compression des images avant importation dans Firebase
+      Storage, et utilisation du widget CachedNetworkImage (via Flutter)
+      pour le cache local.
+   Difficulté 3 : Synchronisation des données Firestore
+   — Problème : les mises à jour de certaines commandes n’étaient pas
+      reflétées en temps réel.
+   — Solution : activation de la mise à jour live dans les widgets Flutter-
+      Flow, et vérification de l’utilisation du bon ID de document.
+   Difficulté 4 : Limitations de FlutterFlow pour la logique com-
+plexe
+   — Problème : certaines logiques de personnalisation (conditions mul-
+      tiples) sont difficiles à implémenter sans code.
+   — Solution : contournement par l’utilisation de custom actions ou pla-
+      nification future d’intégration de parties de code Dart personnalisées.
+
+
+3.9     Captures d’écran de l’application
+
+
+
+
+                                     30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+3.10       Conclusion
+    Ce chapitre a présenté la réalisation technique de l’application de shop-
+ping de robes personnalisables. Nous avons détaillé les outils et langages uti-
+lisés, les différentes étapes de développement, les tests réalisés et les résultats
+obtenus. Malgré certaines limites, l’application remplit sa mission principale
+et ouvre la voie à des évolutions prometteuses tant sur le plan fonctionnel
+que technologique.
+
+
+
+
+                                        43
+Chapitre 4
+
+Coté startup’décision 1275’
+
+4.1       Présentation du projet
+    Ce projet consiste en la création d’une application mobile permettant aux
+utilisatrices de visualiser, personnaliser et commander des robes selon leurs
+préférences (couleurs, tissus, styles). L’application repose sur FlutterFlow et
+Firebase.
+
+
+4.2     L’idée du projet
+   L’idée est née du constat que les plateformes de shopping en ligne manquent
+souvent d’options de personnalisation vestimentaire. Le projet comble ce
+manque en offrant une expérience interactive et personnalisée.
+
+
+4.3       Les valeurs proposées
+   — Valorisation de la créativité des clientes
+   — Accessibilité à des modèles uniques
+   — Simplification du processus d’achat
+   — Économie de temps
+   — Satisfaction utilisateur grâce à la personnalisation
+
+
+4.4       L’équipe
+   — Développeur Flutter/FlutterFlow
+   — Designer UI/UX (Figma)
+   — Spécialiste Firebase
+
+                                      44
+   — Community manager (testeurs, retours clients)
+   — Équipe fictive (si besoin dans le mémoire)
+
+
+4.5     Les objectifs
+   — Développer une application fluide, attractive et fonctionnelle
+   — Proposer une personnalisation en temps réel
+   — Intégrer des fonctionnalités de commande et de gestion utilisateur
+   — Offrir une base pour un futur e-commerce intelligent
+
+
+4.6     Planning
+   — Étude de marché
+   — Conception des maquettes
+   — Développement FlutterFlow + Firebase
+   — Tests et corrections
+   — Lancement et retours utilisateurs
+
+
+4.7     Aspects innovants
+    L’application combine personnalisation de vêtements, technologie no-code,
+et base de données temps réel. Un module d’essayage AR est envisagé.
+
+
+4.8      La nature de l’innovation
+   — Innovation d’usage : personnalisation directe
+   — Innovation technologique : intégration FlutterFlow/Firebase
+   — Innovation marketing : ciblage de niche mode féminine personnalisée
+
+
+4.9      Les domaines d’innovation
+   — FashionTech
+   — M-commerce (commerce mobile)
+   — UX/UI design
+   — Réalité augmentée (à venir)
+
+
+
+
+                                     45
+4.10      Analyse stratégique du marché
+   — Marché du prêt-à-porter numérique en croissance
+   — Tendance croissante de la personnalisation
+   — Concurrents : Zalando, SHEIN, Veepee (sans personnalisation pous-
+     sée)
+
+
+4.11      Analyse et diagnostic de l’entreprise
+4.11.1    Objectifs et stratégie
+   — Objectif : pénétrer le marché niche de la robe personnalisée
+   — Stratégie : MVP, feedback client, itérations, ajout de fonctions évolu-
+     tives
+
+4.11.2    Choix des moyens opérationnels
+   — Tech : FlutterFlow, Firebase
+   — Communication : réseaux sociaux, micro-influence
+   — Distribution : app Android (et iOS à venir)
+
+4.11.3    Processus de servuction
+   Servuction = production + service : ici, il s’agit du parcours utili-
+sateur numérique :
+   — Personnalisation
+   — Ajout au panier
+   — Commande et consultation historique
+
+4.11.4    La servuction
+   — Interface intuitive
+   — Temps de réponse rapide (Firestore temps réel)
+   — Expérience utilisateur fluide
+   — Assistance via messagerie prévue à terme
+
+4.11.5    Approvisionnement
+   — Approche fictive pour le mémoire : commandes transmises à un atelier
+     partenaire ou impression à la demande
+
+
+                                    46
+4.11.6    Main d’œuvre
+  — Développement (1 développeur)
+  — Design (1 graphiste)
+  — Communication/test (1 community manager)
+  — Production (via partenariat ou scénario fictif)
+
+4.11.7    Partenaires
+  — Fournisseurs de tissus (fictif pour mémoire)
+  — Atelier de confection
+  — Plateformes Firebase/FlutterFlow
+  — Influenceuses pour promotion
+
+4.11.8    Plan financier
+  — Frais de développement
+  — Abonnement FlutterFlow, Firebase
+  — Coûts de promotion
+  — Infrastructure backend
+
+4.11.9    Coûts et charges
+  — Dépenses : hébergement, outils, marketing, production
+  — Charges variables : par commande
+
+4.11.10    Chiffre d’affaire (prévisionnel)
+  — Basé sur un modèle freemium ou par commission par robe vendue
+
+4.11.11    Tableau de compte des résultats
+  — Revenus attendus
+  — Dépenses fixes/variables
+  — Bénéfice net prévisionnel
+
+4.11.12    Prototype
+  — Réalisé via Figma
+  — Écrans : accueil, collection, personnalisation, commande, profil
+
+
+
+                                   47
+4.11.13    Questionnaire cible
+  — Capacité de production
+  — Délais de confection
+  — Tarification
+
+
+4.12      BMC (Business Model Canvas)
+
+
+
+
+                             Figure 4.1 –
+
+
+
+
+                                  48
+Bibliographie
+
+[1] OECD. E-commerce in the time of COVID-19. Organisation for Econo-
+    mic Co-operation and Development, 2023.
+    Disponible      sur     :    https://www.oecd.org/coronavirus/
+    policy-responses/e-commerce-in-the-time-of-covid-19-3a2b78e8/
+[2] Statista. Mobile commerce share worldwide. 2023.
+    Disponible sur : https://www.statista.com/statistics/806336/
+    mobile-retail-commerce-share-worldwide/
+[3] Ministère de la Poste et des Télécommunications Algérie. Stratégie natio-
+    nale du numérique, 2022.
+[4] Google Developers. Flutter documentation.
+    Disponible sur : https://docs.flutter.dev
+[5] Etsy. About Etsy.
+    Disponible sur : https://www.etsy.com/about
+
+
+
+
+                                     49
+Conclusion Générale
+
+    Au terme de ce mémoire, nous avons présenté le processus complet de
+conception et de développement d’une application mobile innovante dédiée
+au shopping en ligne de robes personnalisables. Ce projet s’inscrit dans une
+dynamique croissante de digitalisation de la mode, où l’expérience utilisa-
+teur, la personnalisation et la rapidité d’accès aux produits jouent un rôle
+déterminant dans la satisfaction et la fidélisation des clientes.
+    Dans un premier temps, une analyse approfondie de l’état de l’art a per-
+mis de mettre en évidence les tendances du secteur, les outils technologiques
+existants, ainsi que les attentes spécifiques des consommatrices en matière
+de personnalisation vestimentaire. Par la suite, nous avons défini les besoins
+fonctionnels et non fonctionnels de notre solution, tout en élaborant les mo-
+dèles conceptuels (UML) qui a servi de base à la phase de développement.
+    L’application a été réalisée à l’aide de FlutterFlow et Firebase, deux tech-
+nologies modernes qui permettent un prototypage rapide et une interactivité
+fluide. Elle comprend plusieurs modules essentiels, tels que la personnalisa-
+tion des robes en temps réel, la gestion du panier, la prise de commande
+et la gestion des profils utilisateurs. L’approche adoptée repose également
+sur une stratégie de mise sur le marché ciblée, avec un MVP centré sur les
+fonctionnalités clés, des tests utilisateurs, et une évolution progressive du
+produit.
+    Enfin, ce mémoire a abordé les aspects économiques, marketing et or-
+ganisationnels, en proposant un modèle d’affaires flexible (freemium ou à
+commission), une structure d’équipe projet adaptée, ainsi qu’une analyse
+prévisionnelle des coûts et bénéfices. Ce travail ouvre la voie à plusieurs
+perspectives d’évolution, notamment l’intégration future de la réalité aug-
+mentée pour améliorer l’essayage virtuel, la mise en place d’un réseau de
+partenaires couturiers pour la production à la demande, ou encore l’exten-
+sion vers d’autres types de vêtements personnalisables. En somme, ce projet
+constitue une première étape vers une nouvelle manière de concevoir et de
+consommer la mode, plus interactive, créative et centrée sur l’utilisateur.
+
+
+
+                                      50
+

@@ -1,0 +1,21 @@
+COMPTES DE TEST - AUTHENTIFICATION EDUCONNECT
+=============================================
+
+Compte utilisateur simple
+-------------------------
+Nom       : Benali
+Prénom    : Sarah
+Matricule : 20210001
+Rôle      : USER
+
+Compte administrateur
+---------------------
+Nom       : Admin
+Prénom    : EduConnect
+Matricule : admin-0001
+Rôle      : ADMIN_GLOBAL
+
+Important
+---------
+- Dans cette version, l'authentification est locale (localStorage), sans backend.
+- Tout matricule qui commence par "admin" est reconnu comme admin.

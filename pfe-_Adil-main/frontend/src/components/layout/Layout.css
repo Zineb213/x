@@ -1,0 +1,123 @@
+.layout {
+    min-height: 100vh;
+    background: var(--light-bg);
+}
+
+.navbar {
+    background: var(--surface);
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 32px;
+    box-shadow: var(--box-shadow);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--primary-color);
+    cursor: pointer;
+}
+
+.navbar-brand i {
+    font-size: 32px;
+}
+
+.navbar-menu {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border-radius: var(--border-radius);
+    text-decoration: none;
+    color: var(--gray-600);
+    font-weight: 500;
+    transition: var(--transition);
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.nav-item:hover {
+    background-color: var(--gray-50);
+    color: var(--primary-color);
+}
+
+.nav-item.active {
+    background: var(--primary-gradient);
+    color: white;
+}
+
+.navbar-user {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.user-info {
+    text-align: right;
+}
+
+.user-info span {
+    display: block;
+    font-weight: 600;
+    color: var(--gray-800);
+}
+
+.user-info small {
+    color: var(--gray-500);
+    font-size: 12px;
+}
+
+.btn-logout {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: var(--gray-600);
+    transition: var(--transition);
+    padding: 8px;
+    border-radius: 50%;
+}
+
+.btn-logout:hover {
+    background-color: var(--gray-100);
+    color: var(--danger-color);
+}
+
+.main-content {
+    padding: 32px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        padding: 0 16px;
+    }
+    .navbar-brand span {
+        display: none;
+    }
+    .nav-item span:last-child {
+        display: none;
+    }
+    .user-info {
+        display: none;
+    }
+    .main-content {
+        padding: 16px;
+    }
+}
