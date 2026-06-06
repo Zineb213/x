@@ -389,8 +389,7 @@ L'objectif g\'en\'eral du projet est de concevoir, d\'evelopper et valider \text
   \item[\textbf{OS2.}] Mettre en \oe uvre un syst\`eme d'authentification s\'ecuris\'e par jetons JWT et une autorisation par r\^oles~: Administrateur global, Mod\'erateur et Utilisateur.
   \item[\textbf{OS3.}] Int\'egrer un espace de communication structur\'e~: publications, commentaires, votes, partages et messagerie instantan\'ee (chat priv\'e et de groupe).
   \item[\textbf{OS4.}] D\'evelopper un syst\`eme de notifications permettant le suivi des \'ev\'enements acad\'emiques avec compteur de non-lus.
-  \item[\textbf{OS5.}] Proposer un planificateur hebdomadaire pour la gestion collective des activit\'es et des \'ech\'eances.
-  \item[\textbf{OS6.}] Garantir la tra\c{c}abilit\'e compl\`ete des actions de gestion~: ajout, modification et suppression des ressources, contr\^ol\'ees par le syst\`eme de r\^oles.
+  \item[\textbf{OS5.}] Garantir la tra\c{c}abilit\'e compl\`ete des actions de gestion~: ajout, modification et suppression des ressources, contr\^ol\'ees par le syst\`eme de r\^oles.
 \end{itemize}
 
 %%──────────────────────────────────────────────────────────────────────────────
@@ -519,7 +518,7 @@ Faible \`a moyenne \\
 ]
 \begin{itemize}
   \item Aucune des quatre solutions g\'en\'eralistes n'est con\c{c}ue sp\'ecifiquement pour le contexte éducatif algérien~; leur adaptation exige des ressources techniques et financi\`eres importantes.
-  \item EduPlatform est la seule solution \textbf{gratuite}, \textbf{auto-h\'eberg\'ee} et \textbf{contexte-native}~: chaque fonctionnalit\'e a \'et\'e con\c{c}ue en r\'eponse directe \`a un besoin identifi\'e dans un contexte éducatif local.
+  \item EduPlatform est la seule solution \textbf{auto-h\'eberg\'ee} et \textbf{contexte-native}~: chaque fonctionnalit\'e a \'et\'e con\c{c}ue en r\'eponse directe \`a un besoin identifi\'e dans un contexte éducatif local.
   \item Le tableau~\ref{tab:compar_detail} ci-dessous approfondit l'analyse sur \textbf{12 crit\`eres fonctionnels et techniques}, permettant de mesurer pr\'ecis\'ement les apports sp\'ecifiques d'EduPlatform.
 \end{itemize}
 \end{tcolorbox}
@@ -699,9 +698,8 @@ EduPlatform se positionne comme une plateforme acad\'emique int\'egr\'ee, r\'eun
 
 \begin{itemize}
   \item \textbf{Navigation module-first~:} la granularit\'e p\'edagogique est au c\oe ur de l'exp\'erience~; chaque module dispose d'une page d\'edi\'ee regroupant ses sections et ses ressources class\'ees par type.
-  \item \textbf{Gouvernance par r\^oles~:} le syst\`eme d'autorisation \`a trois niveaux (Administrateur global, Mod\'erateur, Utilisateur) garantit la s\'ecurit\'e, la modulation des acc\`es et la responsabilit\'e de chaque acteur.
-  \item \textbf{Couche sociale et collaborative~:} les publications, le chat et les notifications constituent un tissu de communication acad\'emique structur\'e, tra\c{c}able et centralis\'e.
-  \item \textbf{Dimension op\'erationnelle~:} le planificateur hebdomadaire transforme EduPlatform en outil de gestion du travail acad\'emique, au-del\`a du simple partage de ressources.
+  \item \textbf{Gouvernance par r\^oles~:} le syst\`eme d'autorisation \`a cinq niveaux (Administrateur Super, Administrateur Ecole, Formateur Principal, Formateur Simple, Utilisateur) garantit la s\'ecurit\'e, la modulation des acc\`es et la responsabilit\'e de chaque acteur.
+  \item \textbf{Couche sociale et collaborative~:} le chat et les notifications constituent un tissu de communication acad\'emique structur\'e, tra\c{c}able et centralis\'e.
 \end{itemize}
 
 %%──────────────────────────────────────────────────────────────────────────────
@@ -764,7 +762,8 @@ Quatre acteurs principaux structurent le système:
 \begin{itemize}
   \item \textbf{Super administrateur}: gouvernance plateforme, écoles, administrateurs;
   \item \textbf{Administrateur d'école}: gestion des utilisateurs, modules, assignations, inscriptions;
-  \item \textbf{Formateur}: publication des ressources, suivi des apprenants, sessions live;
+  \item \textbf{Formateur Globale}: publication des ressources, suivi des apprenants, sessions live;
+  \item \textbf{Formateur Simple}: publication des ressources, suivi des apprenants, sessions live;
   \item \textbf{Etudiant}: consultation des ressources, progression, interactions et lives.
 \end{itemize}
 
@@ -775,7 +774,7 @@ Quatre acteurs principaux structurent le système:
   \item gestion des modules et de leurs composants pédagogiques (Cours/TD/TP);
   \item workflow de gestion des utilisateurs, assignations et inscriptions;
   \item publication/consultation des ressources pédagogiques;
-  \item communication (chat, publications) et suivi de progression;
+  \item communication (chat) et suivi de progression;
   \item diffusion de sessions live avec acces cible aux apprenants concernes.
 \end{itemize}
 
@@ -807,16 +806,20 @@ Creer les écoles, nommer les administrateurs, superviser la plateforme globale.
 Gouvernance transverse et maitrise des droits inter-etablissements. \\
 \hline
 Administrateur d'école &
-Gerer comptes, modules, assignations, inscriptions, calendrier pédagogique. &
-Pilotage quotidien de l'activite académique et réduction des taches manuelles. \\
+Gérer comptes, modules, assignations, inscriptions, calendrier pédagogique. &
+Pilotage quotidien de l’activité académique et réduction des taches manuelles. \\
 \hline
-Formateur &
+Formateur Global &
+Vérifie et valide les ajouts fait par Formateur Simple + même fonctionnalités que lui &
+Production pédagogique structurée et interaction rapide avec les apprenants. \\
+\hline
+Formateur Simple &
 Publier ressources, organiser Cours/TD/TP, lancer des sessions live, suivre les apprenants. &
-Production pédagogique structuree et interaction rapide avec les apprenants. \\
+Production pédagogique structurée et interaction rapide avec les apprenants. \\
 \hline
-Etudiant &
-Consulter ressources, suivre les annonces, acceder aux lives, interagir via chat/publications. &
-Acces clair aux contenus et meilleure continuité d'apprentissage. \\
+Étudiant &
+Consulter ressources, accéder aux lives, interagir via chat. &
+Accès clair aux contenus et meilleure continuité d'apprentissage. \\
 \hline
 \end{longtable}
 
@@ -872,9 +875,7 @@ Pour augmenter la lisibilité et aligner la modélisation avec l'implementation 
 
 
 
-\subsection{Diagrammes de sequence reajustes selon le code implemente}
-
-Le reajustement ci-dessous est base sur les routes et composants effectivement presents dans le projet (backend \texttt{adminRoutes/formateurRoutes/etudiantRoutes}, controllers et services associes), et il correspond aux cinq figures de sequence disponibles dans le dossier \texttt{figures}: \texttt{seq1.png} \`a \texttt{seq5.png}.
+\subsection{Diagrammes de séquence}
 
 \subsubsection{Sequence 1: authentification et redirection par role}
 
@@ -988,57 +989,142 @@ Le modele conceptuel s'articule autour de classes principales:
   \item \texttt{LiveSession} (lien, statut, horodatages).
 \end{itemize}
 
-\begin{figurebox}{Diagramme de classes EduPlatform}
-Montrer cardinalites, cles primaires/etrangeres et contraintes metier (roles, statuts, scopes).
-\end{figurebox}
+\begin{figure}[H]
+    \centering
+    \safeimage[0.65\textwidth]{umlclasse.drawio.png}{Diagramme de classes EduPlatform}{Diagramme de classes EduPlatform}
+    \label{fig:view-adminmodule}
+\end{figure}
 
 %%──────────────────────────────────────────────────────────────────────────────
-\section{Scenarios metier detailles}
+\section{Scenarios métier et captures d’écran}
 %%──────────────────────────────────────────────────────────────────────────────
 
-Cette section formalise les principaux parcours metier sous forme textuelle. Elle complete les diagrammes UML et sert de reference pour la validation fonctionnelle.
+Cette section formalise les parcours métier clés (A à E) : création et gouvernance des modules, gestion des inscriptions, intégration d'assistants IA, flux d'approbation par le responsable de formation, et sessions live complètes.
 
-\subsection{Scenario A: creation d'un module et affectation d'un formateur}
+\subsection{Scenario A: création d'un module et affectation d'un formateur}
 
-\textbf{Preconditions:} l'administrateur est authentifie et dispose des droits de gestion de son école.
-
-\textbf{Flux principal:}
-\begin{enumerate}
-  \item l'administrateur cree un module (code, intitule, niveau, semestre);
-  \item le système verifie l'unicite du code dans le contexte de l'école;
-  \item l'administrateur affecte un formateur principal et, si necessaire, des formateurs secondaires;
-  \item le système notifie les formateurs concernes et rend le module visible selon les droits.
-\end{enumerate}
-
-\textbf{Postconditions:} le module est actif et pret a recevoir des ressources pédagogiques.
-
-\subsection{Scenario B: inscription d'un étudiant}
-
-\textbf{Preconditions:} étudiant cree dans le système et module disponible.
+\textbf{Préconditions:} l'administrateur de l'école est authentifié et dispose des droits de création de module.
 
 \textbf{Flux principal:}
 \begin{enumerate}
-  \item l'administrateur selectionne l'étudiant et le module cible;
-  \item l'API valide l'appartenance a la meme école et l'absence de doublon;
-  \item l'inscription est enregistree avec statut initial;
-  \item l'étudiant voit immediatement le module dans son espace personnel.
+  \item l'administrateur saisit le formulaire de création (code, intitulé, niveau, composants, crédits);
+  \begin{figure}[H]
+    \centering
+    \safeimage[0.65\textwidth]{Capture d’écran (307).png}{Vue Administrateur d'Ecole: Ajout de module}{Vue Administrateur d'Ecole: Ajout de module}
+    \label{fig:view-adminmodule}
+\end{figure}
+  \item le système vérifie l'unicité du code au sein de l'école et normalise les composants;
+  \item le module est enregistré dans la table \texttt{modules} (ou \texttt{module\_catalog} selon le déploiement);
+  \begin{figure}[H]
+    \centering
+    \safeimage[0.65\textwidth]{Capture d’écran (309).png}{Vue Administrateur d'Ecole: Affectation de formateur}{Vue Administrateur d'Ecole: Affectation de formateur}
+    \label{fig:view-adminmodule}
+\end{figure}
+  \item l'administrateur affecte un formateur principal (chargé de formation) et éventuellement des formateurs simples;
+  \begin{figure}[H]
+    \centering
+    \safeimage[0.65\textwidth]{Capture d’écran (310).png}{Vue Formateur: Modules}{Vue Formateur: Modules}
+    \label{fig:view-adminmodule}
+\end{figure}
+  \item le système envoie des notifications et crée la communauté/slug associée au module.
+  \item le module devient visible aux acteurs autorisés (formateurs, étudiants inscrits).
 \end{enumerate}
 
-\textbf{Postconditions:} l'étudiant accede aux ressources et annonces du module inscrit.
+\textbf{Postconditions:} le module est actif, indexé et prêt à recevoir des ressources et des sessions.
 
-\subsection{Scenario C: session live de bout en bout}
+\subsection{Scenario B: Le module chez le formateur}
 
-\textbf{Preconditions:} le formateur est assigne au module et dispose d'un lien de reunion valide.
+\textbf{Préconditions:} le module est créé et un formateur (principal ou simple) est assigné au module.
 
 \textbf{Flux principal:}
 \begin{enumerate}
-  \item creation d'une session avec statut \texttt{SCHEDULED};
-  \item passage en statut \texttt{LIVE} au demarrage;
-  \item affichage en temps réel côté étudiant sur dashboard et page module;
-  \item cloture avec passage \texttt{ENDED} et horodatage de fin.
+  \item le formateur consulte la fiche module depuis son tableau de bord;
+  \item il accède aux composants du module (cours, TD, évaluations) et organise leur ordre et métadonnées;
+  \item si le formateur est simple, il voit uniquement le \texttt{component\_scope} qui lui est assigné et ne peut modifier que ces composants;
+  \begin{figure}[H]
+    \centering
+    \safeimage[0.9\textwidth]{Capture d’écran (323).png}{Vue Formateur: Modules}{Vue Formateur: Modules}
+    \label{fig:view-adminmodule}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \safeimage[0.9\textwidth]{Capture d’écran (324).png}{Vue Formateur: Ajout ressource}{Vue Formateur: Ajout ressource}
+    \label{fig:view-adminmodule}
+\end{figure}
 \end{enumerate}
 
-\textbf{Postconditions:} la session reste tracable pour reporting et audit pédagogique.
+\textbf{Postconditions:} le module est disponible et correctement structuré pour les contributions pédagogiques.
+
+\subsection{Scenario C: Inscription d'un étudiant}
+
+\textbf{Préconditions:} l'étudiant possède un compte valide; le module est disponible dans l'école.
+
+\textbf{Flux principal:}
+\begin{enumerate}
+  \item l'étudiant (ou l'administrateur) remplit le formulaire d'inscription au module;
+  \begin{figure}[H]
+    \centering
+    \safeimage[0.9\textwidth]{Capture d’écran (312).png}{Formulaire d'inscription}{Formulaire d'inscription}
+    \label{fig:view-inscription-form}
+\end{figure}
+  \item la demande d'inscription est envoyée et traitée par l'administrateur de l'école;
+  \begin{figure}[H]
+    \centering
+    \safeimage[0.9\textwidth]{Capture d’écran (313).png}{Vue Admin d'Ecole: Inscriptions}{Vue Admin d'Ecole: Inscriptions}
+    \label{fig:view-admin-inscriptions}
+\end{figure}
+  \item le système vérifie les contraintes (même école, pas de doublon) et crée l'enregistrement dans \texttt{etudiant\_module\_enrollment};
+  \item en cas de succès, l'étudiant voit le module sur son tableau de bord et reçoit les notifications.
+\end{enumerate}
+
+\textbf{Postconditions:} l'étudiant a accès aux ressources approuvées et reçoit les annonces et événements liés au module.
+
+\subsection{Scenario D: communication et assistance via intelligence artificielle}
+
+\textbf{Préconditions:} l'utilisateur (étudiant ou formateur) est authentifié; l'intégration IA (API interne ou service tiers) est disponible.
+
+\textbf{Flux principal:}
+\begin{enumerate}
+  \item l'utilisateur ouvre le panneau d'assistance IA depuis une ressource ou la page module;
+  \item il saisit une requête (explication d'un concept, génération de quiz, reformulation d'une fiche de cours);
+  \begin{figure}[H]
+    \centering
+    \safeimage[0.65\textwidth]{Capture d’écran (325).png}{Vue Etudiant: Assistant IA}{Vue Etudiant: Assistant IA}
+    \label{fig:view-etudiant-accueil}
+\end{figure}
+  \item la requête est envoyée au service IA, qui renvoie une réponse structurée (texte, questions, suggestions de ressources);
+  \item le formateur peut accepter, éditer ou rejeter les suggestions; en cas d'acceptation il peut convertir la sortie IA en ressource ou activité publiable;
+  \item les interactions avec l'IA sont journalisées pour traçabilité et contrôle qualité.
+\end{enumerate}
+
+\textbf{Postconditions:} suggestion IA enregistrée comme brouillon ou ressource (selon validation), avec historique d'audit.
+
+% La sous-section "Scenario D" a été supprimée sur demande utilisateur.
+
+\subsection{Scenario E: session live de bout en bout}
+
+\textbf{Préconditions:} le formateur est assigné au module et dispose d'un lien de réunion valide; les étudiants sont informés de la session.
+
+\textbf{Flux principal:}
+\begin{enumerate}
+  \item le formateur programme une session (statut \texttt{SCHEDULED}) avec date/heure et lien;
+  \begin{figure}[H]
+    \centering
+    \safeimage[0.65\textwidth]{Capture d’écran (321).png}{Vue Formateur: Live}{Vue Formateur: Live}
+    \label{fig:view-formateur-live}
+\end{figure}
+  \item une notification est envoyée aux étudiants inscrits et la session apparaît sur le dashboard;
+  \item au moment du démarrage le formateur passe la session en statut \texttt{LIVE};
+  \begin{figure}[H]
+    \centering
+    \safeimage[0.65\textwidth]{Capture d’écran (322).png}{Vue Etudiant: Acceuil}{Vue Etudiant: Acceuil}
+    \label{fig:view-etudiant-accueil}
+\end{figure}
+  \item pendant la session, échanges synchrones (chat, Q\&A) et partages de ressources sont possibles; des marqueurs de présence/compréhension peuvent être collectés;
+  \item à la fin, le responsable clôt la session en statut \texttt{ENDED} avec horodatage; le replay et les ressources associées sont archivés.
+\end{enumerate}
+
+\textbf{Postconditions:} session historisée, indicateurs d'engagement disponibles pour reporting pédagogique.
 
 %%──────────────────────────────────────────────────────────────────────────────
 \section{Conception des données}
@@ -1102,7 +1188,7 @@ L'architecture suit un modele client-serveur decouple:
 
 \begin{figure}[H]
     \centering
-    \safeimage[0.9\textwidth]{archiEdu.drawio.png}{architecture-globale}{Architecture générale : schéma en couches UI React → API Express → Services / Models → PostgreSQL.}
+    \safeimage[0.9\textwidth]{archiEdu.drawio.png}{architecture-globale}{Architecture générale}
     \label{fig:architecture-globale}
 \end{figure}
 
@@ -1151,9 +1237,7 @@ OS3 & Communication integree & Apprendre et interagir & Publications/chat operat
 \hline
 OS4 & Notifications des evenements & Apprendre et interagir & Notification visible apres evenement \\
 \hline
-OS5 & Planification hebdomadaire & Administrer une école & Activites affichees par semaine \\
-\hline
-OS6 & Tracabilite des operations & Administrer la plateforme/école & Historique coherent en base \\
+OS5 & Tracabilite des operations & Administrer la plateforme/école & Historique coherent en base \\
 \hline
 Live & Session synchrone encadree & Animer en direct & Etats SCHEDULED/LIVE/ENDED conformes \\
 \hline
@@ -1188,7 +1272,16 @@ Apres la phase d'analyse et de conception, ce chapitre presente la realisation e
   \item Backend: Node.js, Express, middlewares de sécurité;
   \item Base de données: PostgreSQL;
   \item Authentification: JWT;
+  \item IA locale: Ollama pour l'exécution de modèles de langage open source, la génération de contenus pédagogiques et l'analyse de ressources sans dépendance aux API cloud;
   \item Outils: VS Code, Git, scripts de migration SQL.
+\end{itemize}
+
+Ollama est utilisé dans le cadre d'un service IA embarqué qui peut exploiter des modèles open source en local ou sur une infrastructure contrôlée. Cette intégration permet de proposer plusieurs usages pédagogiques:
+\begin{itemize}
+  \item assistance à la rédaction et à la reformulation des fiches pédagogiques;
+  \item génération d'exemples, de quiz ou de résumés à partir des ressources existantes;
+  \item analyse des métadonnées et classification des contenus pour aider à la recherche par module et niveau;
+  \item préservation de la confidentialité des données en limitant les échanges vers des services externes.
 \end{itemize}
 
 \subsection{Organisation du code}

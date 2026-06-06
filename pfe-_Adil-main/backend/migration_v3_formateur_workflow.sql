@@ -13,7 +13,7 @@ BEGIN
 END $$;
 
 ALTER TABLE ressource_pedagogique
-    ADD COLUMN IF NOT EXISTS approval_status varchar(20) NOT NULL DEFAULT 'APPROVED',
+    ADD COLUMN IF NOT EXISTS approval_status varchar(20) NOT NULL DEFAULT 'PENDING',
     ADD COLUMN IF NOT EXISTS approved_by integer NULL,
     ADD COLUMN IF NOT EXISTS approved_at timestamp without time zone NULL;
 

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import api from '../../services/api';
+import '../../components/ui/Button.css';
 import './Resources.css';
 import { sanitizeText } from '../../utils/sanitizeText';
 
@@ -333,14 +334,14 @@ const Resources = () => {
                                                 </p>
                                                 <div className="resource-footer-modern">
                                                     <span className="download-count">📥 {resource.download_count || 0} téléchargements</span>
-                                                    <div style={{ display: 'flex', gap: 8 }}>
-                                                        <button className="download-btn" onClick={() => handleDownload(resource.id)}>
+                                                    <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+                                                        <button className="btn btn-primary btn-sm download-btn" onClick={() => handleDownload(resource.id)}>
                                                             Télécharger
                                                         </button>
                                                         {isResourceCompleted(resource) ? (
-                                                            <button className="btn-primary" disabled>Complete</button>
+                                                            <button className="btn btn-primary btn-sm" disabled>Complete</button>
                                                         ) : (
-                                                            <button className="btn-primary" onClick={() => handleCompleteResource(resource)}>✓ Marquer complété</button>
+                                                            <button className="btn btn-primary btn-sm" onClick={() => handleCompleteResource(resource)}>✓ Marquer complété</button>
                                                         )}
                                                     </div>
                                                 </div>

@@ -60,16 +60,16 @@ const uploadResource = async (req, res, next) => {
             });
         }
         
-        // Verify formateur is assigned to this module
-        const isAssigned = await Assignment.isFormateurAssigned(req.user.id, module_id);
-        if (!isAssigned) {
+        // Verify formateur is assigned to this module and determine approval workflow by assignment type.
+        const assignment = await Assignment.getAssignment(req.user.id, module_id);
+        if (!assignment) {
             return res.status(HTTP_STATUS.FORBIDDEN).json({
                 success: false,
                 error: 'You are not assigned to this module'
             });
         }
 
-        if (req.user.role_global === 'FORMATEUR_SIMPLE') {
+        if (assignment.assignment_type === 'SIMPLE') {
             const canManage = await Assignment.canManageCategory(req.user.id, module_id, category);
             if (!canManage) {
                 return res.status(HTTP_STATUS.FORBIDDEN).json({
@@ -79,7 +79,7 @@ const uploadResource = async (req, res, next) => {
             }
         }
         
-        const shouldRequireApproval = req.user.role_global === 'FORMATEUR_SIMPLE';
+        const shouldRequireApproval = assignment.assignment_type === 'SIMPLE';
 
         const resource = await Resource.create({
             module_id,
@@ -177,7 +177,8 @@ const updateResource = async (req, res, next) => {
             });
         }
 
-        if (req.user.role_global === 'FORMATEUR_SIMPLE') {
+        const assignment = await Assignment.getAssignment(req.user.id, resource.module_id);
+        if (assignment && assignment.assignment_type === 'SIMPLE') {
             const targetCategory = category || resource.category;
             const canManage = await Assignment.canManageCategory(req.user.id, resource.module_id, targetCategory);
             if (!canManage) {
@@ -190,14 +191,14 @@ const updateResource = async (req, res, next) => {
         
         const updated = await Resource.update(id, { titre, description, category });
 
-        if (req.user.role_global === 'FORMATEUR_SIMPLE') {
+        if (assignment && assignment.assignment_type === 'SIMPLE') {
             await Resource.setApproval(id, 'PENDING', null);
         }
         
         res.status(HTTP_STATUS.OK).json({
             success: true,
             data: updated,
-            message: req.user.role_global === 'FORMATEUR_SIMPLE'
+            message: assignment && assignment.assignment_type === 'SIMPLE'
                 ? 'Ressource modifiée et remise en attente de validation'
                 : 'Resource updated successfully'
         });

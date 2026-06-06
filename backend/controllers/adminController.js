@@ -306,19 +306,38 @@ const search = async (req, res) => {
 
 const getModulesCatalog = async (req, res) => {
     try {
-        const result = await pool.query(`
-            SELECT mc.id, mc.nom, mc.niveau, mc.description, mc.logo_url, mc.created_at,
-                   mc.created_by,
-                   COALESCE(r.resource_count, 0) AS resource_count
-            FROM module_catalog mc
-            LEFT JOIN (
-                SELECT module, niveau, COUNT(*)::int AS resource_count
-                FROM ressource_pedagogique
-                WHERE is_archived = false
-                GROUP BY module, niveau
-            ) r ON r.module = mc.nom AND r.niveau::text = mc.niveau::text
-            ORDER BY mc.niveau, mc.nom
-        `);
+        // Detect if legacy table `module_catalog` exists; otherwise use `modules`.
+        const tbl = await pool.query("SELECT to_regclass('public.module_catalog') AS reg");
+        let result;
+        if (tbl.rows[0] && tbl.rows[0].reg) {
+            result = await pool.query(`
+                SELECT mc.id, mc.nom, mc.niveau, mc.description, mc.logo_url, mc.created_at,
+                       mc.created_by,
+                       COALESCE(r.resource_count, 0) AS resource_count
+                FROM module_catalog mc
+                LEFT JOIN (
+                    SELECT module, niveau, COUNT(*)::int AS resource_count
+                    FROM ressource_pedagogique
+                    WHERE is_archived = false
+                    GROUP BY module, niveau
+                ) r ON r.module = mc.nom AND r.niveau::text = mc.niveau::text
+                ORDER BY mc.niveau, mc.nom
+            `);
+        } else {
+            result = await pool.query(`
+                SELECT m.id, m.nom, m.niveau, m.description, m.logo_url, m.created_at,
+                       m.created_by,
+                       COALESCE(r.resource_count, 0) AS resource_count
+                FROM modules m
+                LEFT JOIN (
+                    SELECT module_id, COUNT(*)::int AS resource_count
+                    FROM ressource_pedagogique
+                    WHERE is_archived = false
+                    GROUP BY module_id
+                ) r ON r.module_id = m.id
+                ORDER BY m.niveau, m.nom
+            `);
+        }
 
         res.json(result.rows);
     } catch (err) {
@@ -355,21 +374,42 @@ const createModuleCatalog = async (req, res) => {
             }
         }
 
-        const insert = await pool.query(
-            `INSERT INTO module_catalog (nom, niveau, description, logo_url, created_by, created_at)
-             VALUES ($1, $2, $3, $4, $5, NOW())
-             ON CONFLICT (nom, niveau) DO UPDATE
-             SET description = COALESCE(EXCLUDED.description, module_catalog.description),
-                 logo_url = COALESCE(EXCLUDED.logo_url, module_catalog.logo_url)
-             RETURNING *`,
-            [moduleName, String(niveau).toUpperCase(), description || null, logo_url || null, userId]
-        );
+        // If legacy table exists, use it; otherwise insert into `modules` for compatibility with other backend
+        const tbl = await pool.query("SELECT to_regclass('public.module_catalog') AS reg");
+        let insert;
+        if (tbl.rows[0] && tbl.rows[0].reg) {
+            insert = await pool.query(
+                `INSERT INTO module_catalog (nom, niveau, description, logo_url, created_by, created_at)
+                 VALUES ($1, $2, $3, $4, $5, NOW())
+                 ON CONFLICT (nom, niveau) DO UPDATE
+                 SET description = COALESCE(EXCLUDED.description, module_catalog.description),
+                     logo_url = COALESCE(EXCLUDED.logo_url, module_catalog.logo_url)
+                 RETURNING *`,
+                [moduleName, String(niveau).toUpperCase(), description || null, logo_url || null, userId]
+            );
 
-        await pool.query(
-            `INSERT INTO moderation_log (moderator_id, contenu_type, contenu_id, action, raison, created_at)
-             VALUES ($1, 'MODULE', $2, 'CREATE_MODULE', $3, NOW())`,
-            [userId, insert.rows[0].id, `Module ${moduleName} (${String(niveau).toUpperCase()})`]
-        );
+            await pool.query(
+                `INSERT INTO moderation_log (moderator_id, contenu_type, contenu_id, action, raison, created_at)
+                 VALUES ($1, 'MODULE', $2, 'CREATE_MODULE', $3, NOW())`,
+                [userId, insert.rows[0].id, `Module ${moduleName} (${String(niveau).toUpperCase()})`]
+            );
+        } else {
+            // Insert into `modules` table
+            insert = await pool.query(
+                `INSERT INTO modules (code, nom, description, niveau, created_by, created_at)
+                 VALUES ($1, $2, $3, $4, $5, NOW())
+                 ON CONFLICT (code, niveau) DO UPDATE
+                 SET description = COALESCE(EXCLUDED.description, modules.description)
+                 RETURNING *`,
+                [moduleName.replace(/\s+/g, '-').toUpperCase(), moduleName, description || null, String(niveau).toUpperCase(), userId]
+            );
+
+            await pool.query(
+                `INSERT INTO moderation_log (moderator_id, contenu_type, contenu_id, action, raison, created_at)
+                 VALUES ($1, 'MODULE', $2, 'CREATE_MODULE', $3, NOW())`,
+                [userId, insert.rows[0].id, `Module ${moduleName} (${String(niveau).toUpperCase()})`]
+            );
+        }
 
         res.status(201).json({ message: 'Module créé', module: insert.rows[0] });
     } catch (err) {

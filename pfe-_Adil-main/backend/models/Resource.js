@@ -13,7 +13,7 @@ class Resource {
             file_name,
             file_size,
             file_type,
-            approval_status = 'APPROVED',
+            approval_status = 'PENDING',
             approved_by = null,
             approved_at = null
         } = resourceData;
