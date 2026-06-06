@@ -21,8 +21,9 @@ import StudentChat from './pages/etudiant/Chat';
 import StudentBot from './pages/etudiant/Bot';
 import FormateurDashboard from './pages/formateur/FormateurDashboard';
 import MyModules from './pages/formateur/MyModules';
-import ResourceUpload from './pages/formateur/ResourceUpload';
 import MyResources from './pages/formateur/MyResources';
+import PendingResources from './pages/formateur/PendingResources';
+import ResourceUpload from './pages/formateur/ResourceUpload';
 import MyStudents from './pages/formateur/MyStudents';
 import FormateurChat from './pages/formateur/FormateurChat';
 import FormateurProfile from './pages/formateur/FormateurProfile';
@@ -106,9 +107,9 @@ function App() {
                     }>
                         <Route index element={<FormateurDashboard />} />
                         <Route path="modules" element={<MyModules />} />
-                        <Route path="upload" element={<ResourceUpload />} />
                         <Route path="resources" element={<MyResources />} />
-                        <Route path="resources/:id/edit" element={<ResourceUpload />} />
+                        <Route path="resources/pending" element={<PendingResources />} />
+                        <Route path="upload" element={<ResourceUpload />} />
                         <Route path="students" element={<MyStudents />} />
                         <Route path="chat" element={<FormateurChat />} />
                         <Route path="communities/:id/chat" element={<CommunityChat />} />

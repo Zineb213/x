@@ -26,20 +26,25 @@ const Layout = () => {
             ];
         }
         if (['FORMATEUR', 'FORMATEUR_SIMPLE', 'MODERATEUR'].includes(role)) {
-            return [
+            const items = [
                 { path: '/formateur', label: 'Dashboard', icon: '📊' },
-        { path: '/formateur/modules', label: 'Mes Modules', icon: '📚' },
-        { path: '/formateur/resources', label: 'Mes Ressources', icon: '📄' },
-        { path: '/formateur/upload', label: 'Upload', icon: '⬆️' },
-        { path: '/formateur/students', label: 'Étudiants', icon: '👨‍🎓' },
-        { path: '/formateur/chat', label: 'Chat', icon: '💬' },
-        { path: '/formateur/profile', label: 'Profil', icon: '👤' },
-            { path: '/formateur/live', label: 'Live', icon: '🔴' },
-            ];
+                { path: '/formateur/modules', label: 'Mes Modules', icon: '📚' },
+                { path: '/formateur/resources', label: 'Ressources', icon: '📁' },
+            ]; 
+            if (role === 'FORMATEUR') {
+                items.push({ path: '/formateur/resources/pending', label: 'À valider', icon: '🧾' });
+            }
+            items.push(
+                { path: '/formateur/students', label: 'Étudiants', icon: '👨‍🎓' },
+                { path: '/formateur/chat', label: 'Chat', icon: '💬' },
+                { path: '/formateur/profile', label: 'Profil', icon: '👤' },
+                { path: '/formateur/live', label: 'Live', icon: '🔴' },
+            );
+            return items;
         }
         return [
             { path: '/etudiant', label: 'Accueil', icon: '🏠' },
-            { path: '/etudiant/resources', label: 'Ressources', icon: '📚' },
+            { path: '/etudiant/resources', label: 'Modules', icon: '📚' },
             { path: '/etudiant/communities', label: 'Communauté', icon: '📝' },
             { path: '/etudiant/chat', label: 'Chat', icon: '💬' },
             { path: '/etudiant/bot', label: 'Assistant IA', icon: '🤖' },

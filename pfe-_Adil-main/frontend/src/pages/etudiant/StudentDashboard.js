@@ -3,12 +3,14 @@ import api from '../../services/api';
 import LevelProgress from '../../components/progress/LevelProgress';
 import BadgeList from '../../components/progress/BadgeList';
 import './StudentDashboard.css';
+import { sanitizeText } from '../../utils/sanitizeText';
 import '../formateur/LiveSession.css';
 
 const StudentDashboard = () => {
     const [progress, setProgress] = useState(null);
     const [badges, setBadges] = useState([]);
     const [recentResources, setRecentResources] = useState([]);
+    const [completedResources, setCompletedResources] = useState(new Set());
     const [loading, setLoading] = useState(true);
     const [user, setUser] = useState(null);
     const [activeLives, setActiveLives] = useState([]);
@@ -31,6 +33,15 @@ const StudentDashboard = () => {
             if (progressRes.data.success) setProgress(progressRes.data.data);
             if (badgesRes.data.success) setBadges(badgesRes.data.data);
             if (resourcesRes.data.success) setRecentResources(resourcesRes.data.data);
+            if (resourcesRes.data.success) {
+                const completedIds = new Set();
+                for (const r of resourcesRes.data.data) {
+                    if (r.is_completed || r.completed || r.completed_at || r.user_completed || r.completed_by_user) {
+                        completedIds.add(r.id);
+                    }
+                }
+                setCompletedResources(completedIds);
+            }
             if (livesRes.data.success) setActiveLives(livesRes.data.data);
         } catch (error) {
             console.error('Error fetching dashboard:', error);
@@ -40,21 +51,29 @@ const StudentDashboard = () => {
     };
 
     const handleCompleteResource = async (resourceId, moduleId) => {
+        // optimistic update
+        setCompletedResources(prev => new Set(prev).add(resourceId));
         try {
             const response = await api.post('/etudiant/resources/complete', {
                 resourceId,
                 moduleId
             });
-            
             if (response.data.success) {
                 const xp = response.data.data?.xpEarned;
                 if (xp?.leveledUp) {
                     alert(`🎉 +${xp.xpEarned || ''} XP — progression enregistrée !`);
                 }
+                // refresh dashboard to update counts
                 fetchDashboardData();
             }
         } catch (error) {
             console.error('Error completing resource:', error);
+            // revert optimistic update
+            setCompletedResources(prev => {
+                const s = new Set(prev);
+                s.delete(resourceId);
+                return s;
+            });
         }
     };
 
@@ -152,16 +171,20 @@ const StudentDashboard = () => {
                     {recentResources.map((resource) => (
                         <div key={resource.id} className="resource-item">
                             <div className="resource-info">
-                                <h4>{resource.titre}</h4>
-                                <p>{resource.description}</p>
+                                <h4>{sanitizeText(resource.titre)}</h4>
+                                <p>{sanitizeText(resource.description)}</p>
                                 <small>Module: {resource.module_nom}</small>
                             </div>
-                            <button 
-                                className="btn-primary btn-sm"
-                                onClick={() => handleCompleteResource(resource.id, resource.module_id)}
-                            >
-                                ✓ Marquer complété
-                            </button>
+                            { (resource.is_completed || resource.completed || resource.completed_at || resource.user_completed || resource.completed_by_user || completedResources.has(resource.id)) ? (
+                                <button className="btn-primary btn-sm" disabled>Complete</button>
+                            ) : (
+                                <button 
+                                    className="btn-primary btn-sm"
+                                    onClick={() => handleCompleteResource(resource.id, resource.module_id)}
+                                >
+                                    ✓ Marquer complété
+                                </button>
+                            )}
                         </div>
                     ))}
                 </div>

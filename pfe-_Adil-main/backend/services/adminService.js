@@ -72,21 +72,22 @@ class AdminService {
     }
     
     async createModule(moduleData, adminId, schoolId = null) {
-        const { code, nom, description, credits, coeff, components } = moduleData;
+        const { code, nom, description, credits, coeff, components, niveau } = moduleData;
         const normalizedComponents = this.normalizeComponents(components);
-        
+        const niveauDb = niveau || 'L1';
+
         const module = await Module.create({
             code,
             nom,
             description,
-            niveau: 'L1',
+            niveau: niveauDb,
             credits: credits || 0,
             coeff: coeff || 1.0,
             created_by: adminId,
             components: normalizedComponents,
             school_id: schoolId
         });
-        
+
         return module;
     }
     

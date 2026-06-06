@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import api from '../../services/api';
 import './FormateurDashboard.css';
+import { sanitizeText } from '../../utils/sanitizeText';
 
 const FormateurDashboard = () => {
     const [stats, setStats] = useState(null);
@@ -66,8 +67,8 @@ const FormateurDashboard = () => {
                         {recentResources.map((resource) => (
                             <div key={resource.id} className="resource-item">
                                 <div className="resource-info">
-                                    <h4>{resource.titre}</h4>
-                                    <p>{resource.module_nom}</p>
+                                    <h4>{sanitizeText(resource.titre)}</h4>
+                                    <p>{sanitizeText(resource.module_nom)}</p>
                                     <small>Ajouté le {new Date(resource.created_at).toLocaleDateString()}</small>
                                 </div>
                                 <span className={`category-badge ${resource.category?.toLowerCase()}`}>
@@ -84,9 +85,6 @@ const FormateurDashboard = () => {
                 <div className="action-buttons">
                     <button onClick={() => window.location.href = '/formateur/upload'}>
                         📤 Ajouter une ressource
-                    </button>
-                    <button onClick={() => window.location.href = '/formateur/resources'}>
-                        📚 Voir mes ressources
                     </button>
                     <button onClick={() => window.location.href = '/formateur/students'}>
                         👨‍🎓 Voir mes étudiants

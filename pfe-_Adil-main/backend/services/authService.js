@@ -58,11 +58,15 @@ class AuthService {
       }
     }
 
+    // determine if this is the user's first login (last_login is null)
+    const isFirstLogin = !user.last_login;
+
     await User.updateLastLogin(user.id);
     const token = generateToken(user);
 
     const { password_hash, ...userWithoutPassword } = user;
-    return { token, user: userWithoutPassword };
+    // include is_first_login flag so frontend can show initial setup modal
+    return { token, user: { ...userWithoutPassword, is_first_login: isFirstLogin } };
   }
 }
 

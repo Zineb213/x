@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../../services/api';
 import './FormateurPages.css';
+import { sanitizeText } from '../../utils/sanitizeText';
 
 const MyResources = () => {
     const navigate = useNavigate();
@@ -88,6 +89,7 @@ const MyResources = () => {
                                 <th>Titre</th>
                                 <th>Module</th>
                                 <th>Catégorie</th>
+                                <th>Statut</th>
                                 <th>Téléchargements</th>
                                 <th>Date</th>
                                 <th>Actions</th>
@@ -96,11 +98,16 @@ const MyResources = () => {
                         <tbody>
                             {resources.map(resource => (
                                 <tr key={resource.id}>
-                                    <td><strong>{resource.titre}</strong></td>
+                                    <td><strong>{sanitizeText(resource.titre)}</strong></td>
                                     <td>{resource.module_code}</td>
                                     <td>
                                         <span className={`badge ${getCategoryBadgeClass(resource.category)}`}>
                                             {resource.category}
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span className={`badge badge-status badge-${resource.approval_status?.toLowerCase()}`}>
+                                            {resource.approval_status || 'N/A'}
                                         </span>
                                     </td>
                                     <td>{resource.download_count || 0}</td>
@@ -140,7 +147,7 @@ const MyResources = () => {
                             <button className="modal-close" onClick={() => setShowDeleteModal(false)}>&times;</button>
                         </div>
                         <div className="modal-body">
-                            <p>Supprimer la ressource : <strong>{resourceToDelete.titre}</strong> ?</p>
+                            <p>Supprimer la ressource : <strong>{sanitizeText(resourceToDelete.titre)}</strong> ?</p>
                             <p>Cette action est irréversible.</p>
                         </div>
                         <div className="modal-footer">

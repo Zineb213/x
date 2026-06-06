@@ -6,8 +6,16 @@ const authService = {
         const response = await api.post('/auth/login', { identifier: matricule, password });
         if (response.data.success) {
             const { token, user } = response.data.data;
+            // store in sessionStorage for current-tab session; keep localStorage as fallback compatibility
             sessionStorage.setItem('token', token);
             sessionStorage.setItem('user', JSON.stringify(user));
+            try {
+                // keep compatibility with older clients that used localStorage
+                localStorage.setItem('token', token);
+                localStorage.setItem('user', JSON.stringify(user));
+            } catch (e) {
+                // ignore if localStorage not available
+            }
             return { success: true, user };
         }
         return { success: false, error: response.data.error };
@@ -70,18 +78,19 @@ const authService = {
     logout: () => {
         sessionStorage.removeItem('token');
         sessionStorage.removeItem('user');
+        try { localStorage.removeItem('token'); localStorage.removeItem('user'); } catch (e) {}
         window.location.href = '/login';
     },
 
     // Check if authenticated
     isAuthenticated: () => {
-        const token = sessionStorage.getItem('token');
+        const token = sessionStorage.getItem('token') || localStorage.getItem('token');
         return !!token;
     },
 
     // Get user from sessionStorage
     getUser: () => {
-        const user = sessionStorage.getItem('user');
+        const user = sessionStorage.getItem('user') || localStorage.getItem('user');
         return user ? JSON.parse(user) : null;
     },
 

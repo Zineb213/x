@@ -29,6 +29,13 @@ const Users = () => {
 
     useEffect(() => {
         fetchUsers();
+
+        // lightweight polling to keep pending registrations up-to-date
+        const iv = setInterval(() => {
+            fetchRegistrations();
+        }, 10000);
+
+        return () => clearInterval(iv);
     }, []);
 
     useEffect(() => {
@@ -66,20 +73,24 @@ const Users = () => {
         });
     }, [users, filterRole, filterNiveau]);
 
+    const fetchRegistrations = async () => {
+        try {
+            const res = await api.get('/admin/student-registrations?status=PENDING');
+            if (res.data?.success) setPendingRegistrations(res.data.data);
+        } catch (err) {
+            console.error('Error fetching registrations', err);
+        }
+    };
+
     const fetchUsers = async () => {
         try {
-            const [usersResponse, registrationsResponse] = await Promise.all([
-                api.get('/admin/users/password-status'),
-                api.get('/admin/student-registrations?status=PENDING')
-            ]);
-
+            const usersResponse = await api.get('/admin/users/password-status');
             if (usersResponse.data.success) {
                 setUsers(usersResponse.data.data);
             }
 
-            if (registrationsResponse.data.success) {
-                setPendingRegistrations(registrationsResponse.data.data);
-            }
+            // ensure registrations are fetched even if users call is slow/fails
+            await fetchRegistrations();
         } catch (error) {
             console.error('Error fetching users:', error);
             setMessage({ type: 'error', text: 'Erreur lors du chargement des utilisateurs' });
@@ -228,6 +239,7 @@ const Users = () => {
             <div className="page-header">
                 <h1>Gestion des Utilisateurs</h1>
                 <p>Gérez tous les utilisateurs de la plateforme</p>
+                <button type="button" className="btn-primary" style={{ marginLeft: 12 }} onClick={fetchUsers}>Rafraîchir</button>
             </div>
 
             {message.text && (

@@ -626,7 +626,7 @@ const deleteModule = async (req, res, next) => {
 const updateModule = async (req, res, next) => {
     try {
         const { id } = req.params;
-        const { nom, description, credits, coeff, components } = req.body;
+        const { nom, description, credits, coeff, components, niveau } = req.body;
         const Module = require('../models/Module');
         
         const module = await Module.findById(id);
@@ -658,7 +658,7 @@ const updateModule = async (req, res, next) => {
             }
         }
 
-        const updatedModule = await Module.update(id, { nom, description, credits, coeff, components: normalizedComponents });
+        const updatedModule = await Module.update(id, { nom, description, credits, coeff, niveau, components: normalizedComponents });
         
         res.status(HTTP_STATUS.OK).json({
             success: true,

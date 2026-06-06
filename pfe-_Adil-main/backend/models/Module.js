@@ -33,11 +33,11 @@ class Module {
     }
 
     static async update(id, updates) {
-        const { nom, description, credits, coeff, components } = updates;
+        const { nom, description, credits, coeff, niveau, components } = updates;
         const result = await query(
-            `UPDATE modules SET nom = $1, description = $2, credits = $3, coeff = $4, components = COALESCE($5, components), updated_at = CURRENT_TIMESTAMP
-             WHERE id = $6 RETURNING *`,
-            [nom, description, credits, coeff, components, id]
+            `UPDATE modules SET nom = $1, description = $2, credits = $3, coeff = $4, niveau = COALESCE($5, niveau), components = COALESCE($6, components), updated_at = CURRENT_TIMESTAMP
+             WHERE id = $7 RETURNING *`,
+            [nom, description, credits, coeff, niveau, components, id]
         );
         return result.rows[0];
     }

@@ -1,4 +1,4 @@
-const { query } = require('../config/database');
+const { query, transaction } = require('../config/database');
 const User = require('../models/User');
 const { generateMatricule } = require('../utils/matriculeGenerator');
 const { HTTP_STATUS, ROLES } = require('../config/constants');
@@ -44,7 +44,7 @@ const parseBoolean = (value) => {
 
 const createSchool = async (req, res, next) => {
     try {
-        const { name, code } = req.body;
+        const { name, code, admin = null, subscription_plan_id = null } = req.body;
 
         if (!name || !code) {
             return res.status(HTTP_STATUS.BAD_REQUEST).json({
@@ -53,22 +53,95 @@ const createSchool = async (req, res, next) => {
             });
         }
 
-        const result = await query(
-            `INSERT INTO schools (name, code, subscription_plan_id)
-             VALUES (
-                $1,
-                $2,
-                (SELECT id FROM subscription_plans WHERE is_active = true ORDER BY max_students ASC LIMIT 1)
-             )
-             RETURNING id, name, code, is_active, payment_status, next_due_date, created_at`,
-            [name.trim(), code.trim().toUpperCase()]
-        );
+        // prepare admin values if provided
+        let adminData = null;
+        if (admin) {
+            const { email, nom, prenom, password } = admin;
+            if (!email || !nom || !prenom || !password) {
+                return res.status(HTTP_STATUS.BAD_REQUEST).json({
+                    success: false,
+                    error: 'admin object must include email, nom, prenom and password'
+                });
+            }
+            if (password.length < 6) {
+                return res.status(HTTP_STATUS.BAD_REQUEST).json({
+                    success: false,
+                    error: 'admin password must be at least 6 characters long'
+                });
+            }
+            adminData = { email: email.toLowerCase(), nom, prenom, password };
+        }
+
+        // If subscription_plan_id provided, validate it exists and is active
+        if (subscription_plan_id !== null && !Number.isInteger(subscription_plan_id)) {
+            return res.status(HTTP_STATUS.BAD_REQUEST).json({
+                success: false,
+                error: 'subscription_plan_id must be an integer if provided'
+            });
+        }
+
+        // generate matricule and hashed password ahead of transaction if needed
+        let matricule = null;
+        let hashedPassword = null;
+        if (adminData) {
+            matricule = await generateMatricule();
+            hashedPassword = await User.hashPassword(adminData.password);
+        }
+
+        const result = await transaction(async (client) => {
+            // determine subscription_plan_id (fallback to first active plan)
+            let planId = subscription_plan_id;
+            if (!planId) {
+                const planRes = await client.query(
+                    `SELECT id FROM subscription_plans WHERE is_active = true ORDER BY max_students ASC LIMIT 1`
+                );
+                planId = planRes.rows[0] ? planRes.rows[0].id : null;
+            } else {
+                const planCheck = await client.query(`SELECT id FROM subscription_plans WHERE id = $1 AND is_active = true`, [planId]);
+                if (planCheck.rows.length === 0) {
+                    throw { status: HTTP_STATUS.NOT_FOUND, message: 'Subscription plan not found' };
+                }
+            }
+
+            const schoolInsert = await client.query(
+                `INSERT INTO schools (name, code, subscription_plan_id)
+                 VALUES ($1, $2, $3)
+                 RETURNING id, name, code, is_active, payment_status, next_due_date, created_at, subscription_plan_id`,
+                [name.trim(), code.trim().toUpperCase(), planId]
+            );
+
+            const createdSchool = schoolInsert.rows[0];
+            let createdAdmin = null;
+
+            if (adminData) {
+                // ensure email doesn't already exist
+                const exists = await client.query(`SELECT id FROM users WHERE email = $1`, [adminData.email]);
+                if (exists.rows.length > 0) {
+                    throw { status: HTTP_STATUS.CONFLICT, message: 'Email already exists' };
+                }
+
+                const userInsert = await client.query(
+                    `INSERT INTO users (matricule, email, password_hash, nom, prenom, role_global, niveau, school_id)
+                     VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+                     RETURNING id, matricule, email, nom, prenom, role_global, niveau, school_id`,
+                    [matricule, adminData.email, hashedPassword, adminData.nom, adminData.prenom, ROLES.ADMIN, null, createdSchool.id]
+                );
+
+                createdAdmin = userInsert.rows[0];
+            }
+
+            return { school: createdSchool, admin: createdAdmin };
+        });
 
         res.status(HTTP_STATUS.CREATED).json({
             success: true,
-            data: result.rows[0]
+            data: result,
+            message: 'Ecole creee' + (result.admin ? ' et admin cree.' : '.')
         });
     } catch (error) {
+        if (error && error.status) {
+            return res.status(error.status).json({ success: false, error: error.message });
+        }
         next(error);
     }
 };
@@ -273,20 +346,20 @@ const getOverview = async (req, res, next) => {
                     COUNT(*)::int AS total_schools,
                     COUNT(*) FILTER (WHERE is_active = true)::int AS active_schools,
                     COUNT(*) FILTER (WHERE is_active = false)::int AS suspended_schools,
-                                        COUNT(*) FILTER (
-                                                WHERE next_due_date IS NOT NULL
-                                                    AND payment_status <> 'PAID'
-                                                    AND (CURRENT_DATE - next_due_date) > 0
-                                                    AND (CURRENT_DATE - next_due_date) <= COALESCE(payment_grace_days, $1)
-                                        )::int AS schools_in_grace,
-                                        COUNT(*) FILTER (
-                                                WHERE next_due_date IS NOT NULL
-                                                    AND payment_status <> 'PAID'
-                                                    AND (CURRENT_DATE - next_due_date) > COALESCE(payment_grace_days, $1)
-                                        )::int AS schools_critical,
-                                        COUNT(*) FILTER (WHERE payment_status = 'OVERDUE')::int AS overdue_schools
-                 FROM schools`
-                                [DEFAULT_PAYMENT_GRACE_DAYS]
+                    COUNT(*) FILTER (
+                        WHERE next_due_date IS NOT NULL
+                            AND payment_status <> 'PAID'
+                            AND (CURRENT_DATE - next_due_date) > 0
+                            AND (CURRENT_DATE - next_due_date) <= COALESCE(payment_grace_days, $1)
+                    )::int AS schools_in_grace,
+                    COUNT(*) FILTER (
+                        WHERE next_due_date IS NOT NULL
+                            AND payment_status <> 'PAID'
+                            AND (CURRENT_DATE - next_due_date) > COALESCE(payment_grace_days, $1)
+                    )::int AS schools_critical,
+                    COUNT(*) FILTER (WHERE payment_status = 'OVERDUE')::int AS overdue_schools
+                 FROM schools`,
+                [DEFAULT_PAYMENT_GRACE_DAYS]
             ),
             query(
                 `SELECT
@@ -298,7 +371,10 @@ const getOverview = async (req, res, next) => {
                  WHERE role_global <> 'SUPER_ADMIN'`
             ),
             query(`SELECT COUNT(*)::int AS total_modules FROM modules`),
-            query(`SELECT COUNT(*)::int AS pending_registrations FROM student_registration_requests WHERE status = 'PENDING'`),
+            // If table does not exist, return 0 pending registrations
+            query(`SELECT CASE WHEN to_regclass('public.student_registration_requests') IS NOT NULL
+                                THEN (SELECT COUNT(*)::int FROM student_registration_requests WHERE status = 'PENDING')
+                                ELSE 0 END AS pending_registrations`),
             query(`SELECT id, label, start_year, end_year FROM academic_years WHERE is_active = true ORDER BY id DESC LIMIT 1`)
         ]);
 

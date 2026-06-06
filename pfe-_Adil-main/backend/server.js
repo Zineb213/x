@@ -23,6 +23,7 @@ process.on('uncaughtException', (error) => {
 
 
 const { testConnection } = require('./config/database');
+const { runMigrations } = require('./dbMigrations');
 const { errorHandler, notFound } = require('./middlewares/errorMiddleware');
 
 // Import routes
@@ -122,8 +123,16 @@ const startServer = async () => {
     console.error('❌ Database connection failed. Server not starting.');
     process.exit(1);
   }
-const server = http.createServer(app);
-const io = initSocket(server);
+
+  try {
+    await runMigrations();
+  } catch (error) {
+    console.error('❌ Migration failed. Server not starting.');
+    process.exit(1);
+  }
+
+  const server = http.createServer(app);
+  const io = initSocket(server);
 
   server.listen(PORT, () => {
     console.log(`🚀 Server running on http://localhost:${PORT}`);

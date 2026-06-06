@@ -254,30 +254,37 @@
 
 % === Dédicaces et Remerciements (à personnaliser) ===
 \cleardoublepage
-\thispagestyle{empty}
-\chapter*{Dédicaces}
+\thispagestyle{empty}\chapter*{Dédicaces}
 \addcontentsline{toc}{chapter}{Dédicaces}
 \vspace*{3.5cm}
 \begin{center}
-\lairge
-\textit{\`A mes parents, pour leur amour et leur soutien.}
+\large
+\textit{\`A ma famille, pour leur amour inconditionnel, leur patience et leur soutien constant tout au long de mon parcours.}
 \medskip
 
-\textit{\`A mes amis et coll\`egues, pour leurs encouragements et leurs conseils.}
+\textit{\`A mes amis et coll\`egues, pour leur pr\'esence, leurs encouragements sinc\`eres et la richesse de nos \'echanges.}
+\medskip
+
+\textit{\`A toutes les personnes qui ont partag\'e leurs connaissances, leur temps et leur bienveillance pour m'aider \`a r\'ealiser ce travail.}
 \end{center}
 \vspace{1cm}
-\noindent Ce m\'emoire est aussi d\'edi\'e \`a tous ceux qui ont partag\'e leurs connaissances et leur temps pour m'aider.
 \clearpage
 
 \thispagestyle{empty}
 \chapter*{Remerciements}
 \addcontentsline{toc}{chapter}{Remerciements}
-\noindent Je remercie vivement mon encadrant pour son suivi, ses conseils et sa rigueur, ainsi que les membres du jury pour leurs remarques constructives.
-
-\smallskip
-\noindent Mes remerciements vont \`a l'Equipe pédagogique, au personnel administratif, \`a mes coll\`egues et \`a ma famille pour leur soutien moral et logistique.
+\vspace*{3.5cm}
+\begin{center}
+\large
+    \textit{Je tiens \`a exprimer ma profonde gratitude \`a mon encadrant pour la qualit\'e de son suivi, la pertinence de ses conseils ainsi que sa rigueur scientifique tout au long de ce travail.}
+    
+    \medskip
+    \textit{Mes remerciements s'adressent aussi \`a l'ensemble de l'\'équipe p\'edagogique et au personnel administratif pour leur disponibilit\'e et leur soutien constant. }
+    
+    \medskip
+    \textit{Enfin, j'adresse ma reconnaissance \`a mes coll\`egues et \`a ma famille pour leur soutien moral, leur patience et leurs encouragements pr\'ecieux tout au long de ce parcours.}
+\end{center}
 \clearpage
-
 \pagenumbering{roman}
 \tableofcontents
 \clearpage
@@ -293,8 +300,8 @@
 %% INTRODUCTION GÉNÉRALE
 %% ═══════════════════════════════════════════════════════════════════════════════
 
-\chapter*{Introduction generale}
-\addcontentsline{toc}{chapter}{Introduction generale}
+\chapter*{Introduction générale}
+\addcontentsline{toc}{chapter}{Introduction générale}
 
 La transformation numérique des systèmes d'enseignement constitue aujourd'hui une priorité stratégique pour les établissements confrontés à la massification des effectifs, à la diversification des parcours et à l'exigence croissante de qualité pédagogique. Dans ce contexte, la mise en place de plateformes numériques ne peut plus se limiter à la simple diffusion de supports de cours: elle doit intégrer la gouvernance académique, la collaboration entre acteurs et la traçabilité des activités.
 
@@ -306,13 +313,13 @@ Comment concevoir une plateforme éducative à la fois robuste techniquement, pe
 \paragraph{Objectif global.}
 Concevoir, implémenter et évaluer EduPlatform comme solution complète pour les écoles et centres de formation, puis proposer un cadre de passage à l'échelle startup à travers un modèle économique et une stratégie de croissance.
 
-\paragraph{Organisation du memoire.}
-Ce memoire est structure en quatre chapitres:
+\paragraph{Organisation du mémoire.}
+Ce mémoire est structure en quatre chapitres:
 \begin{itemize}
-  \item \textbf{Chapitre 1}: Etude de contexte, problematique et analyse des besoins;
+  \item \textbf{Chapitre 1}: Etude de contexte, problématique et analyse des besoins;
   \item \textbf{Chapitre 2}: Conception UML et architecture de la solution;
   \item \textbf{Chapitre 3}: Implementation technique, deploiement et validation;
-  \item \textbf{Chapitre 4}: Evaluation strategique et business model (cadre startup, loi 12-75).
+  \item \textbf{Chapitre 4}: Evaluation stratégique et business model (cadre startup, loi 12-75).
 \end{itemize}
 
 L'enchainement de ces chapitres permet de relier de maniere progressive la pertinence scientifique du projet, sa realisation concrete et sa projection entrepreneuriale.
@@ -322,7 +329,7 @@ L'enchainement de ces chapitres permet de relier de maniere progressive la perti
 %% CHAPITRE 1 — Contexte général, problématique et état de l'art
 %% ═══════════════════════════════════════════════════════════════════════════════
 
-\chapter{Etude de contexte, problematique et analyse des besoins}
+\chapter{Etude de contexte, problématique et analyse des besoins}
 
 %%──────────────────────────────────────────────────────────────────────────────
 \section{Introduction du chapitre}
@@ -332,7 +339,7 @@ La g\'en\'eralisation des technologies num\'eriques dans l'enseignement et la fo
 
 Le pr\'esent chapitre constitue le socle analytique et conceptuel du projet \textbf{EduPlatform}. Il poursuit quatre objectifs compl\'ementaires~: (i)~d\'ecrire le contexte mondial et national de la transformation num\'erique de l'enseignement~; (ii)~formuler la probl\'ematique ayant motiv\'e la conception d'EduPlatform~; (iii)~pr\'esenter les objectifs et la m\'ethodologie adopt\'es~; et (iv)~dresser un \'etat de l'art approfondi des solutions existantes, afin de positionner EduPlatform par rapport aux r\'ef\'erences du domaine.
 
-Ce chapitre est organis\'e comme suit~: la section~\ref{sec:contexte} traite du contexte g\'en\'eral~; la section~\ref{sec:problematique} formule la probl\'ematique~; la section~\ref{sec:objectifs} d\'etaille les objectifs~; la section~\ref{sec:methodo} pr\'esente la d\'emarche m\'ethodologique~; la section~\ref{sec:etat_art} constitue l'\'etat de l'art~; la section~\ref{sec:positionnement} positionne EduPlatform~; la section~\ref{sec:figures} pr\'esente les figures requises~; enfin, la section~\ref{sec:conclusion} conclut le chapitre.
+Ce chapitre est organis\'e comme suit~: la section~\ref{sec:contexte} traite du contexte g\'en\'eral~; la section~\ref{sec:problématique} formule la probl\'ematique~; la section~\ref{sec:objectifs} d\'etaille les objectifs~; la section~\ref{sec:methodo} pr\'esente la d\'emarche m\'ethodologique~; la section~\ref{sec:etat_art} constitue l'\'etat de l'art~; la section~\ref{sec:positionnement} positionne EduPlatform~; la section~\ref{sec:figures} pr\'esente les figures requises~; enfin, la section~\ref{sec:conclusion} conclut le chapitre.
 
 %%──────────────────────────────────────────────────────────────────────────────
 \section{Contexte g\'en\'eral}
@@ -343,17 +350,17 @@ Ce chapitre est organis\'e comme suit~: la section~\ref{sec:contexte} traite du 
 
 La transformation num\'erique de l'\'education s'est acc\'el\'er\'ee de mani\`ere consid\'erable au cours de la derni\`ere d\'ecennie, port\'ee par la g\'en\'eralisation de l'acc\`es \`a Internet, la mont\'ee en puissance des technologies mobiles et, plus r\'ecemment, l'\'emergence de l'intelligence artificielle appliqu\'ee aux processus p\'edagogiques. L'Union internationale des t\'el\'ecommunications (UIT) indique que 6~milliards de personnes, soit environ 74\,\% de la population mondiale, utilisaient Internet en 2025, tout en soulignant que 2,2~milliards d'individus demeurent exclus de cet acc\`es, principalement dans les pays \`a revenus faibles et interm\'ediaires~\cite{itu_facts_2025}.
 
-L'UNESCO confirme que si la connectivit\'e progresse \`a l'\'echelle mondiale, elle reste profond\'ement in\'egale~: seulement 40\,\% des \'ecoles primaires et 50\,\% des \'etablissements du secondaire inf\'erieur sont connect\'es \`a Internet dans le monde~\cite{unesco_gem_2023}. Ces donn\'ees soul\`event des questions fondamentales de politique \'educative et d'\'equit\'e d'acc\`es aux ressources num\'eriques, que l'UNESCO aborde dans ses cadres de comp\'etences num\'eriques et ses recommandations sur les ressources \'educatives libres~\cite{unesco_oer_2019,unesco_digital_2026}.
+L'UNESCO confirme que si la connectivit\'e progresse \`a l'\'echelle mondiale, elle reste profond\'ement in\'egale~: seulement 40\,\% des \'écoles primaires et 50\,\% des \'etablissements du secondaire inf\'erieur sont connect\'es \`a Internet dans le monde~\cite{unesco_gem_2023}. Ces donn\'ees soul\`event des questions fondamentales de politique \'educative et d'\'equit\'e d'acc\`es aux ressources num\'eriques, que l'UNESCO aborde dans ses cadres de comp\'etences num\'eriques et ses recommandations sur les ressources \'educatives libres~\cite{unesco_oer_2019,unesco_digital_2026}.
 
 La Banque mondiale souligne que l'EdTech repr\'esente une opportunit\'e in\'edite pour les pays \`a revenus interm\'ediaires~: si elle est soutenue par des comp\'etences num\'eriques fondamentales et une connectivit\'e ad\'equate, elle peut contribuer \`a r\'eduire la crise d'apprentissage mondiale, notamment dans les communaut\'es souffrant de p\'enurie d'enseignants~\cite{worldbank_edtech_2026}. Toutefois, cette m\^eme institution met en garde contre les risques li\'es \`a la s\'ecurit\'e des donn\'ees et le risque d'aggravation des in\'egalit\'es \'educatives en l'absence de politiques d'encadrement adapt\'ees.
 
 \subsection{Contexte national et enjeux institutionnels}
 
-Dans le contexte alg\'erien et plus particuli\`erement au sein des écoles de soutien, des centres de formation et des écoles de langues, la gestion des activit\'es p\'edagogiques souffre d'une fragmentation des outils et des canaux de diffusion. Les ressources sont souvent partag\'ees via des messageries instantan\'ees non structur\'ees, les annonces ne parviennent pas syst\'ematiquement aux apprenants concern\'es, et les enseignants manquent d'un espace centralis\'e pour organiser leurs productions p\'edagogiques par module et par niveau d'\'etudes.
+Dans le contexte alg\'erien et plus particuli\`erement au sein des écoles de soutien, des centres de formation et des écoles de langues, la gestion des activit\'es p\'edagogiques souffre d'une fragmentation des outils et des canaux de diffusion. Les ressources sont souvent partag\'ees via des messageries instantan\'ees non structur\'ees, les annonces ne parviennent pas syst\'ematiquement aux apprenants concern\'es, et les enseignants manquent d'un espace centralis\'e pour organiser leurs productions p\'edagogiques par module et par niveau d'\'études.
 
 %%──────────────────────────────────────────────────────────────────────────────
 \section{Probl\'ematique}
-\label{sec:problematique}
+\label{sec:problématique}
 %%──────────────────────────────────────────────────────────────────────────────
 
 La gestion des activit\'es p\'edagogiques dans un contexte éducatif contemporain fait face \`a un d\'efi central~: la multiplicit\'e des outils et des canaux de communication g\'en\`ere une dispersion informationnelle qui nuit \`a la coh\'erence de l'exp\'erience des apprenants et des formateurs. Les ressources p\'edagogiques~--- cours, travaux dirig\'es, travaux pratiques, examens, corrig\'es et supports multim\'edias~--- sont dispers\'ees sur des supports h\'et\'erog\`enes, sans structuration par module ni tra\c{c}abilit\'e des mises \`a jour.
@@ -394,7 +401,7 @@ L'objectif g\'en\'eral du projet est de concevoir, d\'evelopper et valider \text
 La d\'emarche adopt\'ee suit un processus incr\'emental en cinq phases, conforme aux pratiques reconnues en ing\'enierie des syst\`emes d'information et aux recommandations des travaux de r\'ef\'erence analys\'es~:
 
 \begin{enumerate}
-  \item \textbf{Analyse des besoins}~: identification des besoins fonctionnels et non fonctionnels par l'\'etude des usages existants, l'analyse de la litt\'erature et la consultation des trois m\'emoires de r\'ef\'erence.
+  \item \textbf{Analyse des besoins}~: identification des besoins fonctionnels et non fonctionnels par l'\'étude des usages existants, l'analyse de la litt\'erature et la consultation des trois m\'emoires de r\'ef\'erence.
   \item \textbf{Mod\'elisation conceptuelle}~: repr\'esentation des interactions par des diagrammes UML (cas d'utilisation, s\'equence, classes) pour formaliser les sc\'enarios et l'architecture logique.
   \item \textbf{Conception de l'architecture}~: d\'efinition de l'architecture applicative (API REST, frontend SPA) et du sch\'ema de la base de donn\'ees relationnelle PostgreSQL.
   \item \textbf{Impl\'ementation et int\'egration}~: d\'eveloppement progressif par fonctionnalit\'es (authentification, ressources, social, notifications, planificateur, administration), avec validation continue.
@@ -420,16 +427,16 @@ L'e-learning d\'esigne l'ensemble des modalit\'es d'enseignement et d'apprentiss
 \subsection{Pr\'esentation des solutions de r\'ef\'erence}
 
 \paragraph{Moodle.}
-Moodle est l'un des LMS open source les plus utilis\'es dans le monde. Il offre une gestion fine des cours, des activit\'es et des \'evaluations, ainsi qu'un syst\`eme d'extensions (plugins) permettant une forte personnalisation. Sa gouvernance institutionnelle est tr\`es flexible, mais son d\'eploiement exige des comp\'etences techniques~\cite{moodle_overview_2026}.
+Moodle est l'un des LMS open source les plus utilis\'es dans le monde. Il offre une gestion fine des cours, des activit\'es et des \'évaluations, ainsi qu'un syst\`eme d'extensions (plugins) permettant une forte personnalisation. Sa gouvernance institutionnelle est tr\`es flexible, mais son d\'eploiement exige des comp\'etences techniques~\cite{moodle_overview_2026}.
 
 \paragraph{Google Classroom.}
 Google Classroom est un service cloud de gestion de classes orient\'e simplicit\'e. Il s'int\`egre nativement aux outils Google Workspace (Drive, Docs, Meet). Sa personnalisation reste cependant limit\'ee et sa d\'ependance \`a l'\'ecosyst\`eme propri\'etaire peut constituer une contrainte~\cite{google_classroom_2026}.
 
 \paragraph{Microsoft Teams pour l'\'Education.}
-Microsoft Teams Education offre une exp\'erience unifi\'ee de classe virtuelle et de collaboration au sein de l'environnement Microsoft~365. Il supporte la visioconf\'erence, le chat, la gestion d'\'equipes et les devoirs~\cite{microsoft_teams_edu_2026}.
+Microsoft Teams Education offre une exp\'erience unifi\'ee de classe virtuelle et de collaboration au sein de l'environnement Microsoft~365. Il supporte la visioconf\'erence, le chat, la gestion d'\'équipes et les devoirs~\cite{microsoft_teams_edu_2026}.
 
 \paragraph{Canvas LMS.}
-Canvas est un LMS cloud moderne, appr\'eci\'e pour son interface structur\'ee, ses workflows d'\'evaluation et ses outils analytiques. Son adoption est pr\'edominante dans les établissements d'enseignement nord-am\'ericains~\cite{canvas_overview_2026}.
+Canvas est un LMS cloud moderne, appr\'eci\'e pour son interface structur\'ee, ses workflows d'\'évaluation et ses outils analytiques. Son adoption est pr\'edominante dans les établissements d'enseignement nord-am\'ericains~\cite{canvas_overview_2026}.
 
 %%──────────────────────────────────────────────────────────────────────────────
 \subsection{Tableau~1~---~Comparaison synth\'etique des plateformes}
@@ -597,7 +604,7 @@ Avanc\'ee \\
 Organisation par modules &
 Partielle (cat\'eg.) &
 Par classe uniquement &
-Par \'equipe\,/\,canal &
+Par \'équipe\,/\,canal &
 Par cours \\
 \hline
 
@@ -731,7 +738,7 @@ Ce premier chapitre a \'etabli le cadre analytique et conceptuel du projet EduPl
 
 L'analyse comparative men\'ee dans la section~\ref{sec:etat_art} d\'emontre qu'aucune des plateformes \'etudi\'ees~--- Moodle, Google Classroom, Microsoft Teams Education, Canvas~--- ne couvre de mani\`ere optimale l'ensemble des exigences identifi\'ees~: navigation module-first, gouvernance \`a trois r\^oles, communication int\'egr\'ee et planification hebdomadaire d\'edi\'ee. Cette convergence de lacunes justifie pleinement la conception d'EduPlatform comme solution \textit{ad hoc}, d\'evelopp\'ee sp\'ecifiquement pour le contexte éducatif local.
 
-La suite du m\'emoire approfondit successivement la conception UML (Chapitre~2), l'impl\'ementation technique (Chapitre~3) et l'\'evaluation des r\'esultats (Chapitre~4), en s'appuyant sur le cadre th\'eorique et m\'ethodologique pos\'e dans le pr\'esent chapitre. Cette analyse vise notamment les besoins des écoles de soutien, des écoles de langues et des centres de formation. Cette analyse vise notamment les besoins des écoles de soutien, des écoles de langues et des centres de formation.
+La suite du m\'emoire approfondit successivement la conception UML (Chapitre~2), l'impl\'ementation technique (Chapitre~3) et l'\'évaluation des r\'esultats (Chapitre~4), en s'appuyant sur le cadre th\'eorique et m\'ethodologique pos\'e dans le pr\'esent chapitre. Cette analyse vise notamment les besoins des écoles de soutien, des écoles de langues et des centres de formation.
 
 %% ═══════════════════════════════════════════════════════════════════════════════
 %% CHAPITRE 2 — Analyse, modelisation UML et conception
@@ -743,9 +750,9 @@ La suite du m\'emoire approfondit successivement la conception UML (Chapitre~2),
 \section{Introduction du chapitre}
 %%──────────────────────────────────────────────────────────────────────────────
 
-Ce chapitre formalise la traduction de la problematique metier en specifications exploitables pour la realisation logicielle. Il presente successivement l'analyse des besoins, la modelisation UML des interactions, la conception des donnees et les choix architecturaux retenus pour EduPlatform.
+Ce chapitre formalise la traduction de la problématique metier en specifications exploitables pour la realisation logicielle. Il presente successivement l'analyse des besoins, la modelisation UML des interactions, la conception des données et les choix architecturaux retenus pour EduPlatform.
 
-L'objectif est double: garantir la coherence fonctionnelle de la solution et reduire les risques de derivation durant l'implementation.
+L'objectif est double: garantir la cohérence fonctionnelle de la solution et réduire les risques de derivation durant l'implementation.
 
 %%──────────────────────────────────────────────────────────────────────────────
 \section{Analyse des besoins}
@@ -753,10 +760,10 @@ L'objectif est double: garantir la coherence fonctionnelle de la solution et red
 
 \subsection{Identification des acteurs}
 
-Quatre acteurs principaux structurent le systeme:
+Quatre acteurs principaux structurent le système:
 \begin{itemize}
-  \item \textbf{Super administrateur}: gouvernance plateforme, ecoles, administrateurs;
-  \item \textbf{Administrateur d'ecole}: gestion des utilisateurs, modules, assignations, inscriptions;
+  \item \textbf{Super administrateur}: gouvernance plateforme, écoles, administrateurs;
+  \item \textbf{Administrateur d'école}: gestion des utilisateurs, modules, assignations, inscriptions;
   \item \textbf{Formateur}: publication des ressources, suivi des apprenants, sessions live;
   \item \textbf{Etudiant}: consultation des ressources, progression, interactions et lives.
 \end{itemize}
@@ -765,9 +772,9 @@ Quatre acteurs principaux structurent le systeme:
 
 \begin{itemize}
   \item authentification securisee et controle d'acces par role;
-  \item gestion des modules et de leurs composants pedagogiques (Cours/TD/TP);
+  \item gestion des modules et de leurs composants pédagogiques (Cours/TD/TP);
   \item workflow de gestion des utilisateurs, assignations et inscriptions;
-  \item publication/consultation des ressources pedagogiques;
+  \item publication/consultation des ressources pédagogiques;
   \item communication (chat, publications) et suivi de progression;
   \item diffusion de sessions live avec acces cible aux apprenants concernes.
 \end{itemize}
@@ -775,11 +782,11 @@ Quatre acteurs principaux structurent le systeme:
 \subsection{Besoins non fonctionnels}
 
 \begin{itemize}
-  \item securite: JWT, validation des droits, isolation multi-ecole;
+  \item sécurité: JWT, validation des droits, isolation multi-école;
   \item performance: API REST reactive, requetes SQL optimisees;
   \item maintenabilite: architecture modulaire frontend/backend;
   \item evolutivite: ajout de nouvelles fonctionnalites sans rupture;
-  \item ergonomie: reduction de la surcharge cognitive par role.
+  \item ergonomie: réduction de la surcharge cognitive par role.
 \end{itemize}
 
 \subsection{Besoins detailles par acteur}
@@ -796,20 +803,20 @@ Afin de garantir une couverture fonctionnelle complete, les besoins ont ete decl
 \textcolor{white}{\textbf{Valeur attendue}} \\
 \hline
 Super administrateur &
-Creer les ecoles, nommer les administrateurs, superviser la plateforme globale. &
+Creer les écoles, nommer les administrateurs, superviser la plateforme globale. &
 Gouvernance transverse et maitrise des droits inter-etablissements. \\
 \hline
-Administrateur d'ecole &
-Gerer comptes, modules, assignations, inscriptions, calendrier pedagogique. &
-Pilotage quotidien de l'activite academique et reduction des taches manuelles. \\
+Administrateur d'école &
+Gerer comptes, modules, assignations, inscriptions, calendrier pédagogique. &
+Pilotage quotidien de l'activite académique et réduction des taches manuelles. \\
 \hline
 Formateur &
 Publier ressources, organiser Cours/TD/TP, lancer des sessions live, suivre les apprenants. &
-Production pedagogique structuree et interaction rapide avec les apprenants. \\
+Production pédagogique structuree et interaction rapide avec les apprenants. \\
 \hline
 Etudiant &
 Consulter ressources, suivre les annonces, acceder aux lives, interagir via chat/publications. &
-Acces clair aux contenus et meilleure continuite d'apprentissage. \\
+Acces clair aux contenus et meilleure continuité d'apprentissage. \\
 \hline
 \end{longtable}
 
@@ -821,7 +828,7 @@ Acces clair aux contenus et meilleure continuite d'apprentissage. \\
 
 Les cas d'utilisation centraux incluent:
 \begin{itemize}
-  \item \textbf{Administrer la plateforme}: creer ecoles et administrateurs;
+  \item \textbf{Administrer la plateforme}: creer écoles et administrateurs;
   \item \textbf{Administrer une école}: gerer utilisateurs, modules, assignations et inscriptions;
   \item \textbf{Produire et diffuser}: uploader et organiser les ressources;
   \item \textbf{Apprendre et interagir}: consulter, telecharger, completer des ressources;
@@ -832,14 +839,14 @@ Les cas d'utilisation centraux incluent:
 
 \subsection{Cas d'utilisation detailles}
 
-Pour augmenter la lisibilité et aligner la modélisation avec l'implementation reelle, le memoire reserve trois diagrammes de cas d'utilisation distincts, chacun regroupant les roles fonctionnels suivants~:
+Pour augmenter la lisibilité et aligner la modélisation avec l'implementation réelle, le mémoire reserve trois diagrammes de cas d'utilisation distincts, chacun regroupant les roles fonctionnels suivants~:
 \begin{itemize}
-  \item administrateur (super administrateur et administrateur d'ecole);
+  \item administrateur (super administrateur et administrateur d'école);
   \item formateur (formateur global / principal et formateur simple);
-  \item etudiant.
+  \item étudiant.
 \end{itemize}
 
-\subsubsection{Cas d'utilisation 1: Administrateur (super + ecole)}
+\subsubsection{Cas d'utilisation 1: Administrateur (super + école)}
 \begin{figure}[H]
     \centering
     \safeimage[0.65\textwidth]{admin-usecase.png}{Cas d’utilisation: Administrateur}{Cas d’utilisation: Administrateur}
@@ -859,7 +866,7 @@ Pour augmenter la lisibilité et aligner la modélisation avec l'implementation 
 \begin{figure}[H]
     \centering
     \safeimage[0.65\textwidth]{student-usecase.png}{Cas d'utilisation: Etudiant}{Cas d'utilisation: Etudiant}
-    \label{fig:usecase-etudiant}
+    \label{fig:usecase-étudiant}
 \end{figure}
 \clearpage
 
@@ -873,13 +880,13 @@ Le reajustement ci-dessous est base sur les routes et composants effectivement p
 
 \textbf{Participants:} Etudiant, Admin Ecole, Super Admin, Formateur, Syst\`eme EduPlatform.
 
-\textbf{Flux nominal (code reel):}
+\textbf{Flux nominal (code réel):}
 \begin{enumerate}
   \item L'utilisateur accede \`a la plateforme.
   \item L'utilisateur saisit ses identifiants.
   \item Le backend verifie les informations et authentifie l'utilisateur.
-  \item Le systeme identifie le role et cree la session.
-  \item Le systeme redirige vers l'espace correspondant: etudiant, administration, formateur ou super admin.
+  \item Le système identifie le role et cree la session.
+  \item Le système redirige vers l'espace correspondant: étudiant, administration, formateur ou super admin.
 \end{enumerate}
 
 \begin{figure}[H]
@@ -892,14 +899,14 @@ Le reajustement ci-dessous est base sur les routes et composants effectivement p
 
 \textbf{Participants:} Super Admin, Syst\`eme EduPlatform.
 
-\textbf{Flux nominal (code reel):}
+\textbf{Flux nominal (code réel):}
 \begin{enumerate}
   \item Le super admin ouvre la gestion des modules.
   \item Il saisit les informations du nouveau module.
-  \item Le systeme verifie les donnees et cree le module.
+  \item Le système verifie les données et cree le module.
   \item Le super admin affecte un formateur au module.
-  \item Le systeme verifie la disponibilite du formateur et associe le formateur au module.
-  \item Le systeme confirme l'affectation reussie.
+  \item Le système verifie la disponibilite du formateur et associe le formateur au module.
+  \item Le système confirme l'affectation reussie.
 \end{enumerate}
 
 \begin{figure}[H]
@@ -909,16 +916,16 @@ Le reajustement ci-dessous est base sur les routes et composants effectivement p
 \end{figure}
 \clearpage
 
-\subsubsection{Sequence 3: circulation de la demande d'inscription etudiante}
+\subsubsection{Sequence 3: circulation de la demande d'inscription étudiante}
 
 \textbf{Participants:} Etudiant, Admin Ecole, Syst\`eme EduPlatform.
 
-\textbf{Flux nominal (code reel):}
+\textbf{Flux nominal (code réel):}
 \begin{enumerate}
-  \item L'etudiant demande une inscription et envoie ses informations personnelles.
-  \item Le systeme verifie le formulaire et cree une demande d'inscription.
-  \item L'admin ecole consulte la demande et affiche les informations etudiant.
-  \item Si la demande est acceptee, l'admin valide l'inscription et le systeme cree le compte etudiant.
+  \item L'étudiant demande une inscription et envoie ses informations personnelles.
+  \item Le système verifie le formulaire et cree une demande d'inscription.
+  \item L'admin école consulte la demande et affiche les informations étudiant.
+  \item Si la demande est acceptee, l'admin valide l'inscription et le système cree le compte étudiant.
   \item Si la demande est refusee, l'admin envoie la notification de refus.
 \end{enumerate}
 
@@ -929,16 +936,16 @@ Le reajustement ci-dessous est base sur les routes et composants effectivement p
 \end{figure}
 \clearpage
 
-\subsubsection{Sequence 4: publication de ressource pedagogique}
+\subsubsection{Sequence 4: publication de ressource pédagogique}
 
 \textbf{Participants:} Formateur, Syst\`eme EduPlatform.
 
-\textbf{Flux nominal (code reel):}
+\textbf{Flux nominal (code réel):}
 \begin{enumerate}
   \item Le formateur accede \`a ses modules affects.
   \item Il ajoute une ressource en envoyant le fichier et les informations associées.
-  \item Le systeme verifie le fichier et les metadonnees.
-  \item Si le fichier est valide, le systeme enregistre la ressource.
+  \item Le système verifie le fichier et les metadonnees.
+  \item Si le fichier est valide, le système enregistre la ressource.
   \item Le formateur est informe de la reussite ou de l'erreur.
 \end{enumerate}
 
@@ -953,13 +960,13 @@ Le reajustement ci-dessous est base sur les routes et composants effectivement p
 
 \textbf{Participants:} Formateur, Etudiant, Syst\`eme EduPlatform.
 
-\textbf{Flux nominal (code reel):}
+\textbf{Flux nominal (code réel):}
 \begin{enumerate}
   \item Le formateur cree une session live.
-  \item Le systeme enregistre la seance et programme la notification.
+  \item Le système enregistre la seance et programme la notification.
   \item Le formateur demarre la seance en direct.
-  \item L'etudiant rejoint la session, accede au direct et participe a la discussion.
-  \item Le formateur termine la seance et le systeme sauvegarde l'historique.
+  \item L'étudiant rejoint la session, accede au direct et participe a la discussion.
+  \item Le formateur termine la seance et le système sauvegarde l'historique.
 \end{enumerate}
 
 \begin{figure}[H]
@@ -976,7 +983,7 @@ Le modele conceptuel s'articule autour de classes principales:
   \item \texttt{User} (roles, school, profil),
   \item \texttt{Module} (code, nom, niveau, composants),
   \item \texttt{Assignment} (formateur-module-type),
-  \item \texttt{Enrollment} (etudiant-module-statut),
+  \item \texttt{Enrollment} (étudiant-module-statut),
   \item \texttt{Resource} (categorie, fichier, statut),
   \item \texttt{LiveSession} (lien, statut, horodatages).
 \end{itemize}
@@ -993,31 +1000,31 @@ Cette section formalise les principaux parcours metier sous forme textuelle. Ell
 
 \subsection{Scenario A: creation d'un module et affectation d'un formateur}
 
-\textbf{Preconditions:} l'administrateur est authentifie et dispose des droits de gestion de son ecole.
+\textbf{Preconditions:} l'administrateur est authentifie et dispose des droits de gestion de son école.
 
 \textbf{Flux principal:}
 \begin{enumerate}
   \item l'administrateur cree un module (code, intitule, niveau, semestre);
-  \item le systeme verifie l'unicite du code dans le contexte de l'ecole;
+  \item le système verifie l'unicite du code dans le contexte de l'école;
   \item l'administrateur affecte un formateur principal et, si necessaire, des formateurs secondaires;
-  \item le systeme notifie les formateurs concernes et rend le module visible selon les droits.
+  \item le système notifie les formateurs concernes et rend le module visible selon les droits.
 \end{enumerate}
 
-\textbf{Postconditions:} le module est actif et pret a recevoir des ressources pedagogiques.
+\textbf{Postconditions:} le module est actif et pret a recevoir des ressources pédagogiques.
 
-\subsection{Scenario B: inscription d'un etudiant}
+\subsection{Scenario B: inscription d'un étudiant}
 
-\textbf{Preconditions:} etudiant cree dans le systeme et module disponible.
+\textbf{Preconditions:} étudiant cree dans le système et module disponible.
 
 \textbf{Flux principal:}
 \begin{enumerate}
-  \item l'administrateur selectionne l'etudiant et le module cible;
-  \item l'API valide l'appartenance a la meme ecole et l'absence de doublon;
+  \item l'administrateur selectionne l'étudiant et le module cible;
+  \item l'API valide l'appartenance a la meme école et l'absence de doublon;
   \item l'inscription est enregistree avec statut initial;
-  \item l'etudiant voit immediatement le module dans son espace personnel.
+  \item l'étudiant voit immediatement le module dans son espace personnel.
 \end{enumerate}
 
-\textbf{Postconditions:} l'etudiant accede aux ressources et annonces du module inscrit.
+\textbf{Postconditions:} l'étudiant accede aux ressources et annonces du module inscrit.
 
 \subsection{Scenario C: session live de bout en bout}
 
@@ -1027,21 +1034,21 @@ Cette section formalise les principaux parcours metier sous forme textuelle. Ell
 \begin{enumerate}
   \item creation d'une session avec statut \texttt{SCHEDULED};
   \item passage en statut \texttt{LIVE} au demarrage;
-  \item affichage en temps reel cote etudiant sur dashboard et page module;
+  \item affichage en temps réel côté étudiant sur dashboard et page module;
   \item cloture avec passage \texttt{ENDED} et horodatage de fin.
 \end{enumerate}
 
-\textbf{Postconditions:} la session reste tracable pour reporting et audit pedagogique.
+\textbf{Postconditions:} la session reste tracable pour reporting et audit pédagogique.
 
 %%──────────────────────────────────────────────────────────────────────────────
-\section{Conception des donnees}
+\section{Conception des données}
 %%──────────────────────────────────────────────────────────────────────────────
 
 \subsection{Principes de conception}
 
 Le schema relationnel repose sur:
 \begin{itemize}
-  \item normalisation des entites pour reduire la redondance;
+  \item normalisation des entites pour réduire la redondance;
   \item contraintes d'integrite (PK/FK, \texttt{CHECK}, \texttt{NOT NULL});
   \item journalisation temporelle (\texttt{created\_at}, \texttt{started\_at}, \texttt{ended\_at});
   \item indexation des colonnes critiques (recherche et tri par statut/date).
@@ -1049,7 +1056,7 @@ Le schema relationnel repose sur:
 
 \subsection{Extension live\_sessions}
 
-L'ajout de la table \texttt{live\_sessions} formalise la fonctionnalite de live pedagogique.
+L'ajout de la table \texttt{live\_sessions} formalise la fonctionnalite de live pédagogique.
 Les attributs cle incluent:
 \begin{itemize}
   \item \texttt{formateur\_id}, \texttt{module\_id}, \texttt{meeting\_link};
@@ -1059,12 +1066,12 @@ Les attributs cle incluent:
 
 Ce schema garantit la traçabilite des sessions et facilite le filtrage par role.
 
-\subsection{Regles de gestion et contraintes de donnees}
+\subsection{Regles de gestion et contraintes de données}
 
 Pour renforcer la fiabilite metier, les regles suivantes ont ete retenues:
 \begin{itemize}
-  \item un module appartient a une seule ecole et son code y est unique;
-  \item un etudiant ne peut pas etre inscrit deux fois au meme module;
+  \item un module appartient a une seule école et son code y est unique;
+  \item un étudiant ne peut pas etre inscrit deux fois au meme module;
   \item seuls les formateurs assignes peuvent creer ou modifier des ressources du module;
   \item une session live ne peut passer a \texttt{LIVE} que depuis l'etat \texttt{SCHEDULED};
   \item l'etat \texttt{ENDED} est terminal et interdit toute reprise de session;
@@ -1081,7 +1088,7 @@ L'architecture suit un modele client-serveur decouple:
 \begin{itemize}
   \item \textbf{Frontend}: React (SPA), routage protege, composants par role;
   \item \textbf{Backend}: Node.js/Express, controleurs REST, services metier, middlewares;
-  \item \textbf{Base de donnees}: PostgreSQL, migrations SQL versionnees.
+  \item \textbf{Base de données}: PostgreSQL, migrations SQL versionnees.
 \end{itemize}
 
 \subsection{Justification des choix}
@@ -1108,7 +1115,7 @@ L'architecture suit un modele client-serveur decouple:
 \begin{itemize}
   \item complexite des droits multi-roles;
   \item derive UX en cas de surcharge d'ecrans admin;
-  \item dette technique si l'evolution n'est pas guidee par conventions.
+  \item dette technique si l'évolution n'est pas guidee par conventions.
 \end{itemize}
 
 \subsection{Criteres d'acceptation}
@@ -1117,7 +1124,7 @@ L'architecture suit un modele client-serveur decouple:
   \item chaque role accede uniquement aux fonctionnalites autorisees;
   \item les workflows critiques (module, inscription, live) sont executables de bout en bout;
   \item l'interface reste lisible sur desktop et mobile;
-  \item les donnees critiques sont tracables et coherentes en base.
+  \item les données critiques sont tracables et coherentes en base.
 \end{itemize}
 
 %%──────────────────────────────────────────────────────────────────────────────
@@ -1136,17 +1143,17 @@ La tracabilite relie explicitement chaque besoin a un cas d'utilisation et a un 
 \textcolor{white}{\textbf{Cas UML associe}} &
 \textcolor{white}{\textbf{Validation attendue}} \\
 \hline
-OS1 & Centraliser ressources pedagogiques & Produire et diffuser & Ressources accessibles par module/composant \\
+OS1 & Centraliser ressources pédagogiques & Produire et diffuser & Ressources accessibles par module/composant \\
 \hline
-OS2 & Authentification et autorisation par roles & Administrer la plateforme/ecole & Acces refuses hors privileges \\
+OS2 & Authentification et autorisation par roles & Administrer la plateforme/école & Acces refuses hors privileges \\
 \hline
 OS3 & Communication integree & Apprendre et interagir & Publications/chat operationnels \\
 \hline
 OS4 & Notifications des evenements & Apprendre et interagir & Notification visible apres evenement \\
 \hline
-OS5 & Planification hebdomadaire & Administrer une ecole & Activites affichees par semaine \\
+OS5 & Planification hebdomadaire & Administrer une école & Activites affichees par semaine \\
 \hline
-OS6 & Tracabilite des operations & Administrer la plateforme/ecole & Historique coherent en base \\
+OS6 & Tracabilite des operations & Administrer la plateforme/école & Historique coherent en base \\
 \hline
 Live & Session synchrone encadree & Animer en direct & Etats SCHEDULED/LIVE/ENDED conformes \\
 \hline
@@ -1156,7 +1163,7 @@ Live & Session synchrone encadree & Animer en direct & Etats SCHEDULED/LIVE/ENDE
 \section{Conclusion}
 %%──────────────────────────────────────────────────────────────────────────────
 
-Ce chapitre a etabli le pont entre besoins metier et solution technique. L'analyse fonctionnelle, les modeles UML et la conception de donnees offrent un cadre methodologique solide pour la realisation. Le chapitre suivant detaille l'implementation concrete, les choix de deploiement et les resultats de validation obtenus sur la plateforme.
+Ce chapitre a etabli le pont entre besoins metier et solution technique. L'analyse fonctionnelle, les modeles UML et la conception de données offrent un cadre methodologique solide pour la realisation. Le chapitre suivant detaille l'implementation concrete, les choix de deploiement et les resultats de validation obtenus sur la plateforme.
 
 %% ═══════════════════════════════════════════════════════════════════════════════
 %% CHAPITRE 3 — Realisation, deploiement et validation
@@ -1168,7 +1175,7 @@ Ce chapitre a etabli le pont entre besoins metier et solution technique. L'analy
 \section{Introduction du chapitre}
 %%──────────────────────────────────────────────────────────────────────────────
 
-Apres la phase d'analyse et de conception, ce chapitre presente la realisation effective d'EduPlatform. Il decrit l'environnement de developpement, l'implementation des modules fonctionnels, l'integration de la fonctionnalite live, puis les tests de validation.
+Apres la phase d'analyse et de conception, ce chapitre presente la realisation effective d'EduPlatform. Il decrit l'environnement de développement, l'implementation des modules fonctionnels, l'intégration de la fonctionnalite live, puis les tests de validation.
 
 %%──────────────────────────────────────────────────────────────────────────────
 \section{Environnement technologique}
@@ -1178,8 +1185,8 @@ Apres la phase d'analyse et de conception, ce chapitre presente la realisation e
 
 \begin{itemize}
   \item Frontend: React (SPA), React Router, Axios;
-  \item Backend: Node.js, Express, middlewares de securite;
-  \item Base de donnees: PostgreSQL;
+  \item Backend: Node.js, Express, middlewares de sécurité;
+  \item Base de données: PostgreSQL;
   \item Authentification: JWT;
   \item Outils: VS Code, Git, scripts de migration SQL.
 \end{itemize}
@@ -1192,18 +1199,18 @@ Le projet est structure en deux blocs:
   \item \textbf{backend}: routes, controleurs, modeles, services metier.
 \end{itemize}
 
-Cette separation facilite la maintenabilite et l'evolution incrémentale.
+Cette separation facilite la maintenabilite et l'évolution incrémentale.
 
 \subsection{Configuration d'execution}
 
-Le fonctionnement d'EduPlatform repose sur une separation claire des environnements de developpement et de production.
+Le fonctionnement d'EduPlatform repose sur une separation claire des environnements de développement et de production.
 \begin{itemize}
-  \item \textbf{Variables d'environnement}: configuration des ports, URL API, secrets JWT et acces base de donnees;
-  \item \textbf{Parametres de securite}: expiration des jetons, politique CORS et validation des entrees;
+  \item \textbf{Variables d'environnement}: configuration des ports, URL API, secrets JWT et acces base de données;
+  \item \textbf{Parametres de sécurité}: expiration des jetons, politique CORS et validation des entrees;
   \item \textbf{Scripts de lancement}: demarrage independant frontend/backend pour faciliter le debug par couche.
 \end{itemize}
 
-Cette configuration limite les regressions entre postes de developpement et prepare la transition vers un deploiement reproductible.
+Cette configuration limite les regressions entre postes de développement et prepare la transition vers un deploiement reproductible.
 
 %%──────────────────────────────────────────────────────────────────────────────
 \section{Architecture d'execution et flux applicatifs}
@@ -1225,7 +1232,7 @@ Le cycle d'une requete suit les etapes suivantes:
 Une strategie de gestion d'erreurs a ete appliquee pour garantir un comportement previsible:
 \begin{itemize}
   \item codes HTTP coherents (401, 403, 404, 422, 500);
-  \item messages explicites cote interface pour guider l'utilisateur;
+  \item messages explicites côté interface pour guider l'utilisateur;
   \item journalisation des erreurs serveur afin de faciliter le diagnostic.
 \end{itemize}
 
@@ -1235,9 +1242,9 @@ Une strategie de gestion d'erreurs a ete appliquee pour garantir un comportement
 
 \subsection{Gestion des utilisateurs et des roles}
 
-Le systeme applique un controle d'acces strict par role global et contexte ecole. Les routes critiques sont protegees par authentification et verification de privileges.
+Le système applique un controle d'acces strict par role global et contexte école. Les routes critiques sont protegees par authentification et verification de privileges.
 
-\subsection{Gestion pedagogique par module}
+\subsection{Gestion pédagogique par module}
 
 La plateforme gere:
 \begin{itemize}
@@ -1249,11 +1256,11 @@ La plateforme gere:
 
 \subsection{Communication et collaboration}
 
-Les utilisateurs disposent d'espaces de communication (chat/publications) afin de fluidifier les interactions pedagogiques et l'entraide.
+Les utilisateurs disposent d'espaces de communication (chat/publications) afin de fluidifier les interactions pédagogiques et l'entraide.
 
 \subsection{Traçabilite des operations metier}
 
-Les operations critiques (creation module, assignation, inscription, changements d'etat live) sont realisees via des points d'entree explicites cote API. Cette structuration permet:
+Les operations critiques (creation module, assignation, inscription, changements d'etat live) sont realisees via des points d'entree explicites côté API. Cette structuration permet:
 \begin{itemize}
   \item de verifier les droits avant toute modification en base;
   \item de conserver une chronologie claire des changements;
@@ -1282,40 +1289,40 @@ Les points d'API implementes couvrent:
   \item creation et consultation des sessions du formateur;
   \item transition d'etat (demarrer/terminer);
   \item suppression d'une session;
-  \item recuperation des lives pertinents cote etudiant.
+  \item recuperation des lives pertinents côté étudiant.
 \end{itemize}
 
-Pour renforcer la robustesse, le backend verifie egalement la coherence des transitions d'etat. Une session ne peut pas passer directement de \texttt{SCHEDULED} a \texttt{ENDED} sans passage par \texttt{LIVE}, sauf action d'annulation explicite.
+Pour renforcer la robustesse, le backend verifie egalement la cohérence des transitions d'etat. Une session ne peut pas passer directement de \texttt{SCHEDULED} a \texttt{ENDED} sans passage par \texttt{LIVE}, sauf action d'annulation explicite.
 
 \subsection{Realisation frontend}
 
 Deux integrations ont ete realisees:
 \begin{itemize}
   \item page dediee formateur pour gerer les sessions live;
-  \item widget dashboard etudiant affichant les lives actifs/programmes.
+  \item widget dashboard étudiant affichant les lives actifs/programmes.
 \end{itemize}
 
 Cette implementation assure une liaison directe entre la planification enseignant et l'experience apprenant.
 
 %%──────────────────────────────────────────────────────────────────────────────
-\section{Securite applicative et protection des donnees}
+\section{Securite applicative et protection des données}
 %%──────────────────────────────────────────────────────────────────────────────
 
-La securite a ete traitee comme une contrainte transversale, non comme une fonctionnalite secondaire.
+La sécurité a ete traitee comme une contrainte transversale, non comme une fonctionnalite secondaire.
 
 \subsection{Authentification et autorisation}
 
 \begin{itemize}
   \item authentification par jeton JWT signe;
-  \item verification des droits selon role global et contexte ecole;
+  \item verification des droits selon role global et contexte école;
   \item protection des routes d'administration et d'ecriture.
 \end{itemize}
 
-\subsection{Validation des donnees et reduction des risques}
+\subsection{Validation des données et réduction des risques}
 
 \begin{itemize}
   \item validation serveur des champs obligatoires et formats attendus;
-  \item controles metier sur les relations formateur-module-etudiant;
+  \item controles metier sur les relations formateur-module-étudiant;
   \item limitation des effets de bord grace a des flux CRUD explicites.
 \end{itemize}
 
@@ -1337,13 +1344,13 @@ Les mesures suivantes ont ete appliquees dans le cadre du projet:
 Le deploiement est organise en trois niveaux:
 \begin{itemize}
   \item \textbf{Developpement local}: iteration rapide des fonctionnalites;
-  \item \textbf{Pre-production}: verification des parcours critiques avec donnees de test;
+  \item \textbf{Pre-production}: verification des parcours critiques avec données de test;
   \item \textbf{Production pilote}: ouverture controlee aux utilisateurs reels.
 \end{itemize}
 
-\subsection{Sauvegarde et continuite}
+\subsection{Sauvegarde et continuité}
 
-Afin de limiter le risque de perte de donnees:
+Afin de limiter le risque de perte de données:
 \begin{itemize}
   \item des sauvegardes periodiques de la base PostgreSQL sont planifiees;
   \item les scripts de restauration sont documentes pour une reprise rapide;
@@ -1355,7 +1362,7 @@ Afin de limiter le risque de perte de donnees:
 La maintenance applicative suit une boucle continue:
 \begin{enumerate}
   \item collecte des incidents et retours utilisateurs;
-  \item priorisation selon impact pedagogique et frequence;
+  \item priorisation selon impact pédagogique et frequence;
   \item correction, verification et redeploiement cible.
 \end{enumerate}
 
@@ -1363,13 +1370,13 @@ La maintenance applicative suit une boucle continue:
 \section{Ameliorations UX realisees}
 %%──────────────────────────────────────────────────────────────────────────────
 
-Une passe UX a ete effectuee pour reduire la surcharge cognitive:
+Une passe UX a ete effectuee pour réduire la surcharge cognitive:
 \begin{itemize}
   \item affichage des modules admin en grille lisible;
   \item filtres metier (niveau, role, module, type) sur ecrans admin;
   \item suppression de colonnes peu utiles (exemple: ID) dans les tableaux;
   \item enrichissement visuel des tableaux de bord et cartes de suivi;
-  \item integration visuelle du bloc live sur les dashboards concernes.
+  \item intégration visuelle du bloc live sur les dashboards concernes.
 \end{itemize}
 
 %%──────────────────────────────────────────────────────────────────────────────
@@ -1380,7 +1387,7 @@ Une passe UX a ete effectuee pour reduire la surcharge cognitive:
 
 Les validations ont ete conduites sur des comptes de test multi-roles:
 \begin{itemize}
-  \item administration (super-admin et admin ecole),
+  \item administration (super-admin et admin école),
   \item formateurs,
   \item apprenants.
 \end{itemize}
@@ -1390,7 +1397,7 @@ Les validations ont ete conduites sur des comptes de test multi-roles:
 \begin{itemize}
   \item authentification et redirections par role conformes;
   \item workflows de gestion (module/assignation/inscription) operationnels;
-  \item fonctionnalite live testee de bout en bout (creation -> LIVE -> affichage etudiant);
+  \item fonctionnalite live testee de bout en bout (creation -> LIVE -> affichage étudiant);
   \item compilation frontend validee sans erreurs bloquantes sur les ecrans modifies.
 \end{itemize}
 
@@ -1409,11 +1416,11 @@ Les validations ont ete conduites sur des comptes de test multi-roles:
 \textcolor{white}{Statut} &
 \textcolor{white}{Observation} \\
 \hline
-Creation/edition module & Admin ecole & Valide & Workflow stable \\
+Creation/edition module & Admin école & Valide & Workflow stable \\
 \hline
-Assignation formateur & Admin ecole & Valide & Regles de droits respectees \\
+Assignation formateur & Admin école & Valide & Regles de droits respectees \\
 \hline
-Inscription etudiant & Admin ecole & Valide & Visibilite module immediate \\
+Inscription étudiant & Admin école & Valide & Visibilite module immediate \\
 \hline
 Publication ressource & Formateur & Valide & Organisation Cours/TD/TP conforme \\
 \hline
@@ -1447,7 +1454,7 @@ Consultation ressources & Etudiant & Valide & Parcours fluide et lisible \\
 La realisation confirme la faisabilite technique du socle EduPlatform et sa capacite a supporter des usages reels multi-acteurs. Les evolutions prioritaires envisagees sont:
 \begin{itemize}
   \item observabilite avancee (logs metier, tableaux de supervision),
-  \item automatisation QA (tests integration/e2e),
+  \item automatisation QA (tests intégration/e2e),
   \item optimisation des performances sur charge elevee.
 \end{itemize}
 
@@ -1455,27 +1462,34 @@ La realisation confirme la faisabilite technique du socle EduPlatform et sa capa
 \section{Conclusion}
 %%──────────────────────────────────────────────────────────────────────────────
 
-Ce chapitre a decrit l'implementation concrete d'EduPlatform et les validations associees. Les resultats montrent une plateforme fonctionnelle, evolutive et coherente avec les objectifs du projet. Le chapitre suivant complete cette analyse par la dimension entrepreneuriale: modele economique, SWOT et strategie de croissance startup.
+Ce chapitre a decrit l'implementation concrete d'EduPlatform et les validations associees. Les resultats montrent une plateforme fonctionnelle, évolutive et coherente avec les objectifs du projet. Le chapitre suivant complete cette analyse par la dimension entrepreneuriale: modele économique, SWOT et strategie de croissance startup.
 
 %% ═══════════════════════════════════════════════════════════════════════════════
-%% CHAPITRE 4 — Modele economique, positionnement startup et analyse SWOT
+%% CHAPITRE 4 — Modele économique, positionnement startup et analyse SWOT
 %% ═══════════════════════════════════════════════════════════════════════════════
 
-\chapter{Evaluation strategique et business model (cadre startup, loi 12-75)}
+\chapter{Evaluation stratégique et business model (cadre startup, loi 12-75)}
 
 %%──────────────────────────────────────────────────────────────────────────────
 \section{Introduction du chapitre}
 %%──────────────────────────────────────────────────────────────────────────────
 
-Dans les chapitres precedents, nous avons expose le contexte, la problematique, puis les choix techniques et fonctionnels qui structurent la plateforme EduPlatform. Le present chapitre deplace l'analyse vers la viabilite entrepreneuriale du projet. L'objectif est de verifier que la proposition de valeur n'est pas uniquement techniquement realisable, mais egalement economiquement soutenable dans un contexte de startup EdTech.
+Dans les chapitres precedents, nous avons expose le contexte, la problématique, puis les choix techniques et fonctionnels qui structurent la plateforme EduPlatform. Le present chapitre deplace l'analyse vers la viabilite entrepreneuriale du projet. L'objectif est de verifier que la proposition de valeur n'est pas uniquement techniquement realisable, mais egalement economiquement soutenable dans un contexte de startup EdTech.
 
-Ce chapitre poursuit quatre finalites. Premierement, formaliser un modele economique coherent a travers le \textit{Business Model Canvas} (BMC)\cite{osterwalder2010bmc}. Deuxiemement, evaluer la position strategique de la startup au moyen d'une matrice SWOT\cite{kotler2017marketing}. Troisiemement, proposer des scenarios de monetisation et des indicateurs de pilotage. Quatriemement, definir une feuille de route de croissance progressive adaptee au contexte des écoles et centres de formation.
+Ce chapitre poursuit quatre finalites. Premierement, formaliser un modele économique coherent a travers le \textit{Business Model Canvas} (BMC)\cite{osterwalder2010bmc}. Deuxiemement, evaluer la position stratégique de la startup au moyen d'une matrice SWOT\cite{kotler2017marketing}. Troisiemement, proposer des scenarios de monetisation et des indicateurs de pilotage. Quatriemement, definir une feuille de route de croissance progressive adaptee au contexte des écoles et centres de formation.
+
+%%──────────────────────────────────────────────────────────────────────────────
+\section{Cadre juridique et regulatoire}
+
+Dans le cadre national, le projet doit prendre en compte le contexte reglémentaire applicable aux services numeriques et aux startups EdTech. La loi \textbf{12-75} figure parmi les textes de reference qui structurent l'environnement juridique des systèmes d'information et des activites economiques en lien avec les technologies de l'information. EduPlatform est ainsi confronte a des exigences de conformité sur les plans de la protection des données, de la sécurité des infrastructures et de la contractualisation des services.
+
+Ce cadre juridique renforce l'importance d'un modele économique clairement defini, d'une gouvernance documentee et d'une roadmap de deploiement qui integre les aspects reglementaires des accords avec les etablissements.
 
 %%──────────────────────────────────────────────────────────────────────────────
 \section{Vision startup et hypotheses de depart}
 %%──────────────────────────────────────────────────────────────────────────────
 
-EduPlatform est envisage comme une startup B2B2C EdTech. Le coeur du modele consiste a contractualiser avec les etablissements (B2B), tout en delivrant de la valeur directe aux formateurs et apprenants (B2C indirect). Ce positionnement permet de traiter simultanement les enjeux institutionnels (gouvernance, securite, traçabilite) et les usages quotidiens (cours, TD, TP, lives, communication, suivi).
+EduPlatform est envisage comme une startup B2B2C EdTech. Le coeur du modele consiste a contractualiser avec les etablissements (B2B), tout en delivrant de la valeur directe aux formateurs et apprenants (B2C indirect). Ce positionnement permet de traiter simultanement les enjeux institutionnels (gouvernance, sécurité, traçabilite) et les usages quotidiens (cours, TD, TP, lives, communication, suivi).
 
 \subsection{Probleme marche adresse}
 
@@ -1489,10 +1503,10 @@ Les écoles de soutien, les écoles de langues et les établissements privés fo
 \subsection{Hypotheses business initiales}
 
 \begin{itemize}
-  \item Le besoin de centralisation pedagogique est suffisamment critique pour justifier un abonnement institutionnel.
+  \item Le besoin de centralisation pédagogique est suffisamment critique pour justifier un abonnement institutionnel.
   \item Les etablissements privilegient une solution locale, configurable et conforme aux exigences de gouvernance.
-  \item Les fonctionnalites differenciantes (multi-ecole, workflow de validation, sessions live, suivi) augmentent le taux d'adoption interne.
-  \item Un deploiement progressif par pilote (une ecole, puis extension) reduit le risque commercial et technique.
+  \item Les fonctionnalites differenciantes (multi-école, workflow de validation, sessions live, suivi) augmentent le taux d'adoption interne.
+  \item Un deploiement progressif par pilote (une école, puis extension) reduit le risque commercial et technique.
 \end{itemize}
 
 \subsection{Hypotheses de validation produit-marche}
@@ -1501,21 +1515,21 @@ Au-dela des hypotheses business, trois hypotheses de validation produit-marche s
 \begin{itemize}
   \item \textbf{H1 --- Adoption formateur}: au moins 70\,\% des formateurs pilotes publient au minimum une ressource par semaine.
   \item \textbf{H2 --- Activation apprenant}: au moins 60\,\% des apprenants connectes consultent activement les ressources sur une periode de 30 jours.
-  \item \textbf{H3 --- Valeur institutionnelle}: l'administration confirme une reduction perceptible du temps de coordination pedagogique.
+  \item \textbf{H3 --- Valeur institutionnelle}: l'administration confirme une réduction perceptible du temps de coordination pédagogique.
 \end{itemize}
 
-Ces hypotheses servent de base a la priorisation roadmap et a la decision de passage a l'echelle.
+Ces hypotheses servent de base a la priorisation roadmap et a la décision de passage a l'echelle.
 
 %%──────────────────────────────────────────────────────────────────────────────
 \section{Analyse du marche et positionnement concurrentiel}
 %%──────────────────────────────────────────────────────────────────────────────
 
-Le positionnement d'EduPlatform ne se limite pas a une comparaison fonctionnelle avec les LMS etablis. Il repose sur une strategie de specialisation locale, orientee gouvernance pedagogique et simplicite d'usage.
+Le positionnement d'EduPlatform ne se limite pas a une comparaison fonctionnelle avec les LMS etablis. Il repose sur une strategie de specialisation locale, orientee gouvernance pédagogique et simplicite d'usage.
 
 \subsection{Lecture TAM / SAM / SOM}
 
 \begin{itemize}
-  \item \textbf{TAM (Total Addressable Market)}: l'ensemble des etablissements d'enseignement superieur et structures de formation pouvant numeriser leurs processus pedagogiques.
+  \item \textbf{TAM (Total Addressable Market)}: l'ensemble des etablissements d'enseignement superieur et structures de formation pouvant numeriser leurs processus pédagogiques.
   \item \textbf{SAM (Serviceable Available Market)}: les institutions disposant d'une maturite numerique minimale et d'un besoin explicite de plateforme unifiee.
   \item \textbf{SOM (Serviceable Obtainable Market)}: la part realiste atteignable a court terme via pilotes regionaux et effet de recommandation inter-etablissements.
 \end{itemize}
@@ -1526,8 +1540,8 @@ Cette lecture permet d'eviter une surprojection commerciale et d'ancrer les obje
 
 Les concurrents generalistes couvrent un spectre large, mais avec une adaptation locale limitee. EduPlatform se differencie sur:
 \begin{itemize}
-  \item la gouvernance fine multi-ecole et multi-roles;
-  \item la structuration pedagogique native Cours/TD/TP;
+  \item la gouvernance fine multi-école et multi-roles;
+  \item la structuration pédagogique native Cours/TD/TP;
   \item la proximite terrain pour l'accompagnement et l'iteration produit;
   \item la capacite d'implementation progressive sans rupture organisationnelle.
 \end{itemize}
@@ -1540,7 +1554,7 @@ Les concurrents generalistes couvrent un spectre large, mais avec une adaptation
 \begin{tabular}{|p{3.0cm}|p{3.2cm}|p{3.2cm}|p{3.2cm}|}
 \hline
 \rowcolor{ustoblue}
-\textcolor{white}{Solution} & \textcolor{white}{Adaptation locale} & \textcolor{white}{Gouvernance pedagogique} & \textcolor{white}{Accompagnement} \\
+\textcolor{white}{Solution} & \textcolor{white}{Adaptation locale} & \textcolor{white}{Gouvernance pédagogique} & \textcolor{white}{Accompagnement} \\
 \hline
 LMS internationaux & Moyenne a faible & Bonne mais generaliste & Standardise \\
 \hline
@@ -1561,8 +1575,8 @@ Le BMC formalise les neuf blocs strategiques de la startup\cite{osterwalder2010b
 
 EduPlatform cible quatre segments prioritaires:
 \begin{itemize}
-  \item ecoles, centres de formation et etablissements de soutien cherchant une plateforme pedagogique gouvernee;
-  \item administrations pedagogiques (direction, scolarite, responsables filiere);
+  \item écoles, centres de formation et etablissements de soutien cherchant une plateforme pédagogique gouvernee;
+  \item administrations pédagogiques (direction, scolarite, responsables filiere);
   \item corps enseignant (formateurs principaux et simples);
   \item apprenants, utilisateurs finaux de l'expérience d'apprentissage.
 \end{itemize}
@@ -1572,11 +1586,11 @@ EduPlatform cible quatre segments prioritaires:
 La proposition de valeur s'articule autour de six axes:
 \begin{itemize}
   \item centralisation des contenus par niveau, module et composant (Cours/TD/TP);
-  \item gouvernance fine des acces par roles et ecoles;
-  \item interactions pedagogiques integrees (chat, ressources, lives, notifications);
-  \item reduction de la surcharge cognitive via une interface structuree;
-  \item visibilite admin avec tableaux de bord et actions rapides;
-  \item architecture evolutive orientee startup (MVP, iterations, extension multi-tenant).
+  \item gouvernance fine des acces par roles et écoles;
+  \item interactions pédagogiques integrees (chat, ressources, lives, notifications);
+  \item réduction de la surcharge cognitive via une interface structuree;
+  \item visibilité admin avec tableaux de bord et actions rapides;
+  \item architecture évolutive orientee startup (MVP, iterations, extension multi-tenant).
 \end{itemize}
 
 \subsection{Canaux}
@@ -1601,17 +1615,17 @@ La proposition de valeur s'articule autour de six axes:
 
 Le modele de revenus privilegie l'abonnement institutionnel annuel:
 \begin{itemize}
-  \item formule \textbf{Starter}: petite ecole, fonctions essentielles;
+  \item formule \textbf{Starter}: petite école, fonctions essentielles;
   \item formule \textbf{Growth}: multi-filieres, reporting avance, priorite support;
   \item formule \textbf{Enterprise}: forte volumetrie, SLA, personnalisation avancee.
 \end{itemize}
 
-Des revenus complementaires peuvent etre ajoutes: formation premium, migration de donnees, developpements specifiques, et support etendu.
+Des revenus complementaires peuvent etre ajoutes: formation premium, migration de données, developpements specifiques, et support etendu.
 
 \subsection{Ressources cles}
 
 \begin{itemize}
-  \item equipe produit (developpement full-stack, QA, design UX);
+  \item équipe produit (développement full-stack, QA, design UX);
   \item infrastructure cloud/serveur et base PostgreSQL;
   \item bibliotheque de composants et architecture API;
   \item savoir-faire pédagogique et connaissance du terrain éducatif.
@@ -1620,7 +1634,7 @@ Des revenus complementaires peuvent etre ajoutes: formation premium, migration d
 \subsection{Activites cles}
 
 \begin{itemize}
-  \item developpement et maintenance applicative;
+  \item développement et maintenance applicative;
   \item securisation et supervision de la plateforme;
   \item deploiement, parametrage et support client;
   \item analyse d'usage et priorisation roadmap.
@@ -1632,14 +1646,14 @@ Des revenus complementaires peuvent etre ajoutes: formation premium, migration d
   \item etablissements pilotes (co-validation des usages);
   \item hebergeurs/infrastructure cloud;
   \item ecosysteme startup (incubateurs, mentors, experts juridiques);
-  \item partenaires de formation et d'integration.
+  \item partenaires de formation et d'intégration.
 \end{itemize}
 
 \subsection{Structure de couts}
 
 \begin{itemize}
-  \item couts techniques: hebergement, sauvegarde, monitoring, securite;
-  \item couts humains: developpement, support, commercial, pilotage produit;
+  \item couts techniques: hebergement, sauvegarde, monitoring, sécurité;
+  \item couts humains: développement, support, commercial, pilotage produit;
   \item couts operationnels: deplacements, documentation, formation clients;
   \item couts d'acquisition: demos, communication, prospection.
 \end{itemize}
@@ -1656,7 +1670,7 @@ Des revenus complementaires peuvent etre ajoutes: formation premium, migration d
 \hline
 Segments clients & Écoles/centres de formation, administration pédagogique, formateurs, apprenants \\
 \hline
-Proposition de valeur & Plateforme pedagogique unifiee, gouvernance par roles, modules Cours/TD/TP, live et collaboration \\
+Proposition de valeur & Plateforme pédagogique unifiee, gouvernance par roles, modules Cours/TD/TP, live et collaboration \\
 \hline
 Canaux & Pilotes institutionnels, réseau éducatif local, canal digital, partenariats \\
 \hline
@@ -1666,11 +1680,11 @@ Revenus & Abonnements annuels (Starter, Growth, Enterprise), services premium \\
 \hline
 Ressources cles & Equipe tech/produit, infrastructure, architecture logicielle, expertise metier \\
 \hline
-Activites cles & Dev/maintenance, securite, support, deploiement, analyse d'usage \\
+Activites cles & Dev/maintenance, sécurité, support, deploiement, analyse d'usage \\
 \hline
-Partenaires cles & Ecoles pilotes, hebergeurs, ecosysteme startup, partenaires integration \\
+Partenaires cles & Ecoles pilotes, hebergeurs, ecosysteme startup, partenaires intégration \\
 \hline
-Structure de couts & Technique, equipe, operations, acquisition client \\
+Structure de couts & Technique, équipe, operations, acquisition client \\
 \hline
 \end{longtable}
 
@@ -1678,7 +1692,7 @@ Structure de couts & Technique, equipe, operations, acquisition client \\
 \section{Analyse SWOT de la startup EduPlatform}
 %%──────────────────────────────────────────────────────────────────────────────
 
-L'analyse SWOT permet de croiser facteurs internes (forces, faiblesses) et externes (opportunites, menaces) pour orienter les decisions strategiques.
+L'analyse SWOT permet de croiser facteurs internes (forces, faiblesses) et externes (opportunites, menaces) pour orienter les décisions strategiques.
 
 \renewcommand{\arraystretch}{1.45}
 \begin{table}[H]
@@ -1691,8 +1705,8 @@ L'analyse SWOT permet de croiser facteurs internes (forces, faiblesses) et exter
 \textcolor{white}{\textbf{Forces (S)}} & \textcolor{white}{\textbf{Faiblesses (W)}} \\
 \hline
 \begin{itemize}
-  \item Architecture multi-ecole et gouvernance par roles.
-  \item UX adaptee au contexte pedagogique local.
+  \item Architecture multi-école et gouvernance par roles.
+  \item UX adaptee au contexte pédagogique local.
   \item Fonctionnalites differenciantes: live, workflow, separation Cours/TD/TP.
   \item Équipe proche du terrain éducatif local.
 \end{itemize}
@@ -1710,14 +1724,14 @@ L'analyse SWOT permet de croiser facteurs internes (forces, faiblesses) et exter
 \hline
 \begin{itemize}
   \item Acceleration de la digitalisation des etablissements.
-  \item Besoin croissant d'outils de souverainete et de gouvernance des donnees.
+  \item Besoin croissant d'outils de souverainete et de gouvernance des données.
   \item Programmes d'appui a l'innovation et incubateurs.
   \item Faible adequation des solutions generalistes aux contraintes locales.
 \end{itemize}
 &
 \begin{itemize}
   \item Concurrence LMS internationaux etablis.
-  \item Ralentissements administratifs dans la decision d'achat.
+  \item Ralentissements administratifs dans la décision d'achat.
   \item Risques cyber et exigences de conformite.
   \item Volatilite budgetaire des institutions.
 \end{itemize}
@@ -1732,13 +1746,13 @@ L'analyse SWOT permet de croiser facteurs internes (forces, faiblesses) et exter
 Prioriser les deploiements pilotes dans des etablissements ouverts a l'innovation et transformer les resultats obtenus en references commerciales.
 
 \paragraph{Strategie ST (utiliser forces contre menaces).}
-Renforcer les arguments de differenciation locale (gouvernance, adaptation pedagogique, support de proximite) face aux LMS internationaux standardises.
+Renforcer les arguments de differenciation locale (gouvernance, adaptation pédagogique, support de proximite) face aux LMS internationaux standardises.
 
-\paragraph{Strategie WO (reduire faiblesses via opportunites).}
+\paragraph{Strategie WO (réduire faiblesses via opportunites).}
 Utiliser l'appui d'incubateurs et partenaires pour structurer la fonction commerciale, formaliser les offres et accelerer l'acquisition.
 
 \paragraph{Strategie WT (limiter faiblesses et menaces).}
-Mettre en place une feuille de route securite/conformite, une documentation d'exploitation et une politique de continuité afin de reduire les risques operationnels.
+Mettre en place une feuille de route sécurité/conformite, une documentation d'exploitation et une politique de continuité afin de réduire les risques operationnels.
 
 %%──────────────────────────────────────────────────────────────────────────────
 \section{Scenario de monetisation et indicateurs de pilotage}
@@ -1757,7 +1771,7 @@ Le scenario recommande est un abonnement annuel institutionnel avec segmentation
 \rowcolor{ustoblue}
 \textcolor{white}{Formule} & \textcolor{white}{Cible} & \textcolor{white}{Valeur livree} & \textcolor{white}{Mode de prix} \\
 \hline
-Starter & Petite ecole / pilote & Modules, ressources, roles, support standard & Abonnement annuel \\
+Starter & Petite école / pilote & Modules, ressources, roles, support standard & Abonnement annuel \\
 \hline
 Growth & Ecole en expansion & Multi-filiere, reporting, priorite support & Abonnement annuel \\
 \hline
@@ -1770,7 +1784,7 @@ Enterprise & Grand etablissement & SLA, personnalisation, accompagnement etendu 
 
 \begin{itemize}
   \item \textbf{KPI acquisition}: nombre d'etablissements pilotes signes, taux de conversion demo $\rightarrow$ contrat.
-  \item \textbf{KPI adoption}: taux d'activation des formateurs, taux d'activite etudiant, volume de ressources publiees.
+  \item \textbf{KPI adoption}: taux d'activation des formateurs, taux d'activite étudiant, volume de ressources publiees.
   \item \textbf{KPI retention}: renouvellement annuel, churn institutionnel, satisfaction per role.
   \item \textbf{KPI produit}: disponibilite plateforme, temps moyen de resolution incident, usage des lives.
   \item \textbf{KPI financier}: revenu recurrent annuel (ARR), cout d'acquisition client (CAC), marge brute.
@@ -1800,7 +1814,7 @@ Enterprise & Grand etablissement & SLA, personnalisation, accompagnement etendu 
 
 \begin{itemize}
   \item industrialisation de l'onboarding client;
-  \item renforcement securite/conformite et reporting avance;
+  \item renforcement sécurité/conformite et reporting avance;
   \item croissance geographique et sectorielle progressive.
 \end{itemize}
 
@@ -1818,28 +1832,28 @@ Le deploiement commercial peut etre structure en quatre chantiers synchronises:
 \section{Conclusion}
 %%──────────────────────────────────────────────────────────────────────────────
 
-L'analyse entrepreneuriale montre qu'EduPlatform dispose d'une base solide pour evoluer d'un projet academique vers une startup EdTech viable. Le Business Model Canvas met en evidence un positionnement clair B2B2C, tandis que la SWOT confirme une fenetre d'opportunite reelle, a condition de structurer rapidement les dimensions commerciales, organisationnelles et securitaires.
+L'analyse entrepreneuriale montre qu'EduPlatform dispose d'une base solide pour evoluer d'un projet académique vers une startup EdTech viable. Le Business Model Canvas met en evidence un positionnement clair B2B2C, tandis que la SWOT confirme une fenetre d'opportunite réelle, a condition de structurer rapidement les dimensions commerciales, organisationnelles et securitaires.
 
-Ce chapitre etablit ainsi le lien entre la pertinence pedagogique de la solution et sa soutenabilite economique. Il constitue une etape essentielle avant la phase d'industrialisation et de mise sur le marche, en orientant les decisions de priorisation produit, d'acquisition client et de gouvernance de croissance.
+Ce chapitre etablit ainsi le lien entre la pertinence pédagogique de la solution et sa soutenabilite économique. Il constitue une etape essentielle avant la phase d'industrialisation et de mise sur le marche, en orientant les décisions de priorisation produit, d'acquisition client et de gouvernance de croissance.
 
 %% ═══════════════════════════════════════════════════════════════════════════════
 %% CONCLUSION GENERALE
 %% ═══════════════════════════════════════════════════════════════════════════════
 
-\chapter*{Conclusion generale}
-\addcontentsline{toc}{chapter}{Conclusion generale}
+\chapter*{Conclusion générale}
+\addcontentsline{toc}{chapter}{Conclusion générale}
 
-Ce memoire avait pour objectif de concevoir et realiser une plateforme pedagogique unifiee repondant aux besoins d'un contexte éducatif reel. La demarche adoptee a permis de couvrir l'ensemble de la chaine de valeur du projet: analyse du contexte, modelisation, implementation technique, validation fonctionnelle et projection startup.
+Ce mémoire avait pour objectif de concevoir et realiser une plateforme pédagogique unifiee repondant aux besoins d'un contexte éducatif réel. La démarche adoptee a permis de couvrir l'ensemble de la chaine de valeur du projet: analyse du contexte, modelisation, implementation technique, validation fonctionnelle et projection startup.
 
-Sur le plan technique, EduPlatform propose un socle coherent et operationnel: gestion multi-roles, administration pedagogique, structuration des contenus par composants (Cours/TD/TP), communication integree, suivi et fonctionnalite live. Les tests fonctionnels ont confirme la stabilite des parcours critiques pour les profils administrateur, formateur et etudiant.
+Sur le plan technique, EduPlatform propose un socle coherent et operationnel: gestion multi-roles, administration pédagogique, structuration des contenus par composants (Cours/TD/TP), communication integree, suivi et fonctionnalite live. Les tests fonctionnels ont confirme la stabilite des parcours critiques pour les profils administrateur, formateur et étudiant.
 
-Sur le plan methodologique, la structuration du memoire s'aligne sur les references d'encadrement (branding et bibliotheque virtuelle), tout en introduisant une extension majeure: la dimension entrepreneuriale. Le chapitre dedie au modele economique et a l'analyse SWOT montre qu'EduPlatform peut evoluer d'un projet academique vers une startup EdTech viable, sous reserve d'une execution disciplinee sur les axes produit, commercial et operationnel.
+Sur le plan methodologique, la structuration du mémoire s'aligne sur les references d'encadrement (branding et bibliotheque virtuelle), tout en introduisant une extension majeure: la dimension entrepreneuriale. Le chapitre dedie au modele économique et a l'analyse SWOT montre qu'EduPlatform peut evoluer d'un projet académique vers une startup EdTech viable, sous reserve d'une execution disciplinee sur les axes produit, commercial et operationnel.
 
 \paragraph{Contributions principales.}
 \begin{itemize}
-  \item definition d'une architecture pedagogique unifiee adaptee au terrain local;
+  \item definition d'une architecture pédagogique unifiee adaptee au terrain local;
   \item implementation d'une plateforme multi-acteurs avec gouvernance par role;
-  \item integration d'une fonctionnalite live orientee usage reel;
+  \item intégration d'une fonctionnalite live orientee usage réel;
   \item formalisation d'un cadre business startup (BMC, SWOT, KPI, roadmap).
 \end{itemize}
 
@@ -1848,11 +1862,11 @@ Les perspectives prioritaires concernent:
 \begin{itemize}
   \item le renforcement des tests automatisees et de l'observabilite;
   \item l'industrialisation de l'onboarding institutionnel;
-  \item l'integration progressive d'outils IA pedagogiques;
+  \item l'intégration progressive d'outils IA pédagogiques;
   \item l'extension commerciale vers d'autres etablissements.
 \end{itemize}
 
-En synthese, EduPlatform demontre qu'une solution locale, evolutive et orientee usages peut concilier rigueur academique, efficacite operationnelle et potentiel de croissance startup.
+En synthese, EduPlatform demontre qu'une solution locale, évolutive et orientee usages peut concilier rigueur académique, efficacite operationnelle et potentiel de croissance startup.
 
 
 \clearpage

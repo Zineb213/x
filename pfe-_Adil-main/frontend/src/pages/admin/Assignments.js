@@ -1,15 +1,17 @@
 import React, { useState, useEffect, useMemo } from 'react';
+import Select from 'react-select';
 import api from '../../services/api';
 import './AdminPages.css';
+import { sanitizeText } from '../../utils/sanitizeText';
 
 const Assignments = () => {
     const [formateurs, setFormateurs] = useState([]);
     const [modules, setModules] = useState([]);
     const [assignments, setAssignments] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [selectedFormateur, setSelectedFormateur] = useState('');
-    const [selectedModule, setSelectedModule] = useState('');
-    const [selectedAssignmentType, setSelectedAssignmentType] = useState('PRINCIPAL');
+    const [selectedFormateur, setSelectedFormateur] = useState(null);
+    const [selectedModule, setSelectedModule] = useState(null);
+    const [selectedAssignmentType, setSelectedAssignmentType] = useState({ value: 'PRINCIPAL', label: 'Chargé de formation' });
     const [selectedComponents, setSelectedComponents] = useState([]);
     const [message, setMessage] = useState({ type: '', text: '' });
     
@@ -68,24 +70,24 @@ const Assignments = () => {
             return;
         }
 
-        if (selectedAssignmentType === 'SIMPLE' && selectedComponents.length === 0) {
+        if (selectedAssignmentType?.value === 'SIMPLE' && selectedComponents.length === 0) {
             setMessage({ type: 'error', text: 'Choisissez au moins un composant pour le formateur simple' });
             return;
         }
 
         try {
             const response = await api.post('/admin/assignments', {
-                formateurId: parseInt(selectedFormateur),
-                moduleId: parseInt(selectedModule),
-                assignmentType: selectedAssignmentType,
-                componentScope: selectedAssignmentType === 'SIMPLE' ? selectedComponents : null
+                formateurId: parseInt(selectedFormateur.value),
+                moduleId: parseInt(selectedModule.value),
+                assignmentType: selectedAssignmentType.value,
+                componentScope: selectedAssignmentType.value === 'SIMPLE' ? selectedComponents : null
             });
 
             if (response.data.success) {
                 setMessage({ type: 'success', text: 'Formateur assigné au module avec succès!' });
-                setSelectedFormateur('');
-                setSelectedModule('');
-                setSelectedAssignmentType('PRINCIPAL');
+                setSelectedFormateur(null);
+                setSelectedModule(null);
+                setSelectedAssignmentType({ value: 'PRINCIPAL', label: 'Chargé de formation' });
                 setSelectedComponents([]);
                 fetchData();
                 setTimeout(() => setMessage({ type: '', text: '' }), 3000);
@@ -180,58 +182,40 @@ const Assignments = () => {
                     <div className="form-row">
                         <div className="form-group">
                             <label>Formateur</label>
-                            <select
+                            <Select
+                                options={formateurs.map(f => ({ value: String(f.id), label: `${f.nom} ${f.prenom} (${f.matricule})` }))}
                                 value={selectedFormateur}
-                                onChange={(e) => {
-                                    setSelectedFormateur(e.target.value);
-                                    setSelectedComponents([]);
-                                }}
-                                className="form-select"
+                                onChange={(opt) => { setSelectedFormateur(opt); setSelectedComponents([]); }}
+                                className="react-select"
+                                placeholder="Sélectionner un formateur"
+                                isClearable
                                 required
-                            >
-                                <option value="">Sélectionner un formateur</option>
-                                {formateurs.map(f => (
-                                    <option key={f.id} value={f.id}>
-                                        {f.nom} {f.prenom} ({f.matricule})
-                                    </option>
-                                ))}
-                            </select>
+                            />
                         </div>
                         <div className="form-group">
                             <label>Module</label>
-                            <select
+                            <Select
+                                options={modulesSorted.map(m => ({ value: String(m.id), label: `${m.code} — ${m.nom}` }))}
                                 value={selectedModule}
-                                onChange={(e) => {
-                                    setSelectedModule(e.target.value);
-                                    setSelectedComponents([]);
-                                }}
-                                className="form-select"
+                                onChange={(opt) => { setSelectedModule(opt); setSelectedComponents([]); }}
+                                className="react-select"
+                                placeholder="Sélectionner un module"
+                                isClearable
                                 required
-                            >
-                                <option value="">Sélectionner un module</option>
-                                {modulesSorted.map((m) => (
-                                    <option key={m.id} value={m.id}>
-                                        {m.code} — {m.nom}
-                                    </option>
-                                ))}
-                            </select>
+                            />
                         </div>
                         <div className="form-group">
                             <label>Type d'assignation</label>
-                            <select
+                            <Select
+                                options={[{ value: 'PRINCIPAL', label: 'Chargé de formation' }, { value: 'SIMPLE', label: 'Formateur simple' }]}
                                 value={selectedAssignmentType}
-                                onChange={(e) => {
-                                    setSelectedAssignmentType(e.target.value);
-                                    setSelectedComponents([]);
-                                }}
-                                className="form-select"
-                                required
-                            >
-                                <option value="PRINCIPAL">Chargé de formation</option>
-                                <option value="SIMPLE">Formateur simple</option>
-                            </select>
+                                onChange={(opt) => { setSelectedAssignmentType(opt); setSelectedComponents([]); }}
+                                className="react-select"
+                                placeholder="Type d'assignation"
+                                isClearable={false}
+                            />
                         </div>
-                        {selectedAssignmentType === 'SIMPLE' && (
+                        {selectedAssignmentType?.value === 'SIMPLE' && (
                             <div className="form-group" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', minWidth: 260 }}>
                                 <label>Composants assignés (formateur simple)</label>
                                 {moduleComponents.map((component) => (
@@ -258,37 +242,38 @@ const Assignments = () => {
                 <div className="table-container">
                     <div className="filters-bar">
                         <label>Formateur :</label>
-                        <select
-                            className="filter-select"
-                            value={filterAsgFormateur}
-                            onChange={e => setFilterAsgFormateur(e.target.value)}
-                        >
-                            <option value="">Tous</option>
-                            {formateurs.map(f => (
-                                <option key={f.id} value={f.id}>{f.nom} {f.prenom}</option>
-                            ))}
-                        </select>
+                        <div style={{ width: 220 }}>
+                            <Select
+                                options={[{ value: '', label: 'Tous' }, ...formateurs.map(f => ({ value: String(f.id), label: `${f.nom} ${f.prenom}` }))]}
+                                value={filterAsgFormateur ? { value: String(filterAsgFormateur), label: formateurs.find(f => String(f.id) === String(filterAsgFormateur)) ? `${formateurs.find(f => String(f.id) === String(filterAsgFormateur)).nom} ${formateurs.find(f => String(f.id) === String(filterAsgFormateur)).prenom}` : '' } : null}
+                                onChange={(opt) => setFilterAsgFormateur(opt ? opt.value : '')}
+                                isClearable
+                                className="react-select"
+                                placeholder="Tous"
+                            />
+                        </div>
                         <label>Module :</label>
-                        <select
-                            className="filter-select"
-                            value={filterAsgModule}
-                            onChange={e => setFilterAsgModule(e.target.value)}
-                        >
-                            <option value="">Tous</option>
-                            {modulesSorted.map(m => (
-                                <option key={m.id} value={m.id}>{m.code} — {m.nom}</option>
-                            ))}
-                        </select>
+                        <div style={{ width: 260 }}>
+                            <Select
+                                options={[{ value: '', label: 'Tous' }, ...modulesSorted.map(m => ({ value: String(m.id), label: `${m.code} — ${m.nom}` }))]}
+                                value={filterAsgModule ? { value: String(filterAsgModule), label: modulesSorted.find(m => String(m.id) === String(filterAsgModule)) ? `${modulesSorted.find(m => String(m.id) === String(filterAsgModule)).code} — ${modulesSorted.find(m => String(m.id) === String(filterAsgModule)).nom}` : '' } : null}
+                                onChange={(opt) => setFilterAsgModule(opt ? opt.value : '')}
+                                isClearable
+                                className="react-select"
+                                placeholder="Tous"
+                            />
+                        </div>
                         <label>Type :</label>
-                        <select
-                            className="filter-select"
-                            value={filterAsgType}
-                            onChange={e => setFilterAsgType(e.target.value)}
-                        >
-                            <option value="">Tous</option>
-                            <option value="PRINCIPAL">Chargé de formation</option>
-                            <option value="SIMPLE">Formateur simple</option>
-                        </select>
+                        <div style={{ width: 220 }}>
+                            <Select
+                                options={[{ value: '', label: 'Tous' }, { value: 'PRINCIPAL', label: 'Chargé de formation' }, { value: 'SIMPLE', label: 'Formateur simple' }]}
+                                value={filterAsgType ? { value: filterAsgType, label: filterAsgType === 'PRINCIPAL' ? 'Chargé de formation' : 'Formateur simple' } : null}
+                                onChange={(opt) => setFilterAsgType(opt ? opt.value : '')}
+                                isClearable
+                                className="react-select"
+                                placeholder="Tous"
+                            />
+                        </div>
                         {(filterAsgFormateur || filterAsgModule || filterAsgType) && (
                             <button
                                 type="button"
@@ -330,7 +315,7 @@ const Assignments = () => {
                                         <td>
                                             <strong>{a.module_code}</strong>
                                             <br />
-                                            <small>{a.module_nom}</small>
+                                            <small>{sanitizeText(a.module_nom)}</small>
                                         </td>
                                         <td>
                                             <span className="badge" style={{ background: a.assignment_type === 'PRINCIPAL' ? '#6366f1' : '#0ea5e9' }}>
@@ -403,19 +388,15 @@ const Assignments = () => {
                                 </div>
                                 <div className="form-group">
                                     <label>Nouveau module</label>
-                                    <select
-                                        value={editModuleId}
-                                        onChange={(e) => setEditModuleId(e.target.value)}
-                                        className="form-select"
-                                        required
-                                    >
-                                        <option value="">Sélectionner un module</option>
-                                        {modulesSorted.map((m) => (
-                                            <option key={m.id} value={m.id}>
-                                                {m.code} — {m.nom}
-                                            </option>
-                                        ))}
-                                    </select>
+                                        <Select
+                                            options={modulesSorted.map(m => ({ value: String(m.id), label: `${m.code} — ${m.nom}` }))}
+                                            value={editModuleId ? { value: String(editModuleId), label: modulesSorted.find(m => String(m.id) === String(editModuleId)) ? `${modulesSorted.find(m => String(m.id) === String(editModuleId)).code} — ${modulesSorted.find(m => String(m.id) === String(editModuleId)).nom}` : '' } : null}
+                                            onChange={(opt) => setEditModuleId(opt ? opt.value : '')}
+                                            className="react-select"
+                                            placeholder="Sélectionner un module"
+                                            isClearable
+                                            required
+                                        />
                                 </div>
                             </div>
                             <div className="modal-footer">

@@ -18,7 +18,7 @@ const SuperAdminDashboard = () => {
     const [loading, setLoading] = useState(true);
     const [message, setMessage] = useState({ type: '', text: '' });
 
-    const [schoolForm, setSchoolForm] = useState({ name: '', code: '' });
+    const [schoolForm, setSchoolForm] = useState({ name: '', code: '', subscription_plan_id: '', admin_email: '', admin_nom: '', admin_prenom: '', admin_password: '' });
     const [adminForms, setAdminForms] = useState({});
     const [paymentForms, setPaymentForms] = useState({});
     const [planForms, setPlanForms] = useState({});
@@ -74,10 +74,25 @@ const SuperAdminDashboard = () => {
         }
 
         try {
-            const payload = { name: schoolForm.name.trim(), code: schoolForm.code.trim().toUpperCase() };
+            const payload = {
+                name: schoolForm.name.trim(),
+                code: schoolForm.code.trim().toUpperCase(),
+                subscription_plan_id: schoolForm.subscription_plan_id ? Number(schoolForm.subscription_plan_id) : null
+            };
+
+            // include admin object if filled
+            if (schoolForm.admin_email && schoolForm.admin_nom && schoolForm.admin_prenom && schoolForm.admin_password) {
+                payload.admin = {
+                    email: schoolForm.admin_email.trim(),
+                    nom: schoolForm.admin_nom.trim(),
+                    prenom: schoolForm.admin_prenom.trim(),
+                    password: schoolForm.admin_password
+                };
+            }
+
             const response = await api.post('/super-admin/schools', payload);
             if (response.data.success) {
-                setSchoolForm({ name: '', code: '' });
+                setSchoolForm({ name: '', code: '', subscription_plan_id: '', admin_email: '', admin_nom: '', admin_prenom: '', admin_password: '' });
                 setMessage({ type: 'success', text: 'Ecole créée avec succès.' });
                 await fetchData();
             }
@@ -504,6 +519,36 @@ const SuperAdminDashboard = () => {
                                 onChange={(e) => setSchoolForm({ ...schoolForm, code: e.target.value.toUpperCase() })}
                                 required
                             />
+                        </div>
+                        <div className="form-group">
+                            <label>Abonnement</label>
+                            <select
+                                className="form-input"
+                                value={schoolForm.subscription_plan_id}
+                                onChange={(e) => setSchoolForm({ ...schoolForm, subscription_plan_id: e.target.value })}
+                            >
+                                <option value="">Aucun / par défaut</option>
+                                {subscriptionPlans.map((p) => (
+                                    <option key={p.id} value={p.id}>{p.plan_name} ({p.max_students} étudiants)</option>
+                                ))}
+                            </select>
+                        </div>
+                    </div>
+                    <div style={{ marginTop: '0.5rem', marginBottom: '0.5rem' }}>
+                        <strong>Créer l'admin école (optionnel)</strong>
+                        <div className="form-row" style={{ marginTop: '0.5rem' }}>
+                            <div className="form-group">
+                                <input className="form-input" placeholder="Email admin" value={schoolForm.admin_email} onChange={(e) => setSchoolForm({ ...schoolForm, admin_email: e.target.value })} />
+                            </div>
+                            <div className="form-group">
+                                <input className="form-input" placeholder="Nom" value={schoolForm.admin_nom} onChange={(e) => setSchoolForm({ ...schoolForm, admin_nom: e.target.value })} />
+                            </div>
+                            <div className="form-group">
+                                <input className="form-input" placeholder="Prénom" value={schoolForm.admin_prenom} onChange={(e) => setSchoolForm({ ...schoolForm, admin_prenom: e.target.value })} />
+                            </div>
+                            <div className="form-group">
+                                <input type="password" className="form-input" placeholder="Mot de passe" value={schoolForm.admin_password} onChange={(e) => setSchoolForm({ ...schoolForm, admin_password: e.target.value })} />
+                            </div>
                         </div>
                     </div>
                     <button type="submit" className="btn-primary">Créer école</button>

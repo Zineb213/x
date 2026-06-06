@@ -25,6 +25,7 @@
     background-color: var(--gray-100);
     color: var(--gray-800);
     border: 1px solid var(--gray-200);
+    border-radius: 10px;
 }
 
 .btn-secondary:hover:not(:disabled) {

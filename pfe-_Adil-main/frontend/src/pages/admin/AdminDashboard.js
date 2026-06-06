@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
+import FirstLoginSetupModal from '../../components/admin/FirstLoginSetupModal';
 import api from '../../services/api';
 import './AdminDashboard.css';
 import './AdminPages.css';
@@ -15,12 +17,20 @@ const AdminDashboard = () => {
         email: '',
         password: ''
     });
+    const { user } = useAuth();
+    const [showSetupModal, setShowSetupModal] = useState(false);
     const [studentMessage, setStudentMessage] = useState({ type: '', text: '' });
     const [creatingStudent, setCreatingStudent] = useState(false);
 
     useEffect(() => {
         fetchStats();
     }, []);
+
+    useEffect(() => {
+        if (user?.is_first_login && user?.role_global === 'ADMIN') {
+            setShowSetupModal(true);
+        }
+    }, [user]);
 
     const fetchStats = async () => {
         try {
@@ -232,6 +242,17 @@ const AdminDashboard = () => {
                         </form>
                     </div>
                 </div>
+            )}
+
+            {showSetupModal && (
+                <FirstLoginSetupModal onClose={() => {
+                    // mark locally as dismissed so it doesn't keep showing
+                    const stored = JSON.parse(sessionStorage.getItem('user') || '{}');
+                    stored.is_first_login = false;
+                    sessionStorage.setItem('user', JSON.stringify(stored));
+                    try { localStorage.setItem('user', JSON.stringify(stored)); } catch (e) {}
+                    setShowSetupModal(false);
+                }} />
             )}
         </div>
     );

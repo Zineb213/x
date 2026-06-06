@@ -12,39 +12,18 @@ const LiveSession = require('../models/LiveSession');
 const schoolLevelService = require('../services/schoolLevelService');
 
 
-// Get enrolled modules (filtered by community membership)
+// Get enrolled modules for the student
 const getMyModules = async (req, res, next) => {
     try {
-        // Get communities the student has joined
-        const joinedCommunities = await query(`
-            SELECT c.category_id 
-            FROM community_members cm
-            JOIN communities c ON cm.community_id = c.id
-            WHERE cm.user_id = $1
-        `, [req.user.id]);
-        
-        const joinedCategoryIds = joinedCommunities.rows.map(c => c.category_id);
-        
-        if (joinedCategoryIds.length === 0) {
-            return res.status(HTTP_STATUS.OK).json({ 
-                success: true, 
-                data: [],
-                message: 'Join a community to access modules'
-            });
-        }
-        
-        // Fix: Correct parameter placement
-        const placeholders = joinedCategoryIds.map((_, i) => `$${i + 2}`).join(',');
         const result = await query(`
             SELECT m.*, c.name as category_name
             FROM etudiant_module_enrollment e
             JOIN modules m ON e.module_id = m.id
-            JOIN categories c ON m.category_id = c.id
+            LEFT JOIN categories c ON m.category_id = c.id
             WHERE e.etudiant_id = $1
-            AND e.status = 'ACTIVE'
-            AND m.category_id IN (${placeholders})
+              AND e.status = 'ACTIVE'
             ORDER BY m.code
-        `, [req.user.id, ...joinedCategoryIds]);
+        `, [req.user.id]);
         
         res.status(HTTP_STATUS.OK).json({ success: true, data: result.rows });
     } catch (error) {

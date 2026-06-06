@@ -171,6 +171,9 @@ CREATE TABLE IF NOT EXISTS notifications (
 -- Add columns to modules
 DO $$ 
 BEGIN
+    IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name='modules' AND column_name='components') THEN
+        ALTER TABLE modules ADD COLUMN components text[] DEFAULT ARRAY['Cours', 'TD', 'TP'];
+    END IF;
     IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name='modules' AND column_name='category_id') THEN
         ALTER TABLE modules ADD COLUMN category_id INT REFERENCES categories(id) ON DELETE SET NULL;
     END IF;

@@ -22,8 +22,8 @@ const requireRole = (allowedRoles) => {
 };
 
 const requireSuperAdmin = requireRole(['SUPER_ADMIN']);
-const requireAdmin = requireRole(['ADMIN']);
-const requireSchoolAdmin = requireRole(['ADMIN']);
+const requireAdmin = requireRole(['ADMIN', 'ADMIN_GLOBAL']);
+const requireSchoolAdmin = requireRole(['ADMIN', 'ADMIN_GLOBAL']);
 const requireFormateur = requireRole(['ADMIN', 'FORMATEUR', 'FORMATEUR_SIMPLE']);
 const requireEtudiant = requireRole(['ADMIN', 'FORMATEUR', 'FORMATEUR_SIMPLE', 'ETUDIANT']);
 

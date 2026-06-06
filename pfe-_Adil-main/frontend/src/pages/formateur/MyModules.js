@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import api from '../../services/api';
 import './FormateurPages.css';
+import { sanitizeText } from '../../utils/sanitizeText';
 
 const MyModules = () => {
     const [modules, setModules] = useState([]);
@@ -91,7 +92,7 @@ const MyModules = () => {
                                 <div className="module-header" onClick={() => toggleModule(module.id)}>
                                     <div className="module-info">
                                         <div className="module-code">{module.code}</div>
-                                        <h3>{module.nom}</h3>
+                                        <h3>{sanitizeText(module.nom)}</h3>
                                         <div className="module-badges">
                                             <span className="credits-badge">{module.credits} crédits</span>
                                             <span className="credits-badge" style={{ marginLeft: 8 }}>
@@ -102,7 +103,7 @@ const MyModules = () => {
                                         </div>
                                         <div className="module-component-strip">
                                             {(Array.isArray(module.components) && module.components.length > 0 ? module.components : ['Cours', 'TD', 'TP']).map((component) => (
-                                                <span key={component} className="module-component-chip">{component}</span>
+                                                <span key={component} className="module-component-chip">{sanitizeText(component)}</span>
                                             ))}
                                         </div>
                                     </div>
@@ -133,9 +134,6 @@ const MyModules = () => {
                                             </button>
                                             <button type="button" onClick={() => window.location.href = `/formateur/upload?moduleId=${module.id}`}>
                                                 📤 Ajouter une ressource
-                                            </button>
-                                            <button type="button" onClick={() => window.location.href = `/formateur/resources?moduleId=${module.id}`}>
-                                                📚 Voir les ressources
                                             </button>
                                         </div>
                                     </div>

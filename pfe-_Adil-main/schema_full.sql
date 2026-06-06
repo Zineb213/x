@@ -698,6 +698,7 @@ CREATE TABLE public.modules (
     niveau public.niveau_type NOT NULL,
     credits integer DEFAULT 0,
     coeff numeric(3,2) DEFAULT 1.00,
+    components text[] DEFAULT ARRAY['Cours', 'TD', 'TP'],
     created_by integer,
     created_at timestamp without time zone DEFAULT CURRENT_TIMESTAMP,
     updated_at timestamp without time zone DEFAULT CURRENT_TIMESTAMP,

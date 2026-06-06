@@ -13,6 +13,7 @@ const ResourceUpload = () => {
         description: '',
         category: 'Cours'
     });
+    const [allowedCategories, setAllowedCategories] = useState(['Cours', 'TD', 'TP', 'Examen']);
     const [file, setFile] = useState(null);
     const [loading, setLoading] = useState(false);
     const [uploading, setUploading] = useState(false);
@@ -50,6 +51,19 @@ const ResourceUpload = () => {
         }
     };
 
+    const handleModuleChange = (moduleId) => {
+        const selectedModule = modules.find((m) => String(m.id) === String(moduleId));
+        if (selectedModule && selectedModule.assignment_type === 'SIMPLE') {
+            const scope = Array.isArray(selectedModule.component_scope) ? selectedModule.component_scope : [];
+            const nextCategory = scope.includes(formData.category) ? formData.category : (scope[0] || 'Cours');
+            setAllowedCategories(scope.length > 0 ? scope : ['Cours']);
+            setFormData({ ...formData, module_id: moduleId, category: nextCategory });
+        } else {
+            setAllowedCategories(['Cours', 'TD', 'TP', 'Examen']);
+            setFormData({ ...formData, module_id: moduleId, category: formData.category || 'Cours' });
+        }
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         
@@ -83,7 +97,7 @@ const ResourceUpload = () => {
             if (response.data.success) {
                 setMessage({ type: 'success', text: 'Ressource uploadée avec succès!' });
                 setTimeout(() => {
-                    navigate('/formateur/resources');
+                    navigate('/formateur');
                 }, 2000);
             }
         } catch (error) {
@@ -113,7 +127,7 @@ const ResourceUpload = () => {
                     <label>Module *</label>
                     <select
                         value={formData.module_id}
-                        onChange={(e) => setFormData({...formData, module_id: e.target.value})}
+                        onChange={(e) => handleModuleChange(e.target.value)}
                         className="form-select"
                         required
                     >
@@ -158,11 +172,20 @@ const ResourceUpload = () => {
                             className="form-select"
                             required
                         >
-                            <option value="Cours">Cours</option>
-                            <option value="TD">TD</option>
-                            <option value="TP">TP</option>
-                            <option value="Examen">Examen</option>
+                            {allowedCategories.map((categoryOption) => (
+                                <option key={categoryOption} value={categoryOption}>
+                                    {categoryOption}
+                                </option>
+                            ))}
                         </select>
+                        {modules.length > 0 && formData.module_id && (
+                            <p className="help-text">
+                                {modules.find((m) => String(m.id) === String(formData.module_id))?.assignment_type === 'SIMPLE'
+                                    ? `Vous ne pouvez publier que sur les composants suivants : ${allowedCategories.join(', ')}`
+                                    : 'En tant que formateur principal, vous pouvez publier sur tous les composants.'}
+                            </p>
+                        )}
+
                     </div>
 
                     <div className="form-group">
@@ -179,7 +202,7 @@ const ResourceUpload = () => {
                 </div>
 
                 <div className="form-actions">
-                    <button type="button" className="btn-secondary" onClick={() => navigate('/formateur/resources')}>
+                    <button type="button" className="btn-secondary" onClick={() => navigate('/formateur')}>
                         Annuler
                     </button>
                     <button type="submit" className="btn-primary" disabled={uploading}>

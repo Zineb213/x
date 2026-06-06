@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import api from '../../services/api';
 import './AdminPages.css';
+import { sanitizeText } from '../../utils/sanitizeText';
 
 const Modules = () => {
     const [modules, setModules] = useState([]);
@@ -11,6 +12,7 @@ const Modules = () => {
         code: '',
         nom: '',
         description: '',
+        niveau: 'L1',
         credits: 6,
         coeff: 2.0,
         components: ['Cours', 'TD', 'TP']
@@ -21,6 +23,7 @@ const Modules = () => {
     const [editFormData, setEditFormData] = useState({
         nom: '',
         description: '',
+        niveau: 'L1',
         credits: 6,
         coeff: 2.0,
         components: ['Cours', 'TD', 'TP']
@@ -116,6 +119,7 @@ const Modules = () => {
         setEditFormData({
             nom: module.nom,
             description: module.description || '',
+            niveau: module.niveau || 'L1',
             credits: module.credits,
             coeff: module.coeff,
             components: Array.isArray(module.components) && module.components.length > 0
@@ -216,9 +220,9 @@ const Modules = () => {
                                 <div className="module-card-head">
                                     <div>
                                         <div className="module-code">{module.code}</div>
-                                        <h3 className="module-name">{module.nom}</h3>
+                                        <h3 className="module-name">{sanitizeText(module.nom)}</h3>
                                         {module.description && (
-                                            <div className="module-desc">{module.description}</div>
+                                            <div className="module-desc">{sanitizeText(module.description)}</div>
                                         )}
                                         <div className="module-meta">
                                             <span>Crédits: {module.credits}</span>
@@ -262,7 +266,7 @@ const Modules = () => {
                                         {resList.map((r) => (
                                             <li key={r.id}>
                                                 <span className="r-cat">{r.category || '—'}</span>
-                                                {r.titre}
+                                                {sanitizeText(r.titre)}
                                             </li>
                                         ))}
                                     </ul>
@@ -301,6 +305,16 @@ const Modules = () => {
                                         onChange={(e) => setFormData({ ...formData, nom: e.target.value })}
                                         placeholder="ex: Introduction à la Programmation"
                                         required
+                                        className="form-input"
+                                    />
+                                </div>
+                                <div className="form-group">
+                                    <label>Niveau</label>
+                                    <input
+                                        type="text"
+                                        value={formData.niveau}
+                                        onChange={(e) => setFormData({ ...formData, niveau: e.target.value })}
+                                        placeholder="ex: L1, L2, M1"
                                         className="form-input"
                                     />
                                 </div>
@@ -408,6 +422,16 @@ const Modules = () => {
                                         onChange={(e) => setEditFormData({ ...editFormData, description: e.target.value })}
                                         className="form-textarea"
                                         rows="3"
+                                    />
+                                </div>
+                                <div className="form-group">
+                                    <label>Niveau</label>
+                                    <input
+                                        type="text"
+                                        value={editFormData.niveau}
+                                        onChange={(e) => setEditFormData({ ...editFormData, niveau: e.target.value })}
+                                        placeholder="ex: L1, L2, M1"
+                                        className="form-input"
                                     />
                                 </div>
                                 <div className="form-row">

@@ -93,18 +93,18 @@ class GoogleAuthService {
                 };
             }
 
-            // 5. Update last login time
+            // 5. Determine if this is first login and update last login time
+            const isFirstLogin = !user.last_login;
             await User.updateLastLogin(user.id);
 
             // 6. Generate JWT token
             const authToken = generateToken(user);
 
-            // 7. Return user without sensitive data
+            // 7. Return user without sensitive data and include first-login flag
             const { password_hash, ...userWithoutPassword } = user;
-            
-            return { 
-                token: authToken, 
-                user: userWithoutPassword 
+            return {
+                token: authToken,
+                user: { ...userWithoutPassword, is_first_login: isFirstLogin }
             };
             
         } catch (error) {
