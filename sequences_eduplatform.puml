@@ -1,5 +1,5 @@
 @startuml sequences_eduplatform
-title Séquences d'Actions - Plateforme EduPlatform
+title Séquences d'Actions - Plateforme TAMKIN
 
 ' ==================== SEQUENCE 1 : CONNEXION ====================
 == SEQUENCE 1: Connexion (Tous les rôles) ==

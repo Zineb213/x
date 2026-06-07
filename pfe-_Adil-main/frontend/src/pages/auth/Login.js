@@ -48,7 +48,7 @@ const Login = () => {
                 <div className="login-left">
                     <div className="login-branding">
                         <i className="fas fa-graduation-cap"></i>
-                        <h1>EduPlatform</h1>
+                        <h1>TAMKIN</h1>
                         <p>Plateforme Éducative Moderne</p>
                     </div>
                     <div className="features-list">

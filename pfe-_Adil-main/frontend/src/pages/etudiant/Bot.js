@@ -52,7 +52,7 @@ const Bot = () => {
     );
 
     const handleOpenInWindow = () => {
-        window.open('/etudiant/bot', 'eduplatform_ai_bot', 'width=540,height=760,menubar=no,toolbar=no,location=no,status=no');
+        window.open('/etudiant/bot', 'tamkin_ai_bot', 'width=540,height=760,menubar=no,toolbar=no,location=no,status=no');
     };
 
     const askAssistant = async (e) => {

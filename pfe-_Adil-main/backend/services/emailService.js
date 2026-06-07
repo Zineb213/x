@@ -57,7 +57,7 @@ class EmailService {
                         <p>Ce lien expirera dans <strong>15 minutes</strong>.</p>
                         <p>Si vous n'avez pas demandé cette réinitialisation, ignorez cet email.</p>
                         <hr>
-                        <p><small>EduPlatform - Plateforme Éducative</small></p>
+                        <p><small>TAMKIN - Plateforme Éducative</small></p>
                     </div>
                     <div class="footer">
                         <p>Cet email a été envoyé automatiquement, merci de ne pas y répondre.</p>
@@ -82,13 +82,13 @@ class EmailService {
             Si vous n'avez pas demandé cette réinitialisation, ignorez cet email.
             
             ---
-            EduPlatform - Plateforme Éducative
+            TAMKIN - Plateforme Éducative
         `;
         
         const mailOptions = {
-            from: process.env.EMAIL_FROM || 'noreply@eduplatform.com',
+            from: process.env.EMAIL_FROM || 'noreply@tamkin.com',
             to: email,
-            subject: 'EduPlatform - Réinitialisation de votre mot de passe',
+            subject: 'TAMKIN - Réinitialisation de votre mot de passe',
             text: text,
             html: html
         };

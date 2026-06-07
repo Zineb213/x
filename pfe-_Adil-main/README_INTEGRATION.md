@@ -1,4 +1,4 @@
-# Integration Summary — eduplatform (PFE)
+# Integration Summary — TAMKIN (PFE)
 
 Bref aperçu pour comprendre et relier les pièces du projet.
 

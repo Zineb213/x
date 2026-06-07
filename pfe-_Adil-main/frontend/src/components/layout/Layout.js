@@ -59,7 +59,7 @@ const Layout = () => {
             <nav className="navbar">
                 <div className="navbar-brand" onClick={() => navigate('/')}>
                     <i className="fas fa-graduation-cap"></i>
-                    <span>EduPlatform</span>
+                    <span>TAMKIN</span>
                 </div>
                 <div className="navbar-menu">
                     {navItems.map((item) => (

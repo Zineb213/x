@@ -1,4 +1,4 @@
-# EduPlatform - Comprehensive Project Analysis
+# TAMKIN - Comprehensive Project Analysis
 
 **Generated:** May 10, 2026
 **Project Type:** Full-stack Educational Platform (MERN-style with Node.js + React + PostgreSQL)
@@ -8,7 +8,7 @@
 
 ## 📋 Project Overview
 
-**EduPlatform** is a comprehensive educational management system designed for universities/institutions with:
+**TAMKIN** is a comprehensive educational management system designed for universities/institutions with:
 - Multi-role support (Admin, Formateur/Instructor, Étudiant/Student)
 - Real-time chat and community features
 - Resource management (Courses, TDs, TPs, Exams)

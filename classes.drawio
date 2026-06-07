@@ -1,0 +1,247 @@
+<mxfile host="65bd71144e">
+    <diagram id="F8uxwPKi_CsVnlxpXGb2" name="Page-1">
+        <mxGraphModel dx="1580" dy="1423" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="2" value="&lt;b&gt;users&lt;/b&gt;&lt;hr&gt;&lt;div&gt;+ id: BIGINT [PK]&lt;/div&gt;&lt;div&gt;+ matricule: VARCHAR(80)&lt;/div&gt;&lt;div&gt;+ email: VARCHAR(255)&lt;/div&gt;&lt;div&gt;+ password_hash: TEXT&lt;/div&gt;&lt;div&gt;+ google_id: VARCHAR(255)&lt;/div&gt;&lt;div&gt;+ nom: VARCHAR(120)&lt;/div&gt;&lt;div&gt;+ prenom: VARCHAR(120)&lt;/div&gt;&lt;div&gt;+ role_global: VARCHAR(50)&lt;/div&gt;&lt;div&gt;+ niveau: VARCHAR(20)&lt;/div&gt;&lt;div&gt;+ is_active: BOOLEAN&lt;/div&gt;&lt;div&gt;+ total_xp: INTEGER&lt;/div&gt;&lt;div&gt;+ current_level: INTEGER&lt;/div&gt;&lt;hr&gt;&lt;div&gt;+ findById(id)&lt;/div&gt;&lt;div&gt;+ findByEmail(email)&lt;/div&gt;&lt;div&gt;+ findByMatricule(matricule)&lt;/div&gt;&lt;div&gt;+ create(data)&lt;/div&gt;&lt;div&gt;+ updatePassword(userId, hash)&lt;/div&gt;&lt;div&gt;+ verifyPassword(user, password)&lt;/div&gt;" style="shape=rectangle;whiteSpace=wrap;html=1;strokeColor=#B85450;fillColor=#F8CECC;" vertex="1" parent="1">
+                    <mxGeometry x="1570" y="560" width="320" height="370" as="geometry"/>
+                </mxCell>
+                <mxCell id="3" value="&lt;b&gt;modules&lt;/b&gt;&lt;hr&gt;&lt;div&gt;+ id: BIGINT [PK]&lt;/div&gt;&lt;div&gt;+ code: VARCHAR(6)&lt;/div&gt;&lt;div&gt;+ nom: VARCHAR(120)&lt;/div&gt;&lt;div&gt;+ description: TEXT&lt;/div&gt;&lt;div&gt;+ niveau: VARCHAR(20)&lt;/div&gt;&lt;div&gt;+ credits: INTEGER&lt;/div&gt;&lt;div&gt;+ coeff: NUMERIC&lt;/div&gt;&lt;div&gt;+ components: TEXT[]&lt;/div&gt;&lt;div&gt;+ category_id: BIGINT [FK → categories]&lt;/div&gt;&lt;div&gt;+ xp_reward: INTEGER&lt;/div&gt;&lt;hr&gt;&lt;div&gt;+ create()&lt;/div&gt;&lt;div&gt;+ findAll()&lt;/div&gt;&lt;div&gt;+ findById()&lt;/div&gt;&lt;div&gt;+ update()&lt;/div&gt;&lt;div&gt;+ delete()&lt;/div&gt;&lt;div&gt;+ getModulesByFormateur()&lt;/div&gt;&lt;div&gt;+ getFormateursByModule()&lt;/div&gt;" style="shape=rectangle;whiteSpace=wrap;html=1;strokeColor=#B85450;fillColor=#F8CECC;" vertex="1" parent="1">
+                    <mxGeometry x="2070" y="560" width="320" height="350" as="geometry"/>
+                </mxCell>
+                <mxCell id="4" value="&lt;b&gt;formateur_module_assignment&lt;/b&gt;&lt;hr&gt;&lt;div&gt;+ id: BIGINT [PK]&lt;/div&gt;&lt;div&gt;+ formateur_id: BIGINT [FK → users]&lt;/div&gt;&lt;div&gt;+ module_id: BIGINT [FK → modules]&lt;/div&gt;&lt;div&gt;+ assigned_by: BIGINT [FK → users]&lt;/div&gt;&lt;div&gt;+ assigned_at: TIMESTAMP&lt;/div&gt;&lt;div&gt;+ is_primary: BOOLEAN&lt;/div&gt;&lt;hr&gt;&lt;div&gt;+ assign(formateurId, moduleId, assignedBy)&lt;/div&gt;&lt;div&gt;+ findByFormateur(formateurId)&lt;/div&gt;&lt;div&gt;+ findByModule(moduleId)&lt;/div&gt;&lt;div&gt;+ isPrimaryFormateur(formateurId, moduleId)&lt;/div&gt;&lt;div&gt;+ removeAssignment(formateurId, moduleId)&lt;/div&gt;" style="shape=rectangle;whiteSpace=wrap;html=1;strokeColor=#6c8ebf;fillColor=#dae8fc;" vertex="1" parent="1">
+                    <mxGeometry x="2470" y="560" width="380" height="280" as="geometry"/>
+                </mxCell>
+                <mxCell id="5" value="&lt;b&gt;etudiant_module_enrollment&lt;/b&gt;&lt;hr&gt;&lt;div&gt;+ id: BIGINT [PK]&lt;/div&gt;&lt;div&gt;+ etudiant_id: BIGINT [FK → users]&lt;/div&gt;&lt;div&gt;+ module_id: BIGINT [FK → modules]&lt;/div&gt;&lt;div&gt;+ enrolled_at: TIMESTAMP&lt;/div&gt;&lt;div&gt;+ status: VARCHAR&lt;/div&gt;&lt;hr&gt;&lt;div&gt;+ enroll(etudiantId, moduleId)&lt;/div&gt;&lt;div&gt;+ unenroll(etudiantId, moduleId)&lt;/div&gt;&lt;div&gt;+ findByEtudiant(etudiantId)&lt;/div&gt;&lt;div&gt;+ findByModule(moduleId)&lt;/div&gt;&lt;div&gt;+ isEnrolled(etudiantId, moduleId)&lt;/div&gt;" style="shape=rectangle;whiteSpace=wrap;html=1;strokeColor=#6c8ebf;fillColor=#dae8fc;" vertex="1" parent="1">
+                    <mxGeometry x="2070" y="1010" width="360" height="250" as="geometry"/>
+                </mxCell>
+                <mxCell id="6" value="&lt;b&gt;ressource_pedagogique&lt;/b&gt;&lt;hr&gt;&lt;div&gt;+ id: BIGINT [PK]&lt;/div&gt;&lt;div&gt;+ module_id: BIGINT [FK → modules]&lt;/div&gt;&lt;div&gt;+ uploaded_by: BIGINT [FK → users]&lt;/div&gt;&lt;div&gt;+ titre: VARCHAR(255)&lt;/div&gt;&lt;div&gt;+ category: TEXT&lt;/div&gt;&lt;div&gt;+ file_path: TEXT&lt;/div&gt;&lt;div&gt;+ file_name: TEXT&lt;/div&gt;&lt;div&gt;+ file_size: INTEGER&lt;/div&gt;&lt;div&gt;+ created_at: TIMESTAMP&lt;/div&gt;&lt;hr&gt;&lt;div&gt;+ create(resourceData)&lt;/div&gt;&lt;div&gt;+ findByModule(moduleId)&lt;/div&gt;&lt;div&gt;+ findByFormateur(formateurId)&lt;/div&gt;&lt;div&gt;+ update(id, updates)&lt;/div&gt;&lt;div&gt;+ findById(id)&lt;/div&gt;" style="shape=rectangle;whiteSpace=wrap;html=1;strokeColor=#6c8ebf;fillColor=#dae8fc;" vertex="1" parent="1">
+                    <mxGeometry x="2870" y="560" width="360" height="290" as="geometry"/>
+                </mxCell>
+                <mxCell id="7" value="&lt;b&gt;communities&lt;/b&gt;&lt;hr&gt;&lt;div&gt;+ id: BIGINT [PK]&lt;/div&gt;&lt;div&gt;+ name: VARCHAR(150)&lt;/div&gt;&lt;div&gt;+ slug: VARCHAR&lt;/div&gt;&lt;div&gt;+ description: TEXT&lt;/div&gt;&lt;div&gt;+ category_id: BIGINT [FK → categories]&lt;/div&gt;&lt;div&gt;+ member_count: INTEGER&lt;/div&gt;&lt;div&gt;+ created_by: BIGINT [FK → users]&lt;/div&gt;&lt;div&gt;+ is_active: BOOLEAN&lt;/div&gt;&lt;hr&gt;&lt;div&gt;+ create(data)&lt;/div&gt;&lt;div&gt;+ findById(id)&lt;/div&gt;&lt;div&gt;+ findByCategory(categoryId)&lt;/div&gt;&lt;div&gt;+ updateMemberCount(id)&lt;/div&gt;" style="shape=rectangle;whiteSpace=wrap;html=1;strokeColor=#82b366;fillColor=#d5e8d4;" vertex="1" parent="1">
+                    <mxGeometry x="570" y="560" width="340" height="280" as="geometry"/>
+                </mxCell>
+                <mxCell id="8" value="&lt;b&gt;community_members&lt;/b&gt;&lt;hr&gt;&lt;div&gt;+ id: BIGINT [PK]&lt;/div&gt;&lt;div&gt;+ community_id: BIGINT [FK → communities]&lt;/div&gt;&lt;div&gt;+ user_id: BIGINT [FK → users]&lt;/div&gt;&lt;div&gt;+ role: VARCHAR(50)&lt;/div&gt;&lt;div&gt;+ joined_at: TIMESTAMP&lt;/div&gt;&lt;div&gt;+ last_active: TIMESTAMP&lt;/div&gt;&lt;hr&gt;&lt;div&gt;+ join(communityId, userId)&lt;/div&gt;&lt;div&gt;+ leave(communityId, userId)&lt;/div&gt;&lt;div&gt;+ findByCommunity(communityId)&lt;/div&gt;&lt;div&gt;+ findByUser(userId)&lt;/div&gt;" style="shape=rectangle;whiteSpace=wrap;html=1;strokeColor=#82b366;fillColor=#d5e8d4;" vertex="1" parent="1">
+                    <mxGeometry x="570" y="940" width="340" height="240" as="geometry"/>
+                </mxCell>
+                <mxCell id="9" value="&lt;b&gt;conversations&lt;/b&gt;&lt;hr&gt;&lt;div&gt;+ id: BIGINT [PK]&lt;/div&gt;&lt;div&gt;+ conversation_type: VARCHAR(20)&lt;/div&gt;&lt;div&gt;+ community_id: BIGINT [FK → communities]&lt;/div&gt;&lt;div&gt;+ created_by: BIGINT [FK → users]&lt;/div&gt;&lt;div&gt;+ last_message: TEXT&lt;/div&gt;&lt;div&gt;+ message_count: INTEGER&lt;/div&gt;&lt;hr&gt;&lt;div&gt;+ create(data)&lt;/div&gt;&lt;div&gt;+ findById(id)&lt;/div&gt;&lt;div&gt;+ findByUser(userId)&lt;/div&gt;&lt;div&gt;+ updateLastMessage(id, message)&lt;/div&gt;" style="shape=rectangle;whiteSpace=wrap;html=1;strokeColor=#82b366;fillColor=#d5e8d4;" vertex="1" parent="1">
+                    <mxGeometry x="570" y="1280" width="340" height="250" as="geometry"/>
+                </mxCell>
+                <mxCell id="10" value="&lt;b&gt;conversation_participants&lt;/b&gt;&lt;hr&gt;&lt;div&gt;+ id: BIGINT [PK]&lt;/div&gt;&lt;div&gt;+ conversation_id: BIGINT [FK → conversations]&lt;/div&gt;&lt;div&gt;+ user_id: BIGINT [FK → users]&lt;/div&gt;&lt;div&gt;+ joined_at: TIMESTAMP&lt;/div&gt;&lt;div&gt;+ last_read_at: TIMESTAMP&lt;/div&gt;&lt;div&gt;+ role: VARCHAR(50)&lt;/div&gt;&lt;div&gt;+ is_muted: BOOLEAN&lt;/div&gt;&lt;hr&gt;&lt;div&gt;+ addParticipant(convId, userId)&lt;/div&gt;&lt;div&gt;+ removeParticipant(convId, userId)&lt;/div&gt;&lt;div&gt;+ markRead(convId, userId)&lt;/div&gt;&lt;div&gt;+ findByConversation(convId)&lt;/div&gt;" style="shape=rectangle;whiteSpace=wrap;html=1;strokeColor=#82b366;fillColor=#d5e8d4;" vertex="1" parent="1">
+                    <mxGeometry x="60" y="1270" width="360" height="270" as="geometry"/>
+                </mxCell>
+                <mxCell id="11" value="&lt;b&gt;messages&lt;/b&gt;&lt;hr&gt;&lt;div&gt;+ id: BIGINT [PK]&lt;/div&gt;&lt;div&gt;+ conversation_id: BIGINT [FK → conversations]&lt;/div&gt;&lt;div&gt;+ user_id: BIGINT [FK → users]&lt;/div&gt;&lt;div&gt;+ content: TEXT&lt;/div&gt;&lt;div&gt;+ created_at: TIMESTAMP&lt;/div&gt;&lt;div&gt;+ updated_at: TIMESTAMP&lt;/div&gt;&lt;hr&gt;&lt;div&gt;+ create(convId, userId, content)&lt;/div&gt;&lt;div&gt;+ findByConversation(convId)&lt;/div&gt;&lt;div&gt;+ update(id, content)&lt;/div&gt;&lt;div&gt;+ delete(id)&lt;/div&gt;" style="shape=rectangle;whiteSpace=wrap;html=1;strokeColor=#82b366;fillColor=#d5e8d4;" vertex="1" parent="1">
+                    <mxGeometry x="570" y="2010" width="340" height="250" as="geometry"/>
+                </mxCell>
+                <mxCell id="12" value="&lt;b&gt;notifications&lt;/b&gt;&lt;hr&gt;&lt;div&gt;+ id: BIGINT [PK]&lt;/div&gt;&lt;div&gt;+ user_id: BIGINT [FK → users]&lt;/div&gt;&lt;div&gt;+ type: VARCHAR(50)&lt;/div&gt;&lt;div&gt;+ title: VARCHAR(255)&lt;/div&gt;&lt;div&gt;+ content: TEXT&lt;/div&gt;&lt;div&gt;+ link: TEXT&lt;/div&gt;&lt;div&gt;+ is_read: BOOLEAN&lt;/div&gt;&lt;hr&gt;&lt;div&gt;+ create(userId, type, title, content, link)&lt;/div&gt;&lt;div&gt;+ markRead(notificationId)&lt;/div&gt;&lt;div&gt;+ listForUser(userId)&lt;/div&gt;" style="shape=rectangle;whiteSpace=wrap;html=1;strokeColor=#d79b00;fillColor=#ffe6cc;" vertex="1" parent="1">
+                    <mxGeometry x="1070" y="560" width="340" height="250" as="geometry"/>
+                </mxCell>
+                <mxCell id="13" value="&lt;b&gt;password_reset_tokens&lt;/b&gt;&lt;hr&gt;&lt;div&gt;+ id: BIGINT [PK]&lt;/div&gt;&lt;div&gt;+ user_id: BIGINT [FK → users]&lt;/div&gt;&lt;div&gt;+ token: TEXT&lt;/div&gt;&lt;div&gt;+ expires_at: TIMESTAMP&lt;/div&gt;&lt;div&gt;+ used: BOOLEAN&lt;/div&gt;&lt;hr&gt;&lt;div&gt;+ create(userId)&lt;/div&gt;&lt;div&gt;+ validate(token)&lt;/div&gt;&lt;div&gt;+ markUsed(token)&lt;/div&gt;" style="shape=rectangle;whiteSpace=wrap;html=1;strokeColor=#d79b00;fillColor=#ffe6cc;" vertex="1" parent="1">
+                    <mxGeometry x="1070" y="890" width="340" height="210" as="geometry"/>
+                </mxCell>
+                <mxCell id="14" value="&lt;b&gt;badges&lt;/b&gt;&lt;hr&gt;&lt;div&gt;+ id: BIGINT [PK]&lt;/div&gt;&lt;div&gt;+ name: VARCHAR(100)&lt;/div&gt;&lt;div&gt;+ description: TEXT&lt;/div&gt;&lt;div&gt;+ icon: VARCHAR(255)&lt;/div&gt;&lt;div&gt;+ xp_required: INTEGER&lt;/div&gt;&lt;div&gt;+ modules_completed_required: INTEGER&lt;/div&gt;&lt;hr&gt;&lt;div&gt;+ findAll()&lt;/div&gt;&lt;div&gt;+ findById(id)&lt;/div&gt;&lt;div&gt;+ create(data)&lt;/div&gt;&lt;div&gt;+ checkEligibility(studentId)&lt;/div&gt;" style="shape=rectangle;whiteSpace=wrap;html=1;strokeColor=#9673a6;fillColor=#e1d5e7;" vertex="1" parent="1">
+                    <mxGeometry x="1070" y="1210" width="340" height="250" as="geometry"/>
+                </mxCell>
+                <mxCell id="15" value="&lt;b&gt;student_badges&lt;/b&gt;&lt;hr&gt;&lt;div&gt;+ id: BIGINT [PK]&lt;/div&gt;&lt;div&gt;+ student_id: BIGINT [FK → users]&lt;/div&gt;&lt;div&gt;+ badge_id: BIGINT [FK → badges]&lt;/div&gt;&lt;div&gt;+ awarded_at: TIMESTAMP&lt;/div&gt;&lt;hr&gt;&lt;div&gt;+ award(studentId, badgeId)&lt;/div&gt;&lt;div&gt;+ findByStudent(studentId)&lt;/div&gt;&lt;div&gt;+ findByBadge(badgeId)&lt;/div&gt;" style="shape=rectangle;whiteSpace=wrap;html=1;strokeColor=#9673a6;fillColor=#e1d5e7;" vertex="1" parent="1">
+                    <mxGeometry x="1070" y="1560" width="340" height="200" as="geometry"/>
+                </mxCell>
+                <mxCell id="16" value="&lt;b&gt;student_levels&lt;/b&gt;&lt;hr&gt;&lt;div&gt;+ id: BIGINT [PK]&lt;/div&gt;&lt;div&gt;+ student_id: BIGINT [FK → users]&lt;/div&gt;&lt;div&gt;+ current_level: INTEGER&lt;/div&gt;&lt;div&gt;+ total_xp: INTEGER&lt;/div&gt;&lt;div&gt;+ resources_completed: INTEGER&lt;/div&gt;&lt;div&gt;+ modules_completed: INTEGER&lt;/div&gt;&lt;div&gt;+ current_streak: INTEGER&lt;/div&gt;&lt;hr&gt;&lt;div&gt;+ findByStudent(studentId)&lt;/div&gt;&lt;div&gt;+ updateXp(studentId, xp)&lt;/div&gt;&lt;div&gt;+ incrementStreak(studentId)&lt;/div&gt;&lt;div&gt;+ checkLevelUp(studentId)&lt;/div&gt;" style="shape=rectangle;whiteSpace=wrap;html=1;strokeColor=#9673a6;fillColor=#e1d5e7;" vertex="1" parent="1">
+                    <mxGeometry x="1070" y="1860" width="340" height="260" as="geometry"/>
+                </mxCell>
+                <mxCell id="17" value="&lt;b&gt;student_progress&lt;/b&gt;&lt;hr&gt;&lt;div&gt;+ id: BIGINT [PK]&lt;/div&gt;&lt;div&gt;+ student_id: BIGINT [FK → users]&lt;/div&gt;&lt;div&gt;+ module_id: BIGINT [FK → modules]&lt;/div&gt;&lt;div&gt;+ resource_id: BIGINT [FK → ressource_pedagogique]&lt;/div&gt;&lt;div&gt;+ status: VARCHAR(50)&lt;/div&gt;&lt;div&gt;+ progress_percentage: NUMERIC&lt;/div&gt;&lt;div&gt;+ last_accessed_at: TIMESTAMP&lt;/div&gt;&lt;hr&gt;&lt;div&gt;+ findByStudent(studentId)&lt;/div&gt;&lt;div&gt;+ updateProgress(studentId, moduleId, resourceId, pct)&lt;/div&gt;&lt;div&gt;+ findByModule(moduleId)&lt;/div&gt;" style="shape=rectangle;whiteSpace=wrap;html=1;strokeColor=#9673a6;fillColor=#e1d5e7;" vertex="1" parent="1">
+                    <mxGeometry x="2870" y="1010" width="380" height="270" as="geometry"/>
+                </mxCell>
+                <mxCell id="18" value="&lt;b&gt;categories&lt;/b&gt;&lt;hr&gt;&lt;div&gt;+ id: BIGINT [PK]&lt;/div&gt;&lt;div&gt;+ name: VARCHAR(100)&lt;/div&gt;&lt;div&gt;+ slug: VARCHAR(100)&lt;/div&gt;&lt;div&gt;+ description: TEXT&lt;/div&gt;&lt;div&gt;+ icon: VARCHAR(100)&lt;/div&gt;&lt;div&gt;+ color: VARCHAR(30)&lt;/div&gt;&lt;div&gt;+ display_order: INTEGER&lt;/div&gt;&lt;hr&gt;&lt;div&gt;+ findAll()&lt;/div&gt;&lt;div&gt;+ findById(id)&lt;/div&gt;&lt;div&gt;+ create(data)&lt;/div&gt;&lt;div&gt;+ update(id, data)&lt;/div&gt;" style="shape=rectangle;whiteSpace=wrap;html=1;strokeColor=#B85450;fillColor=#F8CECC;" vertex="1" parent="1">
+                    <mxGeometry x="2470" y="1010" width="320" height="260" as="geometry"/>
+                </mxCell>
+                <mxCell id="19" value="&lt;b&gt;xp_rules&lt;/b&gt;&lt;hr&gt;&lt;div&gt;+ id: BIGINT [PK]&lt;/div&gt;&lt;div&gt;+ action_type: VARCHAR(100)&lt;/div&gt;&lt;div&gt;+ xp_points: INTEGER&lt;/div&gt;&lt;hr&gt;&lt;div&gt;+ findAll()&lt;/div&gt;&lt;div&gt;+ findByAction(actionType)&lt;/div&gt;&lt;div&gt;+ create(actionType, xpPoints)&lt;/div&gt;&lt;div&gt;+ update(id, xpPoints)&lt;/div&gt;" style="shape=rectangle;whiteSpace=wrap;html=1;strokeColor=#B85450;fillColor=#F8CECC;" vertex="1" parent="1">
+                    <mxGeometry x="2470" y="1360" width="320" height="200" as="geometry"/>
+                </mxCell>
+                <mxCell id="20" value="1..1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="1540" y="630" width="40" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="21" value="0..*" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="1420" y="630" width="40" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="22" value="" style="endArrow=none;html=1;rounded=0;strokeWidth=1.5;" edge="1" parent="1" source="2" target="12">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1570" y="660"/>
+                            <mxPoint x="1410" y="660"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="23" value="" style="endArrow=none;html=1;rounded=0;strokeWidth=1.5;" edge="1" parent="1" source="2" target="13">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1570" y="960"/>
+                            <mxPoint x="1410" y="960"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="24" value="" style="endArrow=none;html=1;rounded=0;strokeWidth=1.5;" edge="1" parent="1" source="2" target="15">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1570" y="1660"/>
+                            <mxPoint x="1410" y="1660"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="25" value="" style="endArrow=none;html=1;rounded=0;strokeWidth=1.5;" edge="1" parent="1" source="2" target="16">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1570" y="1960"/>
+                            <mxPoint x="1410" y="1960"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="26" value="" style="endArrow=none;html=1;rounded=0;strokeWidth=1.5;" edge="1" parent="1" source="2" target="4">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1890" y="640"/>
+                            <mxPoint x="2470" y="640"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="27" value="" style="endArrow=none;html=1;rounded=0;strokeWidth=1.5;" edge="1" parent="1" source="2" target="5">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1890" y="910"/>
+                            <mxPoint x="2070" y="910"/>
+                            <mxPoint x="2070" y="1060"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="28" value="" style="endArrow=none;html=1;rounded=0;strokeWidth=1.5;" edge="1" parent="1" source="3" target="4">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="29" value="" style="endArrow=none;html=1;rounded=0;strokeWidth=1.5;" edge="1" parent="1" source="3" target="5">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="30" value="" style="endArrow=none;html=1;rounded=0;strokeWidth=1.5;" edge="1" parent="1" source="3" target="6">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="31" value="" style="endArrow=none;html=1;rounded=0;strokeWidth=1.5;" edge="1" parent="1" source="3" target="17">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="2390" y="860"/>
+                            <mxPoint x="3010" y="860"/>
+                            <mxPoint x="3010" y="1010"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="32" value="" style="endArrow=none;html=1;rounded=0;strokeWidth=1.5;dashed=1;" edge="1" parent="1" source="3" target="18">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="2390" y="1140"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="33" value="" style="endArrow=none;html=1;rounded=0;strokeWidth=1.5;dashed=1;" edge="1" parent="1" source="18" target="7">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="2470" y="1140"/>
+                            <mxPoint x="870" y="1140"/>
+                            <mxPoint x="870" y="840"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="34" value="" style="endArrow=none;html=1;rounded=0;strokeWidth=1.5;" edge="1" parent="1" source="2" target="7">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1570" y="580"/>
+                            <mxPoint x="920" y="580"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="35" value="" style="endArrow=none;html=1;rounded=0;strokeWidth=1.5;" edge="1" parent="1" source="7" target="8">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="36" value="" style="endArrow=none;html=1;rounded=0;strokeWidth=1.5;" edge="1" parent="1" source="2" target="8">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1570" y="1030"/>
+                            <mxPoint x="910" y="1030"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="37" value="" style="endArrow=none;html=1;rounded=0;strokeWidth=1.5;" edge="1" parent="1" source="7" target="9">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="740" y="840"/>
+                            <mxPoint x="740" y="1280"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="38" value="" style="endArrow=none;html=1;rounded=0;strokeWidth=1.5;" edge="1" parent="1" source="2" target="9">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1570" y="1360"/>
+                            <mxPoint x="910" y="1360"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="39" value="" style="endArrow=none;html=1;rounded=0;strokeWidth=1.5;" edge="1" parent="1" source="9" target="10">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="40" value="" style="endArrow=none;html=1;rounded=0;strokeWidth=1.5;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="2" target="10">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="240" y="870"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="41" value="" style="endArrow=none;html=1;rounded=0;strokeWidth=1.5;" edge="1" parent="1" source="9" target="11">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="740" y="1530"/>
+                            <mxPoint x="740" y="2010"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="42" value="" style="endArrow=none;html=1;rounded=0;strokeWidth=1.5;" edge="1" parent="1" source="2" target="11">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1570" y="2110"/>
+                            <mxPoint x="910" y="2110"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="43" value="" style="endArrow=none;html=1;rounded=0;strokeWidth=1.5;" edge="1" parent="1" source="2" target="6">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1890" y="600"/>
+                            <mxPoint x="2870" y="600"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="44" value="" style="endArrow=none;html=1;rounded=0;strokeWidth=1.5;" edge="1" parent="1" source="2" target="17">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1890" y="1110"/>
+                            <mxPoint x="2870" y="1110"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="45" value="" style="endArrow=none;html=1;rounded=0;strokeWidth=1.5;" edge="1" parent="1" source="14" target="15">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="46" value="" style="endArrow=none;html=1;rounded=0;strokeWidth=1.5;" edge="1" parent="1" source="6" target="17">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="3050" y="850"/>
+                            <mxPoint x="3050" y="1010"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="47" value="&lt;b&gt;Légende&lt;/b&gt;&lt;hr&gt;&lt;span style=&#39;color:#B85450&#39;&gt;■&lt;/span&gt; Entités principales (users, modules, categories)&lt;br&gt;&lt;span style=&#39;color:#6c8ebf&#39;&gt;■&lt;/span&gt; Tables de relation / association&lt;br&gt;&lt;span style=&#39;color:#82b366&#39;&gt;■&lt;/span&gt; Communication (communities, conversations, messages)&lt;br&gt;&lt;span style=&#39;color:#9673a6&#39;&gt;■&lt;/span&gt; Gamification (badges, XP, progression)&lt;br&gt;&lt;span style=&#39;color:#d79b00&#39;&gt;■&lt;/span&gt; Sécurité / notifications&lt;br&gt;— Relation / FK&lt;br&gt;- - Relation optionnelle" style="shape=rectangle;whiteSpace=wrap;html=1;strokeColor=#666;fillColor=#f5f5f5;fontColor=#333;align=left;spacingLeft=10;" vertex="1" parent="1">
+                    <mxGeometry x="220" y="210" width="320" height="210" as="geometry"/>
+                </mxCell>
+                <mxCell id="48" value="&lt;b style=&#39;font-size:18px&#39;&gt;TAMKIN — Diagramme de Classes UML&lt;/b&gt;&lt;br&gt;Synchronisé avec le Dictionnaire de Données (Table 2.2)" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;" vertex="1" parent="1">
+                    <mxGeometry x="1370" y="210" width="600" height="60" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

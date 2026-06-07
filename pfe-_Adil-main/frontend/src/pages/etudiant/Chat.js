@@ -465,7 +465,7 @@ const Chat = () => {
             <button
                 type="button"
                 className="assistant-window-btn"
-                onClick={() => window.open('/etudiant/bot', 'eduplatform_ai_bot', 'width=540,height=760,menubar=no,toolbar=no,location=no,status=no')}
+                    onClick={() => window.open('/etudiant/bot', 'tamkin_ai_bot', 'width=540,height=760,menubar=no,toolbar=no,location=no,status=no')}
                 disabled={!assistantEnabled}
             >
                 Ouvrir bot en fenetre

@@ -6,7 +6,6 @@
 \usepackage[french]{babel}
 \usepackage{lmodern}
 \usepackage{microtype}
-\usepackage{svg}
 
 %% ─── Mise en page ─────────────────────────────────────────────────────────────
 \usepackage{geometry}
@@ -228,8 +227,29 @@
 %% ═══════════════════════════════════════════════════════════════════════════════
 %% COMMANDE IMAGE SÉCURISÉE (placeholder si fichier absent)
 %% ═══════════════════════════════════════════════════════════════════════════════
+\makeatletter
 \newcommand{\safeimage}[4][0.85\textwidth]{%
-  \begin{figure}[H]
+  % If called inside a float (\@captype defined), do not create a new figure;
+  % otherwise, wrap content in a figure environment.
+  \@ifundefined{@captype}{%
+    \begin{figure}[H]
+      \centering
+      \IfFileExists{#2}{%
+        \includegraphics[width=#1]{#2}%
+      }{%
+        \fcolorbox{ustoblue}{ustolightblue!20}{%
+          \parbox[c][3.5cm][c]{0.88\textwidth}{\centering
+            \color{ustoblue}\textbf{[Emplacement r\'eserv\'e~---~Figure~#3]}\\[6pt]
+            \small Fichier attendu~:~\texttt{\detokenize{#2}}\\[4pt]
+            \textit{\color{gray}Remplacer par l'image avant soumission}
+          }%
+        }%
+      }%
+      \caption{#4}
+      \label{fig:\thefigure}
+    \end{figure}%
+  }{%
+    % Inside an existing float: just include the graphic and caption/label
     \centering
     \IfFileExists{#2}{%
       \includegraphics[width=#1]{#2}%
@@ -243,9 +263,10 @@
       }%
     }%
     \caption{#4}
-    \label{fig:#3}
-  \end{figure}%
+    \label{fig:\thefigure}
+  }%
 }
+\makeatother
 
 %% ═══════════════════════════════════════════════════════════════════════════════
 %% DOCUMENT
@@ -253,19 +274,26 @@
 \begin{document}
 
 % === Dédicaces et Remerciements (à personnaliser) ===
+\pagenumbering{gobble}
 \cleardoublepage
 \thispagestyle{empty}\chapter*{Dédicaces}
 \addcontentsline{toc}{chapter}{Dédicaces}
 \vspace*{3.5cm}
 \begin{center}
 \large
-\textit{\`A ma famille, pour leur amour inconditionnel, leur patience et leur soutien constant tout au long de mon parcours.}
+\textit{Nous dédions ce modeste travail}
 \medskip
 
-\textit{\`A mes amis et coll\`egues, pour leur pr\'esence, leurs encouragements sinc\`eres et la richesse de nos \'echanges.}
+\textit{À nos chers parents qui nous ont fourni au quotidien un soutien et une confiance inébranlable, nous ne saurions exprimer toute notre gratitude avec de simples mots}
 \medskip
 
-\textit{\`A toutes les personnes qui ont partag\'e leurs connaissances, leur temps et leur bienveillance pour m'aider \`a r\'ealiser ce travail.}
+\textit{À tous les membres de nos familles respectives}
+\medskip
+
+\textit{À tous nos amis}
+\medskip
+
+\textit{À tous nos enseignants pour leur soutien, leurs enseignements et leurs conseils tout au long de notre parcours éducatif.}
 \end{center}
 \vspace{1cm}
 \clearpage
@@ -276,13 +304,16 @@
 \vspace*{3.5cm}
 \begin{center}
 \large
-    \textit{Je tiens \`a exprimer ma profonde gratitude \`a mon encadrant pour la qualit\'e de son suivi, la pertinence de ses conseils ainsi que sa rigueur scientifique tout au long de ce travail.}
+    \textit{Nous tenons avant toute chose, à remercier DIEU et à lui rendre grâce pour la force et le courage qu'il nous a donnés et qui nous ont permis de surmonter tous les obstacles rencontrés durant la réalisation de ce travail et de le mener à son terme.}
     
     \medskip
-    \textit{Mes remerciements s'adressent aussi \`a l'ensemble de l'\'équipe p\'edagogique et au personnel administratif pour leur disponibilit\'e et leur soutien constant. }
+    \textit{À nos chers parents, pour tous leurs sacrifices, leurs amours, leurs soutiens et leurs prières tout au long de nos études.}
     
     \medskip
-    \textit{Enfin, j'adresse ma reconnaissance \`a mes coll\`egues et \`a ma famille pour leur soutien moral, leur patience et leurs encouragements pr\'ecieux tout au long de ce parcours.}
+    \textit{On tient à remercier notre encadrante Mme GUERROUDJI qui nous a accompagné tout au long de ce travail; on lui adresse toute notre gratitude pour sa patience.}
+    
+    \medskip
+    \textit{Nos remerciements vont aussi à Mme MEKKAKIA et Mme HERNANE, nos examinatrices, pour leur soutien et leurs évaluations constructives.}
 \end{center}
 \clearpage
 \pagenumbering{roman}
@@ -300,46 +331,41 @@
 %% INTRODUCTION GÉNÉRALE
 %% ═══════════════════════════════════════════════════════════════════════════════
 
-\chapter*{Introduction générale}
-\addcontentsline{toc}{chapter}{Introduction générale}
+\chapter*{Introduction g\'en\'erale}
+\addcontentsline{toc}{chapter}{Introduction g\'en\'erale}
 
-La transformation numérique des systèmes d'enseignement constitue aujourd'hui une priorité stratégique pour les établissements confrontés à la massification des effectifs, à la diversification des parcours et à l'exigence croissante de qualité pédagogique. Dans ce contexte, la mise en place de plateformes numériques ne peut plus se limiter à la simple diffusion de supports de cours: elle doit intégrer la gouvernance académique, la collaboration entre acteurs et la traçabilité des activités.
+La transformation num\'erique des syst\`emes d’enseignement constitue aujourd’hui une priorit\'e strat\'egique pour les \'etablissements confront\'es \`a la massification des effectifs, \`a la diversification des parcours et \`a l’exigence croissante de qualit\'e p\'edagogique. Dans ce contexte, la mise en place de plateformes num\'eriques ne peut plus se limiter \`a la simple diffusion de supports de cours : elle doit int\'egrer la gouvernance acad\'emique, la collaboration entre acteurs et la tra\c{c}abilit\'e des activit\'es.
 
-Le projet \textbf{EduPlatform} s'inscrit dans cette dynamique. Il vise à proposer une plateforme unifiée de partage pédagogique et de collaboration, adaptée aux établissements scolaires, aux écoles de soutien et aux écoles de langues, en combinant: gestion par rôles, structuration des ressources par niveau/module/composant, communication synchrone et asynchrone, et outils de pilotage administratifs.
+Le projet \textbf{TAMKIN} (\textit{\textbf{T}ake \textbf{A} \textbf{M}oment for \textbf{K}nowledge \textbf{I}n \textbf{N}ew ways}) s’inscrira pleinement dans cette dynamique. Il vise \`a proposer une plateforme unifi\'ee de partage p\'edagogique et de collaboration, id\'ealement adapt\'ee aux \'etablissements, en combinant : gestion stricte par r\^oles, structuration m\'ethodique des ressources par niveau/module/composant, outils de communication synchrone et asynchrone, ainsi que des modules de pilotage administratifs.
 
-\paragraph{Problématique générale.}
-Comment concevoir une plateforme éducative à la fois robuste techniquement, pertinente pédagogiquement et viable économiquement, capable d'unifier les usages quotidiens des apprenants, formateurs et responsables d'établissement?
+\paragraph{Probl\'ematique g\'en\'erale.} --- Comment concevoir une plateforme \'educative \`a la fois robuste techniquement, pertinente p\'edagogiquement et viable \'economiquement, capable d’unifier les usages quotidiens des apprenants, formateurs et responsables d’\'etablissement ?
 
-\paragraph{Objectif global.}
-Concevoir, implémenter et évaluer EduPlatform comme solution complète pour les écoles et centres de formation, puis proposer un cadre de passage à l'échelle startup à travers un modèle économique et une stratégie de croissance.
+\paragraph{Objectif global.} --- Concevoir, impl\'ementer et \'evaluer TAMKIN comme solution compl\`ete pour les \'ecoles et centres de formation, puis proposer un cadre formel de passage \`a l’\'echelle startup \`a travers un mod\`ele \'economique viable et une strat\'egie de croissance r\'esiliente.
 
-\paragraph{Organisation du mémoire.}
-Ce mémoire est structure en quatre chapitres:
+\paragraph{Organisation du m\'emoire.} --- Ce m\'emoire est structur\'e en quatre chapitres progressifs :
 \begin{itemize}
-  \item \textbf{Chapitre 1}: Etude de contexte, problématique et analyse des besoins;
-  \item \textbf{Chapitre 2}: Conception UML et architecture de la solution;
-  \item \textbf{Chapitre 3}: Implementation technique, deploiement et validation;
-  \item \textbf{Chapitre 4}: Evaluation stratégique et business model (cadre startup, loi 12-75).
+  \item \textbf{Chapitre 1 :} \'Etude de contexte et probl\'ematiques ;
+  \item \textbf{Chapitre 2 :} Conception UML et architecture de la solution ;
+  \item \textbf{Chapitre 3 :} Impl\'ementation technique, d\'eploiement et validation ;
+  \item \textbf{Chapitre 4 :} \'Evaluation strat\'egique et business model (cadre startup, loi 12-75).
 \end{itemize}
 
-L'enchainement de ces chapitres permet de relier de maniere progressive la pertinence scientifique du projet, sa realisation concrete et sa projection entrepreneuriale.
-
+L’encha\^inement rigoureux de ces chapitres permet de relier de mani\`ere progressive la pertinence scientifique du projet, sa r\'ealisation concr\`ete sur le terrain et sa projection entrepreneuriale future.
 
 %% ═══════════════════════════════════════════════════════════════════════════════
 %% CHAPITRE 1 — Contexte général, problématique et état de l'art
 %% ═══════════════════════════════════════════════════════════════════════════════
-
-\chapter{Etude de contexte, problématique et analyse des besoins}
+\chapter{Etude de contexte et problématique}
 
 %%──────────────────────────────────────────────────────────────────────────────
 \section{Introduction du chapitre}
 %%──────────────────────────────────────────────────────────────────────────────
 
-La g\'en\'eralisation des technologies num\'eriques dans l'enseignement et la formation constitue aujourd'hui l'un des leviers strat\'egiques les plus significatifs pour l'am\'elioration de la qualit\'e p\'edagogique, la continuit\'e des activit\'es et l'inclusion \'educative. Dans ce contexte de mutation profonde, les \'etablissements scolaires, les centres de soutien et les écoles de langues sont confront\'es \`a un imp\'eratif d'adaptation organisationnelle et technologique, auquel r\'epondent des environnements num\'eriques de plus en plus sophistiqu\'es~\cite{unesco_digital_2026,worldbank_edtech_2026}.
+La g\'en\'eralisation des technologies num\'eriques dans l'enseignement et la formation constitue aujourd'hui l'un des leviers strat\'egiques les plus significatifs pour l'am\'elioration de la qualit\'e p\'edagogique, la continuit\'e des activit\'es et l'inclusion \'educative. Dans ce contexte de mutation profonde, les établissements sont confrontés à un impératif d'adaptation organisationnelle et technologique, auquel répondent des environnements numériques de plus en plus sophistiqu\'es~\cite{unesco_digital_2026,worldbank_edtech_2026}.
 
-Le pr\'esent chapitre constitue le socle analytique et conceptuel du projet \textbf{EduPlatform}. Il poursuit quatre objectifs compl\'ementaires~: (i)~d\'ecrire le contexte mondial et national de la transformation num\'erique de l'enseignement~; (ii)~formuler la probl\'ematique ayant motiv\'e la conception d'EduPlatform~; (iii)~pr\'esenter les objectifs et la m\'ethodologie adopt\'es~; et (iv)~dresser un \'etat de l'art approfondi des solutions existantes, afin de positionner EduPlatform par rapport aux r\'ef\'erences du domaine.
+Le pr\'esent chapitre constitue le socle analytique et conceptuel du projet \textbf{TAMKIN}. Il poursuit quatre objectifs compl\'ementaires~: (i)~d\'ecrire le contexte mondial et national de la transformation num\'erique de l'enseignement~; (ii)~formuler la probl\'ematique ayant motiv\'e la conception de TAMKIN~; (iii)~pr\'esenter les objectifs et la m\'ethodologie adopt\'es~; et (iv)~dresser un \'etat de l'art approfondi des solutions existantes, afin de positionner TAMKIN par rapport aux r\'ef\'erences du domaine.
 
-Ce chapitre est organis\'e comme suit~: la section~\ref{sec:contexte} traite du contexte g\'en\'eral~; la section~\ref{sec:problématique} formule la probl\'ematique~; la section~\ref{sec:objectifs} d\'etaille les objectifs~; la section~\ref{sec:methodo} pr\'esente la d\'emarche m\'ethodologique~; la section~\ref{sec:etat_art} constitue l'\'etat de l'art~; la section~\ref{sec:positionnement} positionne EduPlatform~; la section~\ref{sec:figures} pr\'esente les figures requises~; enfin, la section~\ref{sec:conclusion} conclut le chapitre.
+Ce chapitre est organis\'e comme suit~: la section~\ref{sec:contexte} traite du contexte g\'en\'eral~; la section~\ref{sec:problematique} formule la probl\'ematique~; la section~\ref{sec:objectifs} d\'etaille les objectifs~; la section~\ref{sec:methodo} pr\'esente la d\'emarche m\'ethodologique~; la section~\ref{sec:etat_art} constitue l'\'etat de l'art~; la section~\ref{sec:positionnement} positionne TAMKIN~; enfin, la section~\ref{sec:conclusion} conclut le chapitre.
 
 %%──────────────────────────────────────────────────────────────────────────────
 \section{Contexte g\'en\'eral}
@@ -360,7 +386,7 @@ Dans le contexte alg\'erien et plus particuli\`erement au sein des écoles de so
 
 %%──────────────────────────────────────────────────────────────────────────────
 \section{Probl\'ematique}
-\label{sec:problématique}
+\label{sec:problematique}
 %%──────────────────────────────────────────────────────────────────────────────
 
 La gestion des activit\'es p\'edagogiques dans un contexte éducatif contemporain fait face \`a un d\'efi central~: la multiplicit\'e des outils et des canaux de communication g\'en\`ere une dispersion informationnelle qui nuit \`a la coh\'erence de l'exp\'erience des apprenants et des formateurs. Les ressources p\'edagogiques~--- cours, travaux dirig\'es, travaux pratiques, examens, corrig\'es et supports multim\'edias~--- sont dispers\'ees sur des supports h\'et\'erog\`enes, sans structuration par module ni tra\c{c}abilit\'e des mises \`a jour.
@@ -369,7 +395,7 @@ Par ailleurs, la communication entre enseignants, mod\'erateurs et apprenants s'
 
 \medskip
 \noindent\fcolorbox{ustoblue}{ustolightblue!20}{\parbox{0.96\textwidth}{%
-\textbf{Question de recherche~:} Comment concevoir et d\'evelopper une plateforme num\'erique unifi\'ee, s\'ecuris\'ee et modulaire, capable de centraliser les ressources p\'edagogiques, de faciliter la communication entre les diff\'erents acteurs de la communaut\'e éducative, et de soutenir l'organisation du travail collectif, tout en restant accessible, maintenable et adapt\'ee au contexte éducatif local (écoles, centres de soutien, écoles de langues)?
+\textbf{Question de recherche~:} Comment concevoir et d\'evelopper une plateforme num\'erique unifi\'ee, s\'ecuris\'ee et modulaire, capable de centraliser les ressources p\'edagogiques, de faciliter la communication entre les diff\'erents acteurs de la communaut\'e éducative, et de soutenir l'organisation du travail collectif, tout en restant accessible, maintenable et adapt\'ee au contexte éducatif local)?
 }}
 \medskip
 
@@ -380,14 +406,14 @@ Par ailleurs, la communication entre enseignants, mod\'erateurs et apprenants s'
 
 \subsection{Objectif g\'en\'eral}
 
-L'objectif g\'en\'eral du projet est de concevoir, d\'evelopper et valider \textbf{EduPlatform}~: une plateforme web de partage p\'edagogique et de collaboration éducative, con\c{c}ue pour les usages des écoles, des centres de soutien et des écoles de langues, et structur\'ee autour d'une architecture orient\'ee modules, d'un syst\`eme de gouvernance par r\^oles et d'une couche sociale int\'egr\'ee.
+L'objectif g\'en\'eral du projet est de concevoir, d\'evelopper et valider \textbf{TAMKIN}~: une plateforme web de partage p\'edagogique et de collaboration éducative, con\c{c}ue pour les usages des etablissements, et structur\'ee autour d'une architecture orient\'ee modules, d'un syst\`eme de gouvernance par r\^oles et d'une couche sociale int\'egr\'ee.
 
 \subsection{Objectifs sp\'ecifiques}
 
 \begin{itemize}
   \item[\textbf{OS1.}] Centraliser les ressources p\'edagogiques (cours, TD, TP, examens, corrig\'es, playlists) dans une architecture hi\'erarchique~: Niveau $\rightarrow$ Module $\rightarrow$ Section $\rightarrow$ Ressource.
-  \item[\textbf{OS2.}] Mettre en \oe uvre un syst\`eme d'authentification s\'ecuris\'e par jetons JWT et une autorisation par r\^oles~: Administrateur global, Mod\'erateur et Utilisateur.
-  \item[\textbf{OS3.}] Int\'egrer un espace de communication structur\'e~: publications, commentaires, votes, partages et messagerie instantan\'ee (chat priv\'e et de groupe).
+  \item[\textbf{OS2.}] Mettre en \oe uvre un syst\`eme d'authentification s\'ecuris\'e par jetons JWT et une autorisation par r\^oles~: Administrateur super, Administrateur d'etablissement, Formateur principale, Formateur simple et Utilisateur.
+  \item[\textbf{OS3.}] Int\'egrer un espace de communication structur\'e~: chat priv\'e et de groupe, notifications et publication de ressources p\'edagogiques.
   \item[\textbf{OS4.}] D\'evelopper un syst\`eme de notifications permettant le suivi des \'ev\'enements acad\'emiques avec compteur de non-lus.
   \item[\textbf{OS5.}] Garantir la tra\c{c}abilit\'e compl\`ete des actions de gestion~: ajout, modification et suppression des ressources, contr\^ol\'ees par le syst\`eme de r\^oles.
 \end{itemize}
@@ -400,7 +426,7 @@ L'objectif g\'en\'eral du projet est de concevoir, d\'evelopper et valider \text
 La d\'emarche adopt\'ee suit un processus incr\'emental en cinq phases, conforme aux pratiques reconnues en ing\'enierie des syst\`emes d'information et aux recommandations des travaux de r\'ef\'erence analys\'es~:
 
 \begin{enumerate}
-  \item \textbf{Analyse des besoins}~: identification des besoins fonctionnels et non fonctionnels par l'\'étude des usages existants, l'analyse de la litt\'erature et la consultation des trois m\'emoires de r\'ef\'erence.
+  \item \textbf{Analyse des besoins}~: identification des besoins fonctionnels et non fonctionnels.
   \item \textbf{Mod\'elisation conceptuelle}~: repr\'esentation des interactions par des diagrammes UML (cas d'utilisation, s\'equence, classes) pour formaliser les sc\'enarios et l'architecture logique.
   \item \textbf{Conception de l'architecture}~: d\'efinition de l'architecture applicative (API REST, frontend SPA) et du sch\'ema de la base de donn\'ees relationnelle PostgreSQL.
   \item \textbf{Impl\'ementation et int\'egration}~: d\'eveloppement progressif par fonctionnalit\'es (authentification, ressources, social, notifications, planificateur, administration), avec validation continue.
@@ -518,27 +544,26 @@ Faible \`a moyenne \\
 ]
 \begin{itemize}
   \item Aucune des quatre solutions g\'en\'eralistes n'est con\c{c}ue sp\'ecifiquement pour le contexte éducatif algérien~; leur adaptation exige des ressources techniques et financi\`eres importantes.
-  \item EduPlatform est la seule solution \textbf{auto-h\'eberg\'ee} et \textbf{contexte-native}~: chaque fonctionnalit\'e a \'et\'e con\c{c}ue en r\'eponse directe \`a un besoin identifi\'e dans un contexte éducatif local.
-  \item Le tableau~\ref{tab:compar_detail} ci-dessous approfondit l'analyse sur \textbf{12 crit\`eres fonctionnels et techniques}, permettant de mesurer pr\'ecis\'ement les apports sp\'ecifiques d'EduPlatform.
+  \item TAMKIN est la seule solution \textbf{auto-h\'eberg\'ee} et \textbf{contexte-native}~: chaque fonctionnalit\'e a \'et\'e con\c{c}ue en r\'eponse directe \`a un besoin identifi\'e dans un contexte éducatif local.
+  \item Le tableau~\ref{tab:compar_detail} ci-dessous approfondit l'analyse sur \textbf{12 crit\`eres fonctionnels et techniques}, permettant de mesurer pr\'ecis\'ement les apports sp\'ecifiques de TAMKIN.
 \end{itemize}
 \end{tcolorbox}
 \medskip
 
 %%──────────────────────────────────────────────────────────────────────────────
-\subsection{Tableau~2~---~Analyse comparative d\'etaill\'ee (12 crit\`eres)}
+\subsection{Tableau~2~---~Analyse comparative d\'etaill\'ee (7 crit\`eres)}
 %%──────────────────────────────────────────────────────────────────────────────
 
-Le tableau~\ref{tab:compar_detail} confronte les quatre plateformes de r\'ef\'erence sur douze crit\`eres couvrant les dimensions fonctionnelles, techniques, organisationnelles et \'economiques.
+Le tableau~\ref{tab:compar_detail} confronte les plateformes de r\'ef\'erence mondiales \`a notre solution sur sept crit\`eres strat\'egiques, couvrant les dimensions fonctionnelles, techniques, linguistiques et \'economiques sp\'ecifiques au march\'e vis\'e.
 
 \renewcommand{\arraystretch}{1.8}
-\setlength{\tabcolsep}{7pt}
-\begin{longtable}{|>{\bfseries\raggedright\arraybackslash}p{3.5cm}|
-                   >{\raggedright\arraybackslash}p{2.5cm}|
-                   >{\raggedright\arraybackslash}p{2.5cm}|
-                   >{\raggedright\arraybackslash}p{2.5cm}|
-                   >{\raggedright\arraybackslash}p{2.5cm}|}
+\setlength{\tabcolsep}{8pt}
+\begin{longtable}{|>{\bfseries\raggedright\arraybackslash}p{4.5cm}|
+                   >{\raggedright\arraybackslash}p{2.8cm}|
+                   >{\raggedright\arraybackslash}p{2.8cm}|
+                   >{\raggedright\arraybackslash}p{3.2cm}|}
 
-\caption{Analyse comparative d\'etaill\'ee des plateformes p\'edagogiques num\'eriques (12 crit\`eres)}
+\caption{Analyse comparative d\'etaill\'ee des plateformes p\'edagogiques num\'eriques (7 crit\`eres)}
 \label{tab:compar_detail} \\
 
 %% ── EN-TÊTE PREMIÈRE PAGE ──────────────────────────────────────────────
@@ -547,25 +572,23 @@ Le tableau~\ref{tab:compar_detail} confronte les quatre plateformes de r\'ef\'er
 \textcolor{white}{\textbf{Crit\`ere}} &
 \textcolor{white}{\textbf{Moodle}} &
 \textcolor{white}{\textbf{G. Classroom}} &
-\textcolor{white}{\textbf{MS Teams}} &
-\textcolor{white}{\textbf{Canvas}} \\
+\textcolor{white}{\textbf{EduPlatform (TAMKIN)}} \\
 \hline
 \endfirsthead
 
 %% ── EN-TÊTE PAGES SUIVANTES ────────────────────────────────────────────
-\multicolumn{5}{l}{\small\textit{(suite du tableau~\ref{tab:compar_detail})}} \\[2pt]
+\multicolumn{4}{l}{\small\textit{(suite du tableau~\ref{tab:compar_detail})}} \\[2pt]
 \hline
 \rowcolor{ustoblue}
 \textcolor{white}{\textbf{Crit\`ere}} &
 \textcolor{white}{\textbf{Moodle}} &
 \textcolor{white}{\textbf{G. Classroom}} &
-\textcolor{white}{\textbf{MS Teams}} &
-\textcolor{white}{\textbf{Canvas}} \\
+\textcolor{white}{\textbf{EduPlatform (TAMKIN)}} \\
 \hline
 \endhead
 
 \hline
-\multicolumn{5}{r|}{\small\textit{Suite page suivante\ldots}} \\
+\multicolumn{4}{r|}{\small\textit{Suite page suivante\ldots}} \\
 \endfoot
 
 \hline
@@ -573,182 +596,104 @@ Le tableau~\ref{tab:compar_detail} confronte les quatre plateformes de r\'ef\'er
 
 %% ── CRITÈRE 1 ──────────────────────────────────────────────────────────
 \rowcolor{ustolightblue!40}
-Mode de d\'eploiement &
-Auto-h\'eberg\'e\,/ cloud &
-Cloud Google &
-Cloud Microsoft &
-Cloud \\
+Adaptation au contexte alg\'erien &
+Moyenne &
+Faible &
+Tr\`es \'elev\'ee \\
 \hline
 
 %% ── CRITÈRE 2 ──────────────────────────────────────────────────────────
 \rowcolor{rowgray}
-Orientation principale &
-LMS complet &
-Classe et devoirs &
-Collaboration + classe &
-LMS complet \\
+H\'ebergement local &
+Possible &
+Non &
+Oui \\
 \hline
 
 %% ── CRITÈRE 3 ──────────────────────────────────────────────────────────
 \rowcolor{ustolightblue!40}
-Gestion des ressources &
-Avanc\'ee (cours, banques) &
-Essentielle (devoirs) &
-Correcte (canaux) &
-Avanc\'ee \\
+Langue arabe &
+Partielle &
+Oui &
+Native \\
 \hline
 
 %% ── CRITÈRE 4 ──────────────────────────────────────────────────────────
 \rowcolor{rowgray}
-Organisation par modules &
-Partielle (cat\'eg.) &
-Par classe uniquement &
-Par \'équipe\,/\,canal &
-Par cours \\
+Assistance IA locale &
+Non &
+Limit\'ee &
+Oui \\
 \hline
 
 %% ── CRITÈRE 5 ──────────────────────────────────────────────────────────
 \rowcolor{ustolightblue!40}
-Syst\`eme de r\^oles &
-Oui (multiples) &
-Enseignant\,/\, \'El\`eve &
-Propri\'etaire\,/\, Membre &
-Admin\,/\, \'Etudiant \\
+Gestion centres de soutien &
+Non &
+Non &
+Oui \\
 \hline
 
 %% ── CRITÈRE 6 ──────────────────────────────────────────────────────────
 \rowcolor{rowgray}
-Publications et commentaires &
-Forums de discussion &
-Commentaires de flux &
-Canaux de discussion &
-Annonces de cours \\
+Co\^ut &
+Moyen &
+Gratuit &
+Faible \\
 \hline
 
 %% ── CRITÈRE 7 ──────────────────────────────────────────────────────────
 \rowcolor{ustolightblue!40}
-Chat int\'egr\'e &
-Via plugin &
-Non (externe) &
-Oui (complet) &
-Partiel \\
-\hline
-
-%% ── CRITÈRE 8 ──────────────────────────────────────────────────────────
-\rowcolor{rowgray}
-Notifications &
-Courriel\,/\, interne &
-Courriel Google &
-Notifications M365 &
-Courriel\,/\, interne \\
-\hline
-
-%% ── CRITÈRE 9 ──────────────────────────────────────────────────────────
-\rowcolor{ustolightblue!40}
-Planificateur &
-Agenda basique &
-Google Agenda (ext.) &
-Calendrier M365 &
-Calendrier int\'egr\'e \\
-\hline
-
-%% ── CRITÈRE 10 ─────────────────────────────────────────────────────────
-\rowcolor{rowgray}
-Technologies &
-PHP, MySQL &
-Cloud Google &
-Cloud Microsoft &
-Ruby, PostgreSQL \\
-\hline
-
-%% ── CRITÈRE 11 ─────────────────────────────────────────────────────────
-\rowcolor{ustolightblue!40}
-Co\^ut\,/\,Licence &
-Gratuit (open source) &
-Gratuit (Google) &
-Payant (M365) &
-Payant (licence) \\
-\hline
-
-%% ── CRITÈRE 12 ─────────────────────────────────────────────────────────
-\rowcolor{rowgray}
-Adaptation locale &
-\'Elev\'ee avec configuration &
-Moyenne &
-Moyenne &
-Faible \\
+Personnalisation &
+\'Elev\'ee &
+Faible &
+Tr\`es \'elev\'ee \\
 \hline
 
 \end{longtable}
 
-\noindent{\small\textit{Sources~: \cite{moodle_overview_2026,google_classroom_2026,microsoft_teams_edu_2026,canvas_overview_2026}}}
+\noindent{\small\textit{Sources~: \cite{moodle_overview_2026,google_classroom_2026}}}
 
 \subsection{Synth\`ese et bilan de l'\'etat de l'art}
 
-L'analyse comparative men\'ee dans les tableaux~\ref{tab:compar_synth} et~\ref{tab:compar_detail} confirme que les plateformes g\'en\'eralistes existantes couvrent partiellement les besoins identifi\'es dans notre contexte~: Moodle excelle dans la gestion p\'edagogique mais exige une expertise technique importante~; Google Classroom privil\'egie la simplicit\'e au d\'etriment de la personnalisation~; Microsoft Teams est optimis\'e pour la collaboration mais reste secondaire en mati\`ere d'organisation p\'edagogique fine~; enfin, Canvas est trop co\^uteux et peu adapt\'e aux contraintes institutionnelles locales.
+L'analyse comparative men\'ee dans le tableau~\ref{tab:compar_detail} d\'emontre de mani\`ere univoque que les plateformes g\'en\'eralistes mondiales ne r\'epondent que tr\`es partiellement aux imp\'eratifs du paysage \'educatif national. Si Moodle offre un niveau de personnalisation satisfaisant, son co\^ut indirect de d\'eploiement reste moyen et son adaptation par d\'efaut au contexte alg\'erien demeure limit\'ee. De son c\^ot\'e, Google Classroom privil\'egie la gratuit\'e et int\`egre la langue arabe, mais souffre d'une rigidit\'e logicielle (faible personnalisation) et pose un d\'efi majeur en mati\`ere de souverainet\'e technique puisqu'un h\'ebergement local s'av\`ere impossible. De surcro\^it, aucune de ces solutions ne prend en charge nativement la gestion sp\'ecifique des centres de soutien scolaire ni une assistance IA h\'eberg\'ee localement.
 
-Ces lacunes cumul\'ees justifient la conception d'EduPlatform~: une solution \'elabor\'ee sp\'ecifiquement pour le contexte acad\'emique local, gratuite, auto-h\'eberg\'ee, et combinant dans un seul environnement la gestion modulaire des ressources, la gouvernance par r\^oles, la communication int\'egr\'ee et la planification hebdomadaire.
-
+Ces lacunes majeures l\'egitiment pleinement le d\'eveloppement d'EduPlatform (TAMKIN). Con\c{c}ue sp\'ecifiquement pour s'ins\'erer dans l'\'ecosyst\`eme alg\'erien, notre solution garantit la souverainet\'e de l'institution gr\^ace \`a un h\'ebergement local effectif et un support natif et bilingue de la langue arabe. L'introduction d'un assistant IA local d\'epourvu de d\'ependances cloud ext\'erieures, coupl\'ee \`a des modules d\'edi\'es aux structures de soutien et \`a un co\^ut d'exploitation r\'eduit, conf\`ere \`a TAMKIN une valeur ajout\'ee unique qu'aucune solution logicielle standard ne peut actuellement revendiquer sur le march\'e.
 %%──────────────────────────────────────────────────────────────────────────────
-\section{Positionnement d'EduPlatform}
+\section{Positionnement de TAMKIN}
 \label{sec:positionnement}
 %%──────────────────────────────────────────────────────────────────────────────
 
-EduPlatform se positionne comme une plateforme acad\'emique int\'egr\'ee, r\'eunissant dans un seul environnement les fonctions p\'edagogiques, sociales et organisationnelles que les solutions existantes dispersent entre plusieurs outils. Son architecture repose sur quatre piliers structurants~:
+TAMKIN se positionne comme une plateforme acad\'emique int\'egr\'ee, r\'eunissant dans un seul environnement les fonctions p\'edagogiques, sociales et organisationnelles que les solutions existantes dispersent entre plusieurs outils. Son architecture repose sur quatre piliers structurants~:
 
 \begin{itemize}
   \item \textbf{Navigation module-first~:} la granularit\'e p\'edagogique est au c\oe ur de l'exp\'erience~; chaque module dispose d'une page d\'edi\'ee regroupant ses sections et ses ressources class\'ees par type.
-  \item \textbf{Gouvernance par r\^oles~:} le syst\`eme d'autorisation \`a cinq niveaux (Administrateur Super, Administrateur Ecole, Formateur Principal, Formateur Simple, Utilisateur) garantit la s\'ecurit\'e, la modulation des acc\`es et la responsabilit\'e de chaque acteur.
+  \item \textbf{Gouvernance par r\^oles~:} le syst\`eme d'autorisation \`a cinq niveaux (Administrateur Super, Administrateur d'etablissement, Formateur Principal, Formateur Simple, Utilisateur) garantit la s\'ecurit\'e, la modulation des acc\`es et la responsabilit\'e de chaque acteur.
   \item \textbf{Couche sociale et collaborative~:} le chat et les notifications constituent un tissu de communication acad\'emique structur\'e, tra\c{c}able et centralis\'e.
 \end{itemize}
-
-%%──────────────────────────────────────────────────────────────────────────────
-\section{Illustrations de la plateforme EduPlatform}
-\label{sec:figures}
-%%──────────────────────────────────────────────────────────────────────────────
-
-Cette section pr\'esente les captures d'\'ecran de la plateforme illustrant les fonctionnalit\'es d\'ecrites dans les sections pr\'ec\'edentes.
-
-%%──────────────────────────
-\subsection{Figure~1~---~Capture~: navigation par modules}
-
-\safeimage[0.85\textwidth]{figures/F1_interface_modules.png}{F1}{Interface principale d'EduPlatform~: navigation par modules (vue liste des modules par niveau).}
-
-%%──────────────────────────
-\subsection{Figure~2~---~Capture~: ressources dans un module}
-
-
-
-\safeimage[0.85\textwidth]{figures/F2_interface_ressources.png}{F2}{Interface d'EduPlatform~: page d\'edi\'ee d'un module avec ses ressources organis\'ees par section (vue administrateur).}
-
-%%──────────────────────────
-\subsection{Figure~3~---~Capture~: publications et chat}
-
-
-\safeimage[0.85\textwidth]{figures/F3_interface_social.png}{F3}{Interface d'EduPlatform~: fil de publications et chat int\'egr\'es~--- couche sociale de la plateforme.}
 
 %%──────────────────────────────────────────────────────────────────────────────
 \section{Conclusion}
 \label{sec:conclusion}
 %%──────────────────────────────────────────────────────────────────────────────
 
-Ce premier chapitre a \'etabli le cadre analytique et conceptuel du projet EduPlatform en articulant trois niveaux de lecture compl\'ementaires~: le contexte mondial de la transformation num\'erique de l'enseignement, les besoins sp\'ecifiques du contexte acad\'emique local de l'USTO-MB, et le positionnement d'EduPlatform par rapport aux solutions existantes.
+Ce premier chapitre a \'etabli le cadre analytique et conceptuel du projet TAMKIN en articulant trois niveaux de lecture compl\'ementaires~: le contexte mondial de la transformation num\'erique de l'enseignement, les besoins sp\'ecifiques du contexte acad\'emique local de l'USTO-MB, et le positionnement de TAMKIN par rapport aux solutions existantes.
 
-L'analyse comparative men\'ee dans la section~\ref{sec:etat_art} d\'emontre qu'aucune des plateformes \'etudi\'ees~--- Moodle, Google Classroom, Microsoft Teams Education, Canvas~--- ne couvre de mani\`ere optimale l'ensemble des exigences identifi\'ees~: navigation module-first, gouvernance \`a trois r\^oles, communication int\'egr\'ee et planification hebdomadaire d\'edi\'ee. Cette convergence de lacunes justifie pleinement la conception d'EduPlatform comme solution \textit{ad hoc}, d\'evelopp\'ee sp\'ecifiquement pour le contexte éducatif local.
+L'analyse comparative men\'ee dans la section~\ref{sec:etat_art} d\'emontre qu'aucune des plateformes \'etudi\'ees~--- Moodle, Google Classroom, Microsoft Teams Education, Canvas~--- ne couvre de mani\`ere optimale l'ensemble des exigences identifi\'ees~: navigation module-first, gouvernance \`a cinq r\^oles, communication int\'egr\'ee et planification hebdomadaire d\'edi\'ee. Cette convergence de lacunes justifie pleinement la conception de TAMKIN comme solution \textit{ad hoc}, d\'evelopp\'ee sp\'ecifiquement pour le contexte éducatif local.
 
-La suite du m\'emoire approfondit successivement la conception UML (Chapitre~2), l'impl\'ementation technique (Chapitre~3) et l'\'évaluation des r\'esultats (Chapitre~4), en s'appuyant sur le cadre th\'eorique et m\'ethodologique pos\'e dans le pr\'esent chapitre. Cette analyse vise notamment les besoins des écoles de soutien, des écoles de langues et des centres de formation.
+La suite du m\'emoire approfondit successivement la conception UML (Chapitre~2), l'impl\'ementation technique (Chapitre~3) et l'\'évaluation des r\'esultats (Chapitre~4), en s'appuyant sur le cadre th\'eorique et m\'ethodologique pos\'e dans le pr\'esent chapitre. Cette analyse vise notamment les besoins des etablissements.
 
 %% ═══════════════════════════════════════════════════════════════════════════════
 %% CHAPITRE 2 — Analyse, modelisation UML et conception
 %% ═══════════════════════════════════════════════════════════════════════════════
 
-\chapter{Conception UML et architecture de la solution}
+\chapter{Analyse des besoins, architecture et conception UML de la solution}
 
 %%──────────────────────────────────────────────────────────────────────────────
 \section{Introduction du chapitre}
 %%──────────────────────────────────────────────────────────────────────────────
 
-Ce chapitre formalise la traduction de la problématique metier en specifications exploitables pour la realisation logicielle. Il presente successivement l'analyse des besoins, la modelisation UML des interactions, la conception des données et les choix architecturaux retenus pour EduPlatform.
+Ce chapitre formalise la traduction de la problématique metier en specifications exploitables pour la realisation logicielle. Il presente successivement l'analyse des besoins, la modelisation UML des interactions, la conception des données et les choix architecturaux retenus pour TAMKIN.
 
 L'objectif est double: garantir la cohérence fonctionnelle de la solution et réduire les risques de derivation durant l'implementation.
 
@@ -760,9 +705,9 @@ L'objectif est double: garantir la cohérence fonctionnelle de la solution et r�
 
 Quatre acteurs principaux structurent le système:
 \begin{itemize}
-  \item \textbf{Super administrateur}: gouvernance plateforme, écoles, administrateurs;
-  \item \textbf{Administrateur d'école}: gestion des utilisateurs, modules, assignations, inscriptions;
-  \item \textbf{Formateur Globale}: publication des ressources, suivi des apprenants, sessions live;
+  \item \textbf{Administrateur super}: gouvernance plateforme, écoles, administrateurs;
+  \item \textbf{Administrateur d'etablissement}: gestion des utilisateurs, modules, assignations, inscriptions;
+  \item \textbf{Formateur principal}: publication des ressources, suivi des apprenants, sessions live;
   \item \textbf{Formateur Simple}: publication des ressources, suivi des apprenants, sessions live;
   \item \textbf{Etudiant}: consultation des ressources, progression, interactions et lives.
 \end{itemize}
@@ -852,7 +797,7 @@ Pour augmenter la lisibilité et aligner la modélisation avec l'implementation 
 \subsubsection{Cas d'utilisation 1: Administrateur (super + école)}
 \begin{figure}[H]
     \centering
-    \safeimage[0.65\textwidth]{admin-usecase.png}{Cas d’utilisation: Administrateur}{Cas d’utilisation: Administrateur}
+    \safeimage[0.65\textwidth]{usecase-admin.png}{Cas d’utilisation: Administrateur}{Cas d’utilisation: Administrateur}
     \label{fig:usecase-admin}
 \end{figure}
 \clearpage
@@ -860,7 +805,7 @@ Pour augmenter la lisibilité et aligner la modélisation avec l'implementation 
 \subsubsection{Cas d'utilisation 2: Formateur}
 \begin{figure}[H]
     \centering
-    \safeimage[0.65\textwidth]{forma-usecase.png}{Cas d’utilisation: Formateur}{Cas d’utilisation: Formateur}
+    \safeimage[0.65\textwidth]{usecase-forma.png}{Cas d’utilisation: Formateur}{Cas d’utilisation: Formateur}
     \label{fig:usecase-formateur}
 \end{figure}
 \clearpage
@@ -868,9 +813,9 @@ Pour augmenter la lisibilité et aligner la modélisation avec l'implementation 
 \subsubsection{Cas d'utilisation 3: Etudiant}
 \begin{figure}[H]
     \centering
-    \safeimage[0.65\textwidth]{student-usecase.png}{Cas d'utilisation: Etudiant}{Cas d'utilisation: Etudiant}
-    \label{fig:usecase-étudiant}
-\end{figure}
+    \safeimage[0.65\textwidth]{studentusecase.png}{Cas d'utilisation: Etudiant}{Cas d'utilisation: Etudiant}
+    \label{fig:usecase-etudiant}
+  \end{figure}
 \clearpage
 
 
@@ -879,7 +824,7 @@ Pour augmenter la lisibilité et aligner la modélisation avec l'implementation 
 
 \subsubsection{Sequence 1: authentification et redirection par role}
 
-\textbf{Participants:} Etudiant, Admin Ecole, Super Admin, Formateur, Syst\`eme EduPlatform.
+\textbf{Participants:} Etudiant, Admin Ecole, Super Admin, Formateur, Syst\`eme TAMKIN.
 
 \textbf{Flux nominal (code réel):}
 \begin{enumerate}
@@ -898,7 +843,7 @@ Pour augmenter la lisibilité et aligner la modélisation avec l'implementation 
 
 \subsubsection{Sequence 2: creation de module et affectation d'un formateur}
 
-\textbf{Participants:} Super Admin, Syst\`eme EduPlatform.
+\textbf{Participants:} Super Admin, Syst\`eme TAMKIN.
 
 \textbf{Flux nominal (code réel):}
 \begin{enumerate}
@@ -919,7 +864,7 @@ Pour augmenter la lisibilité et aligner la modélisation avec l'implementation 
 
 \subsubsection{Sequence 3: circulation de la demande d'inscription étudiante}
 
-\textbf{Participants:} Etudiant, Admin Ecole, Syst\`eme EduPlatform.
+\textbf{Participants:} Etudiant, Admin Ecole, Syst\`eme TAMKIN.
 
 \textbf{Flux nominal (code réel):}
 \begin{enumerate}
@@ -939,7 +884,7 @@ Pour augmenter la lisibilité et aligner la modélisation avec l'implementation 
 
 \subsubsection{Sequence 4: publication de ressource pédagogique}
 
-\textbf{Participants:} Formateur, Syst\`eme EduPlatform.
+\textbf{Participants:} Formateur, Syst\`eme TAMKIN.
 
 \textbf{Flux nominal (code réel):}
 \begin{enumerate}
@@ -959,7 +904,7 @@ Pour augmenter la lisibilité et aligner la modélisation avec l'implementation 
 
 \subsubsection{Sequence 5: creation et cycle d'une session live}
 
-\textbf{Participants:} Formateur, Etudiant, Syst\`eme EduPlatform.
+\textbf{Participants:} Formateur, Etudiant, Syst\`eme TAMKIN.
 
 \textbf{Flux nominal (code réel):}
 \begin{enumerate}
@@ -979,21 +924,159 @@ Pour augmenter la lisibilité et aligner la modélisation avec l'implementation 
 
 \subsection{Diagramme de classes conceptuel}
 
-Le modele conceptuel s'articule autour de classes principales:
+Le modèle conceptuel s'articule autour des tables PostgreSQL et des contraintes qui structurent le schéma relationnel de TAMKIN. Dans l'implémentation, les classes logiques se traduisent par des tables, des clés primaires, des clés étrangères et des règles d'intégrité gérées par PostgreSQL.
+
 \begin{itemize}
-  \item \texttt{User} (roles, school, profil),
-  \item \texttt{Module} (code, nom, niveau, composants),
-  \item \texttt{Assignment} (formateur-module-type),
-  \item \texttt{Enrollment} (étudiant-module-statut),
-  \item \texttt{Resource} (categorie, fichier, statut),
-  \item \texttt{LiveSession} (lien, statut, horodatages).
+  \item \texttt{users} : comptes utilisateurs, rôles, informations personnelles, niveau et indicateurs de progression.
+  \item \texttt{modules} : unités pédagogiques avec code, nom, niveau, catégorie et créateur.
+  \item \texttt{formateur\_module\_assignment} : table d'association formateur-module, identifiant les formateurs principaux et secondaires.
+  \item \texttt{etudiant\_module\_enrollment} : table d'association étudiant-module, avec statut et horodatage.
+  \item \texttt{ressource\_pedagogique} : ressources liées à un module, déposées par un utilisateur.
+  \item \texttt{communities} / \texttt{community\_members} : communauté collaborative et ses adhésions.
+  \item \texttt{conversations} / \texttt{conversation\_participants} / \texttt{messages} : structure de communication et participation en chat.
+  \item \texttt{badges} / \texttt{student\_badges} / \texttt{student\_levels} / \texttt{student\_progress} : tables de gamification et de suivi.
+  \item \texttt{notifications}, \texttt{password\_reset\_tokens}, \texttt{categories} et \texttt{xp\_rules} : tables de support pour la sécurité, les alertes et la configuration.
 \end{itemize}
 
 \begin{figure}[H]
     \centering
-    \safeimage[0.65\textwidth]{umlclasse.drawio.png}{Diagramme de classes EduPlatform}{Diagramme de classes EduPlatform}
+    \safeimage[0.8\textwidth]{umldiagclasse.drawio.png}{Diagramme de classes TAMKIN}{Diagramme de classes TAMKIN}
     \label{fig:view-adminmodule}
 \end{figure}
+
+\section{Conception des données}
+
+\subsection{Modèle conceptuel des données (MCD)}
+
+Le modèle conceptuel des données de TAMKIN met en évidence les entités principales et leurs associations. Dans PostgreSQL, ce modèle est matérialisé par des tables relationnelles, des clés primaires et des clés étrangères qui assurent la cohérence des relations métier.
+
+Les entités les plus importantes sont :
+\begin{itemize}
+  \item \textbf{Utilisateur} : table \texttt{users} avec rôle, niveau académique, présence et progression.
+  \item \textbf{Module} : table \texttt{modules} qui regroupe les informations pédagogiques et la catégorie.
+  \item \textbf{Affectation de formateur} : table d'association \texttt{formateur\_module\_assignment} liée à \texttt{users} et \texttt{modules} par des contraintes \texttt{FOREIGN KEY}.
+  \item \textbf{Inscription étudiante} : table d'association \texttt{etudiant\_module\_enrollment} avec statut d'inscription.
+  \item \textbf{Ressource pédagogique} : table \texttt{ressource\_pedagogique} liée à un module et à l'utilisateur qui l'a déposée.
+  \item \textbf{Communauté} : table \texttt{communities} et table associée \texttt{community\_members} pour les adhésions.
+  \item \textbf{Conversation} et \textbf{Message} : tables \texttt{conversations}, \texttt{conversation\_participants} et \texttt{messages} pour le chat.
+  \item \textbf{Progression et badges} : tables \texttt{student\_levels}, \texttt{student\_badges} et \texttt{student\_progress} pour suivre les acquis et les récompenses.
+\end{itemize}
+
+Le MCD se traduit par des cardinalités conformes à PostgreSQL :
+\begin{itemize}
+  \item \texttt{users} 0..* ↔ 0..* \texttt{communities} via \texttt{community\_members}.
+  \item \texttt{users} 0..* ↔ 0..* \texttt{conversations} via \texttt{conversation\_participants}.
+  \item \texttt{modules} 1..1 ↔ 0..* \texttt{formateur\_module\_assignment}.
+  \item \texttt{modules} 1..1 ↔ 0..* \texttt{etudiant\_module\_enrollment}.
+  \item \texttt{modules} 1..1 ↔ 0..* \texttt{ressource\_pedagogique}.
+  \item \texttt{conversations} 1..1 ↔ 0..* \texttt{messages}.
+  \item \texttt{users} 1..1 ↔ 0..* \texttt{notifications}.
+  \item \texttt{categories} 0..* ↔ 0..1 \texttt{modules}.
+\end{itemize}
+
+\subsection{Modèle logique des données (MLD)}
+
+Le passage du MCD au MLD normalisé a été réalisé en conservant l'intégrité des relations tout en évitant les redondances. Dans PostgreSQL, les tables sont organisées avec des clés primaires auto-incrémentées (séquences) et des clés étrangères garantissant les associations.
+
+Les contraintes clés mises en œuvre sont :
+\begin{itemize}
+  \item clés primaires sur chaque colonne \texttt{id} ;
+  \item clés étrangères reliant \texttt{module\_id}, \texttt{user\_id}, \texttt{community\_id}, \texttt{conversation\_id}, \texttt{resource\_id}, \texttt{badge\_id} et \texttt{category\_id} aux tables cibles ;
+  \item contraintes d'unicité empêchant les doublons dans \texttt{community\_members} et \texttt{conversation\_participants} ;
+  \item \texttt{ON DELETE CASCADE} pour propager les suppressions sur les tables dépendantes ;
+  \item \texttt{ON DELETE SET NULL} pour les relations optionnelles telles que \texttt{modules.category\_id} et \texttt{conversations.created\_by}.
+\end{itemize}
+
+Le MLD principal comprend notamment :
+\begin{itemize}
+  \item \texttt{users} pour les comptes, les rôles et le suivi d'activité ;
+  \item \texttt{modules} pour les unités pédagogiques ;
+  \item \texttt{formateur\_module\_assignment} pour l'affectation des formateurs aux modules ;
+  \item \texttt{etudiant\_module\_enrollment} pour l'inscription des étudiants aux modules ;
+  \item \texttt{ressource\_pedagogique} pour le dépôt et la gestion des fichiers pédagogiques ;
+  \item \texttt{communities} et \texttt{community\_members} pour les espaces collaboratifs ;
+  \item \texttt{conversations}, \texttt{conversation\_participants} et \texttt{messages} pour le chat ;
+  \item \texttt{badges}, \texttt{student\_badges}, \texttt{student\_levels} et \texttt{student\_progress} pour le suivi et la gamification ;
+  \item \texttt{notifications}, \texttt{password\_reset\_tokens}, \texttt{categories} et \texttt{xp\_rules} pour la configuration, les alertes et la sécurité.
+\end{itemize}
+
+La vue \texttt{student\_enrollments\_view} facilite les requêtes de consultation du parcours étudiant sans dupliquer les données du schéma relationnel.
+
+
+\subsection{Dictionnaire de données}
+
+Le dictionnaire de données regroupe les tables les plus significatives du système et leurs rôles.
+
+\renewcommand{\arraystretch}{1.15}
+\begin{longtable}{|p{3.4cm}|p{4.4cm}|p{4.4cm}|}
+\caption{Dictionnaire de données principal}\label{tab:dictionnaire_donnees}\\
+\hline
+\rowcolor{ustoblue}
+\textcolor{white}{\textbf{Table}} & \textcolor{white}{\textbf{Description}} & \textcolor{white}{\textbf{Champs principaux}} \\
+\hline
+\endfirsthead
+\multicolumn{3}{c}{\tablename~\thetable{} -- suite} \\
+\hline
+\rowcolor{ustoblue}
+\textcolor{white}{\textbf{Table}} & \textcolor{white}{\textbf{Description}} & \textcolor{white}{\textbf{Champs principaux}} \\
+\hline
+\endhead
+\hline
+\endfoot
+
+users & Comptes utilisateurs multi-rôles & id, matricule, email, password\_hash, google\_id, nom, prenom, role\_global, niveau, is\_active, total\_xp, current\_level \\
+\hline
+modules & Unités pédagogiques ciblées par les parcours & id, code, nom, description, niveau, credits, coeff, components, category\_id, xp\_reward \\
+\hline
+formateur\_module\_assignment & Affectation des formateurs aux modules & id, formateur\_id, module\_id, assigned\_by, assigned\_at, is\_primary \\
+\hline
+etudiant\_module\_enrollment & Inscription d'un étudiant à un module & id, etudiant\_id, module\_id, enrolled\_at, status \\
+\hline
+ressource\_pedagogique & Ressources pédagogiques déposées par module & id, module\_id, uploaded\_by, titre, category, file\_path, file\_name, file\_size, created\_at \\
+\hline
+communities & Espaces collaboratifs liés aux modules ou catégories & id, name, slug, description, category\_id, member\_count, created\_by, is\_active \\
+\hline
+community\_members & Participation d'un utilisateur à une communauté & id, community\_id, user\_id, role, joined\_at, last\_active \\
+\hline
+conversations & Conversations de chat privées ou communautaires & id, conversation\_type, community\_id, created\_by, last\_message, message\_count \\
+\hline
+conversation\_participants & Membres d'une conversation et lecture des messages & id, conversation\_id, user\_id, joined\_at, last\_read\_at, role, is\_muted \\
+\hline
+messages & Messages échangés dans les conversations & id, conversation\_id, user\_id, content, created\_at, updated\_at \\
+\hline
+notifications & Notifications envoyées aux utilisateurs & id, user\_id, type, title, content, link, is\_read \\
+\hline
+password\_reset\_tokens & Jetons de réinitialisation de mot de passe & id, user\_id, token, expires\_at, used \\
+\hline
+badges & Définitions des badges et conditions d'obtention & id, name, description, icon, xp\_required, modules\_completed\_required \\
+\hline
+student\_badges & Badges attribués aux étudiants & id, student\_id, badge\_id, awarded\_at \\
+\hline
+student\_levels & Statut de progression de l'étudiant & id, student\_id, current\_level, total\_xp, resources\_completed, modules\_completed, current\_streak \\
+\hline
+student\_progress & Suivi détaillé des activités de l'étudiant & id, student\_id, module\_id, resource\_id, status, progress\_percentage, last\_accessed\_at \\
+\hline
+categories & Catégories de modules et de communautés & id, name, slug, description, icon, color, display\_order \\
+\hline
+xp\_rules & Règles de points d'expérience par action & id, action\_type, xp\_points \\
+\hline
+\end{longtable}
+
+\subsection{Schéma relationnel complet}
+
+Le schéma relationnel complet de TAMKIN est organisé autour des relations principales suivantes :
+\begin{itemize}
+  \item \texttt{users} \(1,n\) \texttt{formateur\_module\_assignment} et \texttt{etudiant\_module\_enrollment} ;
+  \item \texttt{modules} \(1,n\) \texttt{ressource\_pedagogique} ;
+  \item \texttt{communities} \(1,n\) \texttt{community\_members} ;
+  \item \texttt{conversations} \(1,n\) \texttt{conversation\_participants} et \texttt{messages} ;
+  \item \texttt{messages} \(1,n\) \texttt{message\_reactions} ;
+  \item \texttt{users} \(1,n\) \texttt{notifications} et \texttt{password\_reset\_tokens} ;
+  \item \texttt{users} \(1,n\) \texttt{student\_levels} et \texttt{student\_progress} ;
+  \item \texttt{badges} \(1,n\) \texttt{student\_badges}.
+\end{itemize}
+
+Ce schéma relationnel complet est implémenté dans la base de données PostgreSQL de l'application. Il structure les flux pédagogiques, collaboratifs et de gamification de TAMKIN tout en assurant l'intégrité référentielle et la normalisation des données.
 
 %%──────────────────────────────────────────────────────────────────────────────
 \section{Scenarios métier et captures d’écran}
@@ -1010,20 +1093,20 @@ Cette section formalise les parcours métier clés (A à E) : création et gouve
   \item l'administrateur saisit le formulaire de création (code, intitulé, niveau, composants, crédits);
   \begin{figure}[H]
     \centering
-    \safeimage[0.65\textwidth]{Capture d’écran (307).png}{Vue Administrateur d'Ecole: Ajout de module}{Vue Administrateur d'Ecole: Ajout de module}
+    \safeimage[0.8\textwidth]{Capture d’écran (372).png}{Vue Administrateur d'Ecole: Ajout de module}{Vue Administrateur d'Ecole: Ajout de module}
     \label{fig:view-adminmodule}
 \end{figure}
   \item le système vérifie l'unicité du code au sein de l'école et normalise les composants;
   \item le module est enregistré dans la table \texttt{modules} (ou \texttt{module\_catalog} selon le déploiement);
   \begin{figure}[H]
     \centering
-    \safeimage[0.65\textwidth]{Capture d’écran (309).png}{Vue Administrateur d'Ecole: Affectation de formateur}{Vue Administrateur d'Ecole: Affectation de formateur}
+    \safeimage[0.8\textwidth]{Capture d’écran (373).png}{Vue Administrateur d'Ecole: Affectation de formateur}{Vue Administrateur d'Ecole: Affectation de formateur}
     \label{fig:view-adminmodule}
 \end{figure}
   \item l'administrateur affecte un formateur principal (chargé de formation) et éventuellement des formateurs simples;
   \begin{figure}[H]
     \centering
-    \safeimage[0.65\textwidth]{Capture d’écran (310).png}{Vue Formateur: Modules}{Vue Formateur: Modules}
+    \safeimage[0.8\textwidth]{Capture d’écran (374).png}{Vue Formateur: Modules}{Vue Formateur: Modules}
     \label{fig:view-adminmodule}
 \end{figure}
   \item le système envoie des notifications et crée la communauté/slug associée au module.
@@ -1043,12 +1126,12 @@ Cette section formalise les parcours métier clés (A à E) : création et gouve
   \item si le formateur est simple, il voit uniquement le \texttt{component\_scope} qui lui est assigné et ne peut modifier que ces composants;
   \begin{figure}[H]
     \centering
-    \safeimage[0.9\textwidth]{Capture d’écran (323).png}{Vue Formateur: Modules}{Vue Formateur: Modules}
+    \safeimage[0.9\textwidth]{Capture d’écran (375).png}{Vue Formateur: Modules}{Vue Formateur: Modules}
     \label{fig:view-adminmodule}
 \end{figure}
 \begin{figure}[H]
     \centering
-    \safeimage[0.9\textwidth]{Capture d’écran (324).png}{Vue Formateur: Ajout ressource}{Vue Formateur: Ajout ressource}
+    \safeimage[0.9\textwidth]{Capture d’écran (376).png}{Vue Formateur: Ajout ressource}{Vue Formateur: Ajout ressource}
     \label{fig:view-adminmodule}
 \end{figure}
 \end{enumerate}
@@ -1064,13 +1147,13 @@ Cette section formalise les parcours métier clés (A à E) : création et gouve
   \item l'étudiant (ou l'administrateur) remplit le formulaire d'inscription au module;
   \begin{figure}[H]
     \centering
-    \safeimage[0.9\textwidth]{Capture d’écran (312).png}{Formulaire d'inscription}{Formulaire d'inscription}
+    \safeimage[0.9\textwidth]{Capture d’écran (378).png}{Formulaire d'inscription}{Formulaire d'inscription}
     \label{fig:view-inscription-form}
 \end{figure}
   \item la demande d'inscription est envoyée et traitée par l'administrateur de l'école;
   \begin{figure}[H]
     \centering
-    \safeimage[0.9\textwidth]{Capture d’écran (313).png}{Vue Admin d'Ecole: Inscriptions}{Vue Admin d'Ecole: Inscriptions}
+    \safeimage[0.9\textwidth]{Capture d’écran (379).png}{Vue Admin d'Ecole: Inscriptions}{Vue Admin d'Ecole: Inscriptions}
     \label{fig:view-admin-inscriptions}
 \end{figure}
   \item le système vérifie les contraintes (même école, pas de doublon) et crée l'enregistrement dans \texttt{etudiant\_module\_enrollment};
@@ -1089,7 +1172,7 @@ Cette section formalise les parcours métier clés (A à E) : création et gouve
   \item il saisit une requête (explication d'un concept, génération de quiz, reformulation d'une fiche de cours);
   \begin{figure}[H]
     \centering
-    \safeimage[0.65\textwidth]{Capture d’écran (325).png}{Vue Etudiant: Assistant IA}{Vue Etudiant: Assistant IA}
+    \safeimage[0.8\textwidth]{Capture d’écran (380).png}{Vue Etudiant: Assistant IA}{Vue Etudiant: Assistant IA}
     \label{fig:view-etudiant-accueil}
 \end{figure}
   \item la requête est envoyée au service IA, qui renvoie une réponse structurée (texte, questions, suggestions de ressources);
@@ -1110,14 +1193,14 @@ Cette section formalise les parcours métier clés (A à E) : création et gouve
   \item le formateur programme une session (statut \texttt{SCHEDULED}) avec date/heure et lien;
   \begin{figure}[H]
     \centering
-    \safeimage[0.65\textwidth]{Capture d’écran (321).png}{Vue Formateur: Live}{Vue Formateur: Live}
+    \safeimage[0.8\textwidth]{Capture d’écran (381).png}{Vue Formateur: Live}{Vue Formateur: Live}
     \label{fig:view-formateur-live}
 \end{figure}
   \item une notification est envoyée aux étudiants inscrits et la session apparaît sur le dashboard;
   \item au moment du démarrage le formateur passe la session en statut \texttt{LIVE};
   \begin{figure}[H]
     \centering
-    \safeimage[0.65\textwidth]{Capture d’écran (322).png}{Vue Etudiant: Acceuil}{Vue Etudiant: Acceuil}
+    \safeimage[0.8\textwidth]{Capture d’écran (382).png}{Vue Etudiant: Acceuil}{Vue Etudiant: Acceuil}
     \label{fig:view-etudiant-accueil}
 \end{figure}
   \item pendant la session, échanges synchrones (chat, Q\&A) et partages de ressources sont possibles; des marqueurs de présence/compréhension peuvent être collectés;
@@ -1233,7 +1316,7 @@ OS1 & Centraliser ressources pédagogiques & Produire et diffuser & Ressources a
 \hline
 OS2 & Authentification et autorisation par roles & Administrer la plateforme/école & Acces refuses hors privileges \\
 \hline
-OS3 & Communication integree & Apprendre et interagir & Publications/chat operationnels \\
+OS3 & Communication integree & Apprendre et interagir & Chat et publication de ressources operationnels \\
 \hline
 OS4 & Notifications des evenements & Apprendre et interagir & Notification visible apres evenement \\
 \hline
@@ -1259,7 +1342,7 @@ Ce chapitre a etabli le pont entre besoins metier et solution technique. L'analy
 \section{Introduction du chapitre}
 %%──────────────────────────────────────────────────────────────────────────────
 
-Apres la phase d'analyse et de conception, ce chapitre presente la realisation effective d'EduPlatform. Il decrit l'environnement de développement, l'implementation des modules fonctionnels, l'intégration de la fonctionnalite live, puis les tests de validation.
+Apres la phase d'analyse et de conception, ce chapitre presente la realisation effective de TAMKIN. Il decrit l'environnement de développement, l'implementation des modules fonctionnels, l'intégration de la fonctionnalite live, puis les tests de validation.
 
 %%──────────────────────────────────────────────────────────────────────────────
 \section{Environnement technologique}
@@ -1296,7 +1379,7 @@ Cette separation facilite la maintenabilite et l'évolution incrémentale.
 
 \subsection{Configuration d'execution}
 
-Le fonctionnement d'EduPlatform repose sur une separation claire des environnements de développement et de production.
+Le fonctionnement de TAMKIN repose sur une separation claire des environnements de développement et de production.
 \begin{itemize}
   \item \textbf{Variables d'environnement}: configuration des ports, URL API, secrets JWT et acces base de données;
   \item \textbf{Parametres de sécurité}: expiration des jetons, politique CORS et validation des entrees;
@@ -1349,7 +1432,7 @@ La plateforme gere:
 
 \subsection{Communication et collaboration}
 
-Les utilisateurs disposent d'espaces de communication (chat/publications) afin de fluidifier les interactions pédagogiques et l'entraide.
+Les utilisateurs disposent d'espaces de communication (chat privé et de groupe) et de publication de ressources pédagogiques afin de fluidifier les interactions pédagogiques et l'entraide.
 
 \subsection{Traçabilite des operations metier}
 
@@ -1544,7 +1627,7 @@ Consultation ressources & Etudiant & Valide & Parcours fluide et lisible \\
 \section{Synthese et perspectives techniques}
 %%──────────────────────────────────────────────────────────────────────────────
 
-La realisation confirme la faisabilite technique du socle EduPlatform et sa capacite a supporter des usages reels multi-acteurs. Les evolutions prioritaires envisagees sont:
+La realisation confirme la faisabilite technique du socle TAMKIN et sa capacite a supporter des usages reels multi-acteurs. Les evolutions prioritaires envisagees sont:
 \begin{itemize}
   \item observabilite avancee (logs metier, tableaux de supervision),
   \item automatisation QA (tests intégration/e2e),
@@ -1555,7 +1638,7 @@ La realisation confirme la faisabilite technique du socle EduPlatform et sa capa
 \section{Conclusion}
 %%──────────────────────────────────────────────────────────────────────────────
 
-Ce chapitre a decrit l'implementation concrete d'EduPlatform et les validations associees. Les resultats montrent une plateforme fonctionnelle, évolutive et coherente avec les objectifs du projet. Le chapitre suivant complete cette analyse par la dimension entrepreneuriale: modele économique, SWOT et strategie de croissance startup.
+Ce chapitre a decrit l'implementation concrete de TAMKIN et les validations associees. Les resultats montrent une plateforme fonctionnelle, évolutive et coherente avec les objectifs du projet. Le chapitre suivant complete cette analyse par la dimension entrepreneuriale: modele économique, SWOT et strategie de croissance startup.
 
 %% ═══════════════════════════════════════════════════════════════════════════════
 %% CHAPITRE 4 — Modele économique, positionnement startup et analyse SWOT
@@ -1567,14 +1650,14 @@ Ce chapitre a decrit l'implementation concrete d'EduPlatform et les validations 
 \section{Introduction du chapitre}
 %%──────────────────────────────────────────────────────────────────────────────
 
-Dans les chapitres precedents, nous avons expose le contexte, la problématique, puis les choix techniques et fonctionnels qui structurent la plateforme EduPlatform. Le present chapitre deplace l'analyse vers la viabilite entrepreneuriale du projet. L'objectif est de verifier que la proposition de valeur n'est pas uniquement techniquement realisable, mais egalement economiquement soutenable dans un contexte de startup EdTech.
+Dans les chapitres precedents, nous avons expose le contexte, la problématique, puis les choix techniques et fonctionnels qui structurent la plateforme TAMKIN. Le present chapitre deplace l'analyse vers la viabilite entrepreneuriale du projet. L'objectif est de verifier que la proposition de valeur n'est pas uniquement techniquement realisable, mais egalement economiquement soutenable dans un contexte de startup EdTech.
 
 Ce chapitre poursuit quatre finalites. Premierement, formaliser un modele économique coherent a travers le \textit{Business Model Canvas} (BMC)\cite{osterwalder2010bmc}. Deuxiemement, evaluer la position stratégique de la startup au moyen d'une matrice SWOT\cite{kotler2017marketing}. Troisiemement, proposer des scenarios de monetisation et des indicateurs de pilotage. Quatriemement, definir une feuille de route de croissance progressive adaptee au contexte des écoles et centres de formation.
 
 %%──────────────────────────────────────────────────────────────────────────────
 \section{Cadre juridique et regulatoire}
 
-Dans le cadre national, le projet doit prendre en compte le contexte reglémentaire applicable aux services numeriques et aux startups EdTech. La loi \textbf{12-75} figure parmi les textes de reference qui structurent l'environnement juridique des systèmes d'information et des activites economiques en lien avec les technologies de l'information. EduPlatform est ainsi confronte a des exigences de conformité sur les plans de la protection des données, de la sécurité des infrastructures et de la contractualisation des services.
+Dans le cadre national, le projet doit prendre en compte le contexte reglémentaire applicable aux services numeriques et aux startups EdTech. La loi \textbf{12-75} figure parmi les textes de reference qui structurent l'environnement juridique des systèmes d'information et des activites economiques en lien avec les technologies de l'information. TAMKIN est ainsi confronte a des exigences de conformité sur les plans de la protection des données, de la sécurité des infrastructures et de la contractualisation des services.
 
 Ce cadre juridique renforce l'importance d'un modele économique clairement defini, d'une gouvernance documentee et d'une roadmap de deploiement qui integre les aspects reglementaires des accords avec les etablissements.
 
@@ -1582,11 +1665,11 @@ Ce cadre juridique renforce l'importance d'un modele économique clairement defi
 \section{Vision startup et hypotheses de depart}
 %%──────────────────────────────────────────────────────────────────────────────
 
-EduPlatform est envisage comme une startup B2B2C EdTech. Le coeur du modele consiste a contractualiser avec les etablissements (B2B), tout en delivrant de la valeur directe aux formateurs et apprenants (B2C indirect). Ce positionnement permet de traiter simultanement les enjeux institutionnels (gouvernance, sécurité, traçabilite) et les usages quotidiens (cours, TD, TP, lives, communication, suivi).
+TAMKIN est envisage comme une startup B2B2C EdTech. Le coeur du modele consiste a contractualiser avec les etablissements (B2B), tout en delivrant de la valeur directe aux formateurs et apprenants (B2C indirect). Ce positionnement permet de traiter simultanement les enjeux institutionnels (gouvernance, sécurité, traçabilite) et les usages quotidiens (cours, TD, TP, lives, communication, suivi).
 
 \subsection{Probleme marche adresse}
 
-Les écoles de soutien, les écoles de langues et les établissements privés font face à trois contraintes récurrentes:
+Les établissements font face à trois contraintes récurrentes:
 \begin{itemize}
   \item dispersion des ressources pédagogiques entre plusieurs canaux non gouvernés;
   \item manque de pilotage centralisé (droits, validations, historique, reporting);
@@ -1617,7 +1700,7 @@ Ces hypotheses servent de base a la priorisation roadmap et a la décision de pa
 \section{Analyse du marche et positionnement concurrentiel}
 %%──────────────────────────────────────────────────────────────────────────────
 
-Le positionnement d'EduPlatform ne se limite pas a une comparaison fonctionnelle avec les LMS etablis. Il repose sur une strategie de specialisation locale, orientee gouvernance pédagogique et simplicite d'usage.
+Le positionnement de TAMKIN ne se limite pas a une comparaison fonctionnelle avec les LMS etablis. Il repose sur une strategie de specialisation locale, orientee gouvernance pédagogique et simplicite d'usage.
 
 \subsection{Lecture TAM / SAM / SOM}
 
@@ -1631,7 +1714,7 @@ Cette lecture permet d'eviter une surprojection commerciale et d'ancrer les obje
 
 \subsection{Differenciation concurrentielle}
 
-Les concurrents generalistes couvrent un spectre large, mais avec une adaptation locale limitee. EduPlatform se differencie sur:
+Les concurrents generalistes couvrent un spectre large, mais avec une adaptation locale limitee. TAMKIN se differencie sur:
 \begin{itemize}
   \item la gouvernance fine multi-école et multi-roles;
   \item la structuration pédagogique native Cours/TD/TP;
@@ -1653,20 +1736,20 @@ LMS internationaux & Moyenne a faible & Bonne mais generaliste & Standardise \\
 \hline
 Outils bureautiques + chat & Faible & Fragmentee & Informel \\
 \hline
-EduPlatform & Elevee & Native au contexte metier & Proximite + iteration \\
+TAMKIN & Elevee & Native au contexte metier & Proximite + iteration \\
 \hline
 \end{tabular}
 \end{table}
 
 %%──────────────────────────────────────────────────────────────────────────────
-\section{Business Model Canvas d'EduPlatform}
+\section{Business Model Canvas de TAMKIN}
 %%──────────────────────────────────────────────────────────────────────────────
 
 Le BMC formalise les neuf blocs strategiques de la startup\cite{osterwalder2010bmc}.
 
 \subsection{Segments de clients}
 
-EduPlatform cible quatre segments prioritaires:
+TAMKIN cible quatre segments prioritaires:
 \begin{itemize}
   \item écoles, centres de formation et etablissements de soutien cherchant une plateforme pédagogique gouvernee;
   \item administrations pédagogiques (direction, scolarite, responsables filiere);
@@ -1755,7 +1838,7 @@ Des revenus complementaires peuvent etre ajoutes: formation premium, migration d
 
 \renewcommand{\arraystretch}{1.45}
 \begin{longtable}{|>{\bfseries\raggedright\arraybackslash}p{3.2cm}|p{10.2cm}|}
-\caption{Synthese du Business Model Canvas d'EduPlatform}
+\caption{Synthese du Business Model Canvas de TAMKIN}
 \label{tab:bmc_edconnect} \\
 \hline
 \rowcolor{ustoblue}
@@ -1782,71 +1865,107 @@ Structure de couts & Technique, équipe, operations, acquisition client \\
 \end{longtable}
 
 %%──────────────────────────────────────────────────────────────────────────────
-\section{Analyse SWOT de la startup EduPlatform}
-%%──────────────────────────────────────────────────────────────────────────────
+\subsection{Analyse SWOT du projet}
+L'évaluation stratégique de la solution TAMKIN repose sur une analyse SWOT (Strengths, Weaknesses, Opportunities, Threats) complète. Cette approche méthodologique permet de confronter les facteurs internes propres à la conception de la plateforme aux dynamiques externes de l'écosystème éducatif et entrepreneurial algérien.
 
-L'analyse SWOT permet de croiser facteurs internes (forces, faiblesses) et externes (opportunites, menaces) pour orienter les décisions strategiques.
-
-\renewcommand{\arraystretch}{1.45}
-\begin{table}[H]
+\begin{table}[htbp]
 \centering
-\caption{Matrice SWOT d'EduPlatform}
-\label{tab:swot_edconnect}
-\begin{tabular}{|p{6.2cm}|p{6.2cm}|}
+\caption{Matrice SWOT synthétique de la plateforme TAMKIN}
+\label{tab:matrice_swot}
+\begin{tabularx}{\textwidth}{|X|X|}
 \hline
-\rowcolor{ustoblue}
-\textcolor{white}{\textbf{Forces (S)}} & \textcolor{white}{\textbf{Faiblesses (W)}} \\
-\hline
+\cellcolor{gray!15}\textbf{Forces (Strengths)} & \cellcolor{gray!15}\textbf{Faiblesses (Weaknesses)} \\
+\small
 \begin{itemize}
-  \item Architecture multi-école et gouvernance par roles.
-  \item UX adaptee au contexte pédagogique local.
-  \item Fonctionnalites differenciantes: live, workflow, separation Cours/TD/TP.
-  \item Équipe proche du terrain éducatif local.
+    \item Solution locale et souveraine.
+    \item Interface unique et centralisée.
+    \item Architecture moderne (React/Node).
+    \item Assistant IA pédagogique intégré.
+    \item Bilinguisme natif (Arabe/Français).
 \end{itemize}
-&
+& 
+\small
 \begin{itemize}
-  \item Notoriete de marque encore faible.
-  \item Ressources humaines et budget limites en phase initiale.
-  \item Dependance a quelques profils techniques cles.
-  \item Processus commerciaux encore en structuration.
-\end{itemize}
-\\
+    \item Stade de PFE (manque de recul).
+    \item Budget de départ limité.
+    \item Équipe technique réduite.
+    \item Absence d'application mobile native en v1.
+    \item Notoriété initiale inexistante.
+\end{itemize} \\
 \hline
-\rowcolor{ustoblue}
-\textcolor{white}{\textbf{Opportunites (O)}} & \textcolor{white}{\textbf{Menaces (T)}} \\
-\hline
+\cellcolor{gray!15}\textbf{Opportunités (Opportunities)} & \cellcolor{gray!15}\textbf{Menaces (Threats)} \\
+\small
 \begin{itemize}
-  \item Acceleration de la digitalisation des etablissements.
-  \item Besoin croissant d'outils de souverainete et de gouvernance des données.
-  \item Programmes d'appui a l'innovation et incubateurs.
-  \item Faible adequation des solutions generalistes aux contraintes locales.
+    \item Transformation numérique en Algérie.
+    \item Boom des centres de soutien et du privé.
+    \item Cadre étatique favorable aux startups (12-75).
+    \item Demande accrue pour la langue arabe.
+    \item Marché EdTech national non saturé.
 \end{itemize}
-&
+& 
+\small
 \begin{itemize}
-  \item Concurrence LMS internationaux etablis.
-  \item Ralentissements administratifs dans la décision d'achat.
-  \item Risques cyber et exigences de conformite.
-  \item Volatilite budgetaire des institutions.
-\end{itemize}
-\\
+    \item Concurrence des géants (Moodle, Teams).
+    \item Résistance culturelle au changement.
+    \item Disparités régionales de connectivité Internet.
+    \item Modèles gratuits des GAFAM.
+    \item Risques liés à la cybersécurité.
+\end{itemize} \\
 \hline
-\end{tabular}
+\end{tabularx}
 \end{table}
 
-\subsection{Strategies derivees de la SWOT}
+\paragraph{Analyse détaillée des facteurs :}
 
-\paragraph{Strategie SO (exploiter forces + opportunites).}
-Prioriser les deploiements pilotes dans des etablissements ouverts a l'innovation et transformer les resultats obtenus en references commerciales.
+\begin{description}
+    \item[Forces (S) :] Facteurs internes positifs qui procurent un avantage concurrentiel à la solution :
+    \begin{itemize}
+        \item \textbf{Solution développée localement :} Parfaitement adaptée aux spécificités, aux besoins réels et aux exigences réglementaires des établissements algériens.
+        \item \textbf{Centralisation des services :} Une interface unique qui regroupe la gestion des cours, le partage des ressources, les outils de communication et le déploiement de classes virtuelles.
+        \item \textbf{Architecture technique moderne :} Utilisation d'une pile technologique robuste, hautement évolutive et standardisée (React, Node.js, PostgreSQL).
+        \item \textbf{Innovation par l'IA :} Intégration native d'un assistant IA pédagogique fonctionnant localement, offrant un tutorat personnalisé.
+        \item \textbf{Avantage économique :} Coût global d'acquisition, de déploiement et de maintenance nettement inférieur aux solutions étrangères payantes.
+        \item \textbf{Bilinguisme natif :} Prise en charge fluide et simultanée des langues Arabe et Français, respectant l'usage du système éducatif national.
+        \item \textbf{Souveraineté des données :} Choix exclusif d'un hébergement local, garantissant la sécurité et la confidentialité des données éducatives sensibles.
+        \item \textbf{Flexibilité structurelle :} Grande facilité de personnalisation permettant de configurer la plateforme selon la typologie de l'établissement (école, université ou centre privé).
+    \end{itemize}
 
-\paragraph{Strategie ST (utiliser forces contre menaces).}
-Renforcer les arguments de differenciation locale (gouvernance, adaptation pédagogique, support de proximite) face aux LMS internationaux standardises.
+    \item[Faiblesses (W) :] Limites internes actuelles qu'il conviendra de surmonter lors du passage à l'échelle :
+    \begin{itemize}
+        \item \textbf{Stade de maturité initial :} Projet encore positionné au niveau de Projet de Fin d'Études (PFE), manquant de retours d'expérience et de métriques en production réelle.
+        \item \textbf{Contraintes financières :} Budget initial très restreint dédié à la phase d'industrialisation, de déploiement d'infrastructure et de commercialisation.
+        \item \textbf{Ressources humaines limitées :} Forte dépendance stratégique et opérationnelle vis-à-vis d'une équipe technique très réduite au démarrage.
+        \item \textbf{Limitation des données IA :} Manque de jeux de données réels et massifs en début de projet pour entraîner et personnaliser finement les modèles d'apprentissage de l'IA.
+        \item \textbf{Déficit de visibilité :} Notoriété de marque inexistante sur le marché au moment du lancement de l'activité commerciale.
+        \item \textbf{Validation de charge restreinte :} Expérimentations techniques limitées concernant le comportement de l'infrastructure face à un très grand nombre d'utilisateurs simultanés.
+        \item \textbf{Périmètre applicatif v1 :} Absence d'une application mobile native au lancement (la version 1 reposant exclusivement sur une interface Web responsive).
+        \item \textbf{Maintenance critique :} Nécessité impérative d'assurer un support technique continu de haute disponibilité, complexe à garantir avec une structure restreinte.
+    \end{itemize}
 
-\paragraph{Strategie WO (réduire faiblesses via opportunites).}
-Utiliser l'appui d'incubateurs et partenaires pour structurer la fonction commerciale, formaliser les offres et accelerer l'acquisition.
+    \item[Opportunités (O) :] Tendances de l'environnement externe que la startup peut exploiter à son avantage :
+    \begin{itemize}
+        \item \textbf{Modernisation sectorielle :} Accélération globale de la transformation numérique au sein du secteur éducatif public et privé en Algérie.
+        \item \textbf{Essor du secteur privé :} Croissance exponentielle et structuration continue des établissements privés et des centres de soutien scolaire.
+        \item \textbf{Nouvelles pratiques pédagogiques :} Développement massif et irréversible de l'enseignement hybride et des modèles de formation à distance.
+        \item \textbf{Appétence pour l'innovation :} Intégration et intérêt institutionnel grandissant pour l'introduction des technologies de l'intelligence artificielle dans l'éducation.
+        \item \textbf{Ancrage universitaire :} Perspectives de partenariats scientifiques et stratégiques avec les universités, les laboratoires de recherche et les incubateurs algériens.
+        \item \textbf{Cadre réglementaire incitatif :} Soutien gouvernemental fort accordé aux startups innovantes, notamment via les mécanismes de la loi et du décret 12-75.
+        \item \textbf{Valorisation de la langue nationale :} Demande croissante pour des plateformes performantes conçues d'origine en langue arabe, secteur souvent délaissé par les outils occidentaux.
+        \item \textbf{Dynamique du marché :} Écosystème EdTech national encore jeune, émergent et peu saturé par des acteurs locaux structurés.
+    \end{itemize}
 
-\paragraph{Strategie WT (limiter faiblesses et menaces).}
-Mettre en place une feuille de route sécurité/conformite, une documentation d'exploitation et une politique de continuité afin de réduire les risques operationnels.
-
+    \item[Menaces (T) :] Risques et barrières externes que le projet doit anticiper et contourner :
+    \begin{itemize}
+        \item \textbf{Pression concurrentielle :} Présence frontale d'acteurs internationaux massivement installés et standardisés (Moodle, Google Classroom, Microsoft Teams).
+        \item \textbf{Inertie culturelle :} Résistance psychologique ou administrative au changement de la part de certains décideurs, enseignants ou parents d'élèves.
+        \item \textbf{Évolution technologique rapide :} Obsolescence accélérée propre au secteur de l'EdTech, imposant un cycle de R\&D très court et coûteux.
+        \item \textbf{Exigences de sécurité :} Risques croissants liés à la cybersécurité et obligations strictes concernant la protection des données personnelles.
+        \item \textbf{Mondialisation des offres :} Pénétration agressive potentielle de nouvelles solutions EdTech internationales ciblant les marchés émergents.
+        \item \textbf{Infrastructures réseau :} Disparités régionales majeures concernant la qualité de l'accès à Internet à haut débit, pouvant freiner l'adoption de la plateforme.
+        \item \textbf{Stratégies de gratuité :} Positionnement agressif d'offres gratuites, d'essais prolongés ou de solutions subventionnées par les géants du numérique (GAFAM).
+        \item \textbf{Acquisition client :} Importante barrière à l'entrée pour convaincre, contractualiser et fidéliser les premiers clients institutionnels de référence.
+    \end{itemize}
+\end{description}
 %%──────────────────────────────────────────────────────────────────────────────
 \section{Scenario de monetisation et indicateurs de pilotage}
 %%──────────────────────────────────────────────────────────────────────────────
@@ -1925,7 +2044,7 @@ Le deploiement commercial peut etre structure en quatre chantiers synchronises:
 \section{Conclusion}
 %%──────────────────────────────────────────────────────────────────────────────
 
-L'analyse entrepreneuriale montre qu'EduPlatform dispose d'une base solide pour evoluer d'un projet académique vers une startup EdTech viable. Le Business Model Canvas met en evidence un positionnement clair B2B2C, tandis que la SWOT confirme une fenetre d'opportunite réelle, a condition de structurer rapidement les dimensions commerciales, organisationnelles et securitaires.
+L'analyse entrepreneuriale montre qu'TAMKIN dispose d'une base solide pour evoluer d'un projet académique vers une startup EdTech viable. Le Business Model Canvas met en evidence un positionnement clair B2B2C, tandis que la SWOT confirme une fenetre d'opportunite réelle, a condition de structurer rapidement les dimensions commerciales, organisationnelles et securitaires.
 
 Ce chapitre etablit ainsi le lien entre la pertinence pédagogique de la solution et sa soutenabilite économique. Il constitue une etape essentielle avant la phase d'industrialisation et de mise sur le marche, en orientant les décisions de priorisation produit, d'acquisition client et de gouvernance de croissance.
 
@@ -1938,9 +2057,9 @@ Ce chapitre etablit ainsi le lien entre la pertinence pédagogique de la solutio
 
 Ce mémoire avait pour objectif de concevoir et realiser une plateforme pédagogique unifiee repondant aux besoins d'un contexte éducatif réel. La démarche adoptee a permis de couvrir l'ensemble de la chaine de valeur du projet: analyse du contexte, modelisation, implementation technique, validation fonctionnelle et projection startup.
 
-Sur le plan technique, EduPlatform propose un socle coherent et operationnel: gestion multi-roles, administration pédagogique, structuration des contenus par composants (Cours/TD/TP), communication integree, suivi et fonctionnalite live. Les tests fonctionnels ont confirme la stabilite des parcours critiques pour les profils administrateur, formateur et étudiant.
+Sur le plan technique, TAMKIN propose un socle coherent et operationnel: gestion multi-roles, administration pédagogique, structuration des contenus par composants (Cours/TD/TP), communication integree, suivi et fonctionnalite live. Les tests fonctionnels ont confirme la stabilite des parcours critiques pour les profils administrateur, formateur et étudiant.
 
-Sur le plan methodologique, la structuration du mémoire s'aligne sur les references d'encadrement (branding et bibliotheque virtuelle), tout en introduisant une extension majeure: la dimension entrepreneuriale. Le chapitre dedie au modele économique et a l'analyse SWOT montre qu'EduPlatform peut evoluer d'un projet académique vers une startup EdTech viable, sous reserve d'une execution disciplinee sur les axes produit, commercial et operationnel.
+Sur le plan methodologique, la structuration du mémoire s'aligne sur les references d'encadrement (branding et bibliotheque virtuelle), tout en introduisant une extension majeure: la dimension entrepreneuriale. Le chapitre dedie au modele économique et a l'analyse SWOT montre qu'TAMKIN peut evoluer d'un projet académique vers une startup EdTech viable, sous reserve d'une execution disciplinee sur les axes produit, commercial et operationnel.
 
 \paragraph{Contributions principales.}
 \begin{itemize}
@@ -1959,7 +2078,7 @@ Les perspectives prioritaires concernent:
   \item l'extension commerciale vers d'autres etablissements.
 \end{itemize}
 
-En synthese, EduPlatform demontre qu'une solution locale, évolutive et orientee usages peut concilier rigueur académique, efficacite operationnelle et potentiel de croissance startup.
+En synthese, TAMKIN demontre qu'une solution locale, évolutive et orientee usages peut concilier rigueur académique, efficacite operationnelle et potentiel de croissance startup.
 
 
 \clearpage
